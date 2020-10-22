@@ -1,7 +1,10 @@
 # For writers
 
 ## Setting up local editing environment
-1. Install python 3
+1. Install python 3 and pipenv
+   ```
+   python3 -m pip install pipenv
+   ```
 1. Start local documentation server
     ```
     ./local_server.sh
