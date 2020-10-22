@@ -7,6 +7,8 @@ theme:
   logo: img/cast-logo-white.svg
 extra_css:
   - stylesheets/extra.css
+site_url: https://cast.ai
+repo_url: https://github.com/castai/docs
 edit_uri: https://github.com/castai/docs/edit/main/docs/
 markdown_extensions:
   - admonition
