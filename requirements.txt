@@ -1,0 +1,5 @@
+tornado==4.5.3
+mkdocs==0.16.3
+git+git://github.com/Scifabric/mkdocs-material-pybossa.git@pybossa#egg=mkdocs-material
+pygments==2.2
+pymdown-extensions==3.4
