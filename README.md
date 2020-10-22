@@ -1,6 +1,6 @@
 # For writers
 
-Crash course to setting up your environment
+## Setting up local editing environment
 1. Install python 3
 1. Start local documentation server
     ```
@@ -21,3 +21,7 @@ Crash course to setting up your environment
 
 Useful links
 * [MkDocs Basics](https://www.mkdocs.org/user-guide/writing-your-docs/)
+
+## Quick fixes directly from web
+
+For quick edits/suggestions, edit links ("edit this page" at the top right corner) and create text suggestions directly from web. See https://docs.github.com/en/free-pro-team@latest/github/managing-files-in-a-repository/editing-files-in-your-repository if you're unfamiliar with the workflow.
