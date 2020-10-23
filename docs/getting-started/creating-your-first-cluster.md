@@ -1,4 +1,4 @@
-# Creating your first cluster
+# Creating your first cluster sample change
 
 !!! note "TODO: pending documentation"
     Merge contents of https://help.cast.ai/en/articles/4500904
