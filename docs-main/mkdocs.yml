@@ -1,0 +1,70 @@
+strict: true
+site_name: Cast AI Documentation
+theme:
+  name: 'material'
+  favicon: img/favicon.ico
+  custom_dir: overrides
+  logo: img/cast-logo-white.svg
+extra_css:
+  - stylesheets/extra.css
+site_url: https://cast.ai
+repo_url: https://github.com/castai/docs
+edit_uri: https://github.com/castai/docs/edit/main/docs/
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra:
+  generator: false
+
+nav:
+  - 'Introduction': index.md
+  - 'Getting started':
+      - getting-started/how-it-works.md
+      - getting-started/setting-up-account.md
+      - getting-started/creating-your-first-cluster.md
+  - 'Administration':
+      - 'Setting up credentials':
+          - administration/configuring-gcp-credentials.md
+          - administration/configuring-aws-credentials.md
+          - administration/configuring-azure-credentials.md
+      - 'Configuration':
+          - 'Configuring cost optimization policies': administration/policies.md
+  - 'Developer guides':
+      - guides/pod-pinning.md
