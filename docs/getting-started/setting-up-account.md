@@ -1,6 +1,12 @@
 # Setting up an account
 
+It couldn't get easier than this. Simply open this website and choose one of the three login options:
 
-!!! note "TODO: pending documentation"
-    merge https://help.cast.ai/en/articles/4498072-how-to-register-and-start-using-cast-ai 
-    
+* Log in with your Google account
+* Log in with your GitHub account
+
+Or you can create an account by entering your email and password:
+
+![](login1.png)
+
+That's it! Now log in and start your multi-cloud Kubernetes journey!
