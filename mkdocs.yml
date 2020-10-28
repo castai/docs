@@ -59,6 +59,7 @@ nav:
       - getting-started/how-it-works.md
       - getting-started/setting-up-account.md
       - getting-started/creating-your-first-cluster.md
+      - getting-started/how-to-deploy-the-application.md
   - 'Administration':
       - 'Setting up credentials':
           - administration/configuring-gcp-credentials.md
