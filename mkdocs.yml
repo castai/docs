@@ -69,3 +69,4 @@ nav:
           - 'Configuring cost optimization policies': administration/policies.md
   - 'Developer guides':
       - guides/pod-pinning.md
+      - 'Dynamic volume provisioning' : guides/volumes.md
