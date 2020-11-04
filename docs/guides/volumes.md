@@ -1,28 +1,27 @@
 Dynamic volume provisioning allows storage volumes to be created on-demand. 
-Without dynamic provisioning, cluster administrators have to manually create new storage volumes (using cloud or storage providers) and corresponding 
-`PersistentVolume` objects for the storage to be available in Kubernetes. Dynamic volume provisioning is 
-enabled by default on CAST AI cluster.
+Without dynamic provisioning, cluster administrators have to create new storage volumes manually (using cloud or storage providers) and the corresponding 
+`PersistentVolume` objects for the storage to be available in Kubernetes. Dynamic volume provisioning is enabled by default on CAST AI cluster.
 
 ## Overview
-Each CAST AI cluster is pre-configured with default `StorageClass` which handles volume requests.
+Each CAST AI cluster is pre-configured with default `StorageClass` that handles volume requests.
 ```shell
 » kubectl get sc 
 NAME                           PROVISIONER           RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 cast-block-storage (default)   storage.csi.cast.ai   Delete          WaitForFirstConsumer   true                   2m18s
 ```
-Binding mode `WaitForFirstConsumer` will delay the binding and provisioning of a `PersistentVolume` until a Pod using the PVC is created.
-Meaning, volume will be created and attached to the Node on which a Pod using the PVC will be run. 
+The binding mode `WaitForFirstConsumer` will delay the binding and provisioning of a `PersistentVolume` until a Pod using the PVC is created.
+Meaning, the volume will be created and attached to the Node on which a Pod using the PVC will be run. 
 
-In case of a Pod replicated across multiple clouds, volumes will be distributed across clouds as well.
-This will limit Pod scheduling only to the nodes of the same cloud since to reschedule a pod to a different cloud,
-volume must be replicated to that cloud. This limitation will be removed by cross cloud volume replication feature which isn't available
+In the case of a Pod replicated across multiple clouds, volumes will be distributed across clouds as well.
+This will limit Pod scheduling only to the nodes of the same cloud since to reschedule a Pod to a different cloud service,
+the volume must be replicated to that cloud. This limitation will be removed by the cross-cloud volume replication feature which isn't available
 at the moment.
 
-Deleting a cluster will delete all volumes that were provisioned dynamically. 
+Deleting a cluster will delete all the volumes that were provisioned dynamically. 
 
 ## Using dynamic volumes
 ### Creating persitent volume claim (PVC)
-Users can request dynamically provisioned storage simply by creating `PersistentVolumeClaim` and a `Pod` which will use it.
+Users can request dynamically provisioned storage by simply creating `PersistentVolumeClaim` and a `Pod` that will use it.
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -123,7 +122,7 @@ Deleting a `StatefulSet` will delete all provisioned volumes.
 
 ### Resizing PVC
 Any PVC created using `cast-block-storage` `StorageClass` can be edited to request more space. 
-Kubernetes will interpret a change to the storage field as a request for more space, this will trigger automatic volume resizing.
+Kubernetes will interpret a change to the storage field as a request for more space. This will trigger automatic volume resizing.
  
 ```shell 
 » kubectl edit pvc www-web-0
@@ -141,7 +140,7 @@ spec:
 # www-web-0...
 ```
 
-After storage resized successfully we can observe new PVC capacity:
+After storage is resized successfully, we can observe new PVC capacity:
 ```shell
 k get pvc www-web-0
 NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS         AGE
