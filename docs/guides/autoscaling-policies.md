@@ -21,7 +21,7 @@ If enabled, cluster's upscaling and downscaling actions will respect the limits 
 
 Each CAST AI's cluster size can be limited by the total amount of vCPU available on all worker nodes used to run workloads.
 
-To enable 
+To enable ![]
 
 ### Node policies
 
