@@ -70,3 +70,4 @@ nav:
   - 'Developer guides':
       - guides/pod-pinning.md
       - 'Dynamic volume provisioning' : guides/volumes.md
+      - guides/hpa/hpa.md
