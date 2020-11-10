@@ -4,25 +4,14 @@ Autoscaling policies define a set of rules based on which your cluster is being 
 
 This topic describes available policy configuration options as well as provides guidance on how to configure them. 
 
-## Policy levels
+## Cluster CPU limits policy
 
-Policies can be split into multiple sections based on it's the area of effect within a cluster:
-
-* [Cluster limits](https://castai.github.io/docs/administration/configuring-gcp-credentials/)
-* [Node](https://castai.github.io/docs/administration/configuring-gcp-credentials/)
-* [Pod](https://castai.github.io/docs/administration/configuring-gcp-credentials/)
-
-### Cluster limits policies
-
-Cluster limits policies allow you to set the minimum and maximum allowed cluster's computing capacity based on particular node metrics. 
-If enabled, cluster's up scaling and down scaling actions will respect the limits constraint - the cluster's total resource capacity will stay within the defined range.
-
-#### Cluster CPU limits policy
+### How it works
 
 Each CAST AI's cluster size can be limited by **the total amount** of vCPUs available on all worker nodes used to run workloads.
 If disabled, the cluster will be able to upscale indefinitely, and downscale to 0 worker nodes depending on the actual resource consumption. 
 
-##### Configuration
+### Configuration
 
 Cluster CPU limits settings can be adjusted either via [CAST AI's console:](https://console.cast.ai/)
 
@@ -39,25 +28,39 @@ or via [CAST AI's policies API endpoint](https://api.cast.ai/v1/spec/#/cluster-p
 }
 ```
 
-### Node policies
+## Unscheduled pods policy
 
-CAST AI's autoscaler supports node-level scaling. 
+### How it works
 
-#### Unscheduled pods policy
+### Configuration
 
-##### Configuration
+You can enable/disable unschedulable pods policy either on [CAST AI's console:](https://console.cast.ai/):
 
 ![](../img/autoscaling/unschedulable_pods.png)
 
-#### Cluster CPU utilization scale-up policy
+or via [CAST AI's policies API endpoint](https://api.cast.ai/v1/spec/#/cluster-policies/UpsertPolicies) by setting values for 
+```json
+"unschedulablePods": {
+    "enabled": <value>,
+    "evaluationPeriodSeconds": <value>
+}
+```
 
-##### How it works
 
-When this policy is applied, your cluster is constantly being monitored for actual cpu consumption on worker nodes. 
+## Cluster CPU utilization scale up policy
 
-##### Configuration
+### How it works
+Increased CPU load on worker nodes indicates that the cluster is getting 'hot' - the current fleet of nodes might not be sufficient to fulfil current computing resources needs.
+In that case, computing capacity can be increased by adding in additional worker nodes. 
+CAST AI's cluster autoscaler provides mechanism to handle this with _CPU utilization scale up policy_.
+Having this policy applied, your cluster is periodically checked for the actual CPU consumption over the worker nodes.
+When sustained increased CPU load is detected, autoscaler automatically adds a new node to try to redistribute load more evenly.
+ 
+### Configuration
 Autoscaler's scale up policy is set by adjusting thresholds for average cluster CPU load in percentages and evaluation period in seconds.
-Evaluation window describes for how long should the average cluster CPU utilization stay above threshold for it to be considered eligible for scale up.
+Evaluation window describes for how long the average cluster CPU utilization should stay above the threshold for it to be considered eligible for scale up.
+
+You can edit settings for this policy via [CAST AI's console:](https://console.cast.ai/):
 
 ![](../img/autoscaling/cpu_scale_up.png)
 
@@ -69,12 +72,12 @@ or [CAST AI's policies API endpoint](https://api.cast.ai/v1/spec/#/cluster-polic
       "enabled": <value>,
       "evaluationPeriodSeconds": <value>
     }
-  },
+}
 ```
 
-#### Cluster CPU utilization scale-down policy
+## Cluster CPU utilization scale-down policy
 
-##### How it works
+### How it works
 
 CAST AI's node autoscaler decreases the size of the cluster when some worker nodes are consistently unneeded for a significant amount of time. 
 A node is considered unneeded when it has low actual CPU utilization. On the event of scale down a node will be drained and removed from a cluster if :
@@ -87,7 +90,7 @@ A node is considered unneeded when it has low actual CPU utilization. On the eve
 If autoscaler fails to find worker nodes eligible for deletion, cluster's state would not be affected.
 Otherwise, only a single node at a time will be attempted to remove. In that case, autoscaler issues termination of the underlying instance in a cloud-provider-dependent manner.
   
-##### Configuration
+### Configuration
 
 You can control autoscaler's scale down policy by adjusting thresholds for average cluster CPU load in percentages and evaluation period in seconds.
 Evaluation window describes for how long should the average cluster CPU utilization stay below threshold for it to be considered eligible for scale down.
@@ -104,10 +107,7 @@ or [CAST AI's policies API endpoint](https://api.cast.ai/v1/spec/#/cluster-polic
       "enabled": <value>,
       "evaluationPeriodSeconds": <value>
     }
-  },
+}
 ```  
- 
-
-### Pod policies
  
 ## Policies precedence rules
