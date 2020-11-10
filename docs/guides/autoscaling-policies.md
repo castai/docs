@@ -32,6 +32,9 @@ or via [CAST AI's policies API endpoint](https://api.cast.ai/v1/spec/#/cluster-p
 
 ### How it works
 
+A pod becomes unschedulable when the Kubernetes scheduler is unable to find a node that can accommodate the pod. For instance, a pod can request more CPU or memory than it is available on any of the cluster nodes.
+In many of the cases, this indicates a need to scale up by adding new nodes to the cluster.
+
 ### Configuration
 
 You can enable/disable unschedulable pods policy either on [CAST AI's console:](https://console.cast.ai/):
@@ -54,7 +57,8 @@ Increased CPU load on worker nodes indicates that the cluster is getting 'hot' -
 In that case, computing capacity can be increased by adding in additional worker nodes. 
 CAST AI's cluster autoscaler provides mechanism to handle this with _CPU utilization scale up policy_.
 Having this policy applied, your cluster is periodically checked for the actual CPU consumption over the worker nodes.
-When sustained increased CPU load is detected, autoscaler automatically adds a new node to try to redistribute load more evenly.
+When sustained increased CPU load is detected, autoscaler automatically adds a new node to try to redistribute load more evenly. 
+Depending on the underlying cloud service provider, this process can take a few minutes. Meanwhile, autoscaler will not attempt to add a new node if addition is already in progress.  
  
 ### Configuration
 Autoscaler's scale up policy is set by adjusting thresholds for average cluster CPU load in percentages and evaluation period in seconds.
@@ -88,7 +92,8 @@ A node is considered unneeded when it has low actual CPU utilization. On the eve
 * it doesn't contain pods that cannot be moved elsewhere due to node selection constraints (non-matching node selectors or affinity, matching anti-affinity, etc.)
 
 If autoscaler fails to find worker nodes eligible for deletion, cluster's state would not be affected.
-Otherwise, only a single node at a time will be attempted to remove. In that case, autoscaler issues termination of the underlying instance in a cloud-provider-dependent manner.
+Otherwise, only a single node at a time will be attempted to be removed. In that case, autoscaler issues termination of the underlying instance in a cloud-provider-dependent manner.
+This process usually takes a few minutes.
   
 ### Configuration
 
