@@ -2,19 +2,19 @@
 
 ## Scaling an application
 
-There are two ways to scale an application: 
-* Vertically: add more resources (RAM/CPU/Disk IOPS) to the same instance
-* Horizontally: add more instances (replicas) of the same application
+You can scale an application in two ways: 
+* Vertically: by adding more resources (RAM/CPU/Disk IOPS) to the same instance,
+* Horizontally: by adding more instances (replicas) of the same application.
 
-The problem with vertical scaling is that you'll either find out that enough hardware (RAM, CPU, Disk IOPS) in a single machine cost too much, or the cloud provider cannot provision a machine with enough resources. Horizontal scaling strategy avoids such limitations.
+The problem with vertical scaling is that you'll either find out that the required hardware (RAM, CPU, Disk IOPS) in a single machine costs too much, or the cloud provider cannot provision a machine with enough resources. The horizontal scaling strategy helps to avoid these limitations.
 
 ## Horizontal scaling strategy
 
-As mentioned above, horizontal scaling strategy involves adding (or removing) additional replicas of the same application. The problem is, that most applications' load patterns can have spikes which are not predictable which renders manual scaling nearly impossible. Luckily, we can automate this process!
+As mentioned above, the horizontal scaling strategy involves adding (or removing) the additional replicas of the same application. The problem here lies in the fact that most application load patterns can have spikes that are not predictable. This renders manual scaling nearly impossible. Luckily, we can automate this process!
 
 ## The HPA & KEDA
 
-Kubernetes comes equipped with [Horizontal Pod Autoscaler (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) functionality. It can scale up (add more replicas) or down (remove idling replicas) based on some metrics. The problem is that HPA, by default, comes without batteries: it doesn't have the metrics source. We're lucky again: CAST AI bundles the batteries for you! We've got you covered by providing [KEDA](https://keda.sh) addon.
+Kubernetes comes equipped with the [Horizontal Pod Autoscaler (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) functionality. It can scale up (add more replicas) or down (remove idling replicas) based on some metrics. The problem is that HPA, by default, comes without batteries: it doesn't have the metrics' source. But you're in luck: CAST AI bundles the batteries for you! We've got you covered by providing the [KEDA](https://keda.sh) addon.
 
 ### How does it work?
 
@@ -27,21 +27,21 @@ These components do the heavy lifting of configuring Kubernetes HPA and setting 
 
 ### Enabling KEDA
 
-In order to take advantage of autoscaling functionality, you must enable KEDA addon in the `Policies` page: 
+In order to take advantage of the autoscaling functionality, you must enable KEDA addon in the `Policies` page: 
 
-1. Navigate to an existing cluster (in case you don't have one already, go a head and [create one](../../getting-started/creating-your-first-cluster.md))
+1. Navigate to an existing cluster (in case you don't have one already, go ahead and [create one](../../getting-started/creating-your-first-cluster.md))
 
 1. On the left navigation menu, select `Policies`:
 ![Navigate to policies](010_navigate.png)
 
-1. Enable Horizontal pod autoscaler
+1. Enable the Horizontal pod autoscaler
 ![Enable](020_enable.png)
 
 ## Examples
 
 ### Autoscale Based on CPU and/or Memory usage
 
-Let's create a `Deployment` and a `Service` which we will **Autoscale**:
+Let's create a `Deployment` and a `Service` that we will **Autoscale**:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -84,7 +84,7 @@ spec:
     app: sample-app
 ```
 
-**Note**: we don't specify the ReplicaCount ourselves
+**Note**: We don't specify the ReplicaCount ourselves
 
 Now let us set up a [CPU-based Autoscaler](https://keda.sh/docs/2.0/scalers/cpu/)
 
@@ -114,15 +114,15 @@ spec:
         value: "512"    
 ```
 
-Now our Deployment autoscaling will be triggered either by CPU or Memory usage. We could any other trigger, or remove
-either of those if we so desire (i.e. to autoscale only on **CPU** basis, remove the **Memory** trigger, and vice-versa).
+Now our Deployment autoscaling will be triggered either by CPU or Memory usage. We could use any other trigger, or remove
+either of those if we want (i.e. to autoscale only on the **CPU** basis, remove the **Memory** trigger, and vice-versa).
 
-### Autoscale based on Prometheus metric
+### Autoscale based on the Prometheus metric
 
-It is possible to autoscale based on result of arbitrary Prometheus query. What is more, CAST AI k8s clusters comes with
+It's possible to autoscale based on the result of an arbitrary Prometheus query. What's more, CAST AI k8s clusters come with
 Prometheus deployed out of the box!
 
-Let's deploy the sample app again, but this time, let's instruct Prometheus to scrape metrics:
+Let's deploy the sample app again. But this time, let's instruct Prometheus to scrape metrics:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -187,7 +187,7 @@ spec:
         query: sum(rate(http_requests_total{app="sample-app"}[2m]))
 ```
 
-Now let's generate some load and observe that replica count is increased:
+Now let's generate some load and observe that the replica count is increased:
 ```shell script
 # Deploy busybox image
 kubectl run -it --rm load-generator --image=busybox /bin/sh
