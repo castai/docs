@@ -7,6 +7,6 @@ It couldn't get easier than this. Simply open this website and choose one of the
 
 Or you can create an account by entering your email and password:
 
-![](login1.png)
+![](setting-up-account/login1.png)
 
 That's it! Now log in and start your multi-cloud Kubernetes journey!
