@@ -11,7 +11,7 @@ client secret: xvKds90f83&&#$$qwerty
 subscription id: 697e39d3-4b01-yyyy-xxxx-75266e90c333
 ```
 
-Open [https://portal.azure.com/](https://portal.azure.com/) and go to the **App registrations** section:
+Open <https://portal.azure.com/> and go to the **App registrations** section:
 
 ![](configuring-azure-credentials/azure1.png)
 

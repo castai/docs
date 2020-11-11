@@ -3,7 +3,7 @@
 After completing the following instructions, you’ll retrieve Access key ID and Secret access key. These credentials are
 by CAST AI for creating a cluster with AWS resources.
 
-Open [https://console.aws.amazon.com/](https://console.aws.amazon.com/).
+Open <https://console.aws.amazon.com/>.
 
 ![](configuring-aws-credentials/aws1.png)
 

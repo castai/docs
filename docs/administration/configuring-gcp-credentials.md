@@ -16,7 +16,7 @@ Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started
 
 ### Create service account
 
-1. Open [https://console.cloud.google.com/](https://console.cloud.google.com/)
+1. Open <https://console.cloud.google.com/>
 
 2. Select your project (or create a new one) in the top bar.
 
