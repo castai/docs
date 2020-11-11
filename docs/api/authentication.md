@@ -2,7 +2,7 @@
 
 Before you can use our API, either with your preferred REST client, or via Terraform, you'll need an API key.
 
-### Obtaining API access key
+## Obtaining API access key
 
 From the top menu, open [API | API access keys](https://console.cast.ai/api-access-keys).
 
@@ -24,7 +24,7 @@ if key is valid, but not to re-retrieve the value for you.
   
 If you lose your key, the only solution is to create a new key.
 
-### Setting up Cast.AI Swagger
+## Setting up Cast.AI Swagger
 
 You can test your key directly in our [API specification](specification.md). Visit https://api.cast.ai/v1/spec/, click
  "Authorize
@@ -33,7 +33,7 @@ You can test your key directly in our [API specification](specification.md). Vis
  
 After setting this up, you are now ready to use "Try it out" button that is available for each endpoint.
 
-### Using keys in API calls
+## Using keys in API calls
 
 To authenticate, provide the key in  `X-API-Key` HTTP header. For example, for `curl` this would be:
 
