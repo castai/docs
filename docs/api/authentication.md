@@ -4,7 +4,7 @@ Before you can use our API, either with your preferred REST client, or via Terra
 
 ## Obtaining API access key
 
-From the top menu, open [API | API access keys](https://console.cast.ai/api-access-keys).
+From the top menu, open [API | API access keys](https://console.cast.ai/#todo-api-access-keys).
 
 ![](authentication/credentials.png)
 
