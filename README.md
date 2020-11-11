@@ -25,6 +25,7 @@ INFO    -  Start watching changes
 INFO    -  Start detecting changes
 ```
 
+<!-- markdown-link-check-disable-next-line -->
 3\. Open browser at [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 4\. Place your text editor side-by-side with a browser window if you want to have preview of your edits - browser will
