@@ -1,6 +1,11 @@
 body {
     color: rgb(68, 68, 68);
 }
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4  {
+    color: rgb(68, 68, 68);
+    font-weight: 400;
+}
+
 .md-typeset p, .md-typeset li {
     font-size: 18px;
     line-height: 1.6em;
