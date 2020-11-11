@@ -18,7 +18,7 @@ Once we have the network in place, VMs are added to take the role of Kubernetes 
 remove Worker nodes later on based on your need. But currently, the count and size of Master nodes are decided during
 cluster creation. Later on, the same CAST AI engine reconciles the created cluster every hour to make sure that it’s
 still in the desired state. In this context, reconciling means going through all your cloud resources and ensuring the
-required configuration. 
+required configuration.
 
 If you manually deleted any resources from provided CSP accounts, CAST AI would recreate them to the specification
 provided by you in the console. During the time of reconciliation no instant changes to the cluster are allowed. You
