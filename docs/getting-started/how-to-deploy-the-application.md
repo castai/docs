@@ -48,7 +48,7 @@ spec:
       - name: nginx
         image: nginx:1.14.2
         ports:
-        - containerPort: 8
+        - containerPort: 80
 ```
 
 For displaying information about the Deployment run:

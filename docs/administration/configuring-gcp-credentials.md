@@ -16,36 +16,37 @@ Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started
 
 ### Create service account
 
-1\. Open [https://console.cloud.google.com/](https://console.cloud.google.com/) and select your project (or create a new
-one) in the top bar.
+1. Open [https://console.cloud.google.com/](https://console.cloud.google.com/)
 
-![](configuring-gcp-credentials/gcp1.png)
+2. Select your project (or create a new one) in the top bar.
 
-2\. Go to the Navigation bar, select **IAM & Admin**, and then **Service accounts**:
+    ![](configuring-gcp-credentials/gcp1.png)
 
-![](configuring-gcp-credentials/gcp2.png)
+3. Go to the Navigation bar, select **IAM & Admin**, and then **Service accounts**:
 
-3\. Click **Create service account**
+    ![](configuring-gcp-credentials/gcp2.png)
 
-![](configuring-gcp-credentials/gcp3.png)
+4. Click **Create service account**:
 
-Enter the preferred **Service account name** and **description**. Click **Create**
+    ![](configuring-gcp-credentials/gcp3.png)
 
-![](configuring-gcp-credentials/gcp4.png)
+    Enter the preferred **Service account name** and **description**. Click **Create**
 
-Add the following roles to the created account:
+    ![](configuring-gcp-credentials/gcp4.png)
 
-```
-roles/compute.admin
-roles/iam.serviceAccountAdmin
-```
+    Add the following roles to the created account:
 
-Click **Continue**.
+    ```
+    roles/compute.admin
+    roles/iam.serviceAccountAdmin
+    ```
 
-![](configuring-gcp-credentials/gcp5.png)
-In the last step of the service account creation, click **Done** without entering any data.
+    Click **Continue**.
 
-![](configuring-gcp-credentials/gcp6.png)
+    ![](configuring-gcp-credentials/gcp5.png)
+    In the last step of the service account creation, click **Done** without entering any data.
+
+    ![](configuring-gcp-credentials/gcp6.png)
 
 ### Create key
 
