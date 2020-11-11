@@ -72,5 +72,5 @@ nav:
           - administration/configuring-azure-credentials.md
   - 'Developer guides':
       - guides/pod-pinning.md
-      - 'Dynamic volume provisioning': guides/volumes.md
+      - guides/volumes.md
       - guides/autoscaling-policies.md

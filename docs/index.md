@@ -1,9 +1,9 @@
-# Welcome to Cast AI documentation!
+# Welcome to Cast AI documentation
 
-CAST AI is an intelligent engine that uses your cloud service accounts to create the cloud resources you need and sets up a multi-cloud cluster for you. You can start using multi-cloud Kubernetes with just a few clicks.
+CAST AI is an intelligent engine that uses your cloud service accounts to create the cloud resources you need and sets
+up a multi-cloud cluster for you. You can start using multi-cloud Kubernetes with just a few clicks.
 
 The documentation is divided into the following sections:
-
 
 * **Getting started guides**: if you're new to Cast.ai, read this first.
 * **Administration**: cluster administrator's reference.
