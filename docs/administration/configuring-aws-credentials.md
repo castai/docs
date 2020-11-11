@@ -1,8 +1,9 @@
 # Configure AWS credentials
 
-After completing the following instructions, you’ll retrieve Access key ID and Secret access key. These credentials are by CAST AI for creating a cluster with AWS resources.
+After completing the following instructions, you’ll retrieve Access key ID and Secret access key. These credentials are
+by CAST AI for creating a cluster with AWS resources.
 
-Open https://console.aws.amazon.com/.
+Open <https://console.aws.amazon.com/>.
 
 ![](configuring-aws-credentials/aws1.png)
 
@@ -31,6 +32,5 @@ Click the Create group button again.
 Click next (tags) → next (review) → create user.
 
 You will end up on a screen where you can retrieve credentials in AWS GUI or download credentials containing .csv file.
-
 
 ![](configuring-aws-credentials/aws6.png)

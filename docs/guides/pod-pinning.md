@@ -1,7 +1,13 @@
 # Configure pod placement by topology
- A user of CAST AI might want to place their pods only on a particular cloud or clouds (for example, on AWS and GCP, but not Azure).
 
-Kubernetes supports this by using [nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector), [node Affinity/Anti-Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity), and [topologySpreadConstraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/). All of these methods require special labels to be present on each Kubernetes node.
+ A user of CAST AI might want to place their pods only on a particular cloud or clouds (for example, on AWS and GCP, but
+ not Azure).
+
+Kubernetes supports this by using
+[nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector),
+[node Affinity/Anti-Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+and [topologySpreadConstraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/).
+All of these methods require special labels to be present on each Kubernetes node.
 
 CAST AI multi-cloud Kubernetes cluster nodes are already equipped with the following labels:
 
@@ -15,9 +21,10 @@ CAST AI multi-cloud Kubernetes cluster nodes are already equipped with the follo
 | topology.kubernetes.io/zone | well-known | Node zone of the region in the CSP | eu-central-1a |
 | topology.cast.ai/csp | cast-specific | Node Cloud Service Provider | aws, gcp, azure |
 
-**How to pin a pod to AWS**
+## How to pin a pod to AWS
 
 We will use `affinity.nodeAffinity`:
+
 ```
 affinity:
     nodeAffinity:
@@ -29,7 +36,9 @@ affinity:
                 values:
                   - aws
 ```
+
 Pod example:
+
 ```
 apiVersion: v1
 kind: Pod
@@ -54,7 +63,9 @@ spec:
         - containerPort: 80
           name: web
 ```
+
 StatefulSet example, it will create 3 pods each in every cloud (note the podAntiAffinity)
+
 ```
 apiVersion: apps/v1
 kind: StatefulSet
