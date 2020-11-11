@@ -2,7 +2,7 @@ A CAST AI managed Kubernetes cluster is no different than vanilla Kubernetes - i
 
 After creating your cluster in the CAST AI console and making sure that it’s in the ready state, you can download the cluster’s **kubeconfig**:
 
-![](firstapp1.png)
+![](how-to-deploy-the-application/firstapp1.png)
 
 For detailed instructions on how to use a downloaded kubeconfig file, check the [official Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/).
 
@@ -49,7 +49,7 @@ kubectl describe deployment nginx-deployment
 
 The output is similar to this:
 
-![](firstapp2.png)
+![](how-to-deploy-the-application/firstapp2.png)
 
 List the pods created by the deployment:
 
@@ -59,7 +59,7 @@ kubectl get pods -l app=nginx
 
 The output is similar to this:
 
-![](firstapp3.png)
+![](how-to-deploy-the-application/firstapp3.png)
 
 Display information about a Pod:
 ```
