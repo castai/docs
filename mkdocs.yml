@@ -68,4 +68,4 @@ nav:
   - 'Developer guides':
       - guides/pod-pinning.md
       - 'Dynamic volume provisioning': guides/volumes.md
-      - 'Autoscaling policies': guides/autoscaling-policies.md
+      - guides/autoscaling-policies.md
