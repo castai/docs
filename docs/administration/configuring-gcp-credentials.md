@@ -1,27 +1,31 @@
 # Configure Google Cloud credentials
 
-By following these instructions, you’ll retrieve the Service account JSON credentials. These credentials are required by CAST AI for creating a cluster with GCP resources.
+By following these instructions, you’ll retrieve the Service account JSON credentials. These credentials are required by
+CAST AI for creating a cluster with GCP resources.
 
 ## Project prerequisites
 
 **Note** that the project where your Service Account is created needs to have the following APIs enabled:
 
-    Compute API
-    Resource Manager API
+```
+Compute API
+Resource Manager API
+```
 
 Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started#enabling_apis) on how to enable APIs.
 
 ### Create service account
 
-1. Open https://console.cloud.google.com/ and select your project (or create a new one) in the top bar.
+1\. Open [https://console.cloud.google.com/](https://console.cloud.google.com/) and select your project (or create a new
+one) in the top bar.
 
 ![](configuring-gcp-credentials/gcp1.png)
 
-2. Go to the Navigation bar, select **IAM & Admin**, and then **Service accounts**:
+2\. Go to the Navigation bar, select **IAM & Admin**, and then **Service accounts**:
 
 ![](configuring-gcp-credentials/gcp2.png)
 
-3. Click **Create service account**
+3\. Click **Create service account**
 
 ![](configuring-gcp-credentials/gcp3.png)
 
@@ -31,8 +35,10 @@ Enter the preferred **Service account name** and **description**. Click **Create
 
 Add the following roles to the created account:
 
-    roles/compute.admin
-    roles/iam.serviceAccountAdmin
+```
+roles/compute.admin
+roles/iam.serviceAccountAdmin
+```
 
 Click **Continue**.
 
@@ -56,4 +62,3 @@ Select the **JSON** option and click **Create**.
 ![](configuring-gcp-credentials/gcp9.png)
 
 You’ll get a file download prompt. The downloaded file will include the **Service Account JSON credentials.**
-
