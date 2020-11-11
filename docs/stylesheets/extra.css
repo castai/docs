@@ -15,6 +15,11 @@ body {
     margin-bottom: 1.4em;
 }
 
+.md-typeset img {
+    padding: .7rem;
+    box-shadow: 0 0 .1rem 0 rgba(0,0,0,.05), .1rem .1rem .6rem 0 rgba(0,0,0,.1);
+}
+
 nav a.md-header-nav__button img {
     height: 3rem;
 }

@@ -75,3 +75,7 @@ nav:
   - 'Developer guides':
       - guides/pod-pinning.md
       - 'Dynamic volume provisioning' : guides/volumes.md
+  - 'API':
+      - 'Introduction': api/overview.md
+      - api/authentication.md
+      - api/specification.md
