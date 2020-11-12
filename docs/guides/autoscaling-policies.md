@@ -45,7 +45,7 @@ The new settings will propagate immediately.
 
 ## Horizontal pod autoscaler (HPA) policy
 
-See [HPA documentaion](https://castai.github.io/docs/guides/hpa/hpa) for detailed overview.
+See HPA documentaion for a detailed overview.
 
 ## Unscheduled pods policy
 
