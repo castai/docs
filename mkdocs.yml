@@ -1,4 +1,4 @@
-strict: true
+strict: false
 site_name: CAST AI Documentation
 theme:
   name: 'material'
