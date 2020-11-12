@@ -5,11 +5,11 @@ Swagger UI, which is available at:
 
 <https://api.cast.ai>
 
-This will bring your to our current specification, where you'll be able to familiarize yourself with available APIs, 
-as well as try functionality directly in the browser. 
+This will bring your to our current specification, where you'll be able to familiarize yourself with available APIs,
+as well as try functionality directly in the browser.
 
-!!! note 
-    Trying out APIs in the browser requires setting up the UI with an API Key. 
+!!! note
+    Trying out APIs in the browser requires setting up the UI with an API Key.
     See [Authentication](authentication.md) for more details.
 
 We don't maintain any public SDKs, but it is sufficiently trivial to generate an API client for your programming
@@ -17,6 +17,6 @@ We don't maintain any public SDKs, but it is sufficiently trivial to generate an
 
 <https://api.cast.ai/v1/spec/openapi.json>
 
-!!! note 
+!!! note
     OpenAPI is widely supported. Many tools, e.g. Postman, allow importing OpenAPI definitions as well. See
     documentation for your REST tooling to find out more.

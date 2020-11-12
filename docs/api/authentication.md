@@ -28,7 +28,7 @@ If you lose your key, the only solution is to create a new key.
 
 You can test your key directly in our [API specification](specification.md). Visit <https://api.cast.ai/v1/spec/>, click
 "Authorize" and enter your key for `X-API-Key` field.
- 
+
 After setting this up, you are now ready to use "Try it out" button that is available for each endpoint.
 
 ## Using keys in API calls
@@ -38,4 +38,3 @@ To authenticate, provide the key in  `X-API-Key` HTTP header. For example, for `
 ```
 curl -X GET "https://api.cast.ai/v1/kubernetes/clusters" -H "X-API-Key: your-api-key-here" | jq
 ```
-
