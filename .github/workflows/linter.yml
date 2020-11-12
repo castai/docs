@@ -1,4 +1,4 @@
-name: Markdown lint
+name: Verification
 on:
   pull_request:
     branches:
@@ -18,7 +18,7 @@ jobs:
           check-modified-files-only: "yes"
           base-branch: "main"
   markdown-lint:
-    name: Lint
+    name: Markdown lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
