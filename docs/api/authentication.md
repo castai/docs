@@ -19,12 +19,12 @@ after this window is closed.
 ![](authentication/create-key-2.png)
 
 The reason API key value is visible at create time only is because we don't store the key in plain text on our
-system. For security reasons, Cast.AI "forgets" key value after giving it to you, and later is only able to verify
+system. For security reasons, CAST AI "forgets" key value after giving it to you, and later is only able to verify
 if key is valid, but not to re-retrieve the value for you.
   
 If you lose your key, the only solution is to create a new key.
 
-## Setting up Cast.AI Swagger
+## Setting up CAST AI Swagger
 
 You can test your key directly in our [API specification](specification.md). Visit <https://api.cast.ai/v1/spec/>, click
 "Authorize" and enter your key for `X-API-Key` field.
