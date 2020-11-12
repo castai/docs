@@ -1,5 +1,5 @@
 strict: true
-site_name: Cast AI Documentation
+site_name: CAST AI Documentation
 theme:
   name: 'material'
   favicon: img/favicon.ico
@@ -75,3 +75,7 @@ nav:
   - 'Developer guides':
       - guides/pod-pinning.md
       - guides/volumes.md
+  - 'API':
+      - 'Introduction': api/overview.md
+      - api/authentication.md
+      - api/specification.md
