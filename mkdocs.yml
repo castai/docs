@@ -4,7 +4,12 @@ theme:
   name: 'material'
   favicon: img/favicon.ico
   custom_dir: overrides
-  logo: img/cast-logo-white.svg
+  logo: img/cast-logo-dark-blue.svg
+  palette:
+    primary: white
+    accent: indigo
+  font:
+    text: Nimbus Sans
 extra_css:
   - stylesheets/extra.css
 site_url: https://cast.ai
@@ -69,5 +74,5 @@ nav:
           - 'Configuring cost optimization policies': administration/policies.md
   - 'Developer guides':
       - guides/pod-pinning.md
-      - 'Dynamic volume provisioning' : guides/volumes.md
+      - guides/volumes.md
       - guides/hpa/hpa.md
