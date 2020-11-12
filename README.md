@@ -43,11 +43,8 @@ from web. See [GitHub documentation](https://docs.github.com/en/free-pro-team@la
 if you're unfamiliar with the workflow.
 
 ### Linter
-
 Required tools:
-
 * Docker
-
 To run the markdown linter which also fixes small issues automatically:
 
 ```shell
