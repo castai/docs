@@ -47,6 +47,7 @@ if you're unfamiliar with the workflow.
 Required tools:
 
 * Docker
+
 To run the markdown linter which also fixes small issues automatically:
 
 ```shell
