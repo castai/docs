@@ -1,6 +1,8 @@
 # For writers
 
-## Setting up local editing environment
+## Contributing
+
+### Setting up local editing environment
 
 1. Install python 3 and pipenv:
 
@@ -34,8 +36,20 @@ Useful links:
 
 * [MkDocs Basics](https://www.mkdocs.org/user-guide/writing-your-docs/)
 
-## Quick fixes directly from web
+### Quick fixes directly from web
 
 For quick edits/suggestions, edit links ("edit this page" at the top right corner) and create text suggestions directly
 from web. See [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/github/managing-files-in-a-repository/editing-files-in-your-repository)
 if you're unfamiliar with the workflow.
+
+### Linter
+
+Required tools:
+
+* Docker
+
+To run the markdown linter which also fixes small issues automatically:
+
+```shell
+make lint
+```
