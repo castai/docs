@@ -26,7 +26,7 @@ jobs:
         with:
           args: /github/workspace
   mkdocs-lint:
-    name: verify mkdocs build
+    name: mkdocs build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

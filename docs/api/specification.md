@@ -10,7 +10,7 @@ as well as try functionality directly in the browser.
 
 !!! note
     Trying out APIs in the browser requires setting up the UI with an API Key.
-    See [Authentication](authentication2.md) for more details.
+    See [Authentication](authentication.md) for more details.
 
 We don't maintain any public SDKs, but it is sufficiently trivial to generate an API client for your programming
  language using many of the [OpenAPI generators](https://openapi.tools/#sdk). Use below json as a spec:
