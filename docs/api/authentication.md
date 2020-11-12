@@ -26,10 +26,8 @@ If you lose your key, the only solution is to create a new key.
 
 ## Setting up Cast.AI Swagger
 
-You can test your key directly in our [API specification](specification.md). Visit https://api.cast.ai/v1/spec/, click
- "Authorize
-" and
- enter your key for `X-API-Key` field.
+You can test your key directly in our [API specification](specification.md). Visit <https://api.cast.ai/v1/spec/>, click
+"Authorize" and enter your key for `X-API-Key` field.
  
 After setting this up, you are now ready to use "Try it out" button that is available for each endpoint.
 
