@@ -2,7 +2,7 @@
 
 ## Scaling an application
 
-You can scale an application in two ways: 
+You can scale an application in two ways:
 * Vertically: by adding more resources (RAM/CPU/Disk IOPS) to the same instance,
 * Horizontally: by adding more instances (replicas) of the same application.
 
@@ -18,7 +18,7 @@ Kubernetes comes equipped with the [Horizontal Pod Autoscaler (HPA)](https://kub
 
 ### How does it work?
 
-KEDA consists of two components: 
+KEDA consists of two components:
 
 - **operator** -- watches k8s for ScaledObject resources and configures HPA accordingly
 - **metrics-apiserver** -- a bridge between Kubernetes and various scaling sources (including Prometheus)
@@ -27,7 +27,7 @@ These components do the heavy lifting of configuring Kubernetes HPA and setting 
 
 ### Enabling KEDA
 
-In order to take advantage of the autoscaling functionality, you must enable KEDA addon in the `Policies` page: 
+In order to take advantage of the autoscaling functionality, you must enable KEDA addon in the `Policies` page:
 
 1. Navigate to an existing cluster (in case you don't have one already, go ahead and [create one](../../getting-started/creating-your-first-cluster.md))
 
@@ -50,8 +50,8 @@ metadata:
   labels:
     app: sample-app
 spec:
-  # Note that we omit the replica count so 
-  # when we redeploy, we wouldn't override 
+  # Note that we omit the replica count so
+  # when we redeploy, we wouldn't override
   # replica count set by the autoscaler
   #replicas: 1
   selector:
@@ -104,14 +104,14 @@ spec:
       metadata:
         # Possible values: `Value`, `Utilization`, or `AverageValue`.
         # More info at: https://keda.sh/docs/2.0/scalers/cpu/#trigger-specification
-        type: "Value" 
+        type: "Value"
         value: "30"
     - type: memory
       metadata:
         # Possible values: `Value`, `Utilization`, or `AverageValue`.
         # More info at: https://keda.sh/docs/2.0/scalers/memory/
-        type: "Value" 
-        value: "512"    
+        type: "Value"
+        value: "512"
 ```
 
 Now our Deployment autoscaling will be triggered either by CPU or Memory usage. We could use any other trigger, or remove
@@ -213,7 +213,7 @@ keda-operator-66744fc69d-7njdd            1/1     Running   0          74m
 
 Describe ScaledObject for clues. In this case, scaledObjectRef points to nonexistent object:
 ```shell script
-$ kubectl describe scaledobjects.keda.sh sample-app 
+$ kubectl describe scaledobjects.keda.sh sample-app
 Name:         sample-app
 Namespace:    default
 Labels:       scaledObjectName=sample-app
