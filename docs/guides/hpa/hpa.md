@@ -8,8 +8,7 @@ You can scale an application in two ways:
 * Horizontally: by adding more instances (replicas) of the same application.
 
 The problem with vertical scaling is that you'll either find out that the required hardware (RAM, CPU, Disk IOPS) in a
-single machine costs too much, or the cloud provider cannot provision a machine with enough resources. The horizontal
-scaling strategy helps to avoid these limitations.
+single machine costs too much, or the cloud provider cannot provision a machine with enough resources. We use replica sets in Kubernetes to achieve horizontal scaling. The Horizontal Pod Autoscaler allows automating the process of maintaining the replica count proportionally to the application load.
 
 ## Horizontal scaling strategy
 
