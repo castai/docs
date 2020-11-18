@@ -1,4 +1,4 @@
-name: Markdown lint
+name: Verification
 on:
   pull_request:
     branches:
@@ -18,14 +18,18 @@ jobs:
           check-modified-files-only: "yes"
           base-branch: "main"
   markdown-lint:
-    name: Lint
+    name: Markdown lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
+      - uses: docker://tmknom/markdownlint:0.23.1
         with:
-          ruby-version: "2.6"
-      - run: |
-          gem install mdl
-      - run: |
-          mdl .
+          args: /github/workspace
+  mkdocs-lint:
+    name: mkdocs build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://squidfunk/mkdocs-material:6.1.4
+        with:
+          args: build --strict -f /github/workspace/mkdocs.yml

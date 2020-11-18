@@ -1,4 +1,4 @@
-# How to deploy the application
+# Deploying Applications
 
 A CAST AI managed Kubernetes cluster is no different than vanilla Kubernetes - it just runs on multi-cloud. Having this
 in mind, you can deploy an application just like you would in any Kubernetes cluster - by using **kubectl**.
