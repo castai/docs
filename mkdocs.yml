@@ -75,6 +75,7 @@ nav:
   - 'Developer guides':
       - guides/pod-pinning.md
       - guides/volumes.md
+      - guides/hpa/hpa.md
   - 'API':
       - 'Introduction': api/overview.md
       - api/authentication.md
