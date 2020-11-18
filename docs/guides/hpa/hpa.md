@@ -287,4 +287,3 @@ Inspect KEDA operator logs:
 ```sh
 kubectl logs -n keda $(kubectl get pods -n keda -o name | grep operator)
 ```
-
