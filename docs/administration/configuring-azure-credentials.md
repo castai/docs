@@ -15,7 +15,7 @@ Open <https://portal.azure.com/> and go to the **App registrations** section:
 
 ![](configuring-azure-credentials/azure1.png)
 
-Click on **New registration** andcomplete the registration by entering the **Name** and selecting **Multi-tenant**
+Click on **New registration** and complete the registration by entering the **Name** and selecting **Multi-tenant**
 access.
 
 ![](configuring-azure-credentials/azure2.png)
@@ -38,19 +38,24 @@ Enter meaningful **descriptions** and select **secret expiry time**. Click **Add
 Copy the secret **value** you have created. It will be used as **Client Secret** when you enter it into CAST AI console.
 
 ![](configuring-azure-credentials/azure6.png)
-
 ## Give access to the CAST AI application by requesting a sign-in using a browser
 
-1 - Make sure to click the link on the page where you have to paste the keys when you already have your Tenant ID
-entered.
+1 - Make sure to click the link on our console where you have pasted the keys.
 
-![](configuring-azure-credentials/azure7.png)
+![](configuring-azure-credentials/2020-11-23-16-28-43.png)
 
 2 - After login, you should see the **Permissions requested** window. Click Accept which will allow adding CAST AI
 application role.
 
-Go to **Subscriptions**
+![](configuring-azure-credentials/2020-11-23-16-31-46.png)
 
+You should see it like this:
+
+![](configuring-azure-credentials/2020-11-23-16-32-46.png)
+
+## Assigning the roles
+
+Go to **Subscriptions**
 ![](configuring-azure-credentials/azure8.png)
 Select **subscription** to which you want to give CAST AI access
 
@@ -72,40 +77,12 @@ The following sidebar will appear
 
 ![](configuring-azure-credentials/azure12.png)
 
-In the **Role** dropdown, select **Contributor**. In the **Select** search bar, enter the **name of created App
-Registration**. Select the App Icon and click Save.
+In the **Role** dropdown, select **Contributor**. In the **Select** field type your **Client Secret** (created during the first step).
 
-![](configuring-azure-credentials/azure13.png)
+![](configuring-azure-credentials/!%5B%5D(2020-11-23-17-28-04.png).png)
 
-You should find the created assignment with the Contributor role in the **Role assignments** column.
+Add another role assignment with Role: **Contributor**, and in the **Select** input field search for **CAST AI Shared Images** then click save (if the role is not visible please check previous step and try again).
 
-![](configuring-azure-credentials/azure14.png)
+![](configuring-azure-credentials/2020-11-23-17-37-30.png)
 
-After taking all of the steps above, you should have the following keys:
-
-```
-tenant id
-client-id
-client secret
-subscription id
-```
-
-### Consent to using CAST AI VM image from Azure Marketplace
-
-Before starting to create CAST AI clusters with Azure, as a provider's customer you will have to consent to use CAST AI
-image programmatically.
-
-Go to [CAST AI VM image](https://portal.azure.com/#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home/searchQuery/cast%20ubuntu%20kubernetes)
-in Azure Marketplace Search and click on CAST AI item in the search results.
-
-![](configuring-azure-credentials/azure15.png)
-
-The following page will be displayed. Click on -> _Want to deploy programmatically? **Get started**_
-
-![](configuring-azure-credentials/azure16.png)
-
-Click **Enable** next to the subscription that you will use for CAST AI services.
-
-![](configuring-azure-credentials/azure17.png)
-
-And you’re done!
+This is it. After taking all of the steps above, you should have the required keys to create your first azure cluster! 
