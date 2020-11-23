@@ -60,6 +60,7 @@ extra:
 
 nav:
   - 'Introduction': index.md
+  - 'Getting help': getting-help.md
   - 'Getting started':
       - getting-started/how-it-works.md
       - getting-started/setting-up-account.md
@@ -79,4 +80,3 @@ nav:
       - 'Introduction': api/overview.md
       - api/authentication.md
       - api/specification.md
-      - api/terraform-provider.md
