@@ -77,12 +77,10 @@ The following sidebar will appear
 
 ![](configuring-azure-credentials/azure12.png)
 
-In the **Role** dropdown, select **Contributor**. In the **Select** field type your **Client Secret** (created during the first step).
+In the **Role** dropdown, select **Contributor**. In the **Select** field type your **Client Secret** (created app secret during the first step).
 
-![](configuring-azure-credentials/!%5B%5D(2020-11-23-17-28-04.png).png)
+ Also you need **CAST AI Shared Images** as a selected member. Then click save (if the role is not visible please check previous step and try again).
 
-Add another role assignment with Role: **Contributor**, and in the **Select** input field search for **CAST AI Shared Images** then click save (if the role is not visible please check previous step and try again).
-
-![](configuring-azure-credentials/2020-11-23-17-37-30.png)
+![](2020-11-24-09-12-13.png)
 
 This is it. After taking all of the steps above, you should have the required keys to create your first azure cluster! 
