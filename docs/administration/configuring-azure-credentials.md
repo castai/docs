@@ -38,6 +38,7 @@ Enter meaningful **descriptions** and select **secret expiry time**. Click **Add
 Copy the secret **value** you have created. It will be used as **Client Secret** when you enter it into CAST AI console.
 
 ![](configuring-azure-credentials/azure6.png)
+
 ## Give access to the CAST AI application by requesting a sign-in using a browser
 
 1 - Make sure to click the link on our console where you have pasted the keys.
@@ -83,4 +84,4 @@ In the **Role** dropdown, select **Contributor**. In the **Select** field type y
 
 ![](2020-11-24-09-12-13.png)
 
-This is it. After taking all of the steps above, you should have the required keys to create your first azure cluster! 
+This is it. After taking all of the steps above, you should have the required keys to create your first azure cluster!
