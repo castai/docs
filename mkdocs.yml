@@ -80,3 +80,4 @@ nav:
       - 'Introduction': api/overview.md
       - api/authentication.md
       - api/specification.md
+      - api/terraform-provider.md
