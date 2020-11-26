@@ -43,16 +43,16 @@ Copy the secret **value** you have created. It will be used as **Client Secret**
 
 1 - Make sure to click the link on our console where you have pasted the keys.
 
-![](configuring-azure-credentials/2020-11-23-16-28-43.png)
+![](configuring-azure-credentials/19.png)
 
 2 - After login, you should see the **Permissions requested** window. Click Accept which will allow adding CAST AI
 application role.
 
-![](configuring-azure-credentials/2020-11-23-16-31-46.png)
+![](configuring-azure-credentials/20.png)
 
 You should see it like this:
 
-![](configuring-azure-credentials/2020-11-23-16-32-46.png)
+![](configuring-azure-credentials/21.png)
 
 ## Assigning the roles
 
@@ -82,6 +82,6 @@ In the **Role** dropdown, select **Contributor**. In the **Select** field type y
 
  Also you need **CAST AI Shared Images** as a selected member. Then click save (if the role is not visible please check previous step and try again).
 
-![](2020-11-24-09-12-13.png)
+![](configuring-azure-credentials/18.png)
 
 This is it. After taking all of the steps above, you should have the required keys to create your first azure cluster!
