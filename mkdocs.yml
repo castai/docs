@@ -60,6 +60,7 @@ extra:
 
 nav:
   - 'Introduction': index.md
+  - 'Getting help': getting-help.md
   - 'Getting started':
       - getting-started/how-it-works.md
       - getting-started/setting-up-account.md
@@ -70,12 +71,13 @@ nav:
           - administration/configuring-gcp-credentials.md
           - administration/configuring-aws-credentials.md
           - administration/configuring-azure-credentials.md
-      - 'Configuration':
-          - 'Configuring cost optimization policies': administration/policies.md
   - 'Developer guides':
       - guides/pod-pinning.md
       - guides/volumes.md
+      - guides/autoscaling-policies.md
+      - guides/hpa/hpa.md
   - 'API':
       - 'Introduction': api/overview.md
       - api/authentication.md
       - api/specification.md
+      - api/terraform-provider.md
