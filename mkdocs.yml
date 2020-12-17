@@ -75,7 +75,7 @@ nav:
       - guides/pod-pinning.md
       - guides/volumes.md
       - guides/autoscaling-policies.md
-      - guides/hpa/hpa.md
+      - guides/pod-autoscaler/hpa.md
   - 'API':
       - 'Introduction': api/overview.md
       - api/authentication.md
