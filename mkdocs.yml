@@ -76,6 +76,7 @@ nav:
       - guides/volumes.md
       - guides/autoscaling-policies.md
       - guides/pod-autoscaler/hpa.md
+      - guides/node-autoscaler/spot-instances.md
   - 'API':
       - 'Introduction': api/overview.md
       - api/authentication.md
