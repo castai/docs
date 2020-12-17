@@ -45,7 +45,7 @@ The new settings will propagate immediately.
 
 ## Horizontal Pod Autoscaler (HPA) policy
 
-See [HPA documentation](https://docs.cast.ai/guides/hpa/hpa/) for a detailed overview.
+See [HPA documentation](https://docs.cast.ai/guides/pod-autoscaler/hpa/) for a detailed overview.
 
 ## Unscheduled pods policy
 
