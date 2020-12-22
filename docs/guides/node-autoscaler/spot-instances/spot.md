@@ -40,6 +40,9 @@ spec:
       labels:
         app: nginx
     spec:
+      nodeSelector:
+        scheduling.cast.ai/spot: "true"
+        topology.cast.ai/csp: "aws"
       tolerations:
         - key: scheduling.cast.ai/spot
           operator: Exists
