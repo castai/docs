@@ -9,7 +9,7 @@ In this guide, we will show you just how easy it is to do that.
 ### Tolerations
 
 When pod is marked only with Toleration, Kubernetes scheduler could place such pod(s) on regular nodes as well.
-This option should be preferred, when spot instances are optional for you.
+This option should be preferred, when spot instances are optional for your workloads.
 
 ```yaml
 ...
@@ -22,7 +22,7 @@ tolerations:
 
 ### Node Selectors
 
-If you want to make sure that a pod is scheduled on spot instances only, in addition to tolerations, you should add `nodeSelector` as well.
+If you want to make sure that a pod is scheduled on spot instances only, in addition to tolerations, you must add `nodeSelector` as well.
 This way autoscaler ensures that whenever your pod requires additional workload in the cluster, only spot instance is picked to satisfy the needs.
 
 ```yaml
