@@ -1,9 +1,28 @@
 # Spot Instances
 
-<!---
-TODO: About
-TODO: Enable policy
--->
+In this step-by-step guide we demonstrate how to use Spot Instances with your CAST AI clusters. 
+
+## 1. Pre-requisite: CAST AI cluster
+
+![](./010_demo_cluster.png)
+
+## 2. Enable policies
+
+![](./020_enable_policies.png)
+
+## 3. Deployment
+
+![](./030_deployment_in_lens.png)
+
+## 4. Spot Instance added
+
+![](./040_spot_instance_added.png)
+
+
+## 4.1. AWS instance list
+
+![](./050_aws_node_list.png)
+
 
 ## Deploying pods on Spot instances
 
