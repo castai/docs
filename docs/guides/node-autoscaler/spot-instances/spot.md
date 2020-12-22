@@ -42,7 +42,7 @@ In order to do that, we will be using example NGINX deployment, where it is conf
 ### 0. Pre-requisites
 
 * Have a Kubernetes cluster on CAST AI
-  * Check [Creating your first cluster](/getting-started/creating-your-first-cluster) if you need guidance.
+  * Check [Creating your first cluster](../../../getting-started/creating-your-first-cluster.md) if you need guidance.
 * `Kubeconfig` downloaded and ready to use for deploying an example application to your cluster.
 
 ![](./010_demo_cluster.png)
