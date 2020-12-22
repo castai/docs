@@ -3,7 +3,6 @@
 CAST AI autoscaler supports running your workloads on Spot/Preemtible instances.
 In this guide, we will show you just how easy it is to do that.
 
-
 ## Available configurations
 
 ### Tolerations
@@ -18,7 +17,6 @@ tolerations:
     operator: Exists
 ...
 ```
-
 
 ### Node Selectors
 
@@ -101,7 +99,7 @@ spec:
 
 ## 2.1. Apply the example deployment
 
-With Kubeconfig set in your current shell session, you can execute the following (or use other means of applying deployment files): 
+With Kubeconfig set in your current shell session, you can execute the following (or use other means of applying deployment files):
 
 `kubectl apply -f ngninx.yaml`
 
@@ -119,7 +117,6 @@ Once the deployment is created, it will take up to several minutes for the autos
 * You can see your newly added spot instance under the cluster node list.
 
 ![](./040_spot_instance_added.png)
-
 
 ### 3.1. AWS instance list
 
