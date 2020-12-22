@@ -97,7 +97,7 @@ spec:
               cpu: '3'
 ```
 
-## 2.1. Apply the example deployment
+#### 2.1. Apply the example deployment
 
 With Kubeconfig set in your current shell session, you can execute the following (or use other means of applying deployment files):
 
@@ -105,7 +105,7 @@ With Kubeconfig set in your current shell session, you can execute the following
 
 ![](./030_deployment_in_lens.png)
 
-## 2.2. Wait several minutes
+#### 2.2. Wait several minutes
 
 Once the deployment is created, it will take up to several minutes for the autoscaler to pick up the information about your pending deployment, and schedule the relevant workloads in order to satisfy the deployment needs, such as:
 
