@@ -38,10 +38,14 @@ Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started
 
     ```
     roles/compute.admin
+    roles/iam.serviceAccountUser
     roles/iam.serviceAccountAdmin
+    roles/iam.roleAdministrator
+    roles/iam.serviceAccountKey
+    roles/iam.projectIAMAdmin
     ```
 
-    Click **Continue**.
+    Click **Save**.
 
     ![](configuring-gcp-credentials/gcp5.png)
     In the last step of the service account creation, click **Done** without entering any data.
@@ -62,4 +66,4 @@ Select the **JSON** option and click **Create**.
 
 ![](configuring-gcp-credentials/gcp9.png)
 
-You’ll get a file download prompt. The downloaded file will include the **Service Account JSON credentials.**
+You’ll get a file download prompt. After the JSON file is downloaded, copy its contents to the input field or click on the **Read from file** button to import the file.
