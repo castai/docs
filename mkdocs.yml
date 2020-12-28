@@ -76,6 +76,8 @@ nav:
       - guides/volumes.md
       - guides/autoscaling-policies.md
       - guides/pod-autoscaler/hpa.md
+      # TODO: enable once spot is enabled on PROD
+      # - guides/node-autoscaler/spot-instances/spot.md
   - 'API':
       - 'Introduction': api/overview.md
       - api/authentication.md
