@@ -67,6 +67,7 @@ nav:
       - getting-started/creating-your-first-cluster.md
       - getting-started/deploying-applications.md
   - 'Administration':
+      - administration/architecture-overview.md
       - 'Setting up credentials':
           - administration/configuring-gcp-credentials.md
           - administration/configuring-aws-credentials.md
