@@ -14,7 +14,7 @@ Let's deploy, configure and inspect a basic application: an empty Caddy server.
 
 First and foremost, create or have a CAST AI cluster ([guide](../getting-started/creating-your-first-cluster.md)) ready to go.
 
-In cluster details page on the console, note the "GSLB DNS" value. The value should look similar to `1234567890.your-cluster-name-7da6f229.onmulti.cloud` once  the cluster is finished creating. This is the internal DNS name for your future ingress, but in order for the TLS setup  to work, you'll need an alias it to the domain of your choice. For example, if you prepare to serve your application on `https://sample-app.yourdomain.com`, on your DNS provider create a CNAME record with the name `sample-app` and value `1234567890.your-cluster-name-7da6f229.onmulti.cloud`.
+In cluster details page on the console, note the "GSLB DNS" value. The value should look similar to `1234567890.your-cluster-name-7da6f229.onmulti.cloud` once  the cluster is finished creating. This is the internal DNS name for your future ingress, but in order for the TLS setup  to work, you'll need an CNAME alias for it, using host name of your choice. For example, if you prepare to serve your application on `https://sample-app.yourdomain.com`, on your DNS provider create a CNAME record with the name `sample-app` and value `1234567890.your-cluster-name-7da6f229.onmulti.cloud`.
 
 !!! Note
     If you check DNS resolution at this point, e.g. `dig sample-app.yourdomain.com`, you should be able to see that the name resolves to one or more cloud specific load balancers.
