@@ -1,6 +1,6 @@
 # Exposing your app to the internet
 
-Having your CAST AI hosted application available on the internet is done in a conventional Kubernetes way: by deploying an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+Making your CAST AI hosted application available on the internet is done in the conventional Kubernetes way: by deploying an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 CAST AI clusters are automatically provisioned with:
 
@@ -8,20 +8,20 @@ CAST AI clusters are automatically provisioned with:
 * A certificate manager configured to manage TLS certificates with [letsencrypt.org](https://letsencrypt.org);
 * Metric collection for your ingress traffic;
 
-Let's deploy, configure and inspect a basic application: an empty Caddy server.
+Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 
 ## Prerequisites
 
-First and foremost, create or have a CAST AI cluster ([guide](../getting-started/creating-your-first-cluster.md)) ready to go.
+First and foremost, you need to create or have a CAST AI cluster ([guide](../getting-started/creating-your-first-cluster.md)) ready to go.
 
-In cluster details page on the console, note the "GSLB DNS" value. The value should look similar to `1234567890.your-cluster-name-7da6f229.onmulti.cloud` once  the cluster is finished creating. This is the internal DNS name for your future ingress, but in order for the TLS setup  to work, you'll need an CNAME alias for it, using host name of your choice. For example, if you prepare to serve your application on `https://sample-app.yourdomain.com`, on your DNS provider create a CNAME record with the name `sample-app` and value `1234567890.your-cluster-name-7da6f229.onmulti.cloud`.
+On the cluster details page in the console, note the "GSLB DNS" value. The value should look similar to `1234567890.your-cluster-name-7da6f229.onmulti.cloud` once  the cluster is done creating. This is the internal DNS name for your future ingress. But for the TLS setup to work, you'll also need an CNAME alias for it, using host name of your choice. For example, if you prepare to serve your application on `https://sample-app.yourdomain.com`, create a CNAME record in your DNS provider with the name `sample-app` and value `1234567890.your-cluster-name-7da6f229.onmulti.cloud`.
 
 !!! Note
-    If you check DNS resolution at this point, e.g. `dig sample-app.yourdomain.com`, you should be able to see that the name resolves to one or more cloud specific load balancers.
+    If you check the DNS resolution at this point, e.g. `dig sample-app.yourdomain.com`, you should be able to see that the name resolves to one or more cloud-specific load balancers.
 
 ## Deployment
 
-It's a rather bare-bones setup consisting of 2-replica deployment, a service description for that deployment, and an ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME you created before, and deploy everything else as-is to your cluster.
+It's a rather bare-bones setup consisting of 2-replica deployment, a service description for that deployment, and an ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you created before, and deploy everything else as-is to your cluster.
 
 ```yaml
 apiVersion: apps/v1
@@ -87,7 +87,7 @@ spec:
 
 ## Verification
 
-After above configuration is deployed, application should be ready for testing in a few moments. Check in the browser or CLI, e.g.:
+After deploying the configuration above, the application should be ready for testing in a few moments. Check in the browser or CLI, e.g.:
 
 ```console
 $ curl -L -I sample-app.yourdomain.com
@@ -109,15 +109,15 @@ last-modified: Thu, 17 Dec 2020 12:35:28 GMT
 strict-transport-security: max-age=15724800; includeSubDomains
 ```
 
-You can see few things happening here:
+You can see a few things happening here:
 
 * HTTP->HTTPS redirect is established automatically;
 * Once redirected to HTTPS, your application TLS setup works properly (curl is able to verify certificate validity for your domain).
 
 !!! Note
-    If you skipped DNS setup until this point, you still should be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager can't complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
+    If you skipped the DNS setup until this point, you should still be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager can't complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
 
-To ping our app without a DNS CNAME, use the internal DNS name and pass "host" header for the ingress routing to work; you'll need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
+To ping our app without a DNS CNAME, use the internal DNS name and pass "host" header for the ingress routing to work. You'll need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
 
 ```console
 $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluster-name-7da6f229.onmulti.cloud | head -n 4
@@ -129,8 +129,8 @@ $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluste
 
 ## Metrics
 
-Once you have your application up and running, you can check another out-of-the-box feature CAST AI configures for you: ingress metrics and dashboard. Head to CAST.AI console, and in your cluster details page, click on the *"Grafana metrics"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open "NGINX Ingress controller" dashboard. You should be greeted with a similar view to this:
+Once you have your application up and running, you can check another out-of-the-box feature CAST AI configures for you: the ingress metrics and dashboard. Head to CAST.AI console, and in your cluster details page, click on the *"Grafana metrics"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open "NGINX Ingress controller" dashboard. You should be greeted with a view similar to this:
 
 ![](ingress/ingress-dashboard.png)
 
-This dashboard provides an overview of your application traffic. To better tailor the dashboard to your specific needs, refer to [NGINX metrics documentation](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/prometheus/) for more details on available metrics.
+This dashboard provides an overview of your application traffic. To tailor the dashboard to your specific needs, refer to [NGINX metrics documentation](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/prometheus/) for more details on available metrics.
