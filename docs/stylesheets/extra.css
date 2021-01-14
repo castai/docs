@@ -28,3 +28,7 @@ nav a.md-header-nav__button img {
     box-shadow: 0 0 .5rem rgba(0,0,0,.1),0 .2rem .4rem rgba(0,0,0,.02);
     transition: color 250ms,background-color 250ms,box-shadow 250ms;
 }
+
+.highlight code {
+    max-height: 500px;
+}
