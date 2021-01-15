@@ -1,16 +1,5 @@
 # Your cluster: architecture overview
 
-!!! Note
-
-    * Overview
-    * Cloud credentials
-    * Reconcile mechanism
-    * Architecture diagram
-    * Networking details
-    * Cloud-specific notes
-    * Addons
-    * Telemetry
-
 This chapter summarizes the overall design of your Kubernetes cluster and how it's relationships with CAST AI platform.
 
 ## Cluster lifecycle
@@ -27,6 +16,12 @@ All clusters created on CAST AI enter a reconciliation loop, where platform peri
 * Is cluster network configuration up to date;
 * Are any nodes missing, e.g. accidentally deleted; 
 * Are there any dangling resources on your cloud associated with your cluster to clean up.
+
+## Resizing cluster 
+
+You'll notice that CAST AI clusters don't have a "node pool" concept you might be familiar with. Instead, you can choose specific node configuration to be added whenever you need to expand the cluster, or select specific nodes to delete when shrinking it.
+
+Same applies to autoscaling engine - it performs decisions per-node level, instead of choosing to grow or shrink a node pool.
 
 ### Cleanup
 
@@ -54,32 +49,54 @@ Your app users don't interact with CAST AI in any way. You own your kubernetes c
 
 ## Cluster infrastructure
 
-<TODO: diagram: zones, ingress, networks>
+### Nodes
+
+Here's the overview on where cluster virtual machines will be provisioned on your cloud.
+
+![](architecture-overview/nodes-infrastructure.png)
+
+### Ingress
+
+TODO
+
+### Network details
+
+#### Region & zone
+
+As you select a Cast region, for each cloud it maps to a specific region on that cloud. 
+
+For example, **US East (Ashburn)** region maps to:
+* AWS: us-east-1
+* GCP: us-east4
+* Azure: eastus
+* Digital Ocean: nyc1
+
+Currently, on each cloud CAST AI builds a single-zone setup of your cluster. Zone selection is cloud-specific.
+
+#### Master nodes inbound
+
+| Protocol | Port | Source | Description |
+|---|---|---|---|
+| tcp | 6443 | 0.0.0.0/0 | k8s API server |  
+| udp | 51820 | 0.0.0.0/0 | WireGuard (if used)|
 
 
+#### Worker nodes inbound
 
+| Protocol | Port | Source | Description |
+|---|---|---|---|
+| udp | 51820 | 0.0.0.0/0 | WireGuard (if used) |
+| tcp/udp | NodePort | 0.0.0.0/0 | k8s Service with type=LoadBalancer |
 
+#### Subnets
 
+| Range | Description |
+|---|---|
+| 10.96.0.0/12 | k8s services |
+| 10.217.0.0/16 | k8s pods |
+| 10.4.0.0/16 | WireGuard|
+| 10.0.0.0/16 | GCP VPC. Smaller /24 blocks are allocated for subnets. |
+| 10.10.0.0/16 | AWS VPC. Smaller /24 blocks are allocated for subnets. |
+| 10.20.0.0/16 | AZURE VPC. Smaller /24 blocks are allocated for subnets. |
+| 10.100-255.0.0/20 | DigitalOcean VPC. There is only one subnet which is allocated dynamically. |
 
-# Autoscaling 
-
-You'll notice that CAST AI clusters don't have a "node pool" concept you might be familiar with. Instead
-
-
-
-zones
-
-open ports
-
-
-traffic
-
-## Cloud specific notes
-
-### AWS
-
-TODO: node roles
-
-### GCP
-
-TODO: describe no node permissions
