@@ -57,13 +57,13 @@ Here's the overview on where cluster virtual machines will be provisioned on you
 
 ### Ingress
 
-CAST AI provisioned clusters contain all the infrastructure needed to equip your app with an external TLS endpoint. For that, we provide a
+CAST AI provisioned clusters contain all the infrastructure needed to equip your app with an external TLS endpoint:
 
-* DNS alias to hook your own domain to;
-* Load-balancing infrastructure;
-* Nginx ingress controller, paired with TLS certificate manager;
+* DNS entry to round-robin;
+* Load-balancing infrastructure: cloud-native load balancers that route traffic to sub-section of your cluster (e.g. traffic that hits AWS load balancer will route to AWS nodes);
+* Nginx ingress controller, paired with TLS certificate manager, that listen to your deployed resources and maintain routing&TLS configuration;
 
-All that is left for you as an application developer is to deploy your app, ingress resource, and configure a domain alias of your choice. See the [guide](../guides/)
+All that is left for you as an application developer is to deploy your app, ingress resource, and configure a domain alias of your choice. See the [guide](../guides/ingress.md) for more details.
 
 ![](architecture-overview/ingress.png)
 
