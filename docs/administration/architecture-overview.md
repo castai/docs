@@ -17,7 +17,7 @@ All clusters created on CAST AI enter a reconciliation loop, where platform peri
 * Are any nodes missing, e.g. accidentally deleted; 
 * Are there any dangling resources on your cloud associated with your cluster to clean up.
 
-## Resizing cluster 
+### Resizing 
 
 You'll notice that CAST AI clusters don't have a "node pool" concept you might be familiar with. Instead, you can choose specific node configuration to be added whenever you need to expand the cluster, or select specific nodes to delete when shrinking it.
 
@@ -57,7 +57,15 @@ Here's the overview on where cluster virtual machines will be provisioned on you
 
 ### Ingress
 
-TODO
+CAST AI provisioned clusters contain all the infrastructure needed to equip your app with an external TLS endpoint. For that, we provide a
+
+* DNS alias to hook your own domain to;
+* Load-balancing infrastructure;
+* Nginx ingress controller, paired with TLS certificate manager;
+
+All that is left for you as an application developer is to deploy your app, ingress resource, and configure a domain alias of your choice. See the [guide](../guides/)
+
+![](architecture-overview/ingress.png)
 
 ### Network details
 
