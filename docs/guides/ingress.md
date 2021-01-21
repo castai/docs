@@ -148,3 +148,120 @@ Once you have your application up and running, you can check another out-of-the-
 ![](ingress/ingress-dashboard.png)
 
 This dashboard provides an overview of your application traffic. To tailor the dashboard to your specific needs, refer to [NGINX metrics documentation](https://docs.nginx.com/nginx-ingress-controller/logging-and-monitoring/prometheus/) for more details on available metrics.
+
+## Combinations
+
+### Single host, multiple services
+
+You can use path-based routing to redirect traffic to specific services using [ingress rule paths](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types):
+
+```yaml
+spec:
+  rules:
+    - host: sample-app.yourdomain.com
+      http:
+        paths:
+          - path: /static
+            backend:
+              serviceName: static-resources
+              servicePort: http
+          - path: /
+            backend:
+              serviceName: base-app
+              servicePort: http
+```
+
+### Multiple hosts
+
+To manage multiple domains, you can just deploy multiple ingress resources, or include more domains into same ingress resource.
+
+```yaml
+# first host
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: sample-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - sample-app.yourdomain.com
+      secretName: sample-app-cert
+  rules:
+    - host: sample-app.yourdomain.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-app
+              servicePort: http
+---
+# second host
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: sample-app-ingress2
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - sample-app2.yourdomain.com
+      # note that secret needs to be unique for each domain, unless deployments
+      # will be separated by kubernetes namespaces
+      secretName: sample-app-cert-2  
+  rules:
+    - host: sample-app2.yourdomain.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-app2
+              servicePort: http
+---
+
+# combining: multiple hosts per certificate and/or multiple certificates per single ingress resource
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: sample-app-ingress3
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        # two domains under single certificate
+        - sample-app3.yourdomain.com
+        - sample-app3-alternative.yourdomain.com
+      secretName: sample-app3-cert
+    - hosts:
+        # another side-by-side certificate
+        - sample-app4.yourdomain.com
+      secretName: sample-app4-cert
+  rules:
+    - host: sample-app3.yourdomain.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-app
+              servicePort: http
+    - host: sample-app3-alternative.yourdomain.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-app
+              servicePort: http
+    - host: sample-app4.yourdomain.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-app2
+              servicePort: http
+```
