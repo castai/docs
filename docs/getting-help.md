@@ -1,6 +1,6 @@
 # Getting help
 
-Getting stuck sucks, thats why CAST.ai has a few differnet ways of getting help:
+Getting stuck sucks, thats why CAST AI has a few different ways of getting help:
 
 **Slack community channel**: Our customer support, developers and community members are willing to find the answers!
 
