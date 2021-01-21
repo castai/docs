@@ -114,8 +114,9 @@ You can see a few things happening here:
 * HTTP->HTTPS redirect is established automatically;
 * Once redirected to HTTPS, your application TLS setup works properly (curl is able to verify certificate validity for your domain).
 
-!!! Note
-    If you skipped the DNS setup until this point, you should still be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager can't complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
+## Deployment without CNAME alias
+
+If you skipped the DNS setup until this point, you should still be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager can't complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
 
 To ping our app without a DNS CNAME, use the internal DNS name and pass "host" header for the ingress routing to work. You'll need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
 
@@ -125,6 +126,19 @@ $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluste
 <html>
  <head>
   <title>Caddy works!</title>
+```
+
+If you don't intend creating a user-friendly url, another alternative is to use internal DNS name as ingress host. This will enable cert manager to provision proper TLS certificate and your app will be reachable via this name directly.
+
+```yaml
+spec:
+  tls:
+    - hosts:
+        - 1234567890.your-cluster-name-7da6f229.onmulti.cloud
+      secretName: sample-app
+  rules:
+    - host: 1234567890.your-cluster-name-7da6f229.onmulti.cloud
+      http:
 ```
 
 ## Metrics
