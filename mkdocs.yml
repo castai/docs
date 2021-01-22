@@ -71,6 +71,7 @@ nav:
       - 'Setting up credentials':
           - administration/configuring-gcp-credentials.md
           - administration/configuring-aws-credentials.md
+          - administration/configuring-do-credentials.md
           - administration/configuring-azure-credentials.md
   - 'Developer guides':
       - guides/pod-pinning.md
