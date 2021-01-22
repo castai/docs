@@ -1,6 +1,6 @@
 # Configure Digital Ocean credentials
 
-These are the simple instructions to obtain your API access key from Digital Ocean.
+These are the simple instructions to obtain your API access key from Digital Ocean and create your cluster.
 
 First of all, [visit your Digital Ocean account.](https://cloud.digitalocean.com/)
 
