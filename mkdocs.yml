@@ -62,17 +62,17 @@ nav:
   - 'Introduction': index.md
   - 'Getting help': getting-help.md
   - 'Getting started':
-      - getting-started/how-it-works.md
       - getting-started/setting-up-account.md
+      - 'Setting up credentials':
+          - getting-started/configuring-gcp-credentials.md
+          - getting-started/configuring-aws-credentials.md
+          - getting-started/configuring-do-credentials.md
+          - getting-started/configuring-azure-credentials.md
       - getting-started/creating-your-first-cluster.md
       - getting-started/deploying-applications.md
-  - 'Administration':
-      - administration/architecture-overview.md
-      - 'Setting up credentials':
-          - administration/configuring-gcp-credentials.md
-          - administration/configuring-aws-credentials.md
-          - administration/configuring-do-credentials.md
-          - administration/configuring-azure-credentials.md
+  - 'Concepts':
+      - concepts/how-it-works.md
+      - concepts/architecture-overview.md
   - 'Developer guides':
       - guides/pod-pinning.md
       - guides/volumes.md

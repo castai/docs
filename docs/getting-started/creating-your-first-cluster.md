@@ -35,11 +35,13 @@ The last step is to select a cloud provider and give CAST AI permission to manag
 
 Click on one of these links to get your key adding instructions for:
 
-* [GCP](https://castai.github.io/docs/administration/configuring-gcp-credentials/)
+* [GCP](configuring-gcp-credentials.md)
 
-* [AZURE](https://castai.github.io/docs/administration/configuring-azure-credentials/)
+* [AWS](configuring-aws-credentials.md)
 
-* [AWS](https://castai.github.io/docs/administration/configuring-aws-credentials/)
+* [DIGITAL OCEAN](configuring-do-credentials.md)
+
+* [AZURE](configuring-azure-credentials.md)
 
 After finishing this step, simply click on this button and wait a few minutes for the cluster to initialize.
 

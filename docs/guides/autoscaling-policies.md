@@ -8,7 +8,7 @@ This topic describes the available policy configuration options and provides gui
 ## Prerequisites
 
 To enable the autoscaling policies, you need to create a cluster first. Here's a guide that shows you how to create a cluster: [Creating your first
-cluster](https://castai.github.io/docs/getting-started/creating-your-first-cluster/).
+cluster](../getting-started/creating-your-first-cluster.md).
 
 To see the available policy settings, select your cluster and navigate to _Policies_ on
 [CAST AI's console](https://console.cast.ai/):
