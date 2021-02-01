@@ -62,7 +62,6 @@ nav:
   - 'Introduction': index.md
   - 'Getting help': getting-help.md
   - 'Getting started':
-      - getting-started/how-it-works.md
       - getting-started/setting-up-account.md
       - 'Setting up credentials':
           - getting-started/configuring-gcp-credentials.md
@@ -72,6 +71,7 @@ nav:
       - getting-started/creating-your-first-cluster.md
       - getting-started/deploying-applications.md
   - 'Concepts':
+      - concepts/how-it-works.md
       - concepts/architecture-overview.md
   - 'Developer guides':
       - guides/pod-pinning.md
