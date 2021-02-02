@@ -1,13 +1,15 @@
 # Getting help
 
-Getting stuck sucks, thats why CAST AI has a few different ways of getting help:
+Getting stuck sucks. That's why CAST AI has a few different ways of getting help:
 
-**Slack community channel**: Our customer support, developers and community members are willing to find the answers!
+**Community channels**: Our customer support, developers and community members are willing to find the answers!
 
-<https://join.slack.com/t/castai-community/shared_invite/zt-i8fcn2xi-sM_iONKn35NmYR2E3dtfng>
+On Discord: <https://discord.gg/4sFCFVJ>
 
-**Live chat or email:**  Our customer support team is reachable via email: support@cast.ai or live chat on our website.
+Or Slack: <https://join.slack.com/t/castai-community/shared_invite/zt-i8fcn2xi-sM_iONKn35NmYR2E3dtfng>
 
-## Security Bugs
+**Live chat or email:**  You can reach our customer support team via email: support@cast.ai or live chat on our [website](https://cast.ai).
+
+## Security bugs
 
 We strongly encourage you to report security vulnerabilities or any other bug to our email: Bugbounty@cast.ai - first, before disclosing them publicly.
