@@ -85,3 +85,5 @@ nav:
       - api/authentication.md
       - api/specification.md
       - api/terraform-provider.md
+  - 'CAST AI Console': "https://console.cast.ai"
+  
