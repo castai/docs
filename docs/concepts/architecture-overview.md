@@ -55,7 +55,7 @@ Your app users don't interact with CAST AI in any way. You own your kubernetes c
 
 Here's the overview on where cluster virtual machines will be provisioned on your cloud.
 
-![](architecture-overview/nodes-infrastructure.png)
+![](architecture-overview/nodes-infrastructure.svg)
 
 ### Ingress
 
