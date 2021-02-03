@@ -26,7 +26,7 @@ provisions managed Highly Available (HA) VPN gateways.
 - Traffic between nodes in the same VPC is plaintext.
 
 !!! note
-    Cloud Site-to-Site VPN is currently not available on Digital Ocean.
+    Cloud provided VPN is currently not available on Digital Ocean.
 
 ### WireGuard
 
