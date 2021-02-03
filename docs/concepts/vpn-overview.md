@@ -6,12 +6,12 @@ This chapter summarizes Virtual Private Network (VPN) architecture for multi-clo
 
 Currently CAST AI platform supports two VPN options:
 
-1. Cloud Site-to-Site.
+1. Cloud provided VPN.
 2. WireGuard.
 
 Let's look at each option in more details.
 
-### Cloud Site-to-Site
+### Cloud provided VPN
 
 The following example shows Kubernetes cluster with nodes on AWS, AZURE and GCP clouds.
 In order to access each nodes Virtual Private Cloud (VPC) network CAST AI platform
@@ -19,7 +19,7 @@ provisions managed Highly Available (HA) VPN gateways.
 
 ![](vpn-overview/cloudvpn.svg)
 
-#### Cloud Site-to-Site Network details
+#### Cloud provided VPN Network details
 
 - VPN Gateway is created on each cloud and adds additional cluster costs.
 - Traffic between nodes in different VPC is always encrypted.
