@@ -73,6 +73,7 @@ nav:
   - 'Concepts':
       - concepts/how-it-works.md
       - concepts/architecture-overview.md
+      - concepts/vpn-overview.md
   - 'Developer guides':
       - guides/pod-pinning.md
       - guides/volumes.md
