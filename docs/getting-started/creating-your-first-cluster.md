@@ -1,14 +1,14 @@
 # Creating your first cluster
 
-This guide covers very basics of creating your first Kubernetes cluster on Cast AI.
+This guide covers very basics of creating your first Kubernetes cluster on CAST AI.
 
 ## Setting up cloud credentials
 
-Before you're able to create your first cluster, you'll need to provide Cast AI access to your cloud accounts. Our
+Before you're able to create your first cluster, you'll need to provide CAST AI access to your cloud accounts. Our
 platform will perform actions on your cloud account, like setting up network, security groups, creating VMs and
 Kubernetes cluster itself.
 
-You'll need at least one set of credentials per each cloud you want to use in your multicloud cluster.
+You'll need at least one set of credentials per each cloud you want to use in your multi cloud cluster.
 
 View, add and delete credentials in console on [Cloud Credentials](https://console.cast.ai/cloud-credentials) list;
 you can also add new credentials directly while [creating a new cluster](https://console.cast.ai/clusters:new).
@@ -16,11 +16,11 @@ you can also add new credentials directly while [creating a new cluster](https:/
 ## Creating cluster
 
 Start by logging into your account. You can create a new cluster by clicking on **Create a cluster** button in
-Cast AI console:
+CAST AI console:
 
 ![](creating-your-first-cluster/no-clusters.png)
 
-At this point, we will ask you to enter your cluster name and select its region of multi-cloud providers.
+At this point, we will ask you to enter your cluster name and select its region of multi cloud providers.
 Make sure that the cluster name starts with a letter and use hyphens between the letters (no numbers or other characters
 are allowed).
 
@@ -57,7 +57,7 @@ After the cluster is started, you will get access to your own metrics and inform
 * Kibana Logs
 * Grafana metrics
 
-You can also inspect the cluster nodes in Cast AI console:
+You can also inspect the cluster nodes in CAST AI console:
 
 ![](creating-your-first-cluster/cluster-nodes.png)
 
