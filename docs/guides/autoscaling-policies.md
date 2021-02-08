@@ -58,13 +58,13 @@ The CAST AI autoscaler is equipped with a mechanism to handle this.
 
 Headroom is a buffer of spare capacity (in terms of both memory and CPU) to ensure that cluster is capable
 to meet suddenly increased demand for resources. It is based on the currently
-available total worker nodes resource capacity. For example, if headroom for memory and CPU are both set to 10%, 
-and cluster consists of 2 worker nodes equipped with 2 cores and 4GB RAM each, _a total of 0.4 cores and 819MB_ 
+available total worker nodes resource capacity. For example, if headroom for memory and CPU are both set to 10%,
+and cluster consists of 2 worker nodes equipped with 2 cores and 4GB RAM each, _a total of 0.4 cores and 819MB_
 would be considered as headroom in the next cluster size increase phase.
 
 ### Provisioning decision
 
-After receiving the unschedulable pods event, the CAST AI recommendation engine will select the best 
+After receiving the unschedulable pods event, the CAST AI recommendation engine will select the best
 price/performance ratio node able to accommodate all of the currently unschedulable pods plus headroom.
 CAST AI will then provision it and join with the cluster. This process usually takes a few minutes, depending on the cloud service provider of your choice.
 Currently, only a single node will be added at a time. If any unschedulable pods still remain, the cycle is
