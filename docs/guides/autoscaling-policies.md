@@ -47,14 +47,12 @@ The new settings will propagate immediately.
 
 See [HPA documentation](pod-autoscaler/hpa.md) for a detailed overview.
 
-
 ## Node deletion policy
 
 ![](autoscaling-policies/node_deletion_policy.png)
 
 This policy will automatically remove nodes from your cluster when they no longer have scheduled workloads.
 This allows your cluster to maintain a minimal footprint and reduce cloud costs.
-
 
 ## Unscheduled pods policy
 
