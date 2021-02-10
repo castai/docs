@@ -130,4 +130,5 @@ handled in the following order:
 * [Cluster CPU limits policy](#cluster-cpu-limits-policy)
 * [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
 * [Unscheduled pods policy](#unscheduled-pods-policy)
+* [Node deletion policy](#node-deletion-policy)
 * [Cluster CPU utilization scale up policy](#cluster-cpu-utilization-scale-up-policy)
