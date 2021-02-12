@@ -51,7 +51,7 @@ Copy the displayed JSON and use it in the _create gcp cloud credentials_ screen.
 
 ### Project prerequisites
 
-**Note** that the project where you created your service account created needs to have the following APIs enabled:
+**Note** that the project where you created your service account needs to have the following APIs enabled:
 
 ```
 IAM API
