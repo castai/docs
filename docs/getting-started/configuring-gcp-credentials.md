@@ -1,18 +1,18 @@
 # Configure Google Cloud credentials
 
-By following these instructions, you’ll retrieve the Service account JSON credentials. These credentials are required by
+By following these instructions, you’ll retrieve the service account JSON credentials. These credentials are required by
 CAST AI for creating a cluster with GCP resources.
 
 ## Method 1: Create using `gcloud` utility
 
 ### Prerequisites
 
-- (recommended) Visit Google Cloud <https://console.cloud.google.com/> and make sure you have selected the right project. Open Cloud Shell at the top right side of menu bar.
-- (alternative) You can also use your local `gcloud` installation. Make sure you activated the right project (`gcloud projects list` and `gcloud config set project {{desired-project-id-here}}`)
+- (recommended) Visit the Google Cloud Platform <https://console.cloud.google.com/> and make sure you have selected the right project. Open Cloud Shell at the top right side of menu bar.
+- (alternative) You can also use your local `gcloud` installation. Make sure that you have activated the right project (`gcloud projects list` and `gcloud config set project {{desired-project-id-here}}`)
 
 ### Generate service account
 
-Run the script below. It will create a new service account with required permissions, enable required APIs and print your service account key json.
+Run the script displayed below. It will create a new service account with the required permissions, enable the required APIs, and print your service account key JSON.
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
@@ -42,16 +42,16 @@ Activated service account credentials for: [castai-credentials-1613140179@projec
 }
 ```
 
-Copy the displayed json and use it in _create gcp cloud credentials_ screen.
+Copy the displayed JSON and use it in the _create gcp cloud credentials_ screen.
 
-!!! note
-    Cloud Shell will copy a selected text automatically. Don't use `ctrl+c` as `"private_key"` part of the json might get corrupted due to word wrapping.
+!!! Note
+    Cloud Shell will copy a selected text automatically. Don't use `ctrl+c` as `"private_key"` part of the JSON might get corrupted due to word wrapping.
 
-## Method 2: Create manually using Google Cloud Console
+## Method 2: Create it manually using the Google Cloud Console
 
 ### Project prerequisites
 
-**Note** that the project where your Service Account is created needs to have the following APIs enabled:
+**Note** that the project where you created your service account created needs to have the following APIs enabled:
 
 ```
 IAM API
@@ -59,7 +59,7 @@ Compute API
 Resource Manager API
 ```
 
-Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started#enabling_apis) on how to enable APIs.
+Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started#enabling_apis) to learn more about how to enable APIs.
 
 ### Create service account
 
@@ -101,7 +101,7 @@ Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started
 
 ### Create key
 
-The created account will appear in the Service Accounts list. **Click on it** to access additional options.
+The created account will appear in the service accounts list. **Click on it** to access additional options.
 
 ![](configuring-gcp-credentials/gcp7.png)
 
