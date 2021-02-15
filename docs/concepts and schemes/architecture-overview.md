@@ -4,32 +4,31 @@ This chapter summarizes the overall design of your Kubernetes cluster and how it
 
 ## Cluster lifecycle
 
-### Provisioning
+- ### Provisioning
 
-You initiate creation of the cluster by providing CAST AI with:
+You initiate creation of the cluster. Refer to [getting started] on how to create a cluster.
 
-* Access to your Cloud accounts - CAST AI uses these to call cloud APIs to build your infrastructure for you;
-* Initial configuration of your cluster, like region or size of the control plane. We aim to keep these options to a minimum and use our own opinionated setup where appropriate.
 
-### Reconciliation & healing
+- ### Reconciliation & healing
 
-All clusters created on CAST AI enter a reconciliation loop, where platform periodically re-checks that actual infrastructure on your cloud reflects the specified configuration, and performs upgrades & patching. Reconciliation performs checks such as:
+A cluster enters a reconciliation loop. The platform periodically re-checks that actual infrastructure on your cloud reflects the specified configuration, and performs upgrades & patching. Reconciliation performs checks such as:
 
-* Is cluster network configuration up to date;
-* Are any nodes missing, e.g. accidentally deleted;
-* Are there any dangling resources on your cloud associated with your cluster to clean up.
+  - [x] Cluster network configuration is up to date;
+  - [x] Are any nodes missing, e.g. accidentally deleted;
+  - [x] Are there any unused resources to clean up;
 
-### Resizing
+- ### Resizing
 
-You'll notice that CAST AI clusters don't have a "node pool" concept you might be familiar with. Instead, you can choose specific node configuration to be added whenever you need to expand the cluster, or select specific nodes to delete when shrinking it.
+CAST AI clusters do not use a "node pool" concept. Instead, you can: 
 
-Same applies to autoscaling engine - it performs decisions per-node level, instead of choosing to grow or shrink a node pool.
+   - Manually add or remove nodes with specified configuration.
+   - Enable autoscaling policies - it scales up and down per-node level.
 
-### Cleanup
+- ### Cleanup
 
-When you instruct CAST to delete your cluster, in general case platform will just try to collapse created cloud resources in the fastest way. Keep in mind that nodes will not be drained before deleting them, and any running workloads won't be given a chance to terminate gracefully.
+When you delete a cluster platform will collapse cloud resources in the quickest way. Nodes will not be drained before deleting them.
 
-Deletion aims to minimize unintended removals. For example, virtual machines on AWS are deleted by a specific tag containing cluster UUID. If any additional VMs remain present in cluster's security group, that security group won't be deleted and you'll see delete operation fail.
+The platform is designed to minimize unintended removals. If you have any extra virtual machines that do not contain CAST AI cluster UUID - delete operation will fail.
 
 ## Cluster architecture
 
