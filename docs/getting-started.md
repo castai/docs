@@ -15,7 +15,7 @@ Refer to the table of contents on the right side to quickly navigate through thi
 
 You can skip this step if you have a free trial activated.
 
-CAST AI will need to have access to your cloud to be able to orchestrate and optimize it. Your credentials will be encrypted and stored in a secure way, and you can opt out and remove them any time you want. If you remove the credentials - you are free to use the Kubernetes provisioned cluster as it is but you will lose all the managed service benefits and features that CAST AI offers.
+CAST AI will need your cloud credentials to call cloud APIs, so the platform can create, orchestrate and optimize clusters for you. Your credentials will be encrypted and stored in a secure way, and you can opt out and remove them any time you want. If you remove the credentials - you are free to use the Kubernetes provisioned cluster as it is but you will lose all the managed service benefits and features that CAST AI offers.
 
 ### Amazon Web Services credentials
 
