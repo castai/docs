@@ -10,7 +10,7 @@ In the dashboard window you will see all active and deleted clusters.
 2. Download KubeConfig of a cluster, pause or delete it.
 3. You can open any specific cluster to manage its policies, add or remove nodes or check logs (check -> /clusters). Copy cluster ID for API management.
 
-[screenshot]
+![](images/dashboard.png)
 
 - ### /clusters
 
@@ -22,7 +22,7 @@ Here you will see more information about the selected cluster and will get acces
 2. Information and log of the selected cluster.
 3. Management menu.
 
-[screenshot]
+![](images/clusters.png)
 
   - #### /nodes
   
@@ -35,7 +35,7 @@ Here you will see more information about the selected cluster and will get acces
      
   2. View information about nodes, copy node ID for API management and delete nodes.
   
-  [screenshot]
+![](images/nodes.png)
   
   - #### /audit
   
@@ -44,13 +44,13 @@ Here you will see more information about the selected cluster and will get acces
   1. Select a date range for the log.
   2. View operations made and who initiated them.
   
-  [screenshot]
+![](images/auditlog.png)
   
   - #### /policies
   
   Manage policies for the selected cluster. Policies will help you optimize and reduce cost of your cloud bill and will automate the process of scaling up and down for you.
   
- [screenshot]
+![](images/policies.png)
   
   - #### Kubernetes UI
   
