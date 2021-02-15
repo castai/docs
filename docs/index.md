@@ -11,6 +11,10 @@ We invite you to join our community and find out what's trending in the atmosphe
 
 [Join our Slack channel](https://join.slack.com/t/castai-community/shared_invite/zt-i8fcn2xi-sM_iONKn35NmYR2E3dtfng)
 
+## Events
+
+CAST AI team loves sharing knowledge and experience in webinars! If you would like to learn more about our journey and have your questions answered by our CTO and engineers LIVE - please check out our [events calendar](https://cast.ai/events/).
+
 ## Support
 
-Feel free to ask any questions on slack or discord. You can also reach our support on the [website chat](https://cast.ai/) or email: support@cast.ai
+Feel free to ask any questions on slack or discord. You can also reach our support on the [website chat](https://cast.ai/#) or email: support@cast.ai
