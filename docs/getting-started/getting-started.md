@@ -105,4 +105,34 @@ After the cluster is created, name and region can’t be changed.
 
    - Name your cluster (2-50 symbols, only letters, numbers and hyphens allowed)
 
-   - Select a region
+   - Select a region. Your cluster will be located in the selected region.
+   
+**2. Cluster configuration**
+
+Select initial cluster configuration. It may be automatically adjusted based on scaling and cost optimization policies. You will be able to adjust policies once the cluster is created. You may also manually add nodes once the cluster is provisioned.
+
+**3. Cloud providers**
+
+Select the cloud provider(s) you would like to use for this cluster. You will need to select credentials that you would like to use for each provider, please refer to [Adding credentials] section if you have no credentials added.
+
+**4. Cluster virtual private network**
+
+Select preferred encrypted connection type. Cloud provided VPN is a default VPN provided by the respective cloud service providers. WireGuard is a CAST AI integrated choice of VPN that [significantly reduces cloud cost].
+
+- WireGuard VPN: Full Mesh - network traffic is encrypted between all nodes
+- WireGuard VPN: Cross Location Mesh - network traffic is encrypted only between nodes in different clouds
+- Cloud provided VPN - default network encryption provided by selected CSPs
+
+## Deploying application
+
+CAST AI managed cluster runs on Kubernetes. Once you have a cluster running - you can download a **KubeConfig file** of the cluster and deploy your application using **kubectl** command-line tool.
+
+[screenshot]
+
+For more information please refer to [Kubernetes documentation](https://kubernetes.io/docs/home/).
+
+Relevant for this section:
+
+- [Organizing cluster access using kubeconfig files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
+
+- [Deploy an app using kubectl](https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro/)
