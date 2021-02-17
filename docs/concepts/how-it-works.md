@@ -1,6 +1,6 @@
 # How it works
 
-Long story short, the CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the required cloud resources and set up a multi-cloud cluster for you. You can start using multi-cloud Kubernetes with just a few clicks.
+CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the required cloud resources and set up a multi-cloud cluster for you. You can start using multi-cloud Kubernetes with just a few clicks - check out [Getting started].
 
 ## To get a bit more technical
 
