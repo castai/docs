@@ -125,7 +125,7 @@ Select preferred encrypted connection type. Cloud provided VPN is a default VPN 
 
 ## Deploy application
 
-CAST AI managed cluster runs on Kubernetes. Once you have a cluster running - you can download a **KubeConfig file** of the cluster and deploy your application using **kubectl** command-line tool.
+CAST AI managed cluster runs on Kubernetes. Once you have a cluster running - you can download a **kubeconfig file** of the cluster and deploy your application using **kubectl** command-line tool.
 
 [screenshot]
 
