@@ -40,19 +40,19 @@ Below diagram highlights primary groups of components that define a relationship
 
 New CAST AI users will start by interacting with the platform via console UI (<https://console.cast.ai>). Once the created cluster is ready, by downloading cluster's kubeconfig you are able to access your cluster directly. Some of the middleware that is running on the cluster (Grafana, Kubernetes dashboard) is directly reachable from UI through the single-signon gateway.
 
-You can notice that there's a bi-direction link between your cluster and CAST AI platform. Not only the platform connects to your cloud infrastructure or the cluster itself; CAST AI also relies on the cluster to "call back" and inform about certain events:
+You can notice that there is a bi-direction link between your cluster and CAST AI platform. Not only the platform connects to your cloud infrastructure or the cluster itself; CAST AI also relies on the cluster to "call back" and inform about certain events:
 
 * Cluster control plane nodes actions with provisioning engine, e.g. when to join the cluster;
 * Nodes inform about operations being completed, like finishing joining the cluster;
 * Relevant cloud events get propagated to provisioning engine & autoscaler, for example, "spot instance is being terminated by cloud provider";
 
-Your app users don't interact with CAST AI in any way. You own your kubernetes cluster infrastructure 100%, including any ingress infrastructure to reach your cluster workloads.
+Your app users do not interact with CAST AI in any way. You own your kubernetes cluster infrastructure 100%, including any ingress infrastructure to reach your cluster workloads.
 
 ## Cluster infrastructure
 
 ### Nodes
 
-Here's the overview on where cluster virtual machines will be provisioned on your cloud.
+Overview on where cluster virtual machines will be provisioned on your cloud:
 
 ![](architecture-overview/nodes-infrastructure.svg)
 
