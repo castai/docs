@@ -12,9 +12,10 @@ CAST AI selects regions with network latency in mind. For your applications and 
 
 ## Enter Kubernetes
 
-With network in place, 
+With network in place:
+
 4. VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in [/nodes] menu. 
-5. Cluster enters a [reconcilation loop](https://github.com/v1dm45/docs/blob/main/docs/concepts%20and%20schemes/architecture-overview.md#2-reconciliation--healing)
+6. Cluster enters a [reconcilation loop](https://github.com/v1dm45/docs/blob/main/docs/concepts%20and%20schemes/architecture-overview.md#2-reconciliation--healing)
 
 If you delete any resources from the provided CSP accounts manually, CAST AI recreates them to the specification provided by you in the console. During the time of reconciliation, no instant changes to the cluster are allowed. You can only apply them after the reconciliation.
 
