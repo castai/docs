@@ -133,6 +133,6 @@ For more information please refer to [Kubernetes documentation](https://kubernet
 
 Relevant for this section:
 
-- [Organizing cluster access using kubeconfig files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
+- [Kubernetes docs - Organizing cluster access using kubeconfig files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 
-- [Deploy an app using kubectl](https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro/)
+- [Kubernetes docs - Deploy an app using kubectl](https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro/)
