@@ -1,7 +1,7 @@
 ## Cluster lifecycle
 ### 1. Provisioning
 
-You initiate creation of the cluster. Refer to [getting started] on how to create a cluster.
+You initiate creation of the cluster. Refer to [getting started](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md) on how to create a cluster.
 
 
 ### 2. Reconciliation & healing
