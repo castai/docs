@@ -1,11 +1,10 @@
 ## Cluster lifecycle
-
-- ### Provisioning
+### 1. Provisioning
 
 You initiate creation of the cluster. Refer to [getting started] on how to create a cluster.
 
 
-- ### Reconciliation & healing
+### 2. Reconciliation & healing
 
 A cluster enters a reconciliation loop. The platform periodically re-checks that actual infrastructure on your cloud reflects the specified configuration, and performs upgrades & patching. Reconciliation performs checks such as:
 
@@ -13,14 +12,14 @@ A cluster enters a reconciliation loop. The platform periodically re-checks that
   - [x] Are any nodes missing, e.g. accidentally deleted;
   - [x] Are there any unused resources to clean up;
 
-- ### Resizing
+### 3. Resizing
 
 CAST AI clusters do not use a "node pool" concept. Instead, you can: 
 
    - Manually add or remove nodes with specified configuration.
    - Enable autoscaling policies - it scales up and down per-node level.
 
-- ### Cleanup
+### 4. Cleanup
 
 When you delete a cluster platform will collapse cloud resources in the quickest way. Nodes will not be drained before deleting them.
 
