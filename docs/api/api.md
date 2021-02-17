@@ -32,7 +32,7 @@ If you lose your key, the only solution is to create a new key.
 
 ### Setting up CAST AI Swagger
 
-You can test your key directly in our [API specification](specification.md). 
+You can test your key directly in our [API specification](https://github.com/v1dm45/docs/blob/main/docs/api/api.md#api-specification). 
 
 Visit <https://api.cast.ai/v1/spec/>, click
 "Authorize" and enter your key for `X-API-Key` field.
