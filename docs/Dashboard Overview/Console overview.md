@@ -1,6 +1,6 @@
 ## Overview
 
-This is a quick overview of the dashboard and it's features.
+This is a quick overview of the [CAST AI console](https://console.cast.ai) and it's features.
 
 - ### /dashboard
 
