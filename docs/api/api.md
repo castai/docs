@@ -21,6 +21,7 @@ integration if you add more keys later.
 
 When the key is created - save it because **you will not be able to view the key again
 after this window is closed**.
+
 ![](authentication/create-key-2.png)
 
 The reason API key value is visible only at a time of creation is because we do not store the key in plain text on our
