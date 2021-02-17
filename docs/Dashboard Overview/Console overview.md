@@ -8,7 +8,7 @@ In the dashboard window you will see all active and deleted clusters.
 
 1. Create a new cluster. If you can see only an option to create a cluster, please refer to [Getting started] to unlock other features.
 2. Download KubeConfig of a cluster, pause or delete it.
-3. You can open any specific cluster to manage its policies, add or remove nodes or check logs (check -> /clusters). Copy cluster ID for API management.
+3. You can open any specific cluster to manage its policies, add or remove nodes or check logs (check -> [/clusters](https://github.com/v1dm45/docs/blob/main/docs/Dashboard%20Overview/Console%20overview.md#clusters)). Copy cluster ID for API management.
 
 ![](images/dashboard.png)
 
