@@ -31,7 +31,7 @@ The platform is designed to minimize unintended removals. If you have any extra 
 
 Below diagram highlights primary groups of components that define a relationship between CAST AI platform and your cluster.
 
-![](images/component-relationships.png)
+![](architecture-overview/component-relationships.png)
 
 New CAST AI users will start by interacting with the platform via console UI (<https://console.cast.ai>). Once the created cluster is ready, by downloading cluster's kubeconfig you are able to access your cluster directly. Some of the middleware that is running on the cluster (Grafana, Kubernetes dashboard) is directly reachable from UI through the single-signon gateway.
 
@@ -49,7 +49,7 @@ Your app users do not interact with CAST AI in any way. You own your kubernetes 
 
 Overview on where cluster virtual machines will be provisioned on your cloud:
 
-![](images/nodes-infrastructure.svg)
+![](architecture-overview/nodes-infrastructure.svg)
 
 ### Ingress
 
@@ -62,7 +62,7 @@ CAST AI provisioned clusters contain all the infrastructure needed to equip your
 
 All that is left for you as an application developer is to deploy your app, ingress resource, and configure a domain alias of your choice. See the [guide](../guides/ingress.md) for more details.
 
-![](images/ingress.png)
+![](architecture-overview/ingress.png)
 
 ### Network details
 
