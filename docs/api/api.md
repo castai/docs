@@ -30,7 +30,7 @@ if key is valid, but not to re-retrieve the value for you.
   
 If you lose your key, the only solution is to create a new key.
 
-### Setting up CAST AI Swagger
+### CAST AI Swagger setup
 
 You can test your key directly in our [API specification](https://github.com/v1dm45/docs/blob/main/docs/api/api.md#api-specification). 
 
