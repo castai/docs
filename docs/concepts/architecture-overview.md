@@ -37,7 +37,7 @@ You can notice on the diagram below that there is a bi-direction link between yo
 * Nodes inform about operations being completed, like finishing joining the cluster;
 * Relevant cloud events get propagated to provisioning engine & autoscaler, for example, "spot instance is being terminated by cloud provider";
 
-Your app users do not interact with CAST AI in any way. You own your kubernetes cluster infrastructure 100%, including any ingress infrastructure to reach your cluster workloads.
+Your app users do not interact with CAST AI in any way. You own your kubernetes cluster infrastructure 100%, including any [ingress infrastructure](https://github.com/v1dm45/docs/blob/main/docs/concepts/architecture-overview.md#ingress) to reach your cluster workloads.
 
 Below diagram highlights primary groups of components that define a relationship between CAST AI platform and your cluster:
 
