@@ -80,5 +80,12 @@ Here you will see more information about the selected cluster and will get acces
   ![](images/grafana.png)
   
   
-  
+  - ## API
+
+    - [API documentation](https://api.cast.ai/v1/spec/)
+    - [API authentication]
+
+You can read more about our API here - [API]
+
+  ![](images/API.png)
   
