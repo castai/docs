@@ -96,7 +96,7 @@ To get started, you need to create a service account in your Google Cloud Platfo
    
 ## Create cluster
 
-Once you have cloud credentials - you are ready to create a cluster. In cluster creation window you will have a few options to lay a base foundation for your cluster, which we will be able to further customize to your needs once a cluster is up and running.
+Once you have [cloud credentials](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md#add-cloud-credentials) - you are ready to create a cluster. In cluster creation window you will have a few options to lay a base foundation for your cluster, which we will be able to further customize to your needs once a cluster is up and running.
 
 **1. Cluster details**
 
