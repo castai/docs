@@ -85,7 +85,7 @@ Here you will see more information about the selected cluster and will get acces
     - [API documentation](https://api.cast.ai/v1/spec/)
     - [API authentication](https://github.com/v1dm45/docs/new/main/docs/api#authentication)
 
-You can read more about our API here - [API]
+You can read more about our API here - [API](https://github.com/v1dm45/docs/blob/main/docs/api/api.md)
 
   ![](images/API.png)
   
