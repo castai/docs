@@ -21,6 +21,6 @@ If you delete any resources from the provided CSP accounts manually, CAST AI rec
 
 ## Automated cleanup
 
-When you delete a cluster via the CAST AI console - platform will terminate all VMs and delete cloud resources (attached storage, public IPs, VPN connections, network subnets, etc.).
+When you delete a cluster via the CAST AI console - operation will terminate all VMs and delete cloud resources (attached storage, public IPs, VPN connections, network subnets, etc.).
 
 To further understand the lifecycle of a cluster - check our [Cluster lifecycle](https://github.com/v1dm45/docs/blob/main/docs/concepts%20and%20schemes/architecture-overview.md#cluster-lifecycle) overview.
