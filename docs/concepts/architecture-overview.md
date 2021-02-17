@@ -29,7 +29,7 @@ The platform is designed to minimize unintended removals. If you have any extra 
 
 ### Context
 
-When you [create a cluster](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md#create-cluster) you can download kubeconfig to access your cluster directly. Some of the middleware that is running on the cluster (Grafana, Kubernetes dashboard) is directly reachable from UI through the single-signon gateway - you can take a quick peek in [Console overview](https://github.com/v1dm45/docs/blob/main/docs/Dashboard%20Overview/Console%20overview.md#console-overview).
+When you [create a cluster](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md#create-cluster) you can [download kubeconfig](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md#deploy-application) to access your cluster directly. Some of the middleware that is running on the cluster (Grafana, Kubernetes dashboard) is directly reachable from [console UI](https://github.com/v1dm45/docs/blob/main/docs/Dashboard%20Overview/Console%20overview.md#console-overview) through the single-signon gateway.
 
 You can notice on the diagram below that there is a bi-direction link between your cluster and CAST AI platform. Not only the platform connects to your cloud infrastructure or the cluster itself; CAST AI also relies on the cluster to "call back" and inform about certain events:
 
