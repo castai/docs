@@ -65,7 +65,7 @@ Here you will see more information about the selected cluster and will get acces
   
   - #### Kubernetes UI
   
-  View more detailed information about the selected cluster in the Kubernetes UI.
+  View more detailed information about the selected cluster and manage it in the [Kubernetes UI](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
   
   - #### Kibana logs
   
