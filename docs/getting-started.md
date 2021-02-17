@@ -11,7 +11,7 @@ Refer to the table of contents on the right side to quickly navigate through thi
 
 **Estimated time to get started - 5 minutes.**
 
-## Adding cloud credentials
+## Add cloud credentials
 
 You can skip this step if you have a free trial activated.
 
@@ -123,7 +123,7 @@ Select preferred encrypted connection type. Cloud provided VPN is a default VPN 
 - WireGuard VPN: Cross Location Mesh - network traffic is encrypted only between nodes in different clouds
 - Cloud provided VPN - default network encryption provided by selected CSPs
 
-## Deploying application
+## Deploy application
 
 CAST AI managed cluster runs on Kubernetes. Once you have a cluster running - you can download a **KubeConfig file** of the cluster and deploy your application using **kubectl** command-line tool.
 
