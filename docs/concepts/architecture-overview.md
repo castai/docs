@@ -68,7 +68,7 @@ All that is left for you as an application developer is to deploy your app, ingr
 
 #### Region & zone
 
-As you select a Cast region, for each cloud it maps to a specific region on that cloud.
+Each cloud maps a selected CAST AI region to a matching region on that cloud.
 
 For example, **US East (Ashburn)** region maps to:
 
