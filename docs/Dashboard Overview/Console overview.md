@@ -1,4 +1,4 @@
-## Overview
+## Console overview
 
 This is a quick overview of the [CAST AI console](https://console.cast.ai) and it's features.
 
