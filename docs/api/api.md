@@ -31,7 +31,9 @@ If you lose your key, the only solution is to create a new key.
 
 ### Setting up CAST AI Swagger
 
-You can test your key directly in our [API specification](specification.md). Visit <https://api.cast.ai/v1/spec/>, click
+You can test your key directly in our [API specification](specification.md). 
+
+Visit <https://api.cast.ai/v1/spec/>, click
 "Authorize" and enter your key for `X-API-Key` field.
 
 After setting this up, you are now ready to use *"Try it out"* button that is available for each endpoint.
@@ -43,3 +45,33 @@ To authenticate, provide the key in  `X-API-Key` HTTP header. For example, for `
 ```
 curl -X GET "https://api.cast.ai/v1/kubernetes/clusters" -H "X-API-Key: your-api-key-here" | jq
 ```
+
+## API specification
+
+Our API contract is published as OpenAPI v3 specification. You can check it on our
+Swagger UI:
+
+<https://api.cast.ai>
+
+This will bring your to our current specification. Here you will be able to familiarize yourself with available APIs
+and try functionality directly in the browser.
+
+!!! note
+    To try out APIs in the browser you will need an API access key.
+    See [Authentication](authentication.md).
+
+We do not maintain any public SDKs but you can generate an API client for your programming
+ language using many of the [OpenAPI generators](https://openapi.tools/#sdk). Use below json as a spec:
+
+<https://api.cast.ai/v1/spec/openapi.json>
+
+!!! note
+    OpenAPI is widely supported. Many tools (e.g. Postman) allow to import OpenAPI definitions as well. See
+    documentation for your REST tooling to find out more.
+    
+ ## Terraform provider
+
+Your CAST.AI infrastructure can be automated via [Terraform](https://www.terraform.io/) using _terraform-provider-castai_ provider.
+
+Installation steps, example projects and releases are available at the repository: <https://github.com/castai/terraform-provider-castai>.
+
