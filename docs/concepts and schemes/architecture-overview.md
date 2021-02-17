@@ -1,7 +1,3 @@
-# Cluster architecture overview
-
-This chapter summarizes the overall design of your Kubernetes cluster and how it's relationships with CAST AI platform.
-
 ## Cluster lifecycle
 
 - ### Provisioning
