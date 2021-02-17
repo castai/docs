@@ -69,10 +69,15 @@ Here you will see more information about the selected cluster and will get acces
   
   - #### Kibana logs
   
+  View Kibana logs of the selected cluster.
   
+  ![](images/kibana.png)
   
   - #### Grafana logs
   
+  View Grafana logs of the selected cluster.
+  
+  ![](images/grafana.png)
   
   
   
