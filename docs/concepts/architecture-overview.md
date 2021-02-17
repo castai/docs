@@ -29,19 +29,19 @@ The platform is designed to minimize unintended removals. If you have any extra 
 
 ### Context
 
-Below diagram highlights primary groups of components that define a relationship between CAST AI platform and your cluster.
+When you [create a cluster](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md#create-cluster) you can download kubeconfig to access your cluster directly. Some of the middleware that is running on the cluster (Grafana, Kubernetes dashboard) is directly reachable from UI through the single-signon gateway - you can take a quick peek in [Console overview](https://github.com/v1dm45/docs/blob/main/docs/Dashboard%20Overview/Console%20overview.md#console-overview).
 
-![](architecture-overview/component-relationships.png)
-
-New CAST AI users will start by interacting with the platform via console UI (<https://console.cast.ai>). Once the created cluster is ready, by downloading cluster's kubeconfig you are able to access your cluster directly. Some of the middleware that is running on the cluster (Grafana, Kubernetes dashboard) is directly reachable from UI through the single-signon gateway.
-
-You can notice that there is a bi-direction link between your cluster and CAST AI platform. Not only the platform connects to your cloud infrastructure or the cluster itself; CAST AI also relies on the cluster to "call back" and inform about certain events:
+You can notice on the diagram below that there is a bi-direction link between your cluster and CAST AI platform. Not only the platform connects to your cloud infrastructure or the cluster itself; CAST AI also relies on the cluster to "call back" and inform about certain events:
 
 * Cluster control plane nodes actions with provisioning engine, e.g. when to join the cluster;
 * Nodes inform about operations being completed, like finishing joining the cluster;
 * Relevant cloud events get propagated to provisioning engine & autoscaler, for example, "spot instance is being terminated by cloud provider";
 
 Your app users do not interact with CAST AI in any way. You own your kubernetes cluster infrastructure 100%, including any ingress infrastructure to reach your cluster workloads.
+
+Below diagram highlights primary groups of components that define a relationship between CAST AI platform and your cluster:
+
+![](architecture-overview/component-relationships.png)
 
 ## Cluster infrastructure
 
@@ -60,7 +60,7 @@ CAST AI provisioned clusters contain all the infrastructure needed to equip your
 * Nginx ingress controller, paired with TLS certificate manager, that listen to your deployed resources and maintain routing&TLS configuration;
 * Metric collection for your ingress traffic;
 
-All that is left for you as an application developer is to deploy your app, ingress resource, and configure a domain alias of your choice. See the [guide](../guides/ingress.md) for more details.
+All that is left for you as an application developer is to deploy your app, ingress resource, and configure a domain alias of your choice. See the [ingress guide](../guides/ingress.md) for more details.
 
 ![](architecture-overview/ingress.png)
 
