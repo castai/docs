@@ -8,18 +8,29 @@ CAST AI clusters are automatically provisioned with:
 * A certificate manager configured to manage TLS certificates with [letsencrypt.org](https://letsencrypt.org);
 * Metric collection for your ingress traffic;
 
-See [architecture overview](../concepts/architecture-overview.md#ingress) for more details.
+See [cluster infrastructure](../concepts/cluster-infrastructure#ingress) for more details.
 
 Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 
 ## Prerequisites
 
-First and foremost, you need to create or have a CAST AI cluster ([guide](../getting-started/creating-your-first-cluster.md)) ready to go.
+- **CAST AI cluster** - see [create cluster](../getting-started.md).
+- **GSLB DNS value of the cluster** - you will find this in [/clusters](../Dashboard%20Overview/Console%20overview.md#clusters) details page. This will be an internal DNS name for your your ingress.
+- **CNAME alias for TLS setup** - use a hostname of your choice and create a CNAME record with GSLB DNS value.
 
-On the cluster details page in the console, note the "GSLB DNS" value. The value should look similar to `1234567890.your-cluster-name-7da6f229.onmulti.cloud` once  the cluster is done creating. This is the internal DNS name for your future ingress. But for the TLS setup to work, you'll also need an CNAME alias for it, using host name of your choice. For example, if you prepare to serve your application on `https://sample-app.yourdomain.com`, create a CNAME record in your DNS provider with the name `sample-app` and value `1234567890.your-cluster-name-7da6f229.onmulti.cloud`.
+Example if:
+| | |
+|---|---|
+| GSLB DNS value | 1234567890.your-cluster-name-7da6f229.onmulti.cloud |
+| Hostname | https://sample-app.yourdomain.com |
+
+Then:
+| CNAME name | CNAME value|
+|---|---|
+| sample-app | 1234567890.your-cluster-name-7da6f229.onmulti.cloud |
 
 !!! Note
-    If you check the DNS resolution at this point, e.g. `dig sample-app.yourdomain.com`, you should be able to see that the name resolves to one or more cloud-specific load balancers.
+    Check the DNS resolution (e.g. `dig sample-app.yourdomain.com`) to see that the name resolves to one or more cloud-specific load balancers.
 
 ## Deployment
 
