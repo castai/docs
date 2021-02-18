@@ -32,7 +32,7 @@ If you lose your key, the only solution is to create a new key.
 
 ### CAST AI Swagger setup
 
-You can test your key directly in our [API specification](https://github.com/v1dm45/docs/blob/main/docs/api/api.md#api-specification). 
+You can test your key directly in our [API specification](../api/api.md#api-specification). 
 
 Visit <https://api.cast.ai/v1/spec/>, click
 "Authorize" and enter your key for `X-API-Key` field.
@@ -59,7 +59,7 @@ and try functionality directly in the browser.
 
 !!! note
     To try out APIs in the browser you will need an API access key.
-    See [Authentication](../api.md#authentication).
+    See [Authentication](../api/api.md#authentication).
 
 We do not maintain any public SDKs but you can generate an API client for your programming
  language using many of the [OpenAPI generators](https://openapi.tools/#sdk). Use below json as a spec:
