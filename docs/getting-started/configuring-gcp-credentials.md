@@ -7,7 +7,7 @@ CAST AI for creating a cluster with GCP resources.
 
 ### Prerequisites
 
-- (recommended) Visit the Google Cloud Platform <https://console.cloud.google.com/> and make sure you have selected the right project. Open Cloud Shell at the top right side of menu bar.
+- (recommended) Visit the Google Cloud Platform <https://console.cloud.google.com/> and make sure you have selected the right project. Project needs to be precreated with billing account linked (can be free $300 trial). Open Cloud Shell at the top right side of menu bar.
 - (alternative) You can also use your local `gcloud` installation. Make sure that you have activated the right project (`gcloud projects list` and `gcloud config set project {{desired-project-id-here}}`)
 
 ### Generate service account
