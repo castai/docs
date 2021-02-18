@@ -1,7 +1,7 @@
 # Spot/Preemptible Instances
 
 The CAST AI autoscaler supports running your workloads on Spot/Preemtible instances.
-This guide will help you set it up in 5 minutes.
+This guide will help you configure and run it in 5 minutes.
 
 ## Available configurations
 
