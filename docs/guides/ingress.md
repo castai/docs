@@ -2,7 +2,7 @@
 
 To have your CAST AI hosted application available on the internet you will need to deploy an Ingress.
 
-[Kubernetes documentation - Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+[Kubernetes documentation - Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 CAST AI clusters are automatically provisioned with:
 
@@ -167,9 +167,9 @@ This dashboard provides an overview of your application traffic. To tailor the d
 
 ### Single host, multiple services
 
-You can use path-based routing to redirect traffic to specific services using Ingress rule paths.
+You can use path-based routing to redirect traffic to specific services using Ingress rule paths:
 
-[Kubernetes documentation - Ingress path types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types):
+[Kubernetes documentation - Ingress path types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types)
 
 ```yaml
 spec:
