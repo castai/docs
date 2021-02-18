@@ -7,11 +7,9 @@ This topic describes the available policy configuration options and provides gui
 
 ## Prerequisites
 
-To enable the autoscaling policies, you need to create a cluster first. Here's a guide that shows you how to create a cluster: [Creating your first
-cluster](../getting-started/creating-your-first-cluster.md).
+- **CAST AI cluster** - see [create cluster](../getting-started.md).
 
-To see the available policy settings, select your cluster and navigate to _Policies_ on
-[CAST AI's console](https://console.cast.ai/):
+Select a cluster -> Policies
 
 ![](autoscaling-policies/policies.png)
 
@@ -49,14 +47,16 @@ See [HPA documentation](pod-autoscaler/hpa.md) for a detailed overview.
 
 ## Unscheduled pods policy
 
-A pod becomes unschedulable when the Kubernetes scheduler can't find a node that can accommodate the pod.
+A pod becomes unschedulable when the Kubernetes scheduler cannot find a node to assign the pod to.
 For instance, a pod can request more CPU or memory than the resources available on any of the worker nodes.
-In many such cases, this indicates the need to scale up by adding additional nodes to the cluster.
-The CAST AI autoscaler is equipped with a mechanism to handle this.
 
-After receiving the unschedulable pods event, the CAST AI recommendation engine will select the best price/performance ratio node able to accommodate all of the currently unschedulable pods.
-CAST AI will then provision it and join with the cluster. This process usually takes a few minutes, depending on the cloud service provider of your choice.
-Currently, only a single node will be added at a time. If any unschedulable pods still remain, the cycle is
+In many such cases, this indicates the need to scale up by adding additional nodes to the cluster.
+
+The CAST AI autoscaler is equipped with a mechanism to handle this:
+
+- After receiving the unschedulable pods event, the CAST AI recommendation engine will select the best price/performance ratio node able to accommodate all of the currently unschedulable pods.
+- CAST AI will then provision it and join with the cluster. This process usually takes a few minutes, depending on the cloud service provider of your choice.
+- Currently, only a single node will be added at a time. If any unschedulable pods still remain, the cycle is
 repeated until all the pods are scheduled (provided that the reason was insufficient resources).
 
 ### Configuring the unscheduled pods policy
@@ -81,18 +81,22 @@ It may take a few minutes for the new settings to propagate.
 
 An increased CPU load on worker nodes indicates that the cluster is getting 'hot' - the fleet of nodes might not
 be sufficient to fulfill the current computing resources needs.
+
 In that case, you can increase the computing capacity by adding in additional worker nodes.
-CAST AI's cluster autoscaler provides a mechanism to handle this with _CPU utilization scale up policy_.
-By applying this policy, your cluster is periodically checked for the actual CPU consumption over the worker nodes.
-When a sustained increased CPU load is detected, the autoscaler automatically adds a new node to redistribute the load
+
+CAST AI's cluster autoscaler provides a mechanism to handle this with _CPU utilization scale up policy_:
+
+- By applying this policy, your cluster is periodically checked for the actual CPU consumption over the worker nodes.
+- When a sustained increased CPU load is detected, the autoscaler automatically adds a new node to redistribute the load
 more evenly.
-This process can take a few minutes, depending on the underlying cloud service provider. If an addition is already in progress, the autoscaler will
+- This process can take a few minutes, depending on the underlying cloud service provider. If an addition is already in progress, the autoscaler will
 not attempt to add a new node.
 
 ### Configuring the CPU utilization scale up policy
 
 The autoscaler's scale up policy is set by adjusting thresholds for the average cluster CPU load in percentages and evaluation
 period in seconds.
+
 The evaluation window describes for how long the average cluster CPU utilization should stay above the threshold for it to
 be considered as eligible for scale up.
 
@@ -120,7 +124,7 @@ It may take a few minutes for the new settings to propagate.
 If multiple policies are enabled and multiple rules are triggered during the same evaluation period, they will be
 handled in the following order:
 
-* [Cluster CPU limits policy](#cluster-cpu-limits-policy)
-* [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
-* [Unscheduled pods policy](#unscheduled-pods-policy)
-* [Cluster CPU utilization scale up policy](#cluster-cpu-utilization-scale-up-policy)
+1. [Cluster CPU limits policy](#cluster-cpu-limits-policy)
+2. [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
+3. [Unscheduled pods policy](#unscheduled-pods-policy)
+4. [Cluster CPU utilization scale up policy](#cluster-cpu-utilization-scale-up-policy)
