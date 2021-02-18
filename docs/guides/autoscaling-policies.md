@@ -9,7 +9,7 @@ This topic describes the available policy configuration options and provides gui
 
 - **CAST AI cluster** - see [create cluster](../getting-started.md).
 
-Select a cluster -> Policies
+Select a cluster and navigate to *Policies* menu.
 
 ![](autoscaling-policies/policies.png)
 
