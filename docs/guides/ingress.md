@@ -10,7 +10,7 @@ CAST AI clusters are automatically provisioned with:
 * A certificate manager configured to manage TLS certificates with [letsencrypt.org](https://letsencrypt.org);
 * Metric collection for your Ingress traffic;
 
-See [cluster infrastructure](../concepts/cluster-infrastructure#ingress) for more details.
+See [cluster infrastructure](../concepts/cluster-infrastructure.md#ingress) for more details.
 
 Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 
