@@ -1,12 +1,12 @@
 # Exposing your app to the internet
 
-Making your CAST AI hosted application available on the internet is done in the conventional Kubernetes way: by deploying an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+To have your CAST AI hosted application available on the internet you will need to deploy an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 CAST AI clusters are automatically provisioned with:
 
 * Ingress controller and the necessary multi-cloud load balancers infrastructure;
 * A certificate manager configured to manage TLS certificates with [letsencrypt.org](https://letsencrypt.org);
-* Metric collection for your ingress traffic;
+* Metric collection for your Ingress traffic;
 
 See [cluster infrastructure](../concepts/cluster-infrastructure#ingress) for more details.
 
@@ -15,7 +15,7 @@ Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 ## Prerequisites
 
 - **CAST AI cluster** - see [create cluster](../getting-started.md).
-- **GSLB DNS value of the cluster** - you will find this in [/clusters](../Dashboard%20Overview/Console%20overview.md#clusters) details page. This will be an internal DNS name for your your ingress.
+- **GSLB DNS value of the cluster** - you will find this in [/clusters](../Dashboard%20Overview/Console%20overview.md#clusters) details page. This will be an internal DNS name for your your Ingress.
 - **CNAME alias for TLS setup** - use a hostname of your choice and create a CNAME record with GSLB DNS value.
 
 Example if:
@@ -34,7 +34,7 @@ Then:
 
 ## Deployment
 
-This is a basic setup consisting of 2-replica deployment, a service description for it, and an ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you have created, and deploy everything else as-is to your cluster.
+This is a basic setup consisting of 2-replica deployment, a service description for it, and an Ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you have created, and deploy everything else as-is to your cluster.
 
 ```yaml
 apiVersion: apps/v1
@@ -130,7 +130,7 @@ You can see that:
 
 If you skipped the DNS setup, you will still be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager cannot complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
 
-To ping the application without a DNS CNAME, use the internal DNS name and pass "host" header for the ingress routing to work. You will need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
+To ping the application without a DNS CNAME, use the internal DNS name and pass "host" header for the Ingress routing to work. You will need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
 
 ```console
 $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluster-name-7da6f229.onmulti.cloud | head -n 4
@@ -140,7 +140,7 @@ $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluste
   <title>Caddy works!</title>
 ```
 
-If you do not intend to create a user-friendly url, another alternative is to use internal DNS name as an ingress host. This will enable certificate manager to provision a proper TLS certificate and your application will be reachable via this name directly.
+If you do not intend to create a user-friendly url, another alternative is to use internal DNS name as an Ingress host. This will enable certificate manager to provision a proper TLS certificate and your application will be reachable via this name directly.
 
 ```yaml
 spec:
@@ -155,7 +155,7 @@ spec:
 
 ## Metrics
 
-Once the application is up and running you can check the ingress metrics and dashboard. Go to CAST.AI console [/clusters](../console-overview/console-overview.md#clusters) details page and click on the *"Grafana logs"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open "NGINX Ingress controller" dashboard. You will see something similar to this:
+Once the application is up and running you can check the Ingress metrics and dashboard. Go to CAST.AI console [/clusters](../console-overview/console-overview.md#clusters) details page and click on the *"Grafana logs"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open "NGINX Ingress controller" dashboard. You will see something similar to this:
 
 ![](ingress/ingress-dashboard.png)
 
@@ -165,7 +165,7 @@ This dashboard provides an overview of your application traffic. To tailor the d
 
 ### Single host, multiple services
 
-You can use path-based routing to redirect traffic to specific services using [ingress rule paths](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types):
+You can use path-based routing to redirect traffic to specific services using [Ingress rule paths](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types):
 
 ```yaml
 spec:
@@ -185,7 +185,7 @@ spec:
 
 ### Multiple hosts
 
-To manage multiple domains, you can deploy multiple ingress resources, or include more domains into same ingress resource.
+To manage multiple domains, you can deploy multiple Ingress resources, or include more domains into same Ingress resource.
 
 ```yaml
 # first host
