@@ -34,7 +34,7 @@ Then:
 
 ## Deployment
 
-It's a rather bare-bones setup consisting of 2-replica deployment, a service description for that deployment, and an ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you created before, and deploy everything else as-is to your cluster.
+This is a basic setup consisting of 2-replica deployment, a service description for it, and an ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you have created, and deploy everything else as-is to your cluster.
 
 ```yaml
 apiVersion: apps/v1
@@ -99,8 +99,7 @@ spec:
 ```
 
 ## Verification
-
-After deploying the configuration above, the application should be ready for testing in a few moments. Check in the browser or CLI, e.g.:
+Once you deploy the configuration above, the application will be ready for testing in a few moments. Check in the browser or CLI, e.g.:
 
 ```console
 $ curl -L -I sample-app.yourdomain.com
@@ -122,16 +121,16 @@ last-modified: Thu, 17 Dec 2020 12:35:28 GMT
 strict-transport-security: max-age=15724800; includeSubDomains
 ```
 
-You can see a few things happening here:
+You can see that:
 
 * HTTP->HTTPS redirect is established automatically;
 * Once redirected to HTTPS, your application TLS setup works properly (curl is able to verify certificate validity for your domain).
 
 ## Deployment without CNAME alias
 
-If you skipped the DNS setup until this point, you should still be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager can't complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
+If you skipped the DNS setup, you will still be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager cannot complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
 
-To ping our app without a DNS CNAME, use the internal DNS name and pass "host" header for the ingress routing to work. You'll need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
+To ping the application without a DNS CNAME, use the internal DNS name and pass "host" header for the ingress routing to work. You will need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
 
 ```console
 $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluster-name-7da6f229.onmulti.cloud | head -n 4
@@ -141,7 +140,7 @@ $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluste
   <title>Caddy works!</title>
 ```
 
-If you don't intend creating a user-friendly url, another alternative is to use internal DNS name as ingress host. This will enable cert manager to provision proper TLS certificate and your app will be reachable via this name directly.
+If you do not intend to create a user-friendly url, another alternative is to use internal DNS name as an ingress host. This will enable certificate manager to provision a proper TLS certificate and your application will be reachable via this name directly.
 
 ```yaml
 spec:
@@ -156,7 +155,7 @@ spec:
 
 ## Metrics
 
-Once you have your application up and running, you can check another out-of-the-box feature CAST AI configures for you: the ingress metrics and dashboard. Head to CAST.AI console, and in your cluster details page, click on the *"Grafana metrics"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open "NGINX Ingress controller" dashboard. You should be greeted with a view similar to this:
+Once the application is up and running you can check the ingress metrics and dashboard. Go to CAST.AI console [/clusters](../console-overview/console-overview.md#clusters) details page and click on the *"Grafana logs"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open "NGINX Ingress controller" dashboard. You will see something similar to this:
 
 ![](ingress/ingress-dashboard.png)
 
@@ -186,7 +185,7 @@ spec:
 
 ### Multiple hosts
 
-To manage multiple domains, you can just deploy multiple ingress resources, or include more domains into same ingress resource.
+To manage multiple domains, you can deploy multiple ingress resources, or include more domains into same ingress resource.
 
 ```yaml
 # first host
