@@ -49,7 +49,7 @@ To do that, we will use an example NGINX deployment configured to run only on Sp
 
 ### 1. Enable relevant policies
 
-To get started on using Spot instances autoscaler enable two policies under `Policies` menu in the UI:
+To start using Spot instances autoscaler enable the following policies under `Policies` menu in the UI:
 
 * **Spot/Preemptible instances policy**
   * This policy allows the autoscaler to use spot instances
