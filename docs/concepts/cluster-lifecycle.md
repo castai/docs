@@ -1,7 +1,7 @@
 ## Cluster lifecycle
 ### 1. Provisioning
 
-You initiate creation of the cluster. Refer to [getting started](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md) on how to create a cluster.
+You initiate the creation of the cluster. Refer to [getting started](../getting-started.md) on how to create a cluster.
 
 
 ### 2. Reconciliation & healing
@@ -16,11 +16,11 @@ A cluster enters a reconciliation loop. The platform periodically re-checks that
 
 CAST AI clusters do not use a "node pool" concept. Instead, you can: 
 
-   - Manually add or remove nodes with specified configuration.
+   - Manually add or remove nodes with the specified configuration.
    - Enable autoscaling policies - it scales up and down per-node level.
 
 ### 4. Cleanup
 
 When you delete a cluster platform will collapse cloud resources in the quickest way. Nodes will not be drained before deleting them.
 
-The platform is designed to minimize unintended removals. If you have any extra virtual machines that do not contain CAST AI cluster UUID - delete operation will fail.
+The platform is designed to minimize unintended removals. If you have any extra virtual machines that do not contain CAST AI cluster UUID - the delete operation will fail.

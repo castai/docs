@@ -3,6 +3,7 @@
 This guide will show how to place pods only on a particular cloud or clouds.
 
 Kubernetes supports this by using:
+
 - [`nodeSelector`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
 - [`nodeAffinity/Anti-Affinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
 - [`topologySpreadConstraints`](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)

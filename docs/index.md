@@ -1,11 +1,14 @@
 ## Welcome to CAST AI
 
-CAST AI is driven by a vision of decentralizing and democratizing the cloud industry to free innovators from the limitations of cloud service providers. Our AI-powered cloud optimization engine delivers a cost-efficient, high-performing, and resilient infrastructure for every Kubernetes workload. Its unique blend of automation and optimization algorithms empowers innovators to build future-ready products and embrace the autonomous cloud. No more vendor lock-in or downtime, the cloud just got solved.
+Driven by a vision of decentralizing the cloud industry, CAST AI frees innovators from the limits of cloud providers with an AI-powered cloud optimization engine that delivers a cost-efficient, high-performing, and resilient infrastructure for every Kubernetes workload.
 
+## CAST AI benefits
+
+CAST AI combines instant AI-driven cloud optimization with Kubernetes. It is one platform that cuts your cloud costs, boosts DevOps, and prevents downtime.
 
 ## Community
 
-We invite you to join our community and find out what's trending in the atmosphere. Find our engineer, support, release-notes, technical discussions and more:
+We invite you to join our community and find out what is trending in the atmosphere; connect with our engineers and support, monitor release-notes, explore technical discussions, and more:
 
 [Join our Discord channel](https://discord.gg/4sFCFVJ)
 
@@ -13,7 +16,7 @@ We invite you to join our community and find out what's trending in the atmosphe
 
 ## Events
 
-CAST AI team loves sharing knowledge and experience in webinars! If you would like to learn more about our journey and have your questions answered by our CTO and engineers LIVE - please check out our [events calendar](https://cast.ai/events/).
+THE CAST AI TEAM loves sharing knowledge and experience in webinars! If you would like to learn more about our journey and have your questions answered by our CTO and engineers LIVE - please check out our [events calendar](https://cast.ai/events/).
 
 ## Support
 

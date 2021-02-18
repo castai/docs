@@ -11,7 +11,7 @@ Overview on where cluster virtual machines will be provisioned on your cloud:
 CAST AI provisioned clusters contain all the infrastructure needed to equip your app with an external TLS endpoint:
 
 * DNS entry to round-robin;
-* Load-balancing infrastructure: cloud-native load balancers that route traffic to sub-section of your cluster (e.g. traffic that hits AWS load balancer will route to AWS nodes);
+* Load-balancing infrastructure: cloud-native load balancers that route traffic to a sub-section of your cluster (e.g. traffic that hits AWS load balancer will route to AWS nodes);
 * Nginx ingress controller, paired with TLS certificate manager, that listen to your deployed resources and maintain routing&TLS configuration;
 * Metric collection for your ingress traffic;
 
@@ -58,4 +58,4 @@ Currently, on each cloud CAST AI builds a single-zone setup of your cluster. Zon
 | 10.0.0.0/16 | GCP VPC. Smaller /24 blocks are allocated for subnets. |
 | 10.10.0.0/16 | AWS VPC. Smaller /24 blocks are allocated for subnets. |
 | 10.20.0.0/16 | AZURE VPC. Smaller /24 blocks are allocated for subnets. |
-| 10.100-255.0.0/20 | DigitalOcean VPC. There is only one subnet which is allocated dynamically. |
+| 10.100-255.0.0/20 | DigitalOcean VPC. There is only one subnet that is allocated dynamically. |

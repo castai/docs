@@ -4,11 +4,11 @@ Dynamic volume provisioning allows storage volumes to be created on-demand.
 Without dynamic provisioning, cluster administrators have to create new storage volumes manually (using cloud or storage
 providers) and the corresponding `PersistentVolume` objects for the storage to be available in Kubernetes. 
 
-Dynamic volume provisioning is enabled by default on CAST AI cluster.
+Dynamic volume provisioning is enabled by default on the CAST AI cluster.
 
 ## Overview
 
-Each CAST AI cluster is pre-configured with default `StorageClass` that handles volume requests.
+Each CAST AI cluster is pre-configured with the default `StorageClass` that handles volume requests.
 
 ```shell
 » kubectl get sc
@@ -24,7 +24,7 @@ In the case of a Pod replicated across multiple clouds, volumes will be distribu
 This will limit Pod scheduling only to the nodes of the same cloud since to reschedule a Pod to a different cloud
 service, the volume must be replicated to that cloud. 
 
-!!! note
+!!! tip
     This limitation will be removed by the cross-cloud volume replication feature which is not available at the moment.
 
 Deleting a cluster will delete all the volumes that were provisioned dynamically.
@@ -72,7 +72,7 @@ spec:
         claimName: example-claim
 ```
 
-This claim results in an Persistent Disk being automatically provisioned. When the claim is deleted, the volume is
+This claim results in a Persistent Disk being automatically provisioned. When the claim is deleted, the volume is
 deleted as well.
 
 ### Volume claim templates

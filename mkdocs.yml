@@ -55,36 +55,33 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+
 extra:
   generator: false
 
 nav:
   - 'Introduction': index.md
-  - 'Getting help': getting-help.md
-  - 'Getting started':
-      - getting-started/setting-up-account.md
-      - 'Setting up credentials':
-          - getting-started/configuring-gcp-credentials.md
-          - getting-started/configuring-aws-credentials.md
-          - getting-started/configuring-do-credentials.md
-          - getting-started/configuring-azure-credentials.md
-      - getting-started/creating-your-first-cluster.md
-      - getting-started/deploying-applications.md
+  - 'Getting started': getting-started.md
+  - 'Console overview': console-overview/console-overview.md
   - 'Concepts':
       - concepts/how-it-works.md
-      - concepts/architecture-overview.md
+      - concepts/cluster-lifecycle.md
+      - concepts/cluster-architecture.md
+      - concepts/cluster-infrastructure.md
       - concepts/vpn-overview.md
-  - 'Developer guides':
-      - guides/pod-pinning.md
+  - 'Configuration':
+      - 'Ingress': guides/ingress.md
+      - 'Pod placement': guides/pod-pinning.md
       - guides/volumes.md
       - guides/autoscaling-policies.md
-      - guides/pod-autoscaler/hpa.md
-      - guides/ingress.md
-      - guides/node-autoscaler/spot-instances/spot.md
-  - 'API':
+      - guides/hpa.md
+      - guides/spot.md
+  - 'API': 
       - 'Introduction': api/overview.md
-      - api/authentication.md
-      - api/specification.md
-      - api/terraform-provider.md
+      - 'Authentication': api/authentication.md
+      - 'Specification': api/specification.md
+      - 'Terraform provider': api/terraform-provider.md
+  - 'Release notes': "https://cast.ai/release-notes/"
   - 'CAST AI Console': "https://console.cast.ai"
+
   

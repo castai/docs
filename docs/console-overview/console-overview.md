@@ -1,20 +1,20 @@
 ## Console overview
 
-This is a quick overview of the [CAST AI console](https://console.cast.ai) and it's features.
+This is a quick overview of the [CAST AI console](https://console.cast.ai) and its features.
 
 - ### /dashboard
 
-In the dashboard window you will see all active and deleted clusters.
+In the dashboard window, you will see all active and deleted clusters.
 
 1. Create a new cluster. If you can see only an option to create a cluster, please refer to [Getting started](../getting-started.md) to unlock other features.
-2. Download `kubeconfig` of a cluster, pause or delete it.
+2. Download `kubeconfig` of a cluster, pause, or delete it.
 3. You can open any specific cluster to manage its policies, add or remove nodes or check logs (check -> [/clusters](../console-overview/console-overview.md#clusters)). Copy cluster ID for API management.
 
 ![](images/dashboard.png)
 
 - ### /clusters
 
-When you open any cluster from the /dashboard menu you will arrive to /clusters management.
+When you open any cluster from the /dashboard menu you will arrive at /clusters management.
 
 Here you will see more information about the selected cluster and will get access to the cluster management menu.
 
@@ -33,7 +33,7 @@ Here you will see more information about the selected cluster and will get acces
      - Specify a CAST shape for the node(s) - a virtual specification of a Virtual Machine computing unit.
      - Add multiple nodes at once (1-20).
      
-  2. View information about nodes, copy node ID for API management and delete nodes.
+  2. View information about nodes, copy node ID for API management, and delete nodes.
   
 ![](images/nodes.png)
   
@@ -57,9 +57,15 @@ Here you will see more information about the selected cluster and will get acces
      - **Horizontal pod autoscaler (HPA) policy** - This policy enables the Kubernetes Event Driven Autoscaler (KEDA) to automatically increase/decrease pod replica counts based on metrics. This enables cost savings by eliminating wasteful pods, and also ensures that your services are able to scale up to handle increased traffic and workload requirements.
 
   3. **Node autoscaler** - policies to scale cluster based on the CPU or memory demand
-     - **Spot/Preemtive Instances policy** - This policy enables the CAST optimization engine to purchase Spot (AWS / Azure) or Preemptive (GCP) instances when pods are labeled by the user. CAST automatically handles instance interruptions and replaces instances when they are terminated by the CSP. Spot instances typically yield savings of 60-80%, and are useful for stateless workloads such as microservices. CAST AI currently supports AWS Spot instances, with GCP and Azure rolling out shortly.
+     - **Spot/Preemtive Instances policy** - This policy enables the CAST optimization engine to purchase Spot (AWS / Azure) or Preemptive (GCP) instances when pods are labeled by the user. CAST automatically handles instance interruptions and replaces instances when they are terminated by the CSP. Spot instances typically yield savings of 60-80% and are useful for stateless workloads such as microservices. CAST AI currently supports AWS Spot instances, with GCP and Azure rolling out shortly.
      - **Unscheduled pods policy** - This policy automatically adds nodes to your cluster so that your pods have a place to run. Both CPU and Memory requirements are considered. You can use CAST specified labels to ensure that your pods run in a specific Cloud, or let the CAST AI optimization engine choose for you.
      - **Node Deletion Policy** - This policy will automatically remove nodes from your cluster when they no longer have scheduled workloads. This allows your cluster to maintain a minimal footprint and reduce cloud costs.
+
+     For more information see:
+
+     - [Autoscaling policies](../guides/autoscaling-policies/)
+     - [Horizontal Pod autoscaler](../guides/hpa/)
+     - [Spot/Preemptible Instances](../guides/spot-instances/spot/)
   
 ![](images/policies.png)
   
@@ -83,9 +89,9 @@ Here you will see more information about the selected cluster and will get acces
   - ## API
 
     - [API documentation](https://api.cast.ai/v1/spec/)
-    - [API authentication](../api#authentication)
+    - [API authentication](../api/authentication.md)
 
-You can read more about our API here - [API](../api/api.md)
+You can read more about our API here - [API](../api/overview.md)
 
   ![](images/API.png)
   

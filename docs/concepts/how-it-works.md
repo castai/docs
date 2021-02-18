@@ -1,6 +1,6 @@
 # How it works
 
-CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the required cloud resources and set up a multi cloud cluster for you. You can start using multi cloud Kubernetes with just a few clicks - check out [Getting started](https://github.com/v1dm45/docs/blob/main/docs/getting-started.md#overview).
+CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the required cloud resources and set up a multi cloud cluster for you. You can start using multi cloud Kubernetes with just a few clicks - check out [Getting started](../getting-started.md).
 
 ## Multi cloud network
 
@@ -12,15 +12,15 @@ CAST AI selects regions with network latency in mind. For your applications and 
 
 ## Enter Kubernetes
 
-With network in place:
+With the network in place:
 
-4. VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in [/nodes](https://github.com/v1dm45/docs/blob/main/docs/Dashboard%20Overview/Overview.md#nodes) menu. 
-6. Cluster enters a [reconcilation loop](https://github.com/v1dm45/docs/blob/main/docs/concepts%20and%20schemes/architecture-overview.md#2-reconciliation--healing).
+4. VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in [/nodes](../console-overview/console-overview.md#nodes) menu. 
+6. Cluster enters a [reconcilation loop](../concepts/cluster-lifecycle.md#2-reconciliation-healing).
 
 If you delete any resources from the provided CSP accounts manually, CAST AI recreates them to the specification provided by you in the console. During the time of reconciliation, no instant changes to the cluster are allowed. You can only apply them after the reconciliation.
 
 ## Automated cleanup
 
-When you delete a cluster via the [CAST AI console](https://github.com/v1dm45/docs/blob/main/docs/Dashboard%20Overview/Overview.md#dashboard) - operation will terminate all VMs and delete cloud resources (attached storage, public IPs, VPN connections, network subnets, etc.).
+When you delete a cluster via the [CAST AI console](../console-overview/console-overview.md#dashboard) - the operation will terminate all VMs and delete cloud resources (attached storage, public IPs, VPN connections, network subnets, etc.).
 
-To further understand the lifecycle of a cluster - check our [Cluster lifecycle](https://github.com/v1dm45/docs/blob/main/docs/concepts%20and%20schemes/architecture-overview.md#cluster-lifecycle) overview.
+To further understand the lifecycle of a cluster - check our [Cluster lifecycle](../concepts/cluster-lifecycle.md) overview.
