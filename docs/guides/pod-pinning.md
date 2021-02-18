@@ -1,15 +1,15 @@
 # Configure pod placement by topology
 
- A user of CAST AI might want to place their pods only on a particular cloud or clouds (for example, on AWS and GCP, but
- not Azure).
+This guide will show how to place pods only on a particular cloud or clouds.
 
-Kubernetes supports this by using
-[nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector),
-[node Affinity/Anti-Affinity](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
-and [topologySpreadConstraints](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/).
+Kubernetes supports this by using:
+- [`nodeSelector`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
+- [`nodeAffinity/Anti-Affinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+- [`topologySpreadConstraints`](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
+
 All of these methods require special labels to be present on each Kubernetes node.
 
-CAST AI multi-cloud Kubernetes cluster nodes are already equipped with the following labels:
+CAST AI multi cloud Kubernetes cluster nodes are already equipped with the following labels:
 
 | Label | Type| Description | Example(s)|
 | ------------ | ------------- | ------------ | ------------ |
