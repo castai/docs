@@ -6,9 +6,9 @@ This is a quick overview of the [CAST AI console](https://console.cast.ai) and i
 
 In the dashboard window you will see all active and deleted clusters.
 
-1. Create a new cluster. If you can see only an option to create a cluster, please refer to [Getting started] to unlock other features.
+1. Create a new cluster. If you can see only an option to create a cluster, please refer to [Getting started](../getting-started.md) to unlock other features.
 2. Download KubeConfig of a cluster, pause or delete it.
-3. You can open any specific cluster to manage its policies, add or remove nodes or check logs (check -> [/clusters](https://github.com/v1dm45/docs/blob/main/docs/Dashboard%20Overview/Console%20overview.md#clusters)). Copy cluster ID for API management.
+3. You can open any specific cluster to manage its policies, add or remove nodes or check logs (check -> [/clusters](../console-overview/console-overview.md#clusters)). Copy cluster ID for API management.
 
 ![](images/dashboard.png)
 
@@ -83,9 +83,9 @@ Here you will see more information about the selected cluster and will get acces
   - ## API
 
     - [API documentation](https://api.cast.ai/v1/spec/)
-    - [API authentication](https://github.com/v1dm45/docs/new/main/docs/api#authentication)
+    - [API authentication](../api#authentication)
 
-You can read more about our API here - [API](https://github.com/v1dm45/docs/blob/main/docs/api/api.md)
+You can read more about our API here - [API](../api/api.md)
 
   ![](images/API.png)
   
