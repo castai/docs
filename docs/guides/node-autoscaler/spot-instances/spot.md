@@ -7,8 +7,9 @@ In this guide, we will show you just how easy it is to do that.
 
 ### Tolerations
 
-When a pod is marked only with Toleration, the Kubernetes scheduler could place such a pod/pods on regular nodes as well.
-This option should be preferred when spot instances are optional for your workloads.
+**When to use:** spot instances are optional
+
+When a pod is marked only with `tolerations`, the Kubernetes scheduler could place such a pod/pods on regular nodes as well.
 
 ```yaml
 ...
@@ -20,8 +21,10 @@ tolerations:
 
 ### Node Selectors
 
-If you want to make sure that a pod is scheduled on spot instances only, in addition to tolerations, you must add `nodeSelector` as well.
-That way, the autoscaler ensures that whenever your pod requires additional workload in the cluster, only a spot instance is picked to satisfy the needs.
+**When to use:** only use spot instances
+
+If you want to make sure that a pod is scheduled on spot instances only, add `nodeSelector` as well as per example below.
+The autoscaler will then ensure that only a spot instance is picked whenever your pod requires additional workload in the cluster.
 
 ```yaml
 ...
@@ -37,19 +40,16 @@ nodeSelector:
 
 In this step-by-step guide, we demonstrate how to use Spot Instances with your CAST AI clusters.
 
-To do that, we will be using example NGINX deployment configured to only be ran on Spot/Preemtible instances.
+To do that, we will use an example NGINX deployment configured to run only on Spot/Preemtible instances.
 
 ### 0. Pre-requisites
 
-* Have a Kubernetes cluster on CAST AI
-  * Check [Creating your first cluster](../../../getting-started/creating-your-first-cluster.md) if you need guidance.
-* `Kubeconfig` downloaded and ready to use for deploying an example application to your cluster.
-
-![](./010_demo_cluster.png)
+- **CAST AI cluster** - see [create cluster](../getting-started.md).
+- **`Kubeconfig` file** - see [deploy application](../getting-started.md#deploy-application)
 
 ### 1. Enable relevant policies
 
-To get started on using Spot instances autoscaler, you should enable two policies under `Policies` configuration in the UI:
+To get started on using Spot instances autoscaler enable two policies under `Policies` menu in the UI:
 
 * **Spot/Preemptible instances policy**
   * This policy allows the autoscaler to use spot instances
@@ -99,7 +99,7 @@ spec:
 
 #### 2.1. Apply the example deployment
 
-With Kubeconfig set in your current shell session, you can execute the following (or use other means of applying deployment files):
+With `kubeconfig` set in your current shell session, you can execute the following (or use other means of applying deployment files):
 
 `kubectl apply -f ngninx.yaml`
 
