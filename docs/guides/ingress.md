@@ -1,6 +1,8 @@
 # Exposing your app to the internet
 
-To have your CAST AI hosted application available on the internet you will need to deploy an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+To have your CAST AI hosted application available on the internet you will need to deploy an Ingress.
+
+[Kubernetes documentation - Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 CAST AI clusters are automatically provisioned with:
 
@@ -15,7 +17,7 @@ Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 ## Prerequisites
 
 - **CAST AI cluster** - see [create cluster](../getting-started.md).
-- **GSLB DNS value of the cluster** - you will find this in [/clusters](../Dashboard%20Overview/Console%20overview.md#clusters) details page. This will be an internal DNS name for your your Ingress.
+- **GSLB DNS value of the cluster** - you will find this in [/clusters](../console-overview/console-overview.md#clusters) details page. This will be an internal DNS name for your your Ingress.
 - **CNAME alias for TLS setup** - use a hostname of your choice and create a CNAME record with GSLB DNS value.
 
 Example if:
@@ -165,7 +167,9 @@ This dashboard provides an overview of your application traffic. To tailor the d
 
 ### Single host, multiple services
 
-You can use path-based routing to redirect traffic to specific services using [Ingress rule paths](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types):
+You can use path-based routing to redirect traffic to specific services using Ingress rule paths.
+
+[Kubernetes documentation - Ingress path types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types):
 
 ```yaml
 spec:
