@@ -16,7 +16,7 @@ We invite you to join our community and find out what is trending in the atmosph
 
 ## Events
 
-THE CAST AI TEAM loves sharing knowledge and experience in webinars! If you would like to learn more about our journey and have your questions answered by our CTO and engineers LIVE - please check out our [events calendar](https://cast.ai/events/).
+The CAST AI team loves sharing knowledge and experience in webinars! If you would like to learn more about our journey and have your questions answered by our CTO and engineers LIVE - please check out our [events calendar](https://cast.ai/events/).
 
 ## Support
 
