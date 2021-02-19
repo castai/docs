@@ -4,7 +4,11 @@ Driven by a vision of decentralizing the cloud industry, CAST AI frees innovator
 
 ## CAST AI benefits
 
-CAST AI combines instant AI-driven cloud optimization with Kubernetes. It is one platform that cuts your cloud costs, boosts DevOps, and prevents downtime.
+It is one platform that cuts your cloud costs, boosts DevOps, and prevents downtime.
+
+## Get started
+
+Deploy your first cluster just in 5-10 minutes. Follow our [getting started](../getting-started.md) guide to try it out!
 
 ## Community
 
