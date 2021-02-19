@@ -1,9 +1,5 @@
 ## Welcome to CAST AI
 
-Driven by a vision of decentralizing the cloud industry, CAST AI frees innovators from the limits of cloud providers with an AI-powered cloud optimization engine that delivers a cost-efficient, high-performing, and resilient infrastructure for every Kubernetes workload.
-
-## CAST AI benefits
-
 It is one platform that cuts your cloud costs, boosts DevOps, and prevents downtime.
 
 ## Easy to start
