@@ -1,8 +1,8 @@
-## Console overview
+# Console overview
 
 This is a quick overview of the [CAST AI console](https://console.cast.ai) and its features.
 
-- ### /dashboard
+- ## Dashboard
 
 In the dashboard window, you will see all active and deleted clusters.
 
@@ -12,7 +12,7 @@ In the dashboard window, you will see all active and deleted clusters.
 
 ![](images/dashboard.png)
 
-- ### /clusters
+- ### Clusters
 
 When you open any cluster from the /dashboard menu you will arrive at /clusters management.
 
@@ -24,7 +24,7 @@ Here you will see more information about the selected cluster and will get acces
 
 ![](images/clusters.png)
 
-  - #### /nodes
+- #### Nodes
   
   View information about the selected cluster nodes and manage them here.
   
@@ -32,12 +32,11 @@ Here you will see more information about the selected cluster and will get acces
      - If your cluster runs on multiple clouds you will be able to specify a cloud provider for the node(s).
      - Specify a CAST shape for the node(s) - a virtual specification of a Virtual Machine computing unit.
      - Add multiple nodes at once (1-20).
-     
   2. View information about nodes, copy node ID for API management, and delete nodes.
   
 ![](images/nodes.png)
   
-  - #### /audit
+- #### Audit Log
   
   Audit log of cluster management on a high level.
   
@@ -46,7 +45,7 @@ Here you will see more information about the selected cluster and will get acces
   
 ![](images/auditlog.png)
   
-  - #### /policies
+- #### Policies
   
   Manage policies for the selected cluster. Policies will help you optimize and reduce cost of your cloud bill and will automate the process of scaling up and down for you.
   
@@ -63,35 +62,33 @@ Here you will see more information about the selected cluster and will get acces
 
      For more information see:
 
-     - [Autoscaling policies](../guides/autoscaling-policies/)
-     - [Horizontal Pod autoscaler](../guides/hpa/)
-     - [Spot/Preemptible Instances](../guides/spot-instances/spot/)
+     - [Autoscaling policies](../guides/autoscaling-policies.md)
+     - [Horizontal Pod autoscaler](../guides/hpa.md)
+     - [Spot/Preemptible Instances](../guides/spot-instances/spot.md)
   
 ![](images/policies.png)
   
-  - #### Kubernetes UI
+- #### Kubernetes UI
   
   View more detailed information about the selected cluster and manage it in the [Kubernetes UI](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
   
-  - #### Kibana logs
+- #### Kibana logs
   
   View Kibana logs of the selected cluster.
   
   ![](images/kibana.png)
   
-  - #### Grafana logs
+- #### Grafana logs
   
   View Grafana logs of the selected cluster.
   
   ![](images/grafana.png)
   
-  
-  - ## API
+- ### API
 
-    - [API documentation](https://api.cast.ai/v1/spec/)
-    - [API authentication](../api/authentication.md)
+  - [API documentation](https://api.cast.ai/v1/spec/)
+  - [API authentication](../api/authentication.md)
 
 You can read more about our API here - [API](../api/overview.md)
 
   ![](images/API.png)
-  

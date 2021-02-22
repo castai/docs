@@ -2,7 +2,7 @@
 
 Dynamic volume provisioning allows storage volumes to be created on-demand.
 Without dynamic provisioning, cluster administrators have to create new storage volumes manually (using cloud or storage
-providers) and the corresponding `PersistentVolume` objects for the storage to be available in Kubernetes. 
+providers) and the corresponding `PersistentVolume` objects for the storage to be available in Kubernetes.
 
 Dynamic volume provisioning is enabled by default on the CAST AI cluster.
 
@@ -22,7 +22,7 @@ be run.
 
 In the case of a Pod replicated across multiple clouds, volumes will be distributed across clouds as well.
 This will limit Pod scheduling only to the nodes of the same cloud since to reschedule a Pod to a different cloud
-service, the volume must be replicated to that cloud. 
+service, the volume must be replicated to that cloud.
 
 !!! tip
     This limitation will be removed by the cross-cloud volume replication feature which is not available at the moment.

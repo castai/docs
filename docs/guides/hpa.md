@@ -7,7 +7,7 @@ You can scale an application in two ways:
 * Vertically: by adding more resources (RAM/CPU/Disk IOPS) to the same instance,
 * Horizontally: by adding more instances (replicas) of the same application.
 
-The problem with vertical scaling is that either the required hardware (RAM, CPU, Disk IOPS) in a single machine costs too much, or the cloud provider cannot provision a machine with enough resources. 
+The problem with vertical scaling is that either the required hardware (RAM, CPU, Disk IOPS) in a single machine costs too much, or the cloud provider cannot provision a machine with enough resources.
 
 We use replica sets in Kubernetes to achieve horizontal scaling. The Horizontal Pod Autoscaler allows automating the process of maintaining the replica count proportionally to the application load.
 
@@ -41,8 +41,7 @@ To be able to autoscale, you will need to enable KEDA addon on the `Policies` pa
 
 2. Go to the *Policies* menu.
 
-3. Enable the Horizontal pod autoscaler policy. 
- 
+3. Enable the Horizontal pod autoscaler policy.
 ![Enable HPA](../guides/hpa/HPA.png)
 
 ## Examples

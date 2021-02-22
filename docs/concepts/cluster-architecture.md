@@ -1,6 +1,6 @@
-## Cluster architecture
+# Cluster architecture
 
-### Context
+## Context
 
 When you [create a cluster](../getting-started.md#create-cluster) you can [download kubeconfig](../getting-started.md#deploy-application) to access your cluster directly. Some of the middleware that is running on the cluster (Grafana, Kubernetes dashboard) is directly reachable from [console UI](../console-overview/console-overview.md) through the single sign-on gateway.
 

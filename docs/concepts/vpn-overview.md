@@ -2,13 +2,12 @@
 
 This chapter summarizes Virtual Private Network (VPN) architecture for multi-cloud private networks.
 
-### Cloud provided VPN
+## Cloud provided VPN
 
 Cloud provided VPN - a VPN option provided by a cloud service provider.
 
 !!! note
-    Cloud provided VPN is currently not available on Digital Ocean.
-    
+Cloud provided VPN is currently not available on Digital Ocean.
 
 **Traffic in CAST AI platform:**
 
@@ -23,11 +22,9 @@ Example with nodes on AWS, AZURE and GCP clouds:
 
 ![](vpn-overview/cloudvpn.svg)
 
-
-
 ### WireGuard VPN
 
-WireGuard VPN - CAST AI integrated alternative to Cloud provided VPN. This option is optimized for saving cost. 
+WireGuard VPN - CAST AI integrated alternative to Cloud provided VPN. This option is optimized for saving cost.
 
 You can choose between two topologies:
 
@@ -35,8 +32,6 @@ You can choose between two topologies:
 |---|---|
 | Full Mesh | Traffic is encrypted between each node even if it is located in the same VPC. |
 | Cross Location Mesh | Traffic is encrypted only between nodes in different VPC. |
-
-
 
 **Traffic in CAST AI platform:**
 
@@ -53,5 +48,3 @@ from 10.4.0.0/16 subnet.
 Example with nodes on AWS, AZURE, GCP, and DIGITAL OCEAN clouds:
 
 ![](vpn-overview/wireguard.svg)
-
-

@@ -53,13 +53,6 @@ See [HPA documentation](../guides/hpa.md) for a detailed overview.
 This policy will automatically remove nodes from your cluster when they no longer have scheduled workloads.
 This allows your cluster to maintain a minimal footprint and reduce cloud costs.
 
-## Node deletion policy
-
-![](autoscaling-policies/node_deletion_policy.png)
-
-This policy will automatically remove nodes from your cluster when they no longer have scheduled workloads.
-This allows your cluster to maintain a minimal footprint and reduce cloud costs.
-
 ## Unscheduled pods policy
 
 A pod becomes unschedulable when the Kubernetes scheduler cannot find a node to assign the pod to.
@@ -110,8 +103,14 @@ It may take a few minutes for the new settings to propagate.
 If multiple policies are enabled and multiple rules are triggered during the same evaluation period, they will be
 handled in the following order:
 
-* [Cluster CPU limits policy](#cluster-cpu-limits-policy)
-* [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
-* [Unscheduled pods policy](#unscheduled-pods-policy)
-* [Node deletion policy](#node-deletion-policy)
-* [Cluster CPU utilization scale up policy](#cluster-cpu-utilization-scale-up-policy)
+- [Autoscaling policies](#autoscaling-policies)
+  - [Prerequisites](#prerequisites)
+  - [Cluster CPU limits policy](#cluster-cpu-limits-policy)
+    - [Configuring CPU limits policy](#configuring-cpu-limits-policy)
+  - [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
+  - [Node deletion policy](#node-deletion-policy)
+  - [Unscheduled pods policy](#unscheduled-pods-policy)
+    - [Headroom attributes](#headroom-attributes)
+    - [Provisioning decision](#provisioning-decision)
+    - [Configuring the unscheduled pod's policy](#configuring-the-unscheduled-pods-policy)
+  - [Policies precedence rules](#policies-precedence-rules)

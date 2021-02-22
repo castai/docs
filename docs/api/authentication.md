@@ -1,8 +1,8 @@
-## Authentication
+# Authentication
 
 Before you can use our API, either with your preferred REST client or via Terraform, you will need an API key.
 
-### Obtaining API access key
+## Obtaining API access key
 
 From the top menu in the CAST AI console, open [API | API access keys](https://console.cast.ai/user/api-access-keys), select **create access key** and name your key:
 
@@ -24,7 +24,7 @@ If you lose your key, the only solution is to create a new key.
 
 ### CAST AI Swagger setup
 
-You can test your key directly in our [API specification](../api/specification.md). 
+You can test your key directly in our [API specification](../api/specification.md).
 
 Visit <https://api.cast.ai/v1/spec/>, click
 "Authorize" and enter your key for `X-API-Key` field.
@@ -37,4 +37,3 @@ To authenticate, provide the key in  `X-API-Key` HTTP header. For example, for `
 
 ```
 curl -X GET "https://api.cast.ai/v1/kubernetes/clusters" -H "X-API-Key: your-api-key-here" | jq
-```
