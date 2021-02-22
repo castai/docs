@@ -131,30 +131,29 @@ To get started, you need to create a service account in your Google Cloud Platfo
    </ul>
  </p>
 </details>
-   
-   
+
 ## Create cluster
 
 Once you have [cloud credentials](../getting-started/#add-cloud-credentials) - you are ready to create a cluster. In the cluster creation window you will have a few options to lay a base foundation for your cluster, which we will be able to further customize to your needs once a cluster is up and running.
 
-**1. Cluster details**
+### 1. Cluster details
 
 The new cluster will be created with the name and in the region, you specify here.
 After the cluster is created, name and region can’t be changed.
 
-   - Name your cluster (2-50 symbols, only letters, numbers, and hyphens allowed)
+- Name your cluster (2-50 symbols, only letters, numbers, and hyphens allowed)
 
-   - Select a region. Your cluster will be located in the selected region.
-   
-**2. Cluster configuration**
+- Select a region. Your cluster will be located in the selected region.
+  
+### 2. Cluster configuration
 
 Select initial cluster configuration. It may be automatically adjusted based on scaling and cost optimization policies. You will be able to adjust policies once the cluster is created. You may also manually add nodes once the cluster is provisioned.
 
-**3. Cloud providers**
+### 3.Cloud providers
 
 Select the cloud provider(s) you would like to use for this cluster. You will need to select credentials that you would like to use for each provider, please refer to [Adding credentials] section if you have no credentials added.
 
-**4. Cluster virtual private network**
+### 4. Cluster virtual private network
 
 Select preferred encrypted connection type. Cloud provided VPN is a default VPN provided by the respective cloud service providers. WireGuard is a CAST AI integrated choice of VPN that [significantly reduces cloud cost].
 
