@@ -1,29 +1,42 @@
 # Exposing your app to the internet
 
-Making your CAST AI hosted application available on the internet is done in the conventional Kubernetes way: by deploying an [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
+To have your CAST AI hosted application available on the internet you will need to deploy an Ingress.
+
+[Kubernetes documentation - Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 CAST AI clusters are automatically provisioned with:
 
 * Ingress controller and the necessary multi-cloud load balancers infrastructure;
 * A certificate manager configured to manage TLS certificates with [letsencrypt.org](https://letsencrypt.org);
-* Metric collection for your ingress traffic;
+* Metric collection for your Ingress traffic;
 
-See [architecture overview](../concepts/architecture-overview.md#ingress) for more details.
+See [cluster infrastructure](../concepts/cluster-infrastructure.md#ingress) for more details.
 
 Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 
 ## Prerequisites
 
-First and foremost, you need to create or have a CAST AI cluster ([guide](../getting-started/creating-your-first-cluster.md)) ready to go.
+- **CAST AI cluster** - see [create cluster](../getting-started.md).
+- **GSLB DNS value of the cluster** - you will find this in [/clusters](../console-overview/console-overview.md#clusters) details page. This will be an internal DNS name for your Ingress.
+- **CNAME alias for TLS setup** - use a hostname of your choice and create a CNAME record with GSLB DNS value.
 
-On the cluster details page in the console, note the "GSLB DNS" value. The value should look similar to `1234567890.your-cluster-name-7da6f229.onmulti.cloud` once  the cluster is done creating. This is the internal DNS name for your future ingress. But for the TLS setup to work, you'll also need an CNAME alias for it, using host name of your choice. For example, if you prepare to serve your application on `https://sample-app.yourdomain.com`, create a CNAME record in your DNS provider with the name `sample-app` and value `1234567890.your-cluster-name-7da6f229.onmulti.cloud`.
+Example if:
+| | |
+|---|---|
+| GSLB DNS value | 1234567890.your-cluster-name-7da6f229.onmulti.cloud |
+| Hostname | https://sample-app.yourdomain.com |
+
+Then:
+| CNAME name | CNAME value|
+|---|---|
+| sample-app | 1234567890.your-cluster-name-7da6f229.onmulti.cloud |
 
 !!! Note
-    If you check the DNS resolution at this point, e.g. `dig sample-app.yourdomain.com`, you should be able to see that the name resolves to one or more cloud-specific load balancers.
+    Check the DNS resolution (e.g. `dig sample-app.yourdomain.com`) to see that the name resolves to one or more cloud-specific load balancers.
 
 ## Deployment
 
-It's a rather bare-bones setup consisting of 2-replica deployment, a service description for that deployment, and an ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you created before, and deploy everything else as-is to your cluster.
+This is a basic setup consisting of 2-replica deployment, a service description for it, and an Ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you have created, and deploy everything else as-is to your cluster.
 
 ```yaml
 apiVersion: apps/v1
@@ -88,14 +101,13 @@ spec:
 ```
 
 ## Verification
-
-After deploying the configuration above, the application should be ready for testing in a few moments. Check in the browser or CLI, e.g.:
+Once you deploy the configuration above, the application will be ready for testing in a few moments. Check in the browser or CLI, e.g.:
 
 ```console
 $ curl -L -I sample-app.yourdomain.com
 HTTP/1.1 308 Permanent Redirect
 Date: Wed, 13 Jan 2021 11:30:52 GMT
-Content-Type: text/html
+Content-Type: text/HTML
 Content-Length: 164
 Connection: keep-alive
 Location: https://sample-app.yourdomain.com/
@@ -111,16 +123,16 @@ last-modified: Thu, 17 Dec 2020 12:35:28 GMT
 strict-transport-security: max-age=15724800; includeSubDomains
 ```
 
-You can see a few things happening here:
+You can see that:
 
 * HTTP->HTTPS redirect is established automatically;
 * Once redirected to HTTPS, your application TLS setup works properly (curl is able to verify certificate validity for your domain).
 
 ## Deployment without CNAME alias
 
-If you skipped the DNS setup until this point, you should still be able to ping your application and get a response back. The only difference is that TLS certificate will not be provisioned, as certificate manager can't complete a HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
+If you skipped the DNS setup, you will still be able to ping your application and get a response back. The only difference is that the TLS certificate will not be provisioned, as the certificate manager cannot complete an HTTP-01 challenge without LetsEncrypt being able to reach your app via the "official" URL.
 
-To ping our app without a DNS CNAME, use the internal DNS name and pass "host" header for the ingress routing to work. You'll need to ignore certificate errors, as your application will be using self-signed certificate as a fallback.
+To ping the application without a DNS CNAME, use the internal DNS name and pass the "host" header for the Ingress routing to work. You will need to ignore certificate errors, as your application will be using a self-signed certificate as a fallback.
 
 ```console
 $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluster-name-7da6f229.onmulti.cloud | head -n 4
@@ -130,7 +142,7 @@ $ curl -s -k -H "Host: sample-app.yourdomain.com" https://1234567890.your-cluste
   <title>Caddy works!</title>
 ```
 
-If you don't intend creating a user-friendly url, another alternative is to use internal DNS name as ingress host. This will enable cert manager to provision proper TLS certificate and your app will be reachable via this name directly.
+If you do not intend to create a user-friendly URL, another alternative is to use an internal DNS name as an Ingress host. This will enable the certificate manager to provision a proper TLS certificate and your application will be reachable via this name directly.
 
 ```yaml
 spec:
@@ -145,7 +157,7 @@ spec:
 
 ## Metrics
 
-Once you have your application up and running, you can check another out-of-the-box feature CAST AI configures for you: the ingress metrics and dashboard. Head to CAST.AI console, and in your cluster details page, click on the *"Grafana metrics"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open "NGINX Ingress controller" dashboard. You should be greeted with a view similar to this:
+Once the application is up and running you can check the Ingress metrics and dashboard. Go to CAST.AI console [/clusters](../console-overview/console-overview.md#clusters) details page and click on the *"Grafana logs"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open the "NGINX Ingress controller" dashboard. You will see something similar to this:
 
 ![](ingress/ingress-dashboard.png)
 
@@ -155,7 +167,9 @@ This dashboard provides an overview of your application traffic. To tailor the d
 
 ### Single host, multiple services
 
-You can use path-based routing to redirect traffic to specific services using [ingress rule paths](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types):
+You can use path-based routing to redirect traffic to specific services using Ingress rule paths:
+
+[Kubernetes documentation - Ingress path types](https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types)
 
 ```yaml
 spec:
@@ -175,7 +189,7 @@ spec:
 
 ### Multiple hosts
 
-To manage multiple domains, you can just deploy multiple ingress resources, or include more domains into same ingress resource.
+To manage multiple domains, you can deploy multiple Ingress resources, or include more domains into the same Ingress resource.
 
 ```yaml
 # first host
@@ -236,7 +250,7 @@ metadata:
 spec:
   tls:
     - hosts:
-        # two domains under single certificate
+        # two domains under a single certificate
         - sample-app3.yourdomain.com
         - sample-app3-alternative.yourdomain.com
       secretName: sample-app3-cert

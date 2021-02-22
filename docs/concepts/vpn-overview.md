@@ -1,53 +1,57 @@
 # Cluster VPN overview
 
-This chapter summarizes Virtual Private Network (VPN) architecture for multi-cloud private network.
-
-## Available options
-
-Currently CAST AI platform supports two VPN options:
-
-1. Cloud provided VPN.
-2. WireGuard.
-
-Let's look at each option in more details.
+This chapter summarizes Virtual Private Network (VPN) architecture for multi-cloud private networks.
 
 ### Cloud provided VPN
 
-The following example shows Kubernetes cluster with nodes on AWS, AZURE and GCP clouds.
-In order to access each nodes Virtual Private Cloud (VPC) network CAST AI platform
+Cloud provided VPN - a VPN option provided by a cloud service provider.
+
+!!! note
+    Cloud provided VPN is currently not available on Digital Ocean.
+    
+
+**Traffic in CAST AI platform:**
+
+In order to access the Virtual Private Cloud (VPC) network of each node CAST AI platform
 provisions managed Highly Available (HA) VPN gateways.
-
-![](vpn-overview/cloudvpn.svg)
-
-#### Cloud provided VPN Network details
 
 - VPN Gateway is created on each cloud and adds additional cluster costs.
 - Traffic between nodes in different VPC is always encrypted.
 - Traffic between nodes in the same VPC is plaintext.
 
-!!! note
-    Cloud provided VPN is currently not available on Digital Ocean.
+Example with nodes on AWS, AZURE and GCP clouds:
 
-### WireGuard
+![](vpn-overview/cloudvpn.svg)
 
-The following example shows Kubernetes cluster with nodes on AWS, AZURE, GCP and DIGITAL OCEAN clouds.
-Each node runs WireGuard kernel module and VPN peers configuration, keys exchange, network interfaces
-and routing tables are fully managed by CAST AI platform.
 
-![](vpn-overview/wireguard.svg)
 
-#### WireGuard Network details
+### WireGuard VPN
 
-- Each nodes has public IP for node to node communication.
-- Firewall rules allows to send/receive UDP packets on 51820 port for each node.
-- Each node assigned private IP from clouds VPC subnet range and WireGuard interface IP
+WireGuard VPN - CAST AI integrated alternative to Cloud provided VPN. This option is optimized for saving cost. 
+
+You can choose between two topologies:
+
+| Topology | Description |
+|---|---|
+| Full Mesh | Traffic is encrypted between each node even if it is located in the same VPC. |
+| Cross Location Mesh | Traffic is encrypted only between nodes in different VPC. |
+
+
+
+**Traffic in CAST AI platform:**
+
+Each node runs a WireGuard kernel module. VPN peers configuration, keys exchange, network interfaces
+and routing tables are fully managed by the CAST AI platform.
+
+- Each node has public IP for node-to-node communication.
+- Firewall rules allow sending/receive UDP packets on 51820 port for each node.
+- Each node is assigned a private IP from cloud's VPC subnet range and WireGuard interface IP
 from 10.4.0.0/16 subnet.
 - Traffic between nodes in different VPC is always encrypted.
 - Traffic between nodes in the same VPC is encrypted or plaintext depending on topology selection.
 
-When creating cluster you can choose from one of the currently available topologies:
+Example with nodes on AWS, AZURE, GCP, and DIGITAL OCEAN clouds:
 
-| Topology | Description |
-|---|---|
-| Full Mesh | Traffic is encrypted between each node even if it’s located in the same VPC. |
-| Cross Location Mesh | Traffic is encrypted only between nodes in different VPC. |
+![](vpn-overview/wireguard.svg)
+
+

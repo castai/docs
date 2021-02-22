@@ -1,11 +1,23 @@
-# Welcome to CAST AI documentation
+## Welcome to CAST AI
 
-CAST AI is an intelligent engine that uses your cloud service accounts to create the cloud resources you need and sets
-up a multi-cloud cluster for you. You can start using multi-cloud Kubernetes with just a few clicks.
+It is one platform that cuts your cloud costs, boosts DevOps, and prevents downtime.
 
-The documentation is divided into the following sections:
+## Easy to start
 
-* **Concepts**: if you're new to CAST AI, [read this first](concepts/how-it-works.md).
-* **Getting started**: cluster administrator's reference.
-* **Developer guides**: configuring deployments, volumes, scaling policies, etc.
-* **API**: CAST AI API authentication, specification and Terraform support.
+Deploy your first cluster in 5-10 minutes. Follow our [getting started](../docs/getting-started.md) guide to try it out!
+
+## Community
+
+We invite you to join our community and find out what is trending in the atmosphere; connect with our engineers and support, monitor release-notes, explore technical discussions, and more:
+
+[Join our Discord channel](https://discord.gg/4sFCFVJ)
+
+[Join our Slack channel](https://join.slack.com/t/castai-community/shared_invite/zt-i8fcn2xi-sM_iONKn35NmYR2E3dtfng)
+
+## Events
+
+The CAST AI team loves sharing knowledge and experience in webinars! If you would like to learn more about our journey and have your questions answered by our CTO and engineers LIVE - please check out our [events calendar](https://cast.ai/events/).
+
+## Support
+
+Feel free to ask any questions on slack or discord. You can also reach our support on the [website chat](https://cast.ai/#) or email: support@cast.ai

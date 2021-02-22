@@ -1,19 +1,26 @@
 # How it works
 
-Long story short, the CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the required cloud resources and set up a multi-cloud cluster for you. You can start using multi-cloud Kubernetes with just a few clicks.
+The CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the required cloud resources and set up a multi cloud cluster for you. You can start using multi cloud Kubernetes with just a few clicks - check out [Getting started](../getting-started.md).
 
-## To get a bit more technical
+## Multi cloud network
 
-CAST AI uses your owned and provided CSP accounts to create VPCs or Resource Groups (depending on which cloud services you use). Next, CAST AI creates the required network (like subnets, public IPs, and VPNs). This will be used to ensure a uniform network across created VPCs, which is required for a seamless Kubernetes operation. There are certain processes in place to help non-compatible clouds merge into a single flat network.
+1. CAST AI uses your owned and provided CSP accounts to create VPCs or Resource Groups (depending on the cloud services you use).
+2. CAST AI creates the required network (like subnets, public IPs, and VPNs) to ensure a uniform network across created VPCs for a seamless Kubernetes operation.
+3. Processes behind it help non-compatible clouds merge into a single flat network.
 
-CAST AI selects regions with network latency in mind. For your applications and the cluster to function as expected, cross-cloud latency shouldn't go above 10 ms in normal operation. The CAST AI regions were measured to operate in a 5-7 ms range.
+CAST AI selects regions with network latency in mind. For your applications and cluster to function as expected, cross-cloud latency shouldn't go above 10 ms in normal operation. The CAST AI regions were measured to operate in a 5-7 ms range.
 
 ## Enter Kubernetes
 
-Once we have the network in place, VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes later on, based on your needs. But currently, the count and size of Master nodes are set during cluster creation. Later on, the same CAST AI engine reconciles the created cluster every hour to make sure that it’s still in the desired state. In this context, reconciling means going through all your cloud resources and ensuring the required configuration.
+With the network in place:
 
-If you delete any resources from the provided CSP accounts manually, CAST AI recreates them to the specification provided by you in the console. During the time of reconciliation, no instant changes to the cluster are allowed. You can only apply them after the reconciliation.
+4. VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in the [/nodes](../console-overview/console-overview.md#nodes) menu. 
+6. Cluster enters a [reconcilation loop](../concepts/cluster-lifecycle.md#2-reconciliation-healing).
 
-## No mess to clean up
+If you delete any resources from the provided CSP accounts manually, CAST AI recreates them to the specification set by you in the console. No instant changes to the cluster are allowed during the time of reconciliation. You can only apply them after the reconciliation.
 
-When you’re done with your cluster, you can delete it via the CAST AI console. This operation will terminate all VMs and delete cloud resources like the attached storage, public IPs, VPN connections, network subnets, etc. Basically, this makes your cloud accounts look like prior to using CAST AI Kubernetes.
+## Automated cleanup
+
+When you delete a cluster via the [CAST AI console](../console-overview/console-overview.md#dashboard), the operation will terminate all VMs and delete the cloud resources (attached storage, public IPs, VPN connections, network subnets, etc.).
+
+To further understand the lifecycle of a cluster, check our [Cluster lifecycle](../concepts/cluster-lifecycle.md) overview.
