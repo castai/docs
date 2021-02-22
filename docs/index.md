@@ -4,7 +4,7 @@ It is one platform that cuts your cloud costs, boosts DevOps, and prevents downt
 
 ## Easy to start
 
-Deploy your first cluster in 5-10 minutes. Follow our [getting started](../docs/getting-started.md) guide to try it out!
+Deploy your first cluster in 5-10 minutes. Follow our [getting started](https://docs.cast.ai/getting-started/) guide to try it out!
 
 ## Community
 
