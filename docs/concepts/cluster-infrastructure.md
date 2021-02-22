@@ -1,6 +1,6 @@
-## Cluster infrastructure
+# Cluster infrastructure
 
-### Nodes
+## Nodes
 
 Overview on where cluster virtual machines will be provisioned on your cloud:
 

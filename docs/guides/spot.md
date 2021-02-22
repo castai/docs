@@ -51,10 +51,11 @@ To do that, we will use an example NGINX deployment configured to run only on Sp
 
 To start using Spot instances autoscaler enable the following policies under the `Policies` menu in the UI:
 
-* **Spot/Preemptible instances policy**
-  * This policy allows the autoscaler to use spot instances
-* **Unschedulable pods policy**
-  * This policy requests an additional workload to be scheduled based on your deployment requirements (i.e. run on spot instances)
+- **Spot/Preemptible instances policy**
+  - This policy allows the autoscaler to use spot instances
+
+- **Unschedulable pods policy**
+  - This policy requests an additional workload to be scheduled based on your deployment requirements (i.e. run on spot instances)
 
 ![](./spot-instances/020_enable_policies.png)
 
@@ -109,12 +110,12 @@ With `kubeconfig` set in your current shell session, you can execute the followi
 
 Once the deployment is created, it will take up to several minutes for the autoscaler to pick up the information about your pending deployment and schedule the relevant workloads in order to satisfy the deployment needs, such as:
 
-* This deployment **tolerates spot instances**
-* This deployment **must run only on spot instances**
+- This deployment **tolerates spot instances**
+- This deployment **must run only on spot instances**
 
 ### 3. Spot Instance added
 
-* You can see your newly added spot instance in the cluster node list.
+- You can see your newly added spot instance in the cluster node list.
 
 ![](./spot-instances/040_spot_instance_added.png)
 
