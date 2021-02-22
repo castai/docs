@@ -63,9 +63,9 @@ Here you will see more information about the selected cluster and will get acces
 
      For more information see:
 
-     - [Autoscaling policies](docs/guides/autoscaling-policies/)
-     - [Horizontal Pod autoscaler](docs/guides/hpa/)
-     - [Spot/Preemptible Instances](docs/guides/spot-instances/spot/)
+     - [Autoscaling policies](../guides/autoscaling-policies/)
+     - [Horizontal Pod autoscaler](../guides/hpa/)
+     - [Spot/Preemptible Instances](../guides/spot-instances/spot/)
   
 ![](images/policies.png)
   
