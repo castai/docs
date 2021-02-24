@@ -21,6 +21,7 @@ CAST AI will need your cloud credentials to call cloud APIs, so the platform can
 
 If you remove the credentials - you are free to use the Kubernetes provisioned cluster as it is but you will lose all the managed service benefits and features that CAST AI offers.
 
+### Amazon Web Services credentials
 <details>
 <summary>Amazon Web Services credentials</summary>
 <p>
@@ -45,6 +46,7 @@ To add AWS credentials you will need: <b>Access key ID , Secret access key</b>
    </p>
 </details>
 
+### Azure cloud credentials
 <details>
   <summary>Azure cloud credentials</summary>
  <p>
@@ -81,6 +83,7 @@ To get started, you need to create an Active Directory (AD) service principal in
  </p>
 </details>
 
+### Digital Ocean credentials
 <details>
   <summary>Digital Ocean credentials</summary>
  <p>
@@ -99,8 +102,57 @@ To get started, you need to create a Personal Access Token and define its access
  </p>
 </details>
 
+### Google Cloud Platform credentials
+
 <details>
-  <summary>Google Cloud Platform credentials</summary>
+    <summary>Method 1: Create using `gcloud` utility</summary>
+    <p>
+    <h3>Prerequisites</h3>
+    <ul>
+        <li> (recommended) Visit the Google Cloud Platform <https://console.cloud.google.com/> and make sure you have selected the right project. Project needs to be precreated with billing account linked (can be free $300 trial). Open Cloud Shell at the top right side of menu bar.
+        <li> (alternative) You can also use your local `gcloud` installation. Make sure that you have activated the right project (`gcloud projects list` and `gcloud config set project {{desired-project-id-here}}`)
+    </ul>
+    <h3>Generate service account</h3>
+    Run the script displayed below. It will create a new service account with the required permissions, enable the required APIs, and print your service account key JSON.
+    
+    bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
+    
+
+You will see the following output:
+       
+       bash
+       user@cloudshell:~ (project)$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
+       
+       Your active configuration is: [cloudshell-25962]
+       Operation "operations/acf.p2-294512688956-58cd0d54-dde2-4db3-8114-582e01768453" finished successfully.
+       Created service account [castai-credentials-1613140179].
+       created key [89d0debfef9d2e83c967b65615569a24fd8cdad4] of type [json] as [castai-credentials-1613140179.json] for [castai-credentials-1613140179@project.iam.gserviceaccount.com]
+       Activated service account credentials for: [castai-credentials-1613140179@project.iam.gserviceaccount.com]
+       {
+       "type": "service_account",
+       "project_id": "project",
+       "private_key_id": "xxxxxxxxxxxxxxxxxxxxxx",
+       "private_key": "-----BEGIN PRIVATE KEY-----\nxxxxxxxxxxxxxxxxxxxxxx\n-----END PRIVATE KEY-----\n",
+       "client_email": "castai-credentials-1613140179@project.iam.gserviceaccount.com",
+       "client_id": "xxxxxxxxxxxxxxxxxxxxxx",
+       "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+       "token_uri": "https://oauth2.googleapis.com/token",
+       "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+       "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/castai-credentials-1613140179%40project.iam.gserviceaccount.com"
+       }
+       
+Copy the displayed JSON and use it in the _create gcp cloud credentials_ screen.
+<h3> 
+<hr>
+ Cloud Shell will copy a selected text automatically. Do not use `ctrl+c` as `"private_key"` part of the JSON might get corrupted due to word wrapping.
+ <hr>
+  </p>
+</details>
+
+
+<details>
+  <summary>Method 2:  Create it manually using the Google Cloud Console</summary>
  <p>
 To add GCP credentials you will need: <b>Service Account JSON</b>
 <br>
