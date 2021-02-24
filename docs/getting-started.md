@@ -1,7 +1,7 @@
 ## Overview
 
 This guide will help you get started and deploy your first cluster with CAST AI.
-
+ 
 To start using CAST AI you will need:
 
 - An account - [sign up here](https://console.cast.ai/signup)
