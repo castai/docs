@@ -1,5 +1,5 @@
 ## Welcome to CAST AI
-
+ 
 It is one platform that cuts your cloud costs, boosts DevOps, and prevents downtime.
 
 ## Easy to start
