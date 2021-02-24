@@ -16,15 +16,16 @@ Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 
 ## Prerequisites
 
-- **CAST AI cluster** - see [create cluster](../getting-started.md).
-- **GSLB DNS value of the cluster** - you will find this in [/clusters](../console-overview/console-overview.md#clusters) details page. This will be an internal DNS name for your Ingress.
-- **CNAME alias for TLS setup** - use a hostname of your choice and create a CNAME record with GSLB DNS value.
+* **CAST AI cluster** - see [create cluster](../getting-started.md).
+* **GSLB DNS value of the cluster** - you will find this in [/clusters](../console-overview/console-overview.md#clusters) details page. This will be an internal DNS name for your Ingress.
+
+* **CNAME alias for TLS setup** - use a hostname of your choice and create a CNAME record with GSLB DNS value.
 
 Example if:
 | | |
 |---|---|
 | GSLB DNS value | 1234567890.your-cluster-name-7da6f229.onmulti.cloud |
-| Hostname | https://sample-app.yourdomain.com |
+| Hostname | <https://sample-app.yourdomain.com> |
 
 Then:
 | CNAME name | CNAME value|
@@ -101,6 +102,7 @@ spec:
 ```
 
 ## Verification
+
 Once you deploy the configuration above, the application will be ready for testing in a few moments. Check in the browser or CLI, e.g.:
 
 ```console

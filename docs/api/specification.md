@@ -1,4 +1,4 @@
-## API specification
+# API specification
 
 Our API contract is published as OpenAPI v3 specification. You can check it on our
 Swagger UI:

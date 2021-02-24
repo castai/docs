@@ -7,7 +7,8 @@ This topic describes the available policy configuration options and provides gui
 
 ## Prerequisites
 
-- **CAST AI cluster** - see [create cluster](../getting-started.md).
+To enable the autoscaling policies, you need to create a cluster first. Here's a guide that shows how to create a cluster: [Creating your first
+cluster](../getting-started/creating-your-first-cluster.md).
 
 Select a cluster and navigate to the *Policies* menu.
 
@@ -102,8 +103,14 @@ It may take a few minutes for the new settings to propagate.
 If multiple policies are enabled and multiple rules are triggered during the same evaluation period, they will be
 handled in the following order:
 
-1. [Cluster CPU limits policy](#cluster-cpu-limits-policy)
-2. [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
-3. [Unscheduled pods policy](#unscheduled-pods-policy)
-4. [Node deletion policy](#node-deletion-policy)
-5. [Cluster CPU utilization scale-up policy](#cluster-cpu-utilization-scale-up-policy)
+- [Autoscaling policies](#autoscaling-policies)
+  - [Prerequisites](#prerequisites)
+  - [Cluster CPU limits policy](#cluster-cpu-limits-policy)
+    - [Configuring CPU limits policy](#configuring-cpu-limits-policy)
+  - [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
+  - [Node deletion policy](#node-deletion-policy)
+  - [Unscheduled pods policy](#unscheduled-pods-policy)
+    - [Headroom attributes](#headroom-attributes)
+    - [Provisioning decision](#provisioning-decision)
+    - [Configuring the unscheduled pod's policy](#configuring-the-unscheduled-pods-policy)
+  - [Policies precedence rules](#policies-precedence-rules)

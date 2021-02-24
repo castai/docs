@@ -1,4 +1,4 @@
-## Terraform provider
+# Terraform provider
 
 Your CAST.AI infrastructure can be automated via [Terraform](https://www.terraform.io/) using _terraform-provider-castai_ provider.
 
