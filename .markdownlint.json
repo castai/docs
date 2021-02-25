@@ -4,6 +4,6 @@
   "no-alt-text": false,
   "fenced-code-language": false
   "MD033": {
-    "allowed_elements": [ "details", "summary", "h1", "h3", "HR", "p", "b", "br", "ol", "ul", "li", "a" ]
+    "allowed_elements": [ "details", "summary", "h1", "h3", "HR", "p", "b", "br", "ol", "ul", "li", "a", "pre", "code" ]
   }
 }
