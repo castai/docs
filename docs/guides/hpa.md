@@ -42,6 +42,7 @@ To be able to autoscale, you will need to enable KEDA addon on the `Policies` pa
 2. Go to the *Policies* menu.
 
 3. Enable the Horizontal pod autoscaler policy.
+
 ![Enable HPA](../guides/hpa/HPA.png)
 
 ## Examples
