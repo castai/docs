@@ -1,7 +1,7 @@
 # Overview
 
 This guide will help you get started and deploy your first cluster with CAST AI.
-
+ 
 To start using CAST AI you will need:
 
 - An account - [sign up here](https://console.cast.ai/signup)
@@ -21,17 +21,17 @@ CAST AI will need your cloud credentials to call cloud APIs, so the platform can
 
 If you remove the credentials - you are free to use the Kubernetes provisioned cluster as it is but you will lose all the managed service benefits and features that CAST AI offers.
 
+### Amazon Web Services credentials
 <details>
 <summary>Amazon Web Services credentials</summary>
 <p>
-To add AWS credentials you will need: <b>Access key ID , Secret access key</b>
+To add AWS credentials you will need: <b>Access key ID , Secret access key</b>.
 <br>
 <ol>
-<li>Add a new user</li>
-<ul><li> Open <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a></li>
-<li> Open the IAM service, then go to Users and click on Add user</li>
-<li> Select <b>Programmatic access</b></li>
-</ul>
+<li>Add a new user
+   <ul><li> Open <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a></li>
+   <li> Open the IAM service, then go to Users and click on Add user</li>
+   <li> Select <b>Programmatic access</b></li></ul>
 <li>Create a new group
 <br>
    <ul><li> Select the following permissions as</li>
@@ -40,51 +40,59 @@ To add AWS credentials you will need: <b>Access key ID , Secret access key</b>
 <li>Paste cloud credentials
 <br>
    <ul><li> Once you reach the last page ("Create user"), copy the <b>access key ID</b> and <b>secret access key</b>, and paste them to the form in CAST AI console.</li></ul>
-   <br>
-   <a href="ttps://docs.aws.amazon.com/eks/latest/userguide/security-iam.html#security_iam_access-manage">Documentation on AWS Identity and Access Management.</a>
+   </ol>
+   </li>
    </p>
+
+<p><a href="ttps://docs.aws.amazon.com/eks/latest/userguide/security-iam.html#security_iam_access-manage">Documentation on AWS Identity and Access Management.</a></p>
 </details>
 
+### Azure cloud credentials
 <details>
   <summary>Azure cloud credentials</summary>
  <p>
-To add Azure credentials you will need: <b>Directory (Tenant) ID, Application (Client ID), Client Secret, Subscription ID</b>
-<br>
-To get started, you need to create an Active Directory (AD) service principal in your Azure account and assign the required permissions.
-<ol>
-<li>Create App registration
- <ul>
-   <li> Open <a href="https://portal.azure.com">https://portal.azure.com</a>
-   <li> Go to App registrations -> New registration -> Enter display name -> click Register.
-   <li> Paste in the <b>Directory (tenant) ID</b> to the form on the left side.
-   <li> Paste in the <b>Application (client) ID</b> to the form on the left side.
-   <li> Select Certificates & secrets in the left sidebar menu.
-   <li> Create a new client secret without expiration.
-   <li> Paste in the new client secret value to the form on the left side, to the <b>Client Secret</b> field.
- </ul>
-<li>Give access to the CAST AI application by requesting a sign-in using a browser
- <ul>
-   <li> Accept CAST AI application.
-   <li> After Sign-in you should see <b>Permissions requested</b> window. Click Accept which will allow you to add the CAST AI application role.
-</ul>
-<li>Assign the roles
- <ul>
-   <li> Open Subscriptions page and go to your subscription.
-   <li> Paste in the <b>Subscription ID</b> to the form on the left side.
-   <li> Select the Access Control (IAM) in the left sidebar menu.
-   <li> Add the role assignment with Role: Contributor, and in the Select search field type your Client Secret (created during the first step).
-   <li> Add another role assignment with Role: Contributor, and in the Select input field search for <b>CAST AI Shared Images</b> then click save (if the role is not visible please check previous step and try again).
-  </ul>
-  </ol>
-  <br>
-<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals">Documentation on Azure Cloud EKS IAM Policies, Roles, and Permissions.</a>
- </p>
+    To add Azure credentials you will need: <b>Directory (Tenant) ID, Application (Client ID), Client Secret, Subscription ID</b>.
+ <br>
+ <br>
+    To get started, you need to create an Active Directory (AD) service principal in your Azure account and assign the required permissions.
+    <ol>
+    <li>Create App registration
+     <ul>
+       <li> Open <a href="https://portal.azure.com">https://portal.azure.com</a></li>
+       <li> Go to App registrations -> New registration -> Enter display name -> click Register.</li>
+       <li> Paste in the <b>Directory (tenant) ID</b> to the form on the left side.</li>
+       <li> Paste in the <b>Application (client) ID</b> to the form on the left side.</li>
+       <li> Select Certificates & secrets in the left sidebar menu.</li>
+       <li> Create a new client secret without expiration.</li>
+       <li> Paste in the new client secret value to the form on the left side, to the <b>Client Secret</b> field.</li>
+     </ul>
+     </li>
+    <li>Give access to the CAST AI application by requesting a sign-in using a browser
+     <ul>
+       <li> Accept CAST AI application.</li>
+       <li> After Sign-in you should see <b>Permissions requested</b> window. Click Accept which will allow you to add the CAST AI application role.</li>
+    </ul>
+    </li>
+    <li>Assign the roles
+     <ul>
+       <li> Open Subscriptions page and go to your subscription.</li>
+       <li> Paste in the <b>Subscription ID</b> to the form on the left side.</li>
+       <li> Select the Access Control (IAM) in the left sidebar menu.</li>
+       <li> Add the role assignment with Role: Contributor, and in the Select search field type your Client Secret (created during the first step).</li>
+       <li> Add another role assignment with Role: Contributor, and in the Select input field search for <b>CAST AI Shared Images</b> then click save (if the role is not visible please check previous step and try again).</li>
+      </ul>
+      </li>
+      </ol>
+     </p>
+
+<p><a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals">Documentation on Azure Cloud EKS IAM Policies, Roles, and Permissions.</a></p>
 </details>
 
+### Digital Ocean credentials
 <details>
   <summary>Digital Ocean credentials</summary>
  <p>
-To add Digital Ocean credentials you will need: <b>Personal Access Token</b>
+To add Digital Ocean credentials you will need: <b>Personal Access Token</b>.
 <br>
 To get started, you need to create a Personal Access Token and define its access permissions.
 <ol>
@@ -99,10 +107,61 @@ To get started, you need to create a Personal Access Token and define its access
  </p>
 </details>
 
+### Google Cloud Platform credentials
+
 <details>
-  <summary>Google Cloud Platform credentials</summary>
+  <summary>Method 1: Create using `gcloud` utility</summary>
+  <p>
+  <h1>Prerequisites</h1>
+  <ul>
+  <li> (recommended) Visit the Google Cloud Platform <https://console.cloud.google.com/> and make sure you have selected the right project. Project needs to be precreated with billing account linked (can be free $300 trial). Open Cloud Shell at the top right side of menu bar.</li>
+  <li> (alternative) You can also use your local <code>gcloud</code> installation. Make sure that you have activated the right project (<code>gcloud projects list</code> and <code>gcloud config set project {{desired-project-id-here}}</code>)</li>
+  </ul></p>
+  <h1>Generate service account</h1>
+  <p>Run the script displayed below. It will create a new service account with the required permissions, enable the required APIs, and print your service account key JSON.</p>
+    
+  <pre><code>
+    bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
+  </pre></code>
+
+  <p>You will see the following output:</p>
+       
+  <pre><code>
+    bash
+    user@cloudshell:~ (project)$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
+       
+    Your active configuration is: [cloudshell-25962]
+    Operation "operations/acf.p2-294512688956-58cd0d54-dde2-4db3-8114-582e01768453" finished successfully.
+    Created service account [castai-credentials-1613140179].
+    created key [89d0debfef9d2e83c967b65615569a24fd8cdad4] of type [json] as [castai-credentials-1613140179.json] for [castai-credentials-1613140179@project.iam.gserviceaccount.com]
+    Activated service account credentials for: [castai-credentials-1613140179@project.iam.gserviceaccount.com]
+    {
+    "type": "service_account",
+    "project_id": "project",
+    "private_key_id": "xxxxxxxxxxxxxxxxxxxxxx",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nxxxxxxxxxxxxxxxxxxxxxx\n-----END PRIVATE KEY-----\n",
+    "client_email": "castai-credentials-1613140179@project.iam.gserviceaccount.com",
+    "client_id": "xxxxxxxxxxxxxxxxxxxxxx",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/castai-credentials-1613140179%40project.iam.gserviceaccount.com"
+    }
+  </pre></code>
+
+  <p>Copy the displayed JSON and use it in the <i>create gcp cloud credentials</i> screen.</p>
+<hr>
+ <h3><b>Cloud Shell will copy a selected text automatically. Do not use <code>ctrl+c</code> as <code>"private_key"</code> part of the JSON might get corrupted due to word wrapping.</b></h3>
+ <hr>
+  
+</details>
+
+
+<details>
+  <summary>Method 2:  Create it manually using the Google Cloud Console</summary>
  <p>
-To add GCP credentials you will need: <b>Service Account JSON</b>
+To add GCP credentials you will need: <b>Service Account JSON</b>.
 <br>
 To get started, you need to create a service account in your Google Cloud Platform account and assign the required permissions.
 <ol>
@@ -113,7 +172,6 @@ To get started, you need to create a service account in your Google Cloud Platfo
    <li> <a href="https://console.cloud.google.com/apis/api/compute.googleapis.com/overview">Compute Engine API</a>
 </ul>
 <li>Create Service account
-</ol>
 <ul>
    <li> Open <a href="https://console.cloud.google.com">https://console.cloud.google.com</a>
    <li> Select IAM & Admin and go to Service accounts
@@ -128,7 +186,7 @@ To get started, you need to create a service account in your Google Cloud Platfo
      </ul>
    <li> Once you have created a Service Account, open the Service Accounts list view and find your newly created account. Then click on the button in the <b>Actions</b> column and select Create key with Key type set to JSON.
    <li> After the JSON file is downloaded, copy its contents to the input field or click on the Read from file button to import the file.
-   </ul>
+   </ul></ol>
  </p>
 </details>
 
@@ -144,28 +202,38 @@ After the cluster is created, name and region can’t be changed.
 - Name your cluster (2-50 symbols, only letters, numbers, and hyphens allowed)
 
 - Select a region. Your cluster will be located in the selected region.
+
+![](getting-started/cluster-details.png)
   
 ### 2. Cluster configuration
 
 Select initial cluster configuration. It may be automatically adjusted based on scaling and cost optimization policies. You will be able to adjust policies once the cluster is created. You may also manually add nodes once the cluster is provisioned.
 
-### 3.Cloud providers
+![](getting-started/cluster-configuration.png)
 
-Select the cloud provider(s) you would like to use for this cluster. You will need to select credentials that you would like to use for each provider, please refer to [Adding credentials] section if you have no credentials added.
+### 3. Cloud providers
+
+Select the cloud provider(s) you would like to use for this cluster. You will need to select credentials that you would like to use for each provider, please refer to [Add cloud credentials](../getting-started/#add-cloud-credentials) section if you have no credentials added.
+
+![](getting-started/cloud-providers.png)
 
 ### 4. Cluster virtual private network
 
-Select preferred encrypted connection type. Cloud provided VPN is a default VPN provided by the respective cloud service providers. WireGuard is a CAST AI integrated choice of VPN that [significantly reduces cloud cost].
+Select preferred encrypted connection type. Cloud provided VPN is a default VPN provided by the respective cloud service providers. WireGuard is a CAST AI integrated choice of VPN that significantly reduces cloud cost.
 
 - WireGuard VPN: Full Mesh - network traffic is encrypted between all nodes
 - WireGuard VPN: Cross Location Mesh - network traffic is encrypted only between nodes in different clouds
 - Cloud provided VPN - default network encryption provided by selected CSPs
 
+Also see - [VPN overview](../concepts/vpn-overview.md)
+
+![](getting-started/cluster-vpn.png)
+
 ## Deploy application
 
 CAST AI managed cluster runs on Kubernetes. Once you have a cluster running - you can download a **`kubeconfig` file** of the cluster and deploy your application using **`kubectl`** command-line tool.
 
-![](downloadkubeconfig.png)
+![](getting-started/downloadkubeconfig.png)
 
 For more information please refer to [Kubernetes documentation](https://kubernetes.io/docs/home/).
 
