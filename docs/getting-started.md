@@ -211,7 +211,7 @@ Select initial cluster configuration. It may be automatically adjusted based on 
 
 ![](getting-started/cluster-configuration.png)
 
-### 3.Cloud providers
+### 3. Cloud providers
 
 Select the cloud provider(s) you would like to use for this cluster. You will need to select credentials that you would like to use for each provider, please refer to [Add cloud credentials](../getting-started/#add-cloud-credentials) section if you have no credentials added.
 
