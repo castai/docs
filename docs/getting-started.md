@@ -1,7 +1,7 @@
 # Overview
 
 This guide will help you get started and deploy your first cluster with CAST AI.
- 
+
 To start using CAST AI you will need:
 
 - An account - [sign up here](https://console.cast.ai/signup)
@@ -22,6 +22,7 @@ CAST AI will need your cloud credentials to call cloud APIs, so the platform can
 If you remove the credentials - you are free to use the Kubernetes provisioned cluster as it is but you will lose all the managed service benefits and features that CAST AI offers.
 
 ### Amazon Web Services credentials
+
 <details>
 <summary>Amazon Web Services credentials</summary>
 <p>
@@ -48,8 +49,60 @@ To add AWS credentials you will need: <b>Access key ID , Secret access key</b>.
 </details>
 
 ### Azure cloud credentials
+
 <details>
-  <summary>Azure cloud credentials</summary>
+  <summary>Method 1: Create using `az` cli utility</summary>
+  <h3>Prerequisites</h3>
+  <ul>
+    <li>(recommended) Visit <a href="https://portal.azure.com/" target="_blank">Azure Portal</a> and open Cloud Shell at the top right side of menu bar.</li>
+    <li>(alternative) You can also use your local <em>az</em> cli installation.</li>
+  </ul>
+
+  <h3>Generate service principal</h3>
+  
+Run the script displayed below. It will create a new service principal with required roles, enable access to CAST Image
+  Gallery and print your credentials json.
+
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-azure-credentials/script.sh)"
+  ```
+
+  You'll see the following output:
+  
+  ```bash
+  user@Azure:~$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-azure-credentials/script.sh)"
+  == Setup
+  Available subscriptions:
+  ID                                    NAME        IS_DEFAULT
+  --                                    ----        ----------
+  XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX  Free Trial  true
+
+  Enter subscription id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  Press enter to continue..
+
+  == Importing CAST.AI image gallery
+  . Using existing service principal
+  == Registering app
+  . Creating app registration
+  . Using existing service principal
+  == Assigning roles to the app
+  . Assigning Contributor role to CAST.AI app
+  . Assigning Contributor role to CAST.AI shared images app
+  --------------------------------------------------------------------------------
+  Save and use the following json to onboard credentials into CAST.AI
+  {
+    "subscriptionId":"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "tenantId":"YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY",
+    "clientId":"ZZZZZZZZ-ZZZZ-ZZZZ-ZZZZ-ZZZZZZZZZZZZ",
+    "clientSecret":"FX~JXqv~~~uiewDHJKDH9333d~ZZdf"
+  }
+  ```
+  
+  Copy the displayed JSON and use it in the <em>create azure cloud credentials</em> screen.
+</details>
+
+<details>
+  <summary>Method 2:  Create it manually using the Azure portal</summary>
  <p>
     To add Azure credentials you will need: <b>Directory (Tenant) ID, Application (Client ID), Client Secret, Subscription ID</b>.
  <br>
@@ -89,6 +142,7 @@ To add AWS credentials you will need: <b>Access key ID , Secret access key</b>.
 </details>
 
 ### Digital Ocean credentials
+
 <details>
   <summary>Digital Ocean credentials</summary>
  <p>
@@ -119,18 +173,18 @@ To get started, you need to create a Personal Access Token and define its access
   </ul></p>
   <h1>Generate service account</h1>
   <p>Run the script displayed below. It will create a new service account with the required permissions, enable the required APIs, and print your service account key JSON.</p>
-    
+
   <pre><code>
     bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
-  </pre></code>
+  </code></pre>
 
   <p>You will see the following output:</p>
-       
+
   <pre><code>
     bash
     user@cloudshell:~ (project)$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
-       
+
     Your active configuration is: [cloudshell-25962]
     Operation "operations/acf.p2-294512688956-58cd0d54-dde2-4db3-8114-582e01768453" finished successfully.
     Created service account [castai-credentials-1613140179].
@@ -148,7 +202,7 @@ To get started, you need to create a Personal Access Token and define its access
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/castai-credentials-1613140179%40project.iam.gserviceaccount.com"
     }
-  </pre></code>
+  </code></pre>
 
   <p>Copy the displayed JSON and use it in the <i>create gcp cloud credentials</i> screen.</p>
 <hr>
@@ -156,7 +210,6 @@ To get started, you need to create a Personal Access Token and define its access
  <hr>
   
 </details>
-
 
 <details>
   <summary>Method 2:  Create it manually using the Google Cloud Console</summary>
