@@ -6,7 +6,8 @@ SERVICE_ACCOUNT_EMAIL="${SERVICE_ACCOUNT_ID}@${PROJECT_ID}.iam.gserviceaccount.c
 gcloud services enable \
   iam.googleapis.com \
   cloudresourcemanager.googleapis.com \
-  compute.googleapis.com
+  compute.googleapis.com \
+  cloudbilling.googleapis.com
 
 # create service account
 gcloud iam service-accounts create "$SERVICE_ACCOUNT_ID" --display-name "Service account used for CAST.AI clusters"
