@@ -1,54 +1,7 @@
-# Console overview
+# Policies
 
-This is a quick overview of the [CAST AI console](https://console.cast.ai) and its features.
-
-- ## Dashboard
-
-In the dashboard window, you will see all active and deleted clusters.
-
-1. Create a new cluster. If you can see only an option to create a cluster, please refer to [Getting started](../getting-started.md) to unlock other features.
-2. Download `kubeconfig` of a cluster, pause, or delete it.
-3. You can open any specific cluster to manage its policies, add or remove nodes or check logs (check -> [/clusters](../console-overview/console-overview.md#clusters)). Copy cluster ID for API management.
-
-![](images/dashboard.png)
-
-- ### Clusters
-
-When you open any cluster from the /dashboard menu you will arrive at /clusters management.
-
-Here you will see more information about the selected cluster and will get access to the cluster management menu.
-
-1. Quickly navigate through active clusters.
-2. Information and log of the selected cluster.
-3. Management menu.
-
-![](images/clusters.png)
-
-- #### Nodes
-  
-  View information about the selected cluster nodes and manage them here.
-  
-  1. Add a new node.
-     - If your cluster runs on multiple clouds you will be able to specify a cloud provider for the node(s).
-     - Specify a CAST shape for the node(s) - a virtual specification of a Virtual Machine computing unit.
-     - Add multiple nodes at once (1-20).
-  2. View information about nodes, copy node ID for API management, and delete nodes.
-  
-![](images/nodes.png)
-  
-- #### Audit Log
-  
-  Audit log of cluster management on a high level.
-  
-  1. Select a date range for the log.
-  2. View operations made and who initiated them.
-  
-![](images/auditlog.png)
-  
-- #### Policies
-  
   Manage policies for the selected cluster. Policies will help you optimize and reduce cost of your cloud bill and will automate the process of scaling up and down for you.
-  
+
   1. **Cluster limits** - policies that limit the cluster scale to the defined limits. This policy has the highest priority, and all the other policies cannot scale the cluster over the defined limits.
      - **CPU policy** - This policy ensures that your cluster stays within the defined CPU minimum and maximum counts. Use this policy to create a guardrail against unexpected costs, in cases where traffic or workload requirements grow beyond budget expectations.
 
@@ -65,30 +18,5 @@ Here you will see more information about the selected cluster and will get acces
      - [Autoscaling policies](../guides/autoscaling-policies.md)
      - [Horizontal Pod autoscaler](../guides/hpa.md)
      - [Spot/Preemptible Instances](../guides/spot.md)
-  
+
 ![](images/policies.png)
-  
-- #### Kubernetes UI
-  
-  View more detailed information about the selected cluster and manage it in the [Kubernetes UI](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
-  
-- #### Kibana logs
-  
-  View Kibana logs of the selected cluster.
-  
-  ![](images/kibana.png)
-  
-- #### Grafana logs
-  
-  View Grafana logs of the selected cluster.
-  
-  ![](images/grafana.png)
-  
-- ### API
-
-  - [API documentation](https://api.cast.ai/v1/spec/)
-  - [API authentication](../api/authentication.md)
-
-You can read more about our API here - [API](../api/overview.md)
-
-  ![](images/API.png)
