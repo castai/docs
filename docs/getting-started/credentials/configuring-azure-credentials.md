@@ -61,7 +61,7 @@ To get started, you need to create an Active Directory (AD) service principal in
 
 1. Create App registration
 
-     - Open https://portal.azure.com
+     - Open <https://portal.azure.com>
      - Go to App registrations, and click on New registration. Enter display name and click Register.
      - Go to [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console and select Azure
      - Paste in the **Directory (tenant) ID** to the form on the left side.
