@@ -94,18 +94,14 @@ Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started
 
      - In the last step of the service account creation, click **Done** without entering any data.
 
-
 ### Create key
 
 The created account will appear in the service accounts list. **Click on it** to access additional options.
 
-  - In the **Keys** section, click on **Add Key → Create new key**.
-
-  - Select the **JSON** option and click **Create**.
-
-  - You will get a file download prompt. After the JSON file is downloaded open [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console and select Google Cloud platform
-
-  - Copy file contents to the input field or click on the **Read from file** button to import the file.
+- In the **Keys** section, click on **Add Key → Create new key**.
+- Select the **JSON** option and click **Create**.
+- You will get a file download prompt. After the JSON file is downloaded open [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console and select Google Cloud platform
+- Copy file contents to the input field or click on the **Read from file** button to import the file.
 
 !!! tip ""
     Next step: [create cluster](../../getting-started/create-cluster.md)

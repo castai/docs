@@ -2,7 +2,6 @@
 
   Manage policies for the selected cluster. Policies will help you optimize and reduce cost of your cloud bill and will automate the process of scaling up and down for you.
 
-
 ??? tldr "1. Cluster limits"
     **Cluster limits** - policies that limit the cluster scale to the defined limits. This policy has the highest priority, and all the other policies cannot scale the cluster over the defined limits.
 
@@ -24,8 +23,8 @@
 
 For more information see:
 
-  - [Autoscaling policies](../guides/autoscaling-policies.md)
-  - [Horizontal Pod autoscaler](../guides/hpa.md)
-  - [Spot/Preemptible Instances](../guides/spot.md)
+- [Autoscaling policies](../guides/autoscaling-policies.md)
+- [Horizontal Pod autoscaler](../guides/hpa.md)
+- [Spot/Preemptible Instances](../guides/spot.md)
 
 ![](images/policies.png)

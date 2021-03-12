@@ -6,9 +6,11 @@ The CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the
 
 ## Multi cloud network
 
-1. CAST AI uses your owned and provided CSP accounts to create VPCs or Resource Groups (depending on the cloud services you use).
-2. CAST AI creates the required network (like subnets, public IPs, and VPNs) to ensure a uniform network across created VPCs for a seamless Kubernetes operation.
-3. Processes behind it help non-compatible clouds merge into a single flat network.
+- CAST AI uses your owned and provided CSP accounts to create VPCs or Resource Groups (depending on the cloud services you use).
+
+- CAST AI creates the required network (like subnets, public IPs, and VPNs) to ensure a uniform network across created VPCs for a seamless Kubernetes operation.
+
+- Processes behind it help non-compatible clouds merge into a single flat network.
 
 CAST AI selects regions with network latency in mind. For your applications and cluster to function as expected, cross-cloud latency shouldn't go above 10 ms in normal operation. The CAST AI regions were measured to operate in a 5-7 ms range.
 
@@ -16,8 +18,9 @@ CAST AI selects regions with network latency in mind. For your applications and 
 
 With the network in place:
 
-4. VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in the [/nodes](../console-overview/nodes.md) menu.
-5. Cluster enters a [reconcilation loop](../concepts/cluster-lifecycle.md#2-reconciliation-healing).
+- VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in the [/nodes](../console-overview/nodes.md) menu.
+
+- Cluster enters a [reconcilation loop](../concepts/cluster-lifecycle.md#2-reconciliation-healing).
 
 If you delete any resources from the provided CSP accounts manually, CAST AI recreates them to the specification set by you in the console. No instant changes to the cluster are allowed during the time of reconciliation. You can only apply them after the reconciliation.
 

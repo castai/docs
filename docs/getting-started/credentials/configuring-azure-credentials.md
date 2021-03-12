@@ -4,9 +4,8 @@
 
 Prerequisites
 
-- (recommended) Visit <a href="https://portal.azure.com/" target="_blank">Azure Portal</a> and open Cloud Shell at the top right side of menu bar.
-- (alternative) You can also use your local <em>az</em> cli installation.
-</ul>
+- (recommended) Visit [Azure Portal](https://portal.azure.com/) and open Cloud Shell at the top right side of menu bar.
+- (alternative) You can also use your local `az` cli installation.
 
 ### Generate service principal
 
