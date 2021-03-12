@@ -9,3 +9,7 @@ To get started, you need to create a Personal Access Token and define its access
 4. Add a name and select both the **read** and **write** scopes
 5. Click **Generate Token**
 6. The token will be displayed only once under the name you gave it
+7. Go to [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console, select Digital Ocean and paste Token to the form
+
+!!! tip ""
+    Next step: [create cluster](../../getting-started/create-cluster.md)

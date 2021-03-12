@@ -7,7 +7,7 @@ This topic describes the available policy configuration options and provides gui
 
 ## Prerequisites
 
-- **CAST AI cluster** - see [create cluster](../getting-started.md).
+- **CAST AI cluster** - see [create cluster](../getting-started/create-cluster.md).
 
 Select a cluster and navigate to the *Policies* menu.
 
@@ -102,7 +102,7 @@ It may take a few minutes for the new settings to propagate.
 If multiple policies are enabled and multiple rules are triggered during the same evaluation period, they will be
 handled in the following order:
 
-* [Cluster CPU limits policy](#cluster-cpu-limits-policy)
-* [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
-* [Unscheduled pods policy](#unscheduled-pods-policy)
-* [Node deletion policy](#node-deletion-policy)
+1. [Cluster CPU limits policy](#cluster-cpu-limits-policy)
+2. [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
+3. [Unscheduled pods policy](#unscheduled-pods-policy)
+4. [Node deletion policy](#node-deletion-policy)

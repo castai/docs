@@ -44,8 +44,8 @@ To do that, we will use an example NGINX deployment configured to run only on Sp
 
 ### 0. Pre-requisites
 
-- **CAST AI cluster** - see [create cluster](../getting-started.md).
-- **`Kubeconfig` file** - see [deploy application](../getting-started.md#deploy-application)
+- **CAST AI cluster** - see [create cluster](../getting-started/create-cluster.md).
+- **`Kubeconfig` file** - see [deploy application](../getting-started/deploy-application.md)
 
 ### 1. Enable relevant policies
 

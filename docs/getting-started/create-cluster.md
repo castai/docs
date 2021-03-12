@@ -1,33 +1,36 @@
-# Create cluster
+# 2. Create cluster
 
-Once you have [cloud credentials](../getting-started/#add-cloud-credentials) - you are ready to create a cluster. In the cluster creation window you will have a few options to lay a base foundation for your cluster, which we will be able to further customize to your needs once a cluster is up and running.
+Once you [add cloud credentials](../getting-started/credentials/credentials-overview.md) - you are ready to create a cluster. In the cluster creation window you will have a few options to lay a base foundation for your cluster, which we will be able to further customize to your needs once a cluster is up and running.
 
-## 1. Cluster details
+## Cluster details
 
 The new cluster will be created with the name and in the region, you specify here.
-After the cluster is created, name and region can’t be changed.
+After the cluster is created, name and region cannot be changed.
 
 - Name your cluster (2-50 symbols, only letters, numbers, and hyphens allowed)
 
-- Select a region. Your cluster will be located in the selected region.
+- Select a region where your cluster will be located
 
-![](getting-started/cluster-details.png)
+![](screenshots/cluster-details.png)
 
-## 2. Cluster configuration
+## Cluster configuration
 
 Select initial cluster configuration. It may be automatically adjusted based on scaling and cost optimization policies. You will be able to adjust policies once the cluster is created. You may also manually add nodes once the cluster is provisioned.
 
-![](getting-started/cluster-configuration.png)
+![](screenshots/cluster-configuration.png)
 
-## 3.Cloud providers
+## Cloud providers
 
-Select the cloud provider(s) you would like to use for this cluster. You will need to select credentials that you would like to use for each provider, please refer to [Add cloud credentials](../getting-started/#add-cloud-credentials) section if you have no credentials added.
+Select the cloud provider(s) you would like to use for this cluster. You will need to select credentials that you would like to use for each provider, please refer to [1. Add cloud credentials](../getting-started/credentials/credentials-overview.md) section if you have no credentials added.
 
-![](getting-started/cloud-providers.png)
+![](screenshots/cloud-providers.png)
 
-## 4. Cluster virtual private network
+## Cluster virtual private network
 
-Select preferred encrypted connection type. Cloud provided VPN is a default VPN provided by the respective cloud service providers. WireGuard is a CAST AI integrated choice of VPN that significantly reduces cloud cost.
+Select preferred encrypted connection type. Cloud provided VPN is a default VPN provided by the respective cloud service providers.
+
+!!! tip ""
+    WireGuard is a CAST AI integrated choice of VPN that cuts cloud cost.
 
 - WireGuard VPN: Full Mesh - network traffic is encrypted between all nodes
 - WireGuard VPN: Cross Location Mesh - network traffic is encrypted only between nodes in different clouds
@@ -35,4 +38,7 @@ Select preferred encrypted connection type. Cloud provided VPN is a default VPN 
 
 Also see - [VPN overview](../concepts/vpn-overview.md)
 
-![](getting-started/cluster-vpn.png)
+![](screenshots/cluster-vpn.png)
+
+!!! tip ""
+    Next step: [deploy application](../getting-started/deploy-application.md)

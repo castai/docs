@@ -42,10 +42,16 @@ Activated service account credentials for: [castai-credentials-1613140179@projec
 }
 ```
 
-Copy the displayed JSON and use it in the _create gcp cloud credentials_ screen.
+1. Copy the displayed JSON
+2. Open [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console
+3. Select Google Cloud Platform
+4. Paste it in the Service Account JSON field.
 
-!!! Note
+!!! Warning ""
     Cloud Shell will copy a selected text automatically. Don't use `ctrl+c` as `"private_key"` part of the JSON might get corrupted due to word wrapping.
+
+!!! tip ""
+    Next step: [create cluster](../../getting-started/create-cluster.md)
 
 ## Method 2: Create it manually using the Google Cloud Console
 
@@ -71,30 +77,35 @@ Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started
 
 4. Click **Create service account**:
 
-   Enter the preferred **Service account name** and **description**. Click **Create**
+     - Enter the preferred **Service account name** and **description**. Click **Create**
 
-   Add the following roles to the created account:
+     - Add the following roles to the created account:
 
-    ```
-    roles/compute.admin
-    roles/iam.serviceAccountUser
-    roles/iam.serviceAccountAdmin
-    roles/iam.roleAdministrator
-    roles/iam.serviceAccountKey
-    roles/iam.projectIAMAdmin
-    ```
+          ```
+          roles/compute.admin
+          roles/iam.serviceAccountUser
+          roles/iam.serviceAccountAdmin
+          roles/iam.roleAdministrator
+          roles/iam.serviceAccountKey
+          roles/iam.projectIAMAdmin
+          ```
 
-   Click **Save**.
+     - Click **Save**.
 
-   In the last step of the service account creation, click **Done** without entering any data.
+     - In the last step of the service account creation, click **Done** without entering any data.
 
 
 ### Create key
 
 The created account will appear in the service accounts list. **Click on it** to access additional options.
 
-In the **Keys** section, click on **Add Key → Create new key**.
+  - In the **Keys** section, click on **Add Key → Create new key**.
 
-Select the **JSON** option and click **Create**.
+  - Select the **JSON** option and click **Create**.
 
-You’ll get a file download prompt. After the JSON file is downloaded, copy its contents to the input field or click on the **Read from file** button to import the file.
+  - You will get a file download prompt. After the JSON file is downloaded open [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console and select Google Cloud platform
+
+  - Copy file contents to the input field or click on the **Read from file** button to import the file.
+
+!!! tip ""
+    Next step: [create cluster](../../getting-started/create-cluster.md)

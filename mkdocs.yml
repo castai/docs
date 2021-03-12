@@ -63,7 +63,7 @@ nav:
   - 'Introduction': index.md
   - 'Getting started':
       - getting-started/overview.md
-      - 'Add cloud credentials':
+      - '1. Add cloud credentials':
            - getting-started/credentials/credentials-overview.md
            - getting-started/credentials/configuring-aws-credentials.md
            - getting-started/credentials/configuring-azure-credentials.md

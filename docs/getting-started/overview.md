@@ -8,6 +8,9 @@ To start using CAST AI you will need:
 - Cloud credentials - [join slack and claim free trial](https://join.slack.com/t/castai-community/shared_invite/zt-kxomy09z-p_tbccVJ61azObIt~GUjXQ)
 - An application developed on Kubernetes
 
-Refer to the table of contents on the right side to quickly navigate through this document.
+!!! note ""
+    **Estimated time to get started - 10 minutes.**
 
-**Estimated time to get started - 5-10 minutes.**
+1. [Add cloud credentials](../getting-started/credentials/credentials-overview.md)
+2. [Create cluster](../getting-started/create-cluster.md)
+3. [Deploy application](../getting-started/deploy-application.md)
