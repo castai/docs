@@ -24,7 +24,7 @@ In the case of a Pod replicated across multiple clouds, volumes will be distribu
 This will limit Pod scheduling only to the nodes of the same cloud since to reschedule a Pod to a different cloud
 service, the volume must be replicated to that cloud.
 
-!!! tip
+!!! tip ""
     This limitation will be removed by the cross-cloud volume replication feature which is not available at the moment.
 
 Deleting a cluster will delete all the volumes that were provisioned dynamically.

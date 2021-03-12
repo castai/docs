@@ -1,4 +1,4 @@
-# Configure Google Cloud credentials
+# GCP
 
 By following these instructions, you’ll retrieve the service account JSON credentials. These credentials are required by
 CAST AI for creating a cluster with GCP resources.
@@ -15,13 +15,13 @@ CAST AI for creating a cluster with GCP resources.
 Run the script displayed below. It will create a new service account with the required permissions, enable the required APIs, and print your service account key JSON.
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/credentials/configuring-gcp-credentials/script.sh)"
 ```
 
 You'll see the following output:
 
 ```bash
-user@cloudshell:~ (project)$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/configuring-gcp-credentials/script.sh)"
+user@cloudshell:~ (project)$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/credentials/configuring-gcp-credentials/script.sh)"
 
 Your active configuration is: [cloudshell-25962]
 Operation "operations/acf.p2-294512688956-58cd0d54-dde2-4db3-8114-582e01768453" finished successfully.
@@ -42,10 +42,16 @@ Activated service account credentials for: [castai-credentials-1613140179@projec
 }
 ```
 
-Copy the displayed JSON and use it in the _create gcp cloud credentials_ screen.
+1. Copy the displayed JSON
+2. Open [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console
+3. Select Google Cloud Platform
+4. Paste it in the Service Account JSON field.
 
-!!! Note
+!!! Warning ""
     Cloud Shell will copy a selected text automatically. Don't use `ctrl+c` as `"private_key"` part of the JSON might get corrupted due to word wrapping.
+
+!!! tip ""
+    Next step: [create cluster](../../getting-started/create-cluster.md)
 
 ## Method 2: Create it manually using the Google Cloud Console
 
@@ -67,50 +73,35 @@ Please follow the [GCP guide](https://cloud.google.com/apis/docs/getting-started
 
 2. Select your project (or create a new one) in the top bar.
 
-   ![](configuring-gcp-credentials/gcp1.png)
-
 3. Go to the Navigation bar, select **IAM & Admin**, and then **Service accounts**:
-
-   ![](configuring-gcp-credentials/gcp2.png)
 
 4. Click **Create service account**:
 
-   ![](configuring-gcp-credentials/gcp3.png)
+     - Enter the preferred **Service account name** and **description**. Click **Create**
 
-   Enter the preferred **Service account name** and **description**. Click **Create**
+     - Add the following roles to the created account:
 
-   ![](configuring-gcp-credentials/gcp4.png)
+          ```
+          roles/compute.admin
+          roles/iam.serviceAccountUser
+          roles/iam.serviceAccountAdmin
+          roles/iam.roleAdministrator
+          roles/iam.serviceAccountKey
+          roles/iam.projectIAMAdmin
+          ```
 
-   Add the following roles to the created account:
+     - Click **Save**.
 
-    ```
-    roles/compute.admin
-    roles/iam.serviceAccountUser
-    roles/iam.serviceAccountAdmin
-    roles/iam.roleAdministrator
-    roles/iam.serviceAccountKey
-    roles/iam.projectIAMAdmin
-    ```
-
-   Click **Save**.
-
-   ![](configuring-gcp-credentials/gcp5.png)
-   In the last step of the service account creation, click **Done** without entering any data.
-
-   ![](configuring-gcp-credentials/gcp6.png)
+     - In the last step of the service account creation, click **Done** without entering any data.
 
 ### Create key
 
 The created account will appear in the service accounts list. **Click on it** to access additional options.
 
-![](configuring-gcp-credentials/gcp7.png)
+- In the **Keys** section, click on **Add Key → Create new key**.
+- Select the **JSON** option and click **Create**.
+- You will get a file download prompt. After the JSON file is downloaded open [cloud credentials](https://console.cast.ai/cloud-credentials) in CAST AI console and select Google Cloud platform
+- Copy file contents to the input field or click on the **Read from file** button to import the file.
 
-In the **Keys** section, click on **Add Key → Create new key**.
-
-![](configuring-gcp-credentials/gcp8.png)
-
-Select the **JSON** option and click **Create**.
-
-![](configuring-gcp-credentials/gcp9.png)
-
-You’ll get a file download prompt. After the JSON file is downloaded, copy its contents to the input field or click on the **Read from file** button to import the file.
+!!! tip ""
+    Next step: [create cluster](../../getting-started/create-cluster.md)

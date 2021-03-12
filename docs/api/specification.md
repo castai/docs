@@ -8,7 +8,7 @@ Swagger UI:
 This will bring you to our current specification. Here you will be able to familiarize yourself with available APIs
 and try functionality directly in the browser.
 
-!!! note
+!!! note ""
     To try out APIs in the browser you will need an API access key.
     See [Authentication](../api/authentication.md).
 
@@ -16,6 +16,6 @@ We do not maintain any public SDKs but you can generate an API client for your p
 
 <https://api.cast.ai/v1/spec/openapi.json>
 
-!!! note
+!!! note ""
     OpenAPI is widely supported. Many tools (e.g. Postman) allow importing OpenAPI definitions as well. See
     documentation for your REST tooling to find out more.

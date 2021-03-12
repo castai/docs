@@ -37,7 +37,7 @@ enables us to autoscale almost any workload: `Deployment`, `ReplicaSet`, `Replic
 
 To be able to autoscale, you will need to enable KEDA addon on the `Policies` page:
 
-1. Navigate to an existing cluster (or see [create cluster](../getting-started.md#create-cluster)).
+1. Navigate to an existing cluster (or see [create cluster](../getting-started/create-cluster.md)).
 
 2. Go to the *Policies* menu.
 

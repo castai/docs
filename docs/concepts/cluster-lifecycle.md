@@ -2,7 +2,7 @@
 
 ## 1. Provisioning
 
-You initiate the creation of the cluster. Refer to [getting started](../getting-started.md) on how to create a cluster.
+You initiate the creation of the cluster - see [create cluster](../getting-started/create-cluster.md).
 
 ### 2. Reconciliation & healing
 
