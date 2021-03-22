@@ -97,6 +97,7 @@ nav:
       - 'Authentication': api/authentication.md
       - 'Specification': api/specification.md
       - 'Terraform provider': api/terraform-provider.md
+      - 'CLI': api/cli.md
   - 'Release notes': "https://cast.ai/release-notes/"
   - 'Service status': "https://status.cast.ai/"
   - 'CAST AI Console': "https://console.cast.ai"
