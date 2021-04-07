@@ -26,7 +26,7 @@ Example if:
 | | |
 |---|---|
 | GSLB DNS value | 1234567890.your-cluster-name-7da6f229.onmulti.cloud |
-| Hostname | <https://sample-app.yourdomain.com> |
+| Hostname | <https://sample-app.yourdomain.com> | <!-- markdown-link-check-disable-line -->
 
 Then:
 
@@ -42,10 +42,17 @@ Then:
 This is a basic setup consisting of 2-replica deployment, a service description for it, and an Ingress resource to publish that service. Change value `sample-app.yourdomain.com` to the DNS CNAME that you have created, and deploy everything else as-is to your cluster.
 
 ```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sample-app
+  
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sample-app
+  namespace: sample-app
 spec:
   replicas: 2
   selector:
@@ -68,6 +75,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: sample-app
+  namespace: sample-app
 spec:
   type: NodePort
   selector:
@@ -83,6 +91,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: sample-app-ingress
+  namespace: sample-app
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -201,6 +210,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: sample-app-ingress
+  namespace: sample-app
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -223,6 +233,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: sample-app-ingress2
+  namespace: sample-app
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -248,6 +259,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: sample-app-ingress3
+  namespace: sample-app
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
@@ -284,4 +296,45 @@ spec:
             backend:
               serviceName: sample-app2
               servicePort: http
+```
+
+## Troubleshooting
+
+### 1. Check that ingress controller is properly initialized
+
+```sh
+kubectl -n ingress-bundle get svc ingress-bundle-ingress-nginx-controller
+```
+
+It should show at least two EXTERNAL-IP records, eg:
+
+```
+NAME                                      TYPE           CLUSTER-IP      EXTERNAL-IP                                               PORT(S)                      AGE
+ingress-bundle-ingress-nginx-controller   LoadBalancer   10.96.192.165   1595234145.am-f46bb49a.local.onmulti.cloud,34.89.152.59   80:30562/TCP,443:31333/TCP   4m52s
+```
+
+If EXTERNAL-IP shown as pending check service-operator logs which is responsible for creating load balancers.
+
+```sh
+kubectl -n kube-system logs -f -l app=service-operator
+```
+
+### 2. Inspect application ingress status
+
+```sh
+kubectl -n sample-app describe ingress sample-app-ingress
+```
+
+Events should contain CreateCertificate and Sync events.
+
+### 3. Inspect certificate
+
+```sh
+kubectl -n sample-app get certificate
+```
+
+If it's status shown as False check cert-manager logs.
+
+```sh
+kubectl -n ingress-bundle logs -f -l app=cert-manager
 ```
