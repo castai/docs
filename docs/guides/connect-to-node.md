@@ -6,13 +6,14 @@ This guide describes how to connect to your cluster node via Kubernetes or nativ
 
 With node-shell Kubernetes plugin you can connect into your node via Kubernetes API Server as a proxy.
 
-### Installation
+### Install node-shell
+
 using [krew](https://krew.sigs.k8s.io/):
 
-<pre>
+```bash
 kubectl krew index add kvaps <a href="https://github.com/kvaps/krew-index">https://github.com/kvaps/krew-index</a>
 kubectl krew install kvaps/node-shell
-</pre>
+```
 
 or using curl:
 
@@ -22,7 +23,7 @@ chmod +x ./kubectl-node_shell
 sudo mv ./kubectl-node_shell /usr/local/bin/kubectl-node_shell
 ```
 
-### Usage
+### Example node-shell usages
 
 ```bash
 # Get standard bash shell
@@ -48,17 +49,18 @@ kubectl node-shell <node> -- sh -c 'cat /tmp/passwd; rm -f /tmp/passwd'
 
 With native SSH you can connect directly into your node without Kubernetes API.
 
-### Installation
+### Install CAST CLI
 
 Install official [CAST CLI](https://github.com/castai/cli)
 
+### Example CAST CLI usage
 
-### Usage
 ```
 cast -c=cluster-name node ssh my-node-name
 ```
 
-When to use native ssh with CAST CLI?
+**When to use native ssh with CAST CLI?**
+
 * Your Kubernetes cluster is not working properly (Kubernetes API Server is not accessible etc.)
 * You need native SSH performance, eg: packet tracing with tcpdump etc. Kubernetes node-shell plugin
 spin ups a new pod with root access and proxies to Kubernetes API Server which is slower that direct SSH connection.
