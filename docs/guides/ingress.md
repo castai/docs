@@ -26,7 +26,7 @@ Example if:
 | | |
 |---|---|
 | GSLB DNS value | 1234567890.your-cluster-name-7da6f229.onmulti.cloud |
-| Hostname | <https://sample-app.yourdomain.com> |
+| Hostname | <https://sample-app.yourdomain.com> | <!-- markdown-link-check-disable-line -->
 
 Then:
 
