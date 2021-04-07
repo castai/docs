@@ -300,32 +300,41 @@ spec:
 
 ## Troubleshooting
 
-#### 1. Check that ingress-nginx-controller contains LoadBalancer type service.
+### 1. Check that ingress controller is properly initialized
+
 ```sh
 kubectl -n ingress-bundle get svc ingress-bundle-ingress-nginx-controller
 ```
+
 It should show at least two EXTERNAL-IP records, eg:
+
 ```
 NAME                                      TYPE           CLUSTER-IP      EXTERNAL-IP                                               PORT(S)                      AGE
 ingress-bundle-ingress-nginx-controller   LoadBalancer   10.96.192.165   1595234145.am-f46bb49a.local.onmulti.cloud,34.89.152.59   80:30562/TCP,443:31333/TCP   4m52s
 ```
+
 If EXTERNAL-IP shown as pending check service-operator logs which is responsible for creating load balancers.
 
 ```sh
 kubectl -n kube-system logs -f -l app=service-operator
 ```
 
-#### 2. Check ingress resource.
+### 2. Inspect application ingress status
+
 ```sh
 kubectl -n sample-app describe ingress sample-app-ingress
 ```
+
 Events should contain CreateCertificate and Sync events.
 
-#### 3.  Check certificate.
+### 3. Inspect certificate
+
 ```sh
 kubectl -n sample-app get certificate
 ```
+
 If it's status shown as False check cert-manager logs.
+
 ```sh
 kubectl -n ingress-bundle logs -f -l app=cert-manager
 ```

@@ -85,7 +85,7 @@ nav:
       - concepts/cluster-architecture.md
       - concepts/cluster-infrastructure.md
       - concepts/vpn-overview.md
-  - 'Configuration':
+  - 'Guides':
       - 'Ingress': guides/ingress.md
       - 'Pod placement': guides/pod-pinning.md
       - guides/volumes.md
