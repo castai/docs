@@ -92,6 +92,7 @@ nav:
       - guides/autoscaling-policies.md
       - guides/hpa.md
       - guides/spot.md
+      - guides/connect-to-node.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
