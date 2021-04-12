@@ -45,7 +45,7 @@ do
   aws iam attach-user-policy --user-name $USER_NAME --policy-arn $i
 done
 
-aws iam put-user-policy --user-name cast-eks-testuzas --policy-name CastEKSFullAccess --policy-document $EKS_POLICY_JSON
+aws iam put-user-policy --user-name $USER_NAME --policy-name CastEKSFullAccess --policy-document $EKS_POLICY_JSON
 
 echo "Adding user to cluster '$CLUSTER_NAME'"
 if ! eksctl get iamidentitymapping --cluster $CLUSTER_NAME --region $REGION --arn $USER_ARN -v 0 >> /dev/null 2>&1; then
