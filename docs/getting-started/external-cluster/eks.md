@@ -47,4 +47,3 @@ REGION=<region> CLUSTER_NAME=<name> /bin/bash -c "$(curl -fsSL https://raw.githu
 
 It will create a new AWS user with the required permissions, modify `aws-auth` ConfigMap, and print AWS `AccessKeyId`
 and `SecretAccessKey` which then can be added to CAST console and assigned to corresponding EKS cluster.
-
