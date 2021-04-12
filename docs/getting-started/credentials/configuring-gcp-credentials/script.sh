@@ -2,31 +2,38 @@ PROJECT_ID=$(gcloud config get-value project)
 SERVICE_ACCOUNT_ID=castai-credentials-$(date +%s)
 SERVICE_ACCOUNT_EMAIL="${SERVICE_ACCOUNT_ID}@${PROJECT_ID}.iam.gserviceaccount.com"
 
-# enable google cloud apis
-gcloud services enable \
+echo "Setting up GCP cloud credentials"
+echo "PROJECT_ID=$PROJECT_ID"
+echo "SERVICE_ACCOUNT_ID=$SERVICE_ACCOUNT_ID"
+echo "SERVICE_ACCOUNT_EMAIL=$SERVICE_ACCOUNT_EMAIL"
+
+echo "Enabling required google cloud apis"
+gcloud services enable --no-user-output-enabled \
   iam.googleapis.com \
   cloudresourcemanager.googleapis.com \
   compute.googleapis.com \
   cloudbilling.googleapis.com
 
-# create service account
-gcloud iam service-accounts create "$SERVICE_ACCOUNT_ID" --display-name "Service account used for CAST.AI clusters"
+echo "Creating service account"
+gcloud iam service-accounts create "$SERVICE_ACCOUNT_ID" --display-name "Service account used for CAST.AI clusters" --no-user-output-enabled
 
-# generate service account key
-gcloud iam service-accounts keys create "${SERVICE_ACCOUNT_ID}.json" --iam-account "$SERVICE_ACCOUNT_EMAIL"
+echo "Generating service account key"
+gcloud iam service-accounts keys create "${SERVICE_ACCOUNT_ID}.json" --iam-account "$SERVICE_ACCOUNT_EMAIL" --no-user-output-enabled
 
-# assign required roles to the service account
+echo "Assigning required roles to $SERVICE_ACCOUNT_EMAIL service account"
 for ROLE in roles/compute.admin \
   roles/iam.serviceAccountUser \
   roles/iam.serviceAccountAdmin \
   roles/iam.roleAdmin \
   roles/iam.serviceAccountKeyAdmin \
   roles/resourcemanager.projectIamAdmin; do
-  gcloud projects add-iam-policy-binding "$PROJECT_ID" --role="$ROLE" --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" --no-user-output-enabled
+  echo "- Assigning $ROLE"
+  gcloud projects add-iam-policy-binding "$PROJECT_ID" --role="$ROLE" --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" --condition=None --no-user-output-enabled
 done
 
-# activate the service account
-gcloud auth activate-service-account --key-file="${SERVICE_ACCOUNT_ID}.json"
+echo "Activating $SERVICE_ACCOUNT_EMAIL service account"
+gcloud auth activate-service-account --key-file="${SERVICE_ACCOUNT_ID}.json" --no-user-output-enabled
 
-# print service account key
+echo "Service account key json:"
+
 cat "${SERVICE_ACCOUNT_ID}.json"

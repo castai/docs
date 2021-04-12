@@ -23,11 +23,23 @@ You'll see the following output:
 ```bash
 user@cloudshell:~ (project)$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/credentials/configuring-gcp-credentials/script.sh)"
 
-Your active configuration is: [cloudshell-25962]
-Operation "operations/acf.p2-294512688956-58cd0d54-dde2-4db3-8114-582e01768453" finished successfully.
-Created service account [castai-credentials-1613140179].
-created key [89d0debfef9d2e83c967b65615569a24fd8cdad4] of type [json] as [castai-credentials-1613140179.json] for [castai-credentials-1613140179@project.iam.gserviceaccount.com]
-Activated service account credentials for: [castai-credentials-1613140179@project.iam.gserviceaccount.com]
+Your active configuration is: [cloudshell-21130]
+Setting up GCP cloud credentials
+PROJECT_ID=project
+SERVICE_ACCOUNT_ID=castai-credentials-1613140179
+SERVICE_ACCOUNT_EMAIL=castai-credentials-1613140179@project.iam.gserviceaccount.com
+Enabling required google cloud apis
+Creating service account
+Generating service account key
+Assigning required roles to castai-credentials-1613140179@project.iam.gserviceaccount.com service account
+- Assigning roles/compute.admin
+- Assigning roles/iam.serviceAccountUser
+- Assigning roles/iam.serviceAccountAdmin
+- Assigning roles/iam.roleAdmin
+- Assigning roles/iam.serviceAccountKeyAdmin
+- Assigning roles/resourcemanager.projectIamAdmin
+Activating castai-credentials-1613140179@project.iam.gserviceaccount.com service account
+Service account key json:
 {
   "type": "service_account",
   "project_id": "project",
