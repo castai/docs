@@ -1,5 +1,7 @@
-CAST AI allows you to connect your existing Kubernetes cluster simply by running script provided in the CAST console. To
-get started, login to the console and navigate to `Connect cluster` window.
+External cluster management brings CAST AI features, like autoscaler, to an externally managed clusters, like EKS, GKE
+or AKS. By installing CAST AI agent, you start observing cluster running costs and potential savings; you can then
+enable features that optimize your cluster - like adding and removing nodes, or right-sizing deployments. To get started,
+login to the console and navigate to `Connect cluster` window.
 
 ![img.png](../screenshots/connect-cluster.png)
 
