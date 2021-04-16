@@ -12,7 +12,7 @@ Key functionality:
     - Cluster can be set to be always “ON”  (i.e. 24hrs).
 4. Copy schedule set in one day to one or more other weekdays.
 5. Check estimated savings to understand how much you can save if schedule (as defined) will be applied on a cluster.
-6. Save schedule. Cluster will be paused and resumed based on values entered.
+6. Save changes. Cluster will be paused and resumed based on values entered.
 7. Delete schedule (only available if schedule was set to begin with). Cluster will have no schedule applied and will be active 24/7.
 
 ![](images/schedule1.png)
