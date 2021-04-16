@@ -10,9 +10,9 @@ Key functionality:
 
 3 Set active time for your cluster based on:
 
-   - Weekday
-   - Time period in the day. Multiple time intervals can be set in a single day to cater for custom work patters, breaks etc.
-   - Cluster can be set to be always “ON”  (i.e. 24hrs).
+- Weekday
+- Time period in the day. Multiple time intervals can be set in a single day to cater for custom work patters, breaks etc.
+- Cluster can be set to be always “ON”  (i.e. 24hrs).
 
 4 Copy schedule set in one day to one or more other weekdays.
 
