@@ -81,6 +81,7 @@ nav:
       - console-overview/nodes.md
       - console-overview/audit-log.md
       - console-overview/policies.md
+      - console-overview/schedule.md
       - console-overview/logs.md
       - console-overview/api.md
   - 'Concepts':
@@ -105,4 +106,5 @@ nav:
       - 'CLI': api/cli.md
   - 'Release notes': "https://cast.ai/release-notes/"
   - 'Service status': "https://status.cast.ai/"
+  - 'Github': "https://github.com/castai"
   - 'CAST AI Console': "https://console.cast.ai"
