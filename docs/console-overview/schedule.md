@@ -17,10 +17,6 @@ Key functionality:
 
 ![](images/schedule1.png)
 
-
-
 ![](images/schedule2.png)
-
-
 
 ![](images/schedule3.png)
