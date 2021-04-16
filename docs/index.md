@@ -6,6 +6,8 @@ It is one platform that cuts your cloud costs, boosts DevOps, and prevents downt
 
 Deploy your first cluster in 5-10 minutes. Follow our [getting started](./getting-started/overview.md) guide to try it out!
 
+Or [connect your cluster](./getting-started/external-cluster/overview.md) with read-only mode and we will calculate and provide you estimated monthly savings.
+
 ## Community
 
 We invite you to join our community and find out what is trending in the atmosphere; connect with our engineers and support, monitor release-notes, explore technical discussions, and more:
