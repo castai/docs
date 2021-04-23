@@ -47,3 +47,14 @@ REGION=<region> CLUSTER_NAME=<name> /bin/bash -c "$(curl -fsSL https://raw.githu
 
 It will create a new AWS user with the required permissions, modify `aws-auth` ConfigMap, and print AWS `AccessKeyId`
 and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster.
+
+Generated user will have following permissions:
+
+- `AmazonEC2ReadOnlyAccess`
+- `IAMReadOnlyAccess`
+- Manage instances in specified cluster restricted to cluster VPC
+- Manage autoscaling groups in specified cluster
+- Manage EKS Node Groups in specified cluster
+
+!!! note ""
+    All `Write` permissions are scoped to single EKS cluster, and it won't have access to resources of other clusters in the AWS account.
