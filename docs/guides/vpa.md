@@ -34,11 +34,13 @@ Run `kubectl top nodes` to check if metrics server was installed successfully
 3. Vertical Pod Autoscaler installed
 
     a)
+
     ```
     git clone https://github.com/kubernetes/autoscaler.git
     ```
 
     b) Install VPA:
+
     ```
     cd vertical-pod-autoscaler
     ./hack/vpa-up.sh
@@ -53,9 +55,10 @@ Run `kubectl top nodes` to check if metrics server was installed successfully
     c) Wait a day for the VPA.
 
     d) Send us the output of:
-        ```
+
+    ```
         kubectl get vpa -A -o yaml > recommendations.txt
-        ```
+    ```
 
 ### Troubleshooting
 
@@ -172,4 +175,4 @@ spec:
 
 ## Resources
 
-**VPA definitive guide:** https://povilasv.me/vertical-pod-autoscaling-the-definitive-guide/
+[VPA definitive guide](https://povilasv.me/vertical-pod-autoscaling-the-definitive-guide/)
