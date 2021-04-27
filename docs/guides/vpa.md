@@ -2,7 +2,7 @@
 
 ## Recommendations example
 
-![](../vpa/vpa.png)
+![](./vpa/vpa.png)
 
 <-- On the left side you can see:
 
@@ -48,7 +48,7 @@
 
 4. Create VPA for each deployment to get the recommendations
 
-    a) See [Configure VPA for your deployment](../vpa/#configure-vpa-for-your-deployment) below for examples.
+    a) See [Configure VPA for your deployment](#configure-vpa-for-your-deployment) below for examples.
 
     b) **Each deployment that wants make use of VPA, needs to have VPA created for it.**
 
