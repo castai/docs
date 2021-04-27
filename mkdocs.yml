@@ -98,6 +98,7 @@ nav:
       - guides/hpa.md
       - guides/spot.md
       - guides/connect-to-node.md
+      - guides/vpa.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
