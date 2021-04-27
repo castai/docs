@@ -25,11 +25,11 @@
 
 2. Metrics-server up and running
 
-```
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-```
+   ```
+   kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+   ```
 
-Run `kubectl top nodes` to check if metrics server was installed successfully
+   Run `kubectl top nodes` to check if metrics server was installed successfully
 
 3. Vertical Pod Autoscaler installed
 
