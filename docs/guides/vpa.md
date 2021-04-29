@@ -15,50 +15,86 @@
 
 ## VPA install guide
 
-### Pre-requisites
-
 1. In order for the instructions to work on **macOS** one needs to have latest version of OpenSSL from Homebrew:
-
-    a) `brew install openssl` (make use of that OpenSSL version, rather than macOS native one).
-
-    b) `brew info openssl` to see the instructions for setting this openssl version as your default one.
+      - `brew install openssl` (make use of that OpenSSL version, rather than macOS native one).
+      - Run `brew info openssl` to see the instructions for setting this openssl version as your default one.
 
 2. Metrics-server up and running
+      - If you don't have metrics-server installed, run the following to install it:
 
-    ```
-    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-    ```
+      ```
+      kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+      ```
 
-    Run `kubectl top nodes` to check if metrics server was installed successfully
+      - Run `kubectl top nodes` to check if metrics server was installed successfully
 
 3. Vertical Pod Autoscaler installed
+      - Prerequisite: [helm](https://helm.sh/docs/intro/install/)
+      - Install helm chart
 
-    a)
+      ```sh
+      helm repo add fairwinds-stable https://charts.fairwinds.com/stable
+      helm install vpa fairwinds-stable/vpa --namespace vpa --create-namespace
+      ```
 
-    ```
-    git clone https://github.com/kubernetes/autoscaler.git
-    ```
+      - Run helm chart tests to make sure VPA is successfully installed
 
-    b) Install VPA:
+      ```sh
+      helm test vpa -n vpa
+      ```
 
-    ```
-    cd vertical-pod-autoscaler
-    ./hack/vpa-up.sh
-    ```
+      - Output similar to this should be visible:
+
+      ```text
+      LAST DEPLOYED: Thu Apr 29 19:53:50 2021
+      NAMESPACE: vpa
+      STATUS: deployed
+      REVISION: 1
+      TEST SUITE:     vpa-test
+      Last Started:   Thu Apr 29 20:04:13 2021
+      Last Completed: Thu Apr 29 20:04:13 2021
+      Phase:          Succeeded
+      TEST SUITE:     vpa-test
+      Last Started:   Thu Apr 29 20:04:14 2021
+      Last Completed: Thu Apr 29 20:04:14 2021
+      Phase:          Succeeded
+      TEST SUITE:     vpa-test
+      Last Started:   Thu Apr 29 20:04:14 2021
+      Last Completed: Thu Apr 29 20:04:14 2021
+      Phase:          Succeeded
+      TEST SUITE:     vpa-checkpoint-crd-available
+      Last Started:   Thu Apr 29 20:04:14 2021
+      Last Completed: Thu Apr 29 20:04:16 2021
+      Phase:          Succeeded
+      TEST SUITE:     vpa-crd-available
+      Last Started:   Thu Apr 29 20:04:16 2021
+      Last Completed: Thu Apr 29 20:04:19 2021
+      Phase:          Succeeded
+      TEST SUITE:     vpa-test-create-vpa
+      Last Started:   Thu Apr 29 20:04:21 2021
+      Last Completed: Thu Apr 29 20:04:49 2021
+      Phase:          Succeeded
+      TEST SUITE:     vpa-metrics-api-available
+      Last Started:   Thu Apr 29 20:04:19 2021
+      Last Completed: Thu Apr 29 20:04:21 2021
+      Phase:          Succeeded
+      NOTES:
+      Congratulations on installing the Vertical Pod Autoscaler!
+
+      Components Installed:
+        - recommender
+        - updater
+      ```
 
 4. Create VPA for each deployment to get the recommendations
+      - See [Configure VPA for your deployment](#configure-vpa-for-your-deployment) below for examples.
+      - **Each deployment that wants make use of VPA, needs to have VPA created for it.**
+      - Wait a day for the VPA.
+      - Send us the output of:
 
-    a) See [Configure VPA for your deployment](#configure-vpa-for-your-deployment) below for examples.
-
-    b) **Each deployment that wants make use of VPA, needs to have VPA created for it.**
-
-    c) Wait a day for the VPA.
-
-    d) Send us the output of:
-
-    ```
-        kubectl get vpa -A -o yaml > recommendations.txt
-    ```
+         ```
+         kubectl get vpa -A -o yaml > recommendations.txt
+         ```
 
 ### Troubleshooting
 
@@ -165,13 +201,11 @@ spec:
 
 ## Available VPA modes
 
-- ``"Off"``: VPA does not automatically change resource requirements of the pods. The recommendations are calculated and can be inspected in the VPA object.
-- ``"Auto"``: VPA assigns resource requests on pod creation as well as updates them on existing pods using the preferred update mechanism. Currently this is equivalent to ``"Recreate"`` (see below). Once restart free ("in-place") update of pod requests is available, it may be used as the preferred update mechanism by the ``"Auto"`` mode.
-
+- `"Off"`: VPA does not automatically change resource requirements of the pods. The recommendations are calculated and can be inspected in the VPA object.
+- `"Auto"`: VPA assigns resource requests on pod creation as well as updates them on existing pods using the preferred update mechanism. Currently this is equivalent to ``"Recreate"`` (see below). Once restart free ("in-place") update of pod requests is available, it may be used as the preferred update mechanism by the ``"Auto"`` mode.
 !!! warning
-    ``"Auto"`` feature of VPA is experimental and may cause downtime for your applications.
-
-- ``"Initial"``: VPA only assigns resource requests on pod creation and never changes them later.
+      `"Auto"` feature of VPA is experimental and may cause downtime for your applications.
+- `"Initial"`: VPA only assigns resource requests on pod creation and never changes them later.
 
 ## Resources
 
