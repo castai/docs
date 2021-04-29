@@ -1,9 +1,9 @@
-# Start saving on your external [EKS] cluster immediately
+# Start saving on your connected EKS cluster immediately
 
 So, you liked the results of the Savings Estimator after connecting your existing EKS cluster to CAST AI, but don't
 want to wait until these savings reach you in a slow and risk-free ongoing process. You can speed this up, here's how.
 
-## Register your external cluster
+## Register your connected cluster (EKS)
 
 You need to register first - which means creating an IAM user for CAST AI to optimize your cluster.
 
@@ -22,7 +22,7 @@ the number from Available Savings - this is the total amount of nodes you should
 ![](start-saving-quickly/amount_of_nodes.png)
 
 ```
-headroom percentage = 100 / Amount_of_Nodes_in_suggest_optimased_state
+headroom percentage = 100 / Amount_of_Nodes_in_suggest_optimased_state+1
 ```
 
 In the Policies tab, it should look like this:
@@ -51,7 +51,7 @@ without ReplicaSet, meaning that those nodes can't be removed gracefully.
 You will have to get rid of your existing nodes and let CAST AI create an optimized state right away. This might cause some
 downtime depending on your workload configuration.
 
-For example, pick 50% of your nodes in one availability zone (AZ) or 20% of nodes if your external cluster is in a single AZ.
+For example, pick 50% of your nodes in one availability zone (AZ) or 20% of nodes if your connected cluster is in a single AZ.
 
 ```
 kubectl get nodes -Lfailure-domain.beta.kubernetes.io/zone --selector=eks.amazonaws.com/nodegroup-image
