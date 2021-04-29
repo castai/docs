@@ -29,12 +29,12 @@ In the Policies tab, it should look like this:
 
 ![](start-saving-quickly/policies.png)
 
-# "Slow and safe" or "maximize savings now"
+## "Slow and safe" or "maximize savings now"
 
 Evictor is our recommended way - it will constantly look for inefficiencies. But reducing costs in a safe manner takes
 time. If you want to maximize your savings as quickly as possible and you have a maintenance window, you can do it in CAST AI.
 
-## Install Evictor (continues improvements)
+### Install Evictor (continues improvements)
 
 Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy:
 
@@ -46,7 +46,7 @@ helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
 This process will take some time. Also, Evictor will not cause any downtime to single replica deployments / statefulSets, pods
 without ReplicaSet, meaning that those nodes can't be removed gracefully.
 
-## Stir the pod with manual migration
+### Stir the pod with manual migration
 
 You will have to get rid of your existing nodes and let CAST AI create an optimized state right away. This might cause some
 downtime depending on your workload configuration.
@@ -90,14 +90,15 @@ kubectl get nodes -Lfailure-domain.beta.kubernetes.io/zone --selector=eks.amazon
 Select next batch -> cordon -> drain -> write down problematic pod that don't migrate easily -> rinse and repeat until the
 list is empty.
 
-## Utilize Spot instances
+### Utilize Spot instances
 
-In the Available savings window, you can find a list of deployments that could use Spot instances. I have a recommendation 
+In the Available savings window, you can find a list of deployments that could use Spot instances. I have a recommendation
 service running with 10 replicas.
 
 ![](start-saving-quickly/spot_deployments.png)
 
 I could separate this workload into two deployments:
+
 1. Reduce the current replica count to a bare minimum (in my case, 2 replicas),
 2. Create a copy of deployment with "_spot" _appending name, add toleration, and set to 8 replicas - or beter, configure to
 use KEDA, see [HPA documentation](../guides/hpa.md)
@@ -110,7 +111,7 @@ tolerations:
 ...
 ```
 
-## You're all done
+### You're all done
 
 * Share the Available savings window screenshot with your CFO/manager - there's nothing left to save.
 
