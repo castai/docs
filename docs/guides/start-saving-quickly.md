@@ -1,90 +1,90 @@
-# Start saving on your external cluster [EKS] immediately
+# Start saving on your external [EKS] cluster immediately
 
-If you liked the numbers you saw in Savings Estimator after connecting your existing EKS cluster to CAST.AI and don't
-want to wait until saving reach you in a slow, on-going process without risks. You could hasten these saving by helping
-yourself.
+So, you liked the results of the Savings Estimator after connecting your existing EKS cluster to CAST AI, but don't
+want to wait until these savings reach you in a slow and risk-free ongoing process. You can speed this up, here's how.
 
 ## Register your external cluster
 
-You need to register, which means create IAM user for CAST.AI to optimize your external cluster
+You need to register first - which means creating an IAM user for CAST AI to optimize your cluster.
 
-## Enable Policies
+## Enable policies
 
-1. **Enabled Node deletion** policy, this policy will remove Nodes without PODs (ignores daemonSets)
+1. **Enabled Node deletion** policy - this policy will remove nodes without pods (ignores daemonSets).
 
-2. **Enable Unscheduled Pod** policy, it will make sure, you always have capacity in the cluster to run PODs. Unscheduled
-Pod policy will provision new node, which takes 2-3 minutes.
+2. **Enable Unscheduled Pod** policy - it will make sure that you always have the capacity in the cluster to run pods. The Unscheduled
+Pod policy will provision a new node when required, taking no more than 2-3 minutes.
 
-3. **Adjust headroom %** for migration purposes, Each node adds overhead through daemonSets and means more PODs won't find their destination on 
-the same node (added latency), so ideally one should have as big nodes as possible, but 5-6 nodes at the minimum (for 
-below 200 CPUs cluster) for good SLA and adequate capacity distribution for lifecycle process (upgrades, patching). Take
-number from Available Savings - total amount of nodes you should have in Optimized state.
+3. **Adjust headroom %** for migration purposes - each node adds overhead through daemonSets and this means that more pods won't find their destination on 
+the same node (added latency). So ideally, one should have nodes that are as large as possible, but 5-6 nodes minimum (for 
+below 200 CPUs cluster) for good SLA and adequate capacity distribution for the lifecycle process (upgrades, patching). Take
+the number from Available Savings - this is the total amount of nodes you should have in the optimized state.
 ![](start-saving-quickly/amount_of_nodes.png)
 ```
 headroom percentage = 100 / Amount_of_Nodes_in_suggest_optimased_state
 ```
-In Policies tab it should look like 
+In the Policies tab, it should look like this: 
 ![](start-saving-quickly/policies.png)
 
 # "Slow and safe" or "maximize savings now"
 
-Evictor is our recommended way, it will constantly look for inefficiencies, but to reduce costs in a safe manner takes
-time. If you want to maximize your savings as quick as possible and you have a maintenance window you can do it.
+Evictor is our recommended way - it will constantly look for inefficiencies. But reducing costs in a safe manner takes
+time. If you want to maximize your savings as quickly as possible and you have a maintenance window, you can do it in CAST AI.
 
 ## Install Evictor (continues improvements)
 
-Evictor will compact your PODs in to fewer nodes, creating empty nodes which will be removed by Node deletion policy:
+Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy:
 ```
 helm repo add castai https://castai.github.io/official-addons
 helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
 ```
-This process will take some time, also evictor will not cause downtime so single replica deployments / statefulSets, PODs
-without ReplicaSet would mean those nodes can't be removed in a graceful manner.
+This process will take some time. Also, Evictor will not cause any downtime to single replica deployments / statefulSets, pods
+without ReplicaSet, meaning that those nodes can't be removed gracefully.
 
 ## Stir the pod with manual migration
 
-You will have to get rid of your existing Nodes, and let CAST.AI create Optimized state right away. It might cause some
-downtime depending on your workloads configuration
+You will have to get rid of your existing nodes and let CAST AI create an optimized state right away. This might cause some
+downtime depending on your workload configuration.
 
-Pick say 50% of your nodes in one availability zone (AZ), or 20% of nodes if your external cluster is in single AZ.
+For example, pick 50% of your nodes in one availability zone (AZ) or 20% of nodes if your external cluster is in a single AZ.
 ```
 kubectl get nodes -Lfailure-domain.beta.kubernetes.io/zone --selector=eks.amazonaws.com/nodegroup-image
 ```
-Percentage is arbitrary, depends on your risk appetite and how much you want to spend time on this. Taint (cordon) 
-selected nodes, so no new PODs will be place on these nodes. I like Lens k8s ide, but you can use kubectl as 
+The percentage is arbitrary - it depends on your risk appetite and how much time you want to spend on this. Taint (cordon) 
+the selected nodes, so no new pods are placed on these nodes. We like Lens k8s ide, but you can use kubectl as 
 well: 
 ```
 kubectl cordon nodeName1
 kubectl cordon nodeName2
 ```
-and now drain these nodes:
+And now drain these nodes:
 ```
 kubectl drain nodeName1 --ignore-daemonsets --delete-local-data
 kubectl drain nodeName2 --ignore-daemonsets --delete-local-data
 ```
-Some nodes will not drain, because Disruption Budget violation (downtime), these cases should be fixed as will 
-cause pain in the future, or at least noted to address when convenient. If you want to progress anyway and accept
-downtime, cancel drain command and retry drain with additional --force flag.
+Some nodes will not drain because of the Disruption Budget violation (downtime). These cases should be fixed since they are going to 
+cause pain in the future (or at least noted to be addressed when most convenient). If you want to progress anyway and accept
+downtime, cancel the drain command and retry draining with the additional --force flag.
 
-You should see that drained nodes disappear (empty Node deletion policy) and in few moments new nodes in same 
-availability zone appear (unscheduled POD policy with Headroom).
-Check remaining nodes, you will see that list is shorter, because below command select only nodes in AWS autoscaling
-group (ASG), new nodes do not use ASG.
+You should see that the drained nodes disappear (empty Node deletion policy) and, in few moments, new nodes in the same 
+availability zone appear (Unscheduled Pod policy with Headroom).
+
+Check the remaining nodes. You will see that list is shorter because the command below selects only nodes in the AWS autoscaling
+group (ASG) and new nodes don't use ASG.
 ```
 kubectl get nodes -Lfailure-domain.beta.kubernetes.io/zone --selector=eks.amazonaws.com/nodegroup-image
 ```
-Select next batch -> cordon -> drain -> write down problematic PODs which do not migrate easily -> rince and repeat until
+Select next batch -> cordon -> drain -> write down problematic pod that don't migrate easily -> rinse and repeat until the
 list is empty.
 
-## Utilize Spot
+## Utilize Spot instances
 
-In Available saving window there are list of Deployments which could be using Spot instances. I have recommendation 
+In the Available savings window, you can find a list of deployments that could use Spot instances. I have a recommendation 
 service running with 10 replicas.
 ![](start-saving-quickly/spot_deployments.png)
-I could separate this workload to two deployments:
-1. reduce current replica count to bare minimum (in my case 2 replicas),
-2. create copy of deployment with "_spot" appending name, add toleration and set to 8 replicas, or beter configure to
-use KEDA see [HPA documentation](../guides/hpa.md)
+I could separate this workload into two deployments:
+1. Reduce the current replica count to a bare minimum (in my case, 2 replicas),
+2. Create a copy of deployment with "_spot" _appending name, add toleration, and set to 8 replicas - or beter, configure to
+use KEDA, see [HPA documentation](../guides/hpa.md)
 ```yaml
 ...
 tolerations:
@@ -95,8 +95,8 @@ tolerations:
 
 ## You're all done
 
-* Share available savings window screenshot with your CFO/manager - there is nothing left to save.
+* Share the Available savings window screenshot with your CFO/manager - there's nothing left to save.
 
-* Reduce Headroom policy to smaller number, which would fit your smoother organical growth better
+* Reduce the Headroom policy to a smaller number that fits your smooth organic growth better.
 
-* Install evictor, if you haven't done that above
+* Install Evictor, if you haven't already done that.
