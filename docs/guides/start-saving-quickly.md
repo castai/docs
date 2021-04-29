@@ -5,7 +5,7 @@ want to wait until these savings reach you in a slow and risk-free ongoing proce
 
 ## Register your connected cluster (EKS)
 
-You need to register first - which means creating an IAM user for CAST AI to optimize your cluster.
+You need to [register first](../getting-started/external-cluster/eks.md#credential-onboarding) - which means creating an IAM user for CAST AI to optimize your cluster.
 
 ## Enable policies
 
@@ -14,8 +14,7 @@ You need to register first - which means creating an IAM user for CAST AI to opt
 2. **Enable Unscheduled Pod** policy - it will make sure that you always have the capacity in the cluster to run pods. The Unscheduled
 Pod policy will provision a new node when required, taking no more than 2-3 minutes.
 
-3. **Adjust headroom %** for migration purposes - each node adds overhead through daemonSets and this means that more pods won't find their destination on
-the same node (added latency). So ideally, one should have nodes that are as large as possible, but 5-6 nodes minimum (for
+3. **Adjust headroom %** for migration purposes - each node adds overhead through daemonSets, also more smaller nodes means that more pods won't find their destination on the same node (added latency). So ideally, one should have nodes that are as large as possible, but 5-6 nodes minimum (for
 below 200 CPUs cluster) for good SLA and adequate capacity distribution for the lifecycle process (upgrades, patching). Take
 the number from Available Savings - this is the total amount of nodes you should have in the optimized state.
 
