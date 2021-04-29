@@ -96,7 +96,7 @@ nav:
       - guides/volumes.md
       - guides/connect-to-node.md  
       - guides/autoscaling-policies.md
-      - guides/start-saving-quickly.md
+      - 'Start saving quickly': guides/start-saving-quickly.md
       - guides/hpa.md
       - guides/spot.md
       - guides/vpa.md
