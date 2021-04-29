@@ -94,10 +94,11 @@ nav:
       - 'Ingress': guides/ingress.md
       - 'Pod placement': guides/pod-pinning.md
       - guides/volumes.md
+      - guides/connect-to-node.md  
       - guides/autoscaling-policies.md
+      - guides/start-saving-quickly.md
       - guides/hpa.md
       - guides/spot.md
-      - guides/connect-to-node.md
       - guides/vpa.md
   - 'API':
       - 'Introduction': api/overview.md
