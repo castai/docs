@@ -9,19 +9,19 @@ You need to [register first](../getting-started/external-cluster/eks.md#credenti
 
 ## Enable policies
 
-1. **Enabled Node deletion** policy - this policy will remove nodes without pods (ignores daemonSets).
+1. **Enabled Node deletion** policy - this policy will remove nodes without pods (ignores DaemonSets).
 
 2. **Enable Unscheduled Pod** policy - it will make sure that you always have the capacity in the cluster to run pods. The Unscheduled
 Pod policy will provision a new node when required, taking no more than 2-3 minutes.
 
-3. **Adjust headroom %** for migration purposes - each node adds overhead through daemonSets, also more smaller nodes means that more pods won't find their destination on the same node (added latency). So ideally, one should have nodes that are as large as possible, but 5-6 nodes minimum (for
+3. **Adjust headroom %** for migration purposes - each node adds overhead through DaemonSets, also more smaller nodes means that more pods won't find their destination on the same node (added latency). So ideally, one should have nodes that are as large as possible, but 5-6 nodes minimum (for
 below 200 CPUs cluster) for good SLA and adequate capacity distribution for the lifecycle process (upgrades, patching). Take
 the number from Available Savings - this is the total amount of nodes you should have in the optimized state.
 
 ![](start-saving-quickly/amount_of_nodes.png)
 
 ```
-headroom percentage = 100 / Amount_of_Nodes_in_suggest_optimased_state+1
+headroom percentage = 100 / Amount_of_Nodes_in_suggested_optimized_state+1
 ```
 
 In the Policies tab, it should look like this:
@@ -33,7 +33,7 @@ In the Policies tab, it should look like this:
 Evictor is our recommended way - it will constantly look for inefficiencies. But reducing costs in a safe manner takes
 time. If you want to maximize your savings as quickly as possible and you have a maintenance window, you can do it in CAST AI.
 
-### Install Evictor (continues improvements)
+### Install Evictor (continuous improvements)
 
 Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy:
 
@@ -42,7 +42,7 @@ helm repo add castai https://castai.github.io/official-addons
 helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
 ```
 
-This process will take some time. Also, Evictor will not cause any downtime to single replica deployments / statefulSets, pods
+This process will take some time. Also, Evictor will not cause any downtime to single replica deployments / StatefulSets, pods
 without ReplicaSet, meaning that those nodes can't be removed gracefully.
 
 ### Stir the pod with manual migration
@@ -99,7 +99,7 @@ service running with 10 replicas.
 I could separate this workload into two deployments:
 
 1. Reduce the current replica count to a bare minimum (in my case, 2 replicas),
-2. Create a copy of deployment with "_spot" _appending name, add toleration, and set to 8 replicas - or beter, configure to
+2. Create a copy of deployment with "_spot" appending name, add toleration, and set to 8 replicas - or beter, configure to
 use KEDA, see [HPA documentation](../guides/hpa.md)
 
 ```yaml
