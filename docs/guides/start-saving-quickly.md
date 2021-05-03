@@ -99,7 +99,7 @@ service running with 10 replicas.
 I could separate this workload into two deployments:
 
 1. Reduce the current replica count to a bare minimum (in my case, 2 replicas),
-2. Create a copy of deployment with "_spot" appending name, add toleration, and set to 8 replicas - or beter, configure to
+2. Create a copy of deployment with "-spot" appending name, add toleration, and set to 8 replicas - or beter, configure to
 use KEDA, see [HPA documentation](../guides/hpa.md)
 
 ```yaml
