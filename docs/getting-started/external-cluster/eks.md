@@ -37,7 +37,7 @@ Prerequisites:
 
 Onboarding steps:
 
-To onboard your cluster to “Available Savings” report and click on “Start saving” or “Enable CAST AI” button. The actual button will depend on an amount of optimizations available from your cluster.
+To onboard your cluster go to “Available Savings” report and click on “Start saving” or “Enable CAST AI” button. The actual button will depend on an amount of optimizations available from your cluster.
 
 Follow the instruction in the pop-up window to create & use AWS `AccessKeyId` and `SecretAccessKey`
 
