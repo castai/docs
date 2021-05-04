@@ -33,20 +33,17 @@ Prerequisites:
 - **IAM permissions** – The IAM security principal that you're using must have permissions to work with AWS EKS, AWS IAM,
   and related resources. Additionally, you should have access to the EKS cluster that you wish to onboard on the CAST AI console.
 
-When you create an Amazon EKS cluster, the IAM entity user or role, such as a federated user that creates the cluster,
-is automatically granted a `system:masters` permissions in the cluster's RBAC configuration in the control plane. To grant
-additional AWS users or roles the ability to interact with your cluster, you must edit the `aws-auth` ConfigMap within
-Kubernetes. For more information,
-see [Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html)
+- CAST AI agent has to be running on the cluster.
 
-Run the following script to reduce number of manual steps mentioned above.
+Onboarding steps:
 
-```bash
-REGION=<region> CLUSTER_NAME=<name> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/castai/docs/main/docs/getting-started/credentials/configuring-eks-credentials/script.sh)"
-```
+To onboard your cluster to “Available Savings” report and click on “Start saving” or “Enable CAST AI” button. The actual button will depend on an amount of optimizations available from your cluster.
 
-It will create a new AWS user with the required permissions, modify `aws-auth` ConfigMap, and print AWS `AccessKeyId`
-and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster.
+Follow the instruction in the pop-up window to create & use AWS `AccessKeyId` and `SecretAccessKey`
+
+![img.png](../screenshots/connect-cluster-4.png)
+
+The script will create a new AWS user with the required permissions, modify `aws-auth` ConfigMap, and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster.
 
 Generated user will have following permissions:
 
@@ -56,5 +53,8 @@ Generated user will have following permissions:
 - Manage autoscaling groups in specified cluster
 - Manage EKS Node Groups in specified cluster
 
-!!! note ""
-    All `Write` permissions are scoped to single EKS cluster, and it won't have access to resources of other clusters in the AWS account.
+All `Write` permissions are scoped to single EKS cluster, and it won't have access to resources of any other clusters in the AWS account.
+
+That’s it! Your cluster is onboarded. You can now enable [policies](https://docs.cast.ai/console-overview/policies/) to keep your cluster configuration optimal.
+
+To complete steps mentioned above manually (without our script) be aware that when you create an Amazon EKS cluster, the IAM entity user or role, such as a federated user that creates the cluster, is automatically granted a `system:masters` permissions in the cluster's RBAC configuration in the control plane. To grant additional AWS users or roles the ability to interact with your cluster, you must edit the `aws-auth` ConfigMap within Kubernetes. For more information, see [Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html).
