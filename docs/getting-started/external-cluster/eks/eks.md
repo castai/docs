@@ -5,12 +5,12 @@
 To connect your EKS cluster, login to the CAST console and navigate to the `Connect cluster` window. Copy the following script
 and run it your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
-![img.png](../screenshots/connect-cluster-2.png)
+![img.png](../../screenshots/connect-cluster-2.png)
 
 After installation, your EKS cluster should appear in the cluster list. From there, you can open cluster details and explore
 a detailed savings estimate based on your cluster configuration.
 
-![img.png](../screenshots/connect-cluster-3.png)
+![img.png](../../screenshots/connect-cluster-3.png)
 
 !!! note ""
     Agent will run in read-only mode providing saving suggestions without any actual modifications.
@@ -41,7 +41,7 @@ To onboard your cluster go to “Available Savings” report and click on “Sta
 
 Follow the instruction in the pop-up window to create & use AWS `AccessKeyId` and `SecretAccessKey`
 
-![img.png](../screenshots/connect-cluster-4.png)
+![img.png](../../screenshots/connect-cluster-4.png)
 
 The script will create a new AWS user with the required permissions, modify `aws-auth` ConfigMap, and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster.
 

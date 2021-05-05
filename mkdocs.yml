@@ -74,7 +74,9 @@ nav:
         - getting-started/deploy-application.md
       - 'Connect your cluster':
         - getting-started/external-cluster/overview.md
-        - 'AWS EKS': getting-started/external-cluster/eks.md
+        - 'AWS EKS': 
+          - 'Connect and onboard': getting-started/external-cluster/eks/eks.md
+          - 'Remove CAST': getting-started/external-cluster/eks/remove-from-eks.md
   - 'Console overview':
       - console-overview/dashboard.md
       - console-overview/clusters.md
