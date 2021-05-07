@@ -91,7 +91,7 @@ nav:
       - concepts/cluster-infrastructure.md
       - concepts/vpn-overview.md
   - 'Guides':
-      - 'External Cluster Agent': guides/k8s-agent.md
+      - guides/k8s-agent.md
       - 'Ingress': guides/ingress.md
       - 'Pod placement': guides/pod-pinning.md
       - guides/volumes.md
