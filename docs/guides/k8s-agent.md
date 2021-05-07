@@ -2,7 +2,7 @@
 
 * GitHub repository: <https://github.com/castai/k8s-agent>
 
-![Agent Install script](k8s-agent_connect.png)
+![Agent Install script](agent/k8s-agent_connect.png)
 
 ## Troubleshooting
 
