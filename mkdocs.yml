@@ -100,6 +100,7 @@ nav:
       - guides/hpa.md
       - guides/spot.md
       - guides/vpa.md
+      - 'External Cluster Agent': guides/agent/k8s-agent.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
