@@ -5,7 +5,7 @@ want to wait until these savings reach you in a slow and risk-free ongoing proce
 
 ## Register your connected cluster (EKS)
 
-You need to [register first](../getting-started/external-cluster/eks.md#credential-onboarding) - which means creating an IAM user for CAST AI to optimize your cluster.
+You need to [register first](../getting-started/external-cluster/eks/eks.md#credential-onboarding) - which means creating an IAM user for CAST AI to optimize your cluster.
 
 ## Enable policies
 
