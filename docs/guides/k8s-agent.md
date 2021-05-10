@@ -17,12 +17,14 @@
     ```
 
 2. You might get output similar to this:
+
    ```text
    time="2021-05-06T14:24:03Z" level=info msg="starting the agent"
    time="2021-05-06T14:24:03Z" level=info msg="using cluster provider discovery"
    time="2021-05-06T14:24:03Z" level=fatal msg="agent failed: registering cluster: getting cluster name: describing instance_id=i-026b5fadab5b69d67: UnauthorizedOperation: You are not authorized to perform this operation.\n\tstatus code: 403, request id: 2165c357-b4a6-4f30-9266-a51f4aaa7ce7"
    ```
-    - This particular example indicates that we failed to collect the relevant data required to identify your cluster on our system.
+
+    * This particular example indicates that we failed to collect the relevant data required to identify your cluster on our system.
 
 3. To solve this issue, create a deployment file such as this:
 
@@ -68,10 +70,10 @@
                  cpu: 1000m
                  memory: 256Mi
    ```
-   
-   - Add the values for the missing parts next to the `#FILL THIS` comment.
-     
-   - Apply the deployment file using `kubectl apply -f deployment.yaml`.
+
+   * Add the values for the missing parts next to the `#FILL THIS` comment.
+
+   * Apply the deployment file using `kubectl apply -f deployment.yaml`.
 
 !!! tip
       If you are still encountering any issues, ping us with logs output at:
