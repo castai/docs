@@ -93,6 +93,7 @@ nav:
       - concepts/cluster-infrastructure.md
       - concepts/vpn-overview.md
   - 'Guides':
+      - guides/k8s-agent.md
       - 'Ingress': guides/ingress.md
       - 'Pod placement': guides/pod-pinning.md
       - guides/volumes.md
@@ -110,5 +111,6 @@ nav:
       - 'CLI': api/cli.md
   - 'Release notes': "https://cast.ai/release-notes/"
   - 'Service status': "https://status.cast.ai/"
-  - 'Github': "https://github.com/castai"
+  - 'CAST AI GitHub': "https://github.com/castai"
+  - 'CAST AI Community Slack': "https://castai-community.slack.com/"
   - 'CAST AI Console': "https://console.cast.ai"
