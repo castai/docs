@@ -3,9 +3,9 @@
 So, you liked the results of the Savings Estimator after connecting your existing EKS cluster to CAST AI, but don't
 want to wait until these savings reach you in a slow and risk-free ongoing process. You can speed this up, here's how.
 
-## Register your connected cluster (EKS)
+## Onboard credentials (EKS)
 
-You need to [register first](../getting-started/external-cluster/eks.md#credential-onboarding) - which means creating an IAM user for CAST AI to optimize your cluster.
+First, you need to [onboard the credentials](../getting-started/external-cluster/eks/eks.md#credential-onboarding) so IAM user for CAST AI gets created and cluster can be optimized using CAST AI policies.
 
 ## Enable policies
 
