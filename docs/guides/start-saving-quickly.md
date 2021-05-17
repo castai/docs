@@ -47,17 +47,23 @@ without ReplicaSet, meaning that those nodes can't be removed gracefully.
 
 #### Upgrading Evictor
 
-- check the Evictor version you are currently using, by running the following: `helm ls -n kube-system`
-- update helm chart repository to make sure that your helm command is aware of the latest charts, by running
+- check the Evictor version you are currently using:
+  ```
+  helm ls -n kube-system
+  ```
+
+- update helm chart repository to make sure that your helm command is aware of the latest charts:
   ```
   helm repo update
   ```
-- install updated evictor version, by running the following:
+
+- install latest Evictor version:
   ```
   helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
   ```
-- check whether Evictor version was changed: `helm ls -n kube-system`
 
+- check whether Evictor version was changed: 
+  ```helm ls -n kube-system```
 
 ### Stir the pod with manual migration
 
@@ -126,8 +132,8 @@ tolerations:
 
 ### You're all done
 
-* Share the Available savings window screenshot with your CFO/manager - there's nothing left to save.
+- Share the Available savings window screenshot with your CFO/manager - there's nothing left to save.
 
-* Reduce the Headroom policy to a smaller number that fits your smooth organic growth better.
+- Reduce the Headroom policy to a smaller number that fits your smooth organic growth better.
 
-* Install Evictor, if you haven't already done that.
+- Install Evictor, if you haven't already done that.
