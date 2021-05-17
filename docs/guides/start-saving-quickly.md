@@ -63,7 +63,9 @@ without ReplicaSet, meaning that those nodes can't be removed gracefully.
   ```
 
 - check whether Evictor version was changed: 
-  ```helm ls -n kube-system```
+  ```
+  helm ls -n kube-system
+  ```
 
 ### Stir the pod with manual migration
 
