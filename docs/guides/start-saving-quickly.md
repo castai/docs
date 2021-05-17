@@ -48,24 +48,28 @@ without ReplicaSet, meaning that those nodes can't be removed gracefully.
 #### Upgrading Evictor
 
 - check the Evictor version you are currently using:
-  ```
-  helm ls -n kube-system
-  ```
+
+    ```
+    helm ls -n kube-system
+    ```
 
 - update helm chart repository to make sure that your helm command is aware of the latest charts:
-  ```
-  helm repo update
-  ```
+
+    ```
+    helm repo update
+    ```
 
 - install latest Evictor version:
-  ```
-  helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
-  ```
 
-- check whether Evictor version was changed: 
-  ```
-  helm ls -n kube-system
-  ```
+    ```
+    helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
+    ```
+
+- check whether Evictor version was changed:
+
+    ```
+    helm ls -n kube-system
+    ```
 
 ### Stir the pod with manual migration
 
