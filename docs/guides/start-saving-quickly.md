@@ -33,7 +33,7 @@ In the Policies tab, it should look like this:
 Evictor is our recommended way - it will constantly look for inefficiencies. But reducing costs in a safe manner takes
 time. If you want to maximize your savings as quickly as possible and you have a maintenance window, you can do it in CAST AI.
 
-### Install Evictor (continuous improvements)
+### Install Evictor (continuously improved)
 
 Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy:
 
@@ -44,6 +44,32 @@ helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
 
 This process will take some time. Also, Evictor will not cause any downtime to single replica deployments / StatefulSets, pods
 without ReplicaSet, meaning that those nodes can't be removed gracefully.
+
+#### Upgrading Evictor
+
+- Check the Evictor version you are currently using:
+
+    ```
+    helm ls -n kube-system
+    ```
+
+- Update the helm chart repository to make sure that your helm command is aware of the latest charts:
+
+    ```
+    helm repo update
+    ```
+
+- Install the latest Evictor version:
+
+    ```
+    helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
+    ```
+
+- Check whether the Evictor version was changed:
+
+    ```
+    helm ls -n kube-system
+    ```
 
 ### Stir the pod with manual migration
 
@@ -57,7 +83,7 @@ kubectl get nodes -Lfailure-domain.beta.kubernetes.io/zone --selector=eks.amazon
 ```
 
 The percentage is arbitrary - it depends on your risk appetite and how much time you want to spend on this. Taint (cordon)
-the selected nodes, so no new pods are placed on these nodes. We like Lens k8s ide, but you can use kubectl as
+the selected nodes, so no new pods are placed on these nodes. We like Lens Kubernetes IDE, but you can use kubectl as
 well:
 
 ```
@@ -73,7 +99,7 @@ kubectl drain nodeName2 --ignore-daemonsets --delete-local-data
 ```
 
 Some nodes will not drain because of the Disruption Budget violation (downtime). These cases should be fixed since they are going to
-cause pain in the future (or at least noted to be addressed when most convenient). If you want to progress anyway and accept
+cause pain in the future (or at least noted to be addressed at a more convenient time). If you want to progress anyway and accept
 downtime, cancel the drain command and retry draining with the additional --force flag.
 
 You should see that the drained nodes disappear (empty Node deletion policy) and, in few moments, new nodes in the same
@@ -99,7 +125,7 @@ service running with 10 replicas.
 I could separate this workload into two deployments:
 
 1. Reduce the current replica count to a bare minimum (in my case, 2 replicas),
-2. Create a copy of deployment with "-spot" appending name, add toleration, and set to 8 replicas - or beter, configure to
+2. Create a copy of deployment with "-spot" appending name, add toleration, and set to 8 replicas - or better, configure to
 use KEDA, see [HPA documentation](../guides/hpa.md)
 
 ```yaml
@@ -112,8 +138,8 @@ tolerations:
 
 ### You're all done
 
-* Share the Available savings window screenshot with your CFO/manager - there's nothing left to save.
+- Share the Available savings window screenshot with your CFO/manager - there's nothing left to save.
 
-* Reduce the Headroom policy to a smaller number that fits your smooth organic growth better.
+- Reduce the Headroom policy to a smaller number that fits your smooth organic growth better.
 
-* Install Evictor, if you haven't already done that.
+- Install Evictor if you haven't already done that.
