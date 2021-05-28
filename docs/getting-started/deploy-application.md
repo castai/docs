@@ -11,3 +11,11 @@ Relevant for this section:
 - [Kubernetes docs - Organizing cluster access using kubeconfig files](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 
 - [Kubernetes docs - Deploy an app using kubectl](https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro/)
+
+## Demo multi-cloud
+
+You can use our example application for a quick deployment and showcase of multi-cloud. The widget on the left will display which cloud the application is currently running on.
+
+[Github - Boutique eshop example](https://github.com/castai/examples/tree/main/boutique-eshop)
+
+![](screenshots/boutique.png)
