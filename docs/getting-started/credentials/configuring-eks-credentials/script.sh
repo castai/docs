@@ -52,7 +52,7 @@ echo "Attaching policies"
 POLICY_ARN="arn:aws:iam::${ACCOUNT_NUMBER}:policy/CastEKSPolicy"
 if aws iam get-policy --policy-arn $POLICY_ARN >>/dev/null 2>&1; then
 
-  VERSIONS=$(aws iam list-policy-versions --policy-arn $POLICY_ARN --query 'length(Versions[*])')
+  VERSIONS=$(aws iam list-policy-versions --policy-arn $POLICY_ARN --output text --query 'length(Versions[*])')
   if [ "$VERSIONS" -gt "4" ]; then
     LAST_VERSION_ID=$(aws iam list-policy-versions --policy-arn $POLICY_ARN --output text --query 'Versions[-1].VersionId')
     aws iam delete-policy-version --policy-arn $POLICY_ARN --version-id $LAST_VERSION_ID
