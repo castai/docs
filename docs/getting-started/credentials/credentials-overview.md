@@ -11,5 +11,4 @@ Guides to add credentials:
 
 - [Amazon Web Services](../credentials/configuring-aws-credentials.md)
 - [Azure](../credentials/configuring-azure-credentials.md)
-- [Digital Ocean](../credentials/configuring-digitalocean-credentials.md)
 - [Google Cloud Platform](../credentials/configuring-gcp-credentials.md)
