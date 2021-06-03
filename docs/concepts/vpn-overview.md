@@ -6,9 +6,6 @@ This chapter summarizes Virtual Private Network (VPN) architecture for multi-clo
 
 Cloud provided VPN - a VPN option provided by a cloud service provider.
 
-!!! warning ""
-    Cloud provided VPN is currently not available on Digital Ocean.
-
 **Traffic in CAST AI platform:**
 
 In order to access the Virtual Private Cloud (VPC) network of each node CAST AI platform

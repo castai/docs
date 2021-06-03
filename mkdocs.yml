@@ -68,13 +68,12 @@ nav:
             - getting-started/credentials/credentials-overview.md
             - getting-started/credentials/configuring-aws-credentials.md
             - getting-started/credentials/configuring-azure-credentials.md
-            - getting-started/credentials/configuring-digitalocean-credentials.md
             - getting-started/credentials/configuring-gcp-credentials.md
         - getting-started/create-cluster.md
         - getting-started/deploy-application.md
       - 'Connect your cluster':
         - getting-started/external-cluster/overview.md
-        - 'AWS EKS': 
+        - 'AWS EKS':
           - 'Connect and onboard': getting-started/external-cluster/eks/eks.md
           - 'Remove CAST': getting-started/external-cluster/eks/remove-from-eks.md
   - 'Console overview':
@@ -97,7 +96,7 @@ nav:
       - 'Ingress': guides/ingress.md
       - 'Pod placement': guides/pod-pinning.md
       - guides/volumes.md
-      - guides/connect-to-node.md  
+      - guides/connect-to-node.md
       - guides/autoscaling-policies.md
       - 'Start saving quickly': guides/start-saving-quickly.md
       - guides/hpa.md

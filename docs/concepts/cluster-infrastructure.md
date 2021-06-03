@@ -30,7 +30,6 @@ For example, **US East (Ashburn)** region maps to:
 * AWS: us-east-1
 * GCP: us-east4
 * Azure: eastus
-* Digital Ocean: nyc1
 
 Currently, on each cloud CAST AI builds a single-zone setup of your cluster. Zone selection is cloud-specific.
 
@@ -58,4 +57,3 @@ Currently, on each cloud CAST AI builds a single-zone setup of your cluster. Zon
 | 10.0.0.0/16 | GCP VPC. Smaller /24 blocks are allocated for subnets. |
 | 10.10.0.0/16 | AWS VPC. Smaller /24 blocks are allocated for subnets. |
 | 10.20.0.0/16 | AZURE VPC. Smaller /24 blocks are allocated for subnets. |
-| 10.100-255.0.0/20 | DigitalOcean VPC. There is only one subnet that is allocated dynamically. |
