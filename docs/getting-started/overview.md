@@ -1,3 +1,7 @@
+---
+description: This guide will help you get started and deploy your first cluster with CAST AI. Check it out to start optimizing and reducing your cloud costs.
+---
+
 # Overview
 
 This guide will help you get started and deploy your first cluster with CAST AI.

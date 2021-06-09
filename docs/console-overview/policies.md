@@ -1,3 +1,7 @@
+---
+description: Policies help to optimize and reduce your cloud bill. They will automate the process of scaling up and down for you - read more on this page.
+---
+
 # Policies
 
   Manage policies for the selected cluster. Policies will help you optimize and reduce cost of your cloud bill and will automate the process of scaling up and down for you.

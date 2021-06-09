@@ -1,3 +1,7 @@
+---
+description: To use the CAST AI API, you need an API key - either with your preferred REST client or via Terraform. Here's how to get an API key.
+---
+
 # Authentication
 
 Before you can use our API, either with your preferred REST client or via Terraform, you will need an API key.
@@ -19,7 +23,7 @@ integration if you add more keys later.
 The reason API key value is visible only at the time of creation is that we do not store the key in plain text on our
 system. For security reasons, CAST AI "forgets" key value after giving it to you, and later is only able to verify
 if the key is valid, but not to re-retrieve the value for you.
-  
+
 If you lose your key, the only solution is to create a new key.
 
 ### CAST AI Swagger setup

@@ -1,3 +1,7 @@
+---
+description: Start using CAST AI with your existing Azure clusters by adding your Azure credentials to our platform. Here's how.
+---
+
 # Azure
 
 ## Method 1: Create using `az` cli utility

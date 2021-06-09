@@ -1,3 +1,7 @@
+---
+description: Discover the Vertical Pod Autoscaler (VPA) and learn how it works in CAST AI. Right-size your instances to achieve maximum cloud cost savings.
+---
+
 # Right Sizing recommendations with VPA
 
 ## Recommendations example

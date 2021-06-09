@@ -1,3 +1,7 @@
+---
+description: To have your CAST AI-hosted application available on the internet, you will need to deploy an Ingress. This page shows you how to do it.
+---
+
 # Exposing your app to the internet
 
 To have your CAST AI hosted application available on the internet you will need to deploy an Ingress.
@@ -46,7 +50,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: sample-app
-  
+
 ---
 apiVersion: apps/v1
 kind: Deployment

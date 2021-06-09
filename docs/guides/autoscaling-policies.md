@@ -1,3 +1,7 @@
+---
+description: Explore our autoscaling policies CAST AI uses to maintain steady performance of your cluster at the lowest possible cost.
+---
+
 # Autoscaling policies
 
 Autoscaling policies define a set of rules based on which your cluster is monitored and scaled to maintain steady

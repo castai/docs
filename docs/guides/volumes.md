@@ -1,3 +1,7 @@
+---
+description: Here's an overview of dynamic volume provisioning - this is how CAST AI allows storage volumes to be created on-demand.
+---
+
 # Dynamic volume provisioning
 
 Dynamic volume provisioning allows storage volumes to be created on-demand.

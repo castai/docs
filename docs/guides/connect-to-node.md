@@ -1,3 +1,7 @@
+---
+description: This guide show you how to connect to your cluster node via Kubernetes or native ssh. Take a look and explore CAST AI.
+---
+
 # Connect to node
 
 This guide describes how to connect to your cluster node via Kubernetes or native ssh.

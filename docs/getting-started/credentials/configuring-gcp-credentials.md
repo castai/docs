@@ -1,3 +1,7 @@
+---
+description: Check out this page to retrieve the service account JSON credentials that you need to create a cluster on CAST AI using your cloud provider resources.
+---
+
 # GCP
 
 By following these instructions, you’ll retrieve the service account JSON credentials. These credentials are required by

@@ -1,3 +1,7 @@
+---
+description: Once you create a cluster, you're ready to deploy your CAST AI-managed Kubernetes application. Here's how you can do it.
+---
+
 # 3. Deploy application
 
 CAST AI managed cluster runs on Kubernetes. Once you [create a cluster](../getting-started/create-cluster.md) - you can download a **`kubeconfig` file** of the cluster and deploy your application using **`kubectl`** command-line tool.

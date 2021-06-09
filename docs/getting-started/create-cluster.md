@@ -1,3 +1,7 @@
+---
+description: Want to create a new Kubernetes cluster in CAST AI? Take a look here to learn more about cluster details and configuration.
+---
+
 # 2. Create cluster
 
 Once you [add cloud credentials](../getting-started/credentials/credentials-overview.md) - you are ready to create a cluster. In the cluster creation window you will have a few options to lay a base foundation for your cluster, which we will be able to further customize to your needs once a cluster is up and running.

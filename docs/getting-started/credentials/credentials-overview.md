@@ -1,3 +1,7 @@
+---
+description: CAST AI requires your cloud credentials to call cloud APIs to create, orchestrate and optimize clusters for you. Here's how to add your credentials.
+---
+
 # Information
 
 !!! tip ""

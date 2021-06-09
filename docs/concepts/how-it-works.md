@@ -1,3 +1,7 @@
+---
+description: CAST AI uses your Cloud Service Provider (CSP) accounts to create the cloud resources, optimize cloud costs, and help you go multi cloud.
+---
+
 # How it works
 
 The CAST AI engine uses your Cloud Service Provider (CSP) accounts to create the required cloud resources and set up a multi cloud cluster for you.

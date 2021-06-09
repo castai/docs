@@ -1,3 +1,7 @@
+---
+description: Control when your cluster is running to match your needs. You can pause and resume it during predefined time periods to save resources and money.
+---
+
 # Cluster schedule
 
 Control when your cluster should be running to match your specific needs. Clusters can be paused and resumed during your predefined time periods in order to save resources and money. By default there is no schedule set on your cluster.
