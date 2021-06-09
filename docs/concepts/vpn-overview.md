@@ -1,3 +1,7 @@
+---
+description: Take a look at this page to learn more about the Virtual Private Network (VPN) architecture for multi cloud private networks.
+---
+
 # Cluster VPN overview
 
 This chapter summarizes Virtual Private Network (VPN) architecture for multi-cloud private networks.

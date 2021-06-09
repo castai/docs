@@ -1,3 +1,7 @@
+---
+description: This page takes you through the process of managing nodes in your cluster. Discover insights about your selected cluster nodes.
+---
+
 # Nodes
 
   View information about the selected cluster nodes and manage them here.
