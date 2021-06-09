@@ -2,7 +2,7 @@
 description: Learn more about the CAST AI dashboard to make the most of all the cloud optimization features and reduce your cloud bill.
 ---
 
- Dashboard
+# Dashboard
 
 In the dashboard window, you will see all active and deleted clusters.
 
