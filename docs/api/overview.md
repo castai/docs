@@ -1,3 +1,7 @@
+---
+description: Want to access CAST AI services via our API? This page is the best starting point for learning more about how our API works.
+---
+
 # Accessing CAST AI services via API
 
 ## Overview

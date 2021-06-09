@@ -1,3 +1,7 @@
+---
+description: Our API contract is published as OpenAPI v3 specification. Take a look here and check it out on our Swagger UI.
+---
+
 # API specification
 
 Our API contract is published as OpenAPI v3 specification. You can check it on our

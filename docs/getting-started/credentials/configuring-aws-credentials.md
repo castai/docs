@@ -1,3 +1,7 @@
+---
+description: To start using CAST AI with your AWS clusters, add your AWS credentials to the platform. This page takes you through the process step by step.
+---
+
 # AWS
 
 To add AWS credentials you will need: **Access key ID , Secret access key**.

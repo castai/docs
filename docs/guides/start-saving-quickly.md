@@ -1,3 +1,7 @@
+---
+description: Liked the results of the Savings Estimator, but don't to wait? Check out this page after connecting your EKS cluster to CAST AI and speed up cost savings.
+---
+
 # Start saving on your connected EKS cluster immediately
 
 So, you liked the results of the Savings Estimator after connecting your existing EKS cluster to CAST AI, but don't

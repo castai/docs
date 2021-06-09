@@ -1,3 +1,7 @@
+---
+description: Here's everything you need to know about cluster architecture setup in CAST AI. Explore this page to learn more.
+---
+
 # Cluster architecture
 
 ## Context

@@ -1,3 +1,7 @@
+---
+description: Learn more about the Horizontal Pod Autoscaler used in CAST AI. Optimize your Kubernetes workloads and reduce costs with HPA.
+---
+
 # Horizontal Pod Autoscaler
 
 ## Scaling an application

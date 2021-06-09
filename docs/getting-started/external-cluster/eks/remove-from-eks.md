@@ -1,3 +1,7 @@
+---
+description: Time to say goodbye? You can choose from two different options to remove CAST resources based on how you used CAST AI in your cluster.
+---
+
 # Remove CAST resources from EKS cluster
 
 Based on the way how CAST was used on a cluster there are two options to remove CAST resources.

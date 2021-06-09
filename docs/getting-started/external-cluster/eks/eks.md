@@ -1,3 +1,7 @@
+---
+description: Learn how to connect your EKS cluster to CAST AI and start optimizing your cloud costs on AWS EKS. Achieve Kubernetes cost savings.
+---
+
 # AWS EKS
 
 ## Connect cluster

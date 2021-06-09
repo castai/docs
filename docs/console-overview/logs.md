@@ -1,3 +1,7 @@
+---
+description: Here's your guide to all things logs in CAST AI - Kubernetes logs, Kibana logs, and Grafana logs are now at your fingertips.
+---
+
 # Logs
 
 ## Kubernetes UI

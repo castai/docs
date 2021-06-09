@@ -1,3 +1,7 @@
+---
+description: Take a look at this guide to learn how to place pods only on a particular cloud service or selected clouds services in CAST AI.
+---
+
 # Configure pod placement by topology
 
 This guide will show how to place pods only on a particular cloud or clouds.

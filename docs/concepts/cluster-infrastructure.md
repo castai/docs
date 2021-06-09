@@ -1,3 +1,7 @@
+---
+description: Explore the cluster infrastructure in CAST AI. This page providers an overview on where cluster virtual machines will be provisioned on your cloud.
+---
+
 # Cluster infrastructure
 
 ## Nodes

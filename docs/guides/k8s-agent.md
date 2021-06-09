@@ -1,3 +1,7 @@
+---
+description: Learn more about the CAST AI external agent and get help if you need to do some troubleshooting.
+---
+
 # External Cluster Agent
 
 * GitHub repository: <https://github.com/castai/k8s-agent>

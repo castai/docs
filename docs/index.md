@@ -1,3 +1,7 @@
+---
+description: Welcome to CAST AI documentation! Explore our platform, learn more about how it works, and take advantage of cloud cost optimization and DevOps automation.
+---
+
 # Welcome to CAST AI
 
 It is one platform that cuts your cloud costs, boosts DevOps, and prevents downtime.

@@ -1,3 +1,7 @@
+---
+description: This is your go-to guide to cluster lifecycle. Take a look to get a detailed overview and learn more about cluster optimization with CAST AI.
+---
+
 # Cluster lifecycle
 
 ## 1. Provisioning

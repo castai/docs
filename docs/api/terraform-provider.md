@@ -1,3 +1,7 @@
+---
+description: Did you know that your CAST.AI infrastructure can be automated via Terraform? Just use terraform-provider-castai provider - and learn more on this page.
+---
+
 # Terraform provider
 
 Your CAST.AI infrastructure can be automated via [Terraform](https://www.terraform.io/) using _terraform-provider-castai_ provider.
