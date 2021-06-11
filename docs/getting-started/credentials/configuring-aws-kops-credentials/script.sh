@@ -19,7 +19,7 @@ if ! [ -x "$(command -v aws)" ]; then
 fi
 
 echo "Validating cluster"
-if [[ "$(aws ec2 describe-instances --filter Name=tag:KubernetesCluster,Values=$CLUSTER_NAME --output text --query 'length(Reservations[*])')" == "0" ]]; then
+if [[ "$(aws ec2 describe-instances --region $REGION --filter Name=tag:KubernetesCluster,Values=$CLUSTER_NAME --output text --query 'length(Reservations[*])')" == "0" ]]; then
   echo "Error: failed to find cluster '${CLUSTER_NAME}' resources, please check cluster name"
   exit 1
 fi
