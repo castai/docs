@@ -56,6 +56,10 @@ markdown_extensions:
 
 extra:
   generator: false
+  homepage: https://cast.ai/
+  analytics:
+    provider: google
+    property: UA-162225268-1
 
 nav:
   - 'Introduction': index.md
