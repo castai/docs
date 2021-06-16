@@ -2,7 +2,7 @@
 description: Explore how external cluster management brings CAST AI features to externally managed clusters in EKS, GKE or AKS.
 ---
 
-# Overview
+# External Cluster Overview
 
 External cluster management brings CAST AI features, like autoscaler, to an externally managed clusters, like EKS, GKE
 or AKS. By installing CAST AI agent, you start observing cluster running costs and potential savings; you can then
