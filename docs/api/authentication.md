@@ -41,3 +41,4 @@ To authenticate, provide the key in  `X-API-Key` HTTP header. For example, for `
 
 ```
 curl -X GET "https://api.cast.ai/v1/kubernetes/clusters" -H "X-API-Key: your-api-key-here" | jq
+```
