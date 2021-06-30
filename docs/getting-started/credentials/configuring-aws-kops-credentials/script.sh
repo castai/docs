@@ -39,7 +39,7 @@ POLICY_JSON="{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"PassRoleEC2\"
 
 if ! aws iam get-role --role-name $LAMBDA_ROLE_NAME >>/dev/null 2>&1; then
   echo "Creating IAM role for lambda: '$LAMBDA_ROLE_NAME'"
-  aws iam create-role --role-name $LAMBDA_ROLE_NAME --assume-role-policy-document $LAMBDA_ASSUME_ROLE_JSON --tags Key=cast:managed-by,Value=cast.ai --description 'Lambda role used by CAST AI to handle Spot interrupts.'
+  aws iam create-role --role-name $LAMBDA_ROLE_NAME --assume-role-policy-document $LAMBDA_ASSUME_ROLE_JSON --tags Key=cast:managed-by,Value=cast.ai --description 'Lambda role used by CAST AI to handle Spot interrupts.' >>/dev/null 2>&1
 fi
 
 lambdaPolicies=(arn:aws:iam::aws:policy/CloudWatchLogsFullAccess arn:aws:iam::aws:policy/service-role/AWSLambdaRole)
