@@ -56,6 +56,48 @@ See [HPA documentation](../guides/hpa.md) for a detailed overview.
 This policy will automatically remove nodes from your cluster when they no longer have scheduled workloads.
 This allows your cluster to maintain a minimal footprint and reduce cloud costs.
 
+### Disable deletion of specific node(s)
+
+If you annotate or label a node with `autoscaling.cast.ai/removal-disabled="true"`, the *Node deletion policy* won't delete it even if it is completely empty.
+
+#### Labeling the node(s)
+
+You can label nodes using `kubectl` in the following fashion:
+
+- Specific node(s):
+
+```sh
+# replace <node_name> with your node name of choice
+kubectl label node <node_name> [<node_name> ...] autoscaling.cast.ai/removal-disabled=true
+# e.g. to label node `myclusternode-e359fefa-d3a2` run this command:
+kubectl label node myclusternode-e359fefa-d3a2 autoscaling.cast.ai/removal-disabled=true
+# e.g. to label two nodes `myclusternode-e359fefa-d3a2` and myclusternode-anothernode run this command:
+kubectl label node myclusternode-e359fefa-d3a2 myclusternode-anothernode autoscaling.cast.ai/removal-disabled=true
+```
+
+- Many nodes using label selector
+
+```sh
+# replace <label> with your node name of choice
+kubectl label node -l <label> autoscaling.cast.ai/removal-disabled=true
+# e.g. to label nodes in availability zone `europe-west3-c` run this command:
+kubectl label node -l topology.kubernetes.io/zone=europe-west3-c autoscaling.cast.ai/removal-disabled=true
+```
+
+- All nodes
+
+```sh
+kubectl label node --all autoscaling.cast.ai/removal-disabled=true
+```
+
+#### Removing the label
+
+In order to instruct policy to delete the node, you need to remove the label. Using previously described methods, instruct `kubectl` to label a node with `autoscaling.cast.ai/removal-disabled-` (note the `-` symbol instead of `=true`).
+
+#### Evictor
+
+CAST AI Evictor also respects this label or annotation so it won't try to evict marked nodes.
+
 ## Unscheduled pods policy
 
 A pod becomes unschedulable when the Kubernetes scheduler cannot find a node to assign the pod to.
