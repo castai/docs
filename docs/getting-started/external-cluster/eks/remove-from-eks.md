@@ -8,11 +8,16 @@ Based on the way how CAST was used on a cluster there are two options to remove 
 
 ## Disconnect EKS cluster
 
-If you connected a cluster to CAST AI to explore Savings report then all you need to do to disconnect is to run following command from your terminal used to access your cluster:
+In order to disconnect your cluster from CAST AI click **Disconnect cluster** button in **Clusters** list and follow the guidance.  Alternatively run following command from your terminal used to access the cluster:
 
 ```bash
 kubectl delete deployment castai-agent -n castai-agent
 ```
+
+Once cluster is disconnected its `Status` will change to `Disconnected` and you can choose to remove it from console by pressing **Delete cluster** button.
+
+!!! note ""
+    Cluster will continue to run as normal, since **Delete cluster** action only removes it from CAST AI console.
 
 ## Removing CAST AI credentials and other resources
 
@@ -32,7 +37,7 @@ To remove them follow the steps outlined below.
 
 In order to remove these resources first of all:
 
-- Go to CAST AI console → Policies page → Disable all CAST AI policies
+- Go to CAST AI console → **Policies** page → Disable all CAST AI policies
 - Connect to your cluster from the terminal and run command:
 
 ```bash

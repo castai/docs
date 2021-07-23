@@ -78,6 +78,7 @@ nav:
         - 'AWS EKS':
           - 'Connect and onboard': getting-started/external-cluster/eks/eks.md
           - 'Remove CAST': getting-started/external-cluster/eks/remove-from-eks.md
+        - 'GCP GKE': getting-started/external-cluster/gke.md
   - 'Console overview':
       - console-overview/dashboard.md
       - console-overview/clusters.md
