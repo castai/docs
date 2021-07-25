@@ -11,9 +11,10 @@ This topic describes the available policy configuration options and provides gui
 
 ## Prerequisites
 
-- **CAST AI cluster** - see [create cluster](../getting-started/create-cluster.md).
+- CAST AI cluster - see [create cluster](../getting-started/create-cluster.md).
+- Connected external cluster - see [connect cluster](../getting-started/external-cluster/overview.md)
 
-Select a cluster and navigate to the *Policies* menu.
+Once you've connected or created a cluster, select it and navigate to the **Policies** menu.
 
 ![](autoscaling-policies/policies.png)
 
@@ -47,14 +48,90 @@ The new settings will propagate immediately.
 
 ## Horizontal Pod Autoscaler (HPA) policy
 
-See [HPA documentation](../guides/hpa.md) for a detailed overview.
+For now HPA policy is only supported on CAST AI created clusters. See [HPA documentation](../guides/hpa.md) for a detailed overview.
+
+## Spot/Preemptive Instances policy
+
+This policy instructs CAST AI optimization engine to purchase Spot / Preemptive instances and place specifically labelled pods on those instances. CAST AI automatically handles instance interruptions and replaces instances when they are terminated by the CSP.
+
+Detailed guide on how to configure your workloads to run on Spot instances can be found [here](../guides/spot.md).
+
+## Unscheduled pods policy
+
+A pod becomes unschedulable when the Kubernetes scheduler cannot find a node to assign the pod to.
+For instance, a pod can request more CPU or memory than the resources available on any of the worker nodes.
+
+In many such cases, this indicates the need to scale up by adding additional nodes to the cluster.
+
+The CAST AI autoscaler is equipped with a mechanism to handle this.
+
+### Headroom attributes
+
+Headroom is a buffer of spare capacity (in terms of both memory and CPU) to ensure that cluster can meet suddenly increased demand for resources. It is based on the currently
+available total worker nodes resource capacity.
+
+For example, if headroom for memory and CPU are both set to 10%,
+and the cluster consists of 2 worker nodes equipped with 2 cores and 4GB RAM each, _a total of 0.4 cores and 819MB_
+would be considered as headroom in the next cluster size increase phase.
+
+### Node constraints
+
+Node constraints limit the possible node pool for CAST AI to choose from when adding a node to a cluster. Entered **Min CPU** and **Max CPU** as well as **Min memory** and **Max memory** values are respected when selecting the next node to be added to the cluster, this way user influences the composition of the cluster in terms of size and number of nodes.
+
+Since this decision is driven by the customer and not by CAST AI optimization engine, it might not result in the most cost effective node added. However, this feature is particularly  beneficial when migrating into CAST AI selected nodes and securing additional capacity upfront (i.e. adding larger nodes, but knowing that during migration they would be filled up).
+
+System supports the following CPU to Memory ratios: 1:2, 1:4 and 1:8. Based on the example presented in the picture, CAST AI would consider 4CPU16GiB RAM and 4CPU 32GiB RAM instances
+
+![](autoscaling-policies/node_constraints.png)
+
+### Provisioning decision
+
+- After receiving the unschedulable pods event, the CAST AI recommendation engine will select the best
+price/performance ratio node capable of accommodating all of the currently unschedulable pods plus headroom or respecting node constraints.
+- CAST AI will then provision it and join with the cluster. This process usually takes a few minutes, depending on the cloud service provider of your choice.
+- Currently, only a single node will be added at a time. If any unschedulable pods still remain, the cycle is
+repeated until all the pods are scheduled (provided that the reason was insufficient resources).
+
+### Configuring the unscheduled pod's policy
+
+You can enable/disable the unschedulable pod's policy and set headroom settings as well as node constraints either on the [CAST AI console](https://console.cast.ai/) or via the [CAST AI policies API endpoint](https://api.cast.ai/v1/spec/#/cluster-policies/UpsertPolicies) by setting values for headroom:
+
+```JSON
+"unschedulablePods": {
+    "enabled": <value>,
+    "headroom": {
+        "cpuPercentage": <value>,
+        "enabled": <value>,
+        "memoryPercentage": <value>
+    }
+}
+```
+
+or for node constraints:
+
+```JSON
+"unschedulablePods": {
+    "enabled": <value>,
+    "headroom": {
+        "enabled": <value>,
+        "maxCpuCores": <value>,
+        "maxRamMib": <value>,
+        "minCpuCores": <value>,
+        "minRamMib": <value>
+    }
+}
+```
+
+It may take a few minutes for the new settings to propagate.
 
 ## Node deletion policy
 
-![](autoscaling-policies/node_deletion_policy.png)
-
 This policy will automatically remove nodes from your cluster when they no longer have scheduled workloads.
 This allows your cluster to maintain a minimal footprint and reduce cloud costs.
+
+![](autoscaling-policies/node_deletion_policy.png)
+
+If **Keep empty node alive for** is set to 0, CAST AI moves to delete an empty node as soon as it is detected. In cases when a user wants to keep the empty node in the cluster for a period of time, a time parameter can be set, effectively delaying the deletion.
 
 ### Disable deletion of specific node(s)
 
@@ -97,51 +174,6 @@ In order to instruct policy to delete the node, you need to remove the label. Us
 #### Evictor
 
 CAST AI Evictor also respects this label or annotation so it won't try to evict marked nodes.
-
-## Unscheduled pods policy
-
-A pod becomes unschedulable when the Kubernetes scheduler cannot find a node to assign the pod to.
-For instance, a pod can request more CPU or memory than the resources available on any of the worker nodes.
-
-In many such cases, this indicates the need to scale up by adding additional nodes to the cluster.
-
-The CAST AI autoscaler is equipped with a mechanism to handle this.
-
-### Headroom attributes
-
-Headroom is a buffer of spare capacity (in terms of both memory and CPU) to ensure that cluster can meet suddenly increased demand for resources. It is based on the currently
-available total worker nodes resource capacity. For example, if headroom for memory and CPU are both set to 10%,
-and the cluster consists of 2 worker nodes equipped with 2 cores and 4GB RAM each, _a total of 0.4 cores and 819MB_
-would be considered as headroom in the next cluster size increase phase.
-
-### Provisioning decision
-
-- After receiving the unschedulable pods event, the CAST AI recommendation engine will select the best
-price/performance ratio node capable of accommodating all of the currently unschedulable pods plus headroom.
-- CAST AI will then provision it and join with the cluster. This process usually takes a few minutes, depending on the cloud service provider of your choice.
-- Currently, only a single node will be added at a time. If any unschedulable pods still remain, the cycle is
-repeated until all the pods are scheduled (provided that the reason was insufficient resources).
-
-### Configuring the unscheduled pod's policy
-
-You can enable/disable the unschedulable pod's policy and set headroom settings either on the [CAST AI console](https://console.cast.ai/):
-
-![](autoscaling-policies/unschedulable_pods.png)
-
-or via the [CAST AI policies API endpoint](https://api.cast.ai/v1/spec/#/cluster-policies/UpsertPolicies) by setting
-values for
-
-```JSON
-"unschedulablePods": {
-    "enabled": <value>,
-    "headroom": {
-        "cpuPercentage": <value>,
-        "memoryPercentage": <value>
-    }
-}
-```
-
-It may take a few minutes for the new settings to propagate.
 
 ## Policies precedence rules
 
