@@ -18,5 +18,5 @@ cloud environment. To start saving costs, turn on the automatic optimization whe
 Connect your cluster:
 
 - [AWS EKS](./eks/eks.md)
-- [GCP GKE](./gke.md)
+- [GCP GKE](./gke/gke.md)
 - AKS (Coming soon)
