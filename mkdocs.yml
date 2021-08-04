@@ -106,6 +106,7 @@ nav:
       - guides/hpa.md
       - guides/spot.md
       - guides/vpa.md
+      - 'Node kernel tuning': guides/node-kernel-tuning.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
