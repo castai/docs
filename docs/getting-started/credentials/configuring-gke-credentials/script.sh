@@ -43,6 +43,7 @@ CUSTOM_ROLE_PERMISSIONS=(
   'compute.instances.setLabels'
   'compute.instances.setServiceAccount'
   'compute.instances.setMetadata'
+  'compute.instances.setTags'
   'compute.instanceGroupManagers.get'
   'compute.networks.use'
   'compute.networks.useExternalIp'
@@ -58,7 +59,6 @@ CUSTOM_ROLE_PERMISSIONS=(
   'compute.instanceTemplates.list'
   'compute.instanceTemplates.create'
   'compute.instanceTemplates.delete'
-  'compute.instances.setTags'
 )
 
 if gcloud iam service-accounts describe $SERVICE_ACCOUNT_EMAIL >>/dev/null 2>&1; then
