@@ -34,6 +34,7 @@ CUSTOM_ROLE_ID=cast.gkeAccess
 CUSTOM_ROLE_PERMISSIONS=(
   'container.clusters.get'
   'container.clusters.update'
+  'compute.instances.get'
   'compute.instances.list'
   'compute.instances.create'
   'compute.instances.start'
@@ -42,12 +43,16 @@ CUSTOM_ROLE_PERMISSIONS=(
   'compute.instances.setLabels'
   'compute.instances.setServiceAccount'
   'compute.instances.setMetadata'
+  'compute.instances.setTags'
+  'compute.instanceGroupManagers.get'
   'compute.networks.use'
   'compute.networks.useExternalIp'
+  'compute.subnetworks.get'
   'compute.subnetworks.use'
   'compute.subnetworks.useExternalIp'
   'compute.addresses.use'
   'compute.disks.use'
+  'compute.disks.create'
   'compute.disks.setLabels'
   'compute.images.useReadOnly'
   'compute.instanceTemplates.get'
@@ -65,7 +70,7 @@ fi
 
 if gcloud iam roles describe --project=$PROJECT_ID $CUSTOM_ROLE_ID >>/dev/null 2>&1; then
   echo "Updating existing role: '$CUSTOM_ROLE_ID'"
-  gcloud iam roles update $CUSTOM_ROLE_ID \
+  echo "y" | gcloud iam roles update $CUSTOM_ROLE_ID \
     --title='Role to manage GKE cluster via CAST' \
     --description='Role to manage GKE cluster via CAST' \
     --permissions=$(
@@ -87,7 +92,8 @@ fi
 echo "Assigning roles to the service account"
 for ROLE in \
   projects/$PROJECT_ID/roles/$CUSTOM_ROLE_ID \
-  roles/container.developer; do
+  roles/container.developer \
+  roles/iam.serviceAccountUser; do
   echo "- Assigning $ROLE"
   gcloud projects add-iam-policy-binding "$PROJECT_ID" --role="$ROLE" --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" --condition=None --no-user-output-enabled
 done
