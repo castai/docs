@@ -27,6 +27,16 @@ if ! gcloud container clusters describe $CLUSTER_NAME --region=$REGION --no-user
   exit 1
 fi
 
+echo 'Enabling required google cloud services'
+gcloud services enable \
+  serviceusage.googleapis.com \
+  cloudresourcemanager.googleapis.com \
+  iam.googleapis.com \
+  container.googleapis.com \
+  compute.googleapis.com \
+  --no-user-output-enabled \
+  --async
+
 PROJECT_ID=$(gcloud config get-value project)
 SERVICE_ACCOUNT_ID=cast-gke-${CLUSTER_NAME}
 SERVICE_ACCOUNT_EMAIL="${SERVICE_ACCOUNT_ID}@${PROJECT_ID}.iam.gserviceaccount.com"
@@ -59,6 +69,7 @@ CUSTOM_ROLE_PERMISSIONS=(
   'compute.instanceTemplates.list'
   'compute.instanceTemplates.create'
   'compute.instanceTemplates.delete'
+  'serviceusage.services.list'
 )
 
 if gcloud iam service-accounts describe $SERVICE_ACCOUNT_EMAIL >>/dev/null 2>&1; then
@@ -70,7 +81,7 @@ fi
 
 if gcloud iam roles describe --project=$PROJECT_ID $CUSTOM_ROLE_ID >>/dev/null 2>&1; then
   echo "Updating existing role: '$CUSTOM_ROLE_ID'"
-  echo "y" | gcloud iam roles update $CUSTOM_ROLE_ID \
+  gcloud iam roles update $CUSTOM_ROLE_ID \
     --title='Role to manage GKE cluster via CAST' \
     --description='Role to manage GKE cluster via CAST' \
     --permissions=$(
@@ -78,7 +89,9 @@ if gcloud iam roles describe --project=$PROJECT_ID $CUSTOM_ROLE_ID >>/dev/null 2
       echo "${CUSTOM_ROLE_PERMISSIONS[*]}"
     ) \
     --project=$PROJECT_ID \
-    --stage=ALPHA
+    --stage=ALPHA \
+    --no-user-output-enabled \
+    --quiet
 else
   echo "Creating a new role: '$CUSTOM_ROLE_ID'"
   gcloud iam roles create $CUSTOM_ROLE_ID \
@@ -86,7 +99,8 @@ else
     --description='Role to manage GKE cluster via CAST' \
     --permissions=$CUSTOM_ROLE_PERMISSIONS \
     --project=$PROJECT_ID \
-    --stage=ALPHA
+    --stage=ALPHA \
+    --no-user-output-enabled
 fi
 
 echo "Assigning roles to the service account"
