@@ -8,9 +8,14 @@ It is one platform that cuts your cloud costs, boosts DevOps, and prevents downt
 
 ## Easy to start
 
-Deploy your first cluster in 5-10 minutes. Follow our [getting started](./getting-started/overview.md) guide to try it out!
+First connect your cluster to CAST AI and see how much you can save by optimizing cluster configuration. After exploring the savings you can onboard the cluster into CAST AI and turn on cost optimization policies, they will manage your cluster for you. Follow [the guide to learn more](./getting-started/external-cluster/overview.md).
 
-Or [connect your cluster](./getting-started/external-cluster/overview.md) with read-only mode and we will calculate and provide you estimated monthly savings.
+Alternatively, you can also deploy new cluster from scratch and benefit from true multicloud setup. Follow our [getting started](./getting-started/overview.md) guide to try it out!
+
+It takes less than 5 minutes to fully onboard external cluster and less than 10 minutes to setup a new multicloud cluster in CAST AI. CAST AI abstracts layers of technical complexity from the user, so there is little knowledge required to use the product:
+
+- basics of running Kubernetes cluster in the public cloud (AWS, GCP, AKS)
+- working knowledge of `kubectl`command line utility for creating and managing Kubernetes clusters
 
 ## Community
 
