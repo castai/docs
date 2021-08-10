@@ -95,7 +95,7 @@ You can cross-check our [Github repository](https://github.com/castai/k8s-agent)
 
 In order to upgrade CAST AI agent version please perform following steps:
 
-1. Go to [Connect cluster](https://console.dev-master.cast.ai/external-clusters/new)
+1. Go to [Connect cluster](https://console.cast.ai/external-clusters/new)
 2. Select correct cloud service provider
 3. Run the provided script
 
