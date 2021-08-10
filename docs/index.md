@@ -15,7 +15,7 @@ Alternatively, you can also deploy new cluster from scratch and benefit from tru
 It takes less than 5 minutes to fully onboard external cluster and less than 10 minutes to setup a new multicloud cluster in CAST AI. CAST AI abstracts layers of technical complexity from the user, so there is little knowledge required to use the product:
 
 - basics of running Kubernetes cluster in the public cloud (AWS, GCP, AKS)
-- working knowledge of `kubectl`command line utility for creating and managing Kubernetes clusters
+- working knowledge of `kubectl` command line utility for creating and managing Kubernetes clusters
 
 ## Community
 
