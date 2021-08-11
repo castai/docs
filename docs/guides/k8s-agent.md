@@ -56,27 +56,36 @@ To solve this issue:
         spec:
           serviceAccountName: castai-agent
           containers:
+            - name: autoscaler
+              image: k8s.gcr.io/cpvpa-amd64:v0.8.3
+              command:
+                - /cpvpa
+                - --target=deployment/castai-agent
+                - --namespace=castai-agent
+                - --poll-period-seconds=300
+                - --config-file=/etc/config/castai-agent-autoscaler
+              volumeMounts:
+                - mountPath: /etc/config
+                  name: castai-agent-autoscaler
             - name: agent
-              image: castai/agent:latest
+              image: "castai/agent:v0.19.2"
               env:
                 - name: API_URL
                   value: api.cast.ai
-                - name: EKS_ACCOUNT_ID
-                  value: {YOUR-AWS-ACCOUNT-ID} # FILL THIS
-                - name: EKS_REGION
-                  value: {YOUR-EKS-CLUSTER-REGION} # FILL THIS
-                - name: EKS_CLUSTER_NAME
-                  value: {YOUR-CLUSTER-NAME} # FILL THIS
+                - name: PROVIDER
+                  value: "eks"
               envFrom:
                 - secretRef:
                     name: castai-agent
               resources:
                 requests:
                   cpu: 100m
-                  memory: 64Mi
                 limits:
                   cpu: 1000m
-                  memory: 256Mi
+          volumes:
+            - name: castai-agent-autoscaler
+              configMap:
+                name: castai-agent-autoscaler
     ```
 
 2. Add the values for the missing parts next to the `#FILL THIS` comment.
