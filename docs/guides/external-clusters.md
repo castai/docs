@@ -92,7 +92,7 @@ When enabling cluster optimization for the first time user runs the pre-generate
 
 ![](external-clusters/enable-optimization.png)
 
-Error **Failed to validate access to the cluster. Please check your firewall settings** indicates that firewall was detected and it prevents communication between controlplane and CAST AI.
+Error **no access to Kubernetes API server, please check your firewall settings** indicates that firewall prevents communication between control plane and CAST AI.
 
 To solve this issue permit access to CAST AI IP `35.221.40.21` then enable optimization again.
 
