@@ -114,6 +114,10 @@ In order to upgrade CAST AI agent version please perform following steps:
 
 Latest version of CAST AI agent is now deployed in your cluster.
 
+## Deleted agent
+
+In case CAST AI agent deployment got deleted from the cluster, you can re-install the agent by re-running the script from [**Connect cluster**](https://console.cast.ai/external-clusters/new) screen. Please ensure you have chosen the correct cloud service provider.
+
 !!! tip
       If you are still encountering any issues, ping us with logs output at:
       <https://castai-community.slack.com/>
