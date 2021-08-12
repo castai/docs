@@ -29,9 +29,9 @@ Prerequisites:
   information, see [Installing gcloud](https://cloud.google.com/sdk/docs/install).
 
 - `IAM permissions` – The IAM user that you're using must have:
-  - Access to project where the cluster is created.
-  - Permissions to work with IAM, GKE and Compute resources.
-  - The CAST AI agent has to be running on the cluster.
+    - Access to project where the cluster is created.
+    - Permissions to work with IAM, GKE and Compute resources.
+    - The CAST AI agent has to be running on the cluster.
 
 Onboarding steps:
 

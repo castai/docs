@@ -1,6 +1,9 @@
 {
   "default": true,
   "line-length": false,
+  "MD007": {
+    "indent": 4
+  },
   "no-alt-text": false,
   "fenced-code-language": false
 }
