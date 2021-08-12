@@ -77,7 +77,7 @@ The script will perform following actions:
         - AWSLambdaRole
 
 - Modify `aws-auth` ConfigMap to map newly created IAM user to the cluster
-- Create and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret manager that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager). @varnastadeus please correct/add detail about if any of the above is not true.
+- Create and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
 
 !!! note ""
     All the `Write` permissions are scoped to a single EKS cluster - it won't have access to resources of any other clusters in the AWS account.
