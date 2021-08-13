@@ -15,7 +15,7 @@ The script will create `castai-agent` namespace and deployment. After installati
 ![img.png](../../screenshots/connect-cluster-3.png)
 
 !!! note ""
-    The agent will run in read-only mode, providing savings suggestions without applying any actual modifications.
+    The agent will run in a read-only mode, providing savings suggestions without applying any actual modifications.
 
 ## Credential onboarding
 
@@ -49,7 +49,7 @@ That’s it! Your cluster is onboarded. Now you can enable [optimization policie
 
 ## Actions performed by the onboarding script
 
-The script will perform following actions:
+The script will perform the following actions:
 
 - Create a new IAM user `cast-eks-*cluster-name*` with the required permissions to manage the cluster:
     - `AmazonEC2ReadOnlyAccess`
@@ -58,12 +58,12 @@ The script will perform following actions:
     - Manage autoscaling groups in the specified cluster
     - Manage EKS Node Groups in the specified cluster
 
-- Create a policy `CASTEKSPolicy` used to manage EKS cluster. The policy contains following permissions:
+- Create a policy `CASTEKSPolicy` used to manage EKS cluster. The policy contains the following permissions:
     - Create & delete instance profiles
     - Create & manage roles
-    - Create & manage EC2 security groups, key pairs and tags
+    - Create & manage EC2 security groups, key pairs, and tags
     - Run EC2 instances
-    - Create and manage lambda function
+    - Create and manage the lambda function
 
 - Create following roles:
     - `cast-*cluster-name*-eks-#######` to manage EKS nodes with following AWS managed permission policies applied :
@@ -71,7 +71,7 @@ The script will perform following actions:
         - AmazonEC2ContainterRegistryReadOnly
         - AmazonEKS_CNI_Policy
 
-    - `eks-*cluster-name*-events-listener` a lambda role used to manage SPOT interruption events with following AWS managed permission policies applied:
+    - `eks-*cluster-name*-events-listener` a lambda role used to manage Spot interruption events with following AWS managed permission policies applied:
         - CloudWatchLogsFullAccess
         - AWSLambdaRole
 
@@ -87,10 +87,10 @@ To complete the steps mentioned above manually (without our script), be aware th
 
 ## Usage of AWS services
 
-CAST AI relies on the agent runs inside customer's cluster. Following services are consumed during the operation:
+CAST AI relies on the agent runs inside customer's cluster. The following services are consumed during the operation:
 
-- Portion of EC2 node resources from customer's cluster. CAST AI agent uses [Cluster proportional vertical autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler#calculation-of-resource-requests-and-limits) to consume a minimum required resources depending on the size of the cluster
-- Low amount of network traffic to communicate with CAST AI SAAS
-- Lambda function to handle spot instance interruptions
-- EC2 instances, their storage adn intra-cluster network traffic to manage Kubernetes cluster and perform autoscaling
+- A portion of EC2 node resources from the customer's cluster. The CAST AI agent uses [Cluster proportional vertical autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler#calculation-of-resource-requests-and-limits) to consume a minimum required resources depending on the size of the cluster
+- Low amount of network traffic to communicate with CAST AI SaaS
+- Lambda function to handle Spot Instance interruptions
+- EC2 instances, their storage, and intra-cluster network traffic to manage Kubernetes cluster and perform autoscaling
 - IAM resources as detailed in the [onboarding section](https://docs.cast.ai/getting-started/external-cluster/eks/eks/#actions-performed-by-the-onboarding-script)
