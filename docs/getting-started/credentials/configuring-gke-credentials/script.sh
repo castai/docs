@@ -69,6 +69,8 @@ CUSTOM_ROLE_PERMISSIONS=(
   'compute.instanceTemplates.list'
   'compute.instanceTemplates.create'
   'compute.instanceTemplates.delete'
+  'compute.zones.list'
+  'compute.zones.get'
   'serviceusage.services.list'
 )
 
