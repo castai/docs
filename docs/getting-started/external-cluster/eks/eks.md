@@ -6,12 +6,11 @@ description: Learn how to connect your EKS cluster to CAST AI and start optimizi
 
 ## Connect cluster
 
-To connect your cluster, [login to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
+To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
 ![img.png](../../screenshots/connect-cluster-2.png)
 
-Script will create `castai-agent` namespace and deployment. After installation, your cluster should appear in the **Cluster list**. From there, you can open the cluster details and explore
-detailed savings estimate based on your cluster configuration.
+The script will create `castai-agent` namespace and deployment. After installation, your cluster should appear in the **Cluster list**. From there, you can open the cluster details and explore a detailed savings estimate based on your cluster configuration.
 
 ![img.png](../../screenshots/connect-cluster-3.png)
 
@@ -20,8 +19,8 @@ detailed savings estimate based on your cluster configuration.
 
 ## Credential onboarding
 
-To unlock all the benefits and enable automatic cost optimization, CAST AI must have access to your cluster. The following
-section describes the steps required to onboard the EKS cluster on the CAST AI console. To make it less troublesome, we have created
+To unlock all the benefits and enable automatic cost optimization, CAST AI needs to have access to your cluster. The following
+section describes the steps required to onboard the EKS cluster on the CAST AI console. To make it less troublesome, we created
 a script that automates most of the steps.
 
 Prerequisites:
