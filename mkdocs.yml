@@ -113,6 +113,8 @@ nav:
       - 'Specification': api/specification.md
       - 'Terraform provider': api/terraform-provider.md
       - 'CLI': api/cli.md
+  - 'Administration':
+      - 'Configure payment details': administration/configure-payment-method.md   
   - 'Release notes': "https://cast.ai/release-notes/"
   - 'Service status': "https://status.cast.ai/"
   - 'CAST AI GitHub': "https://github.com/castai"
