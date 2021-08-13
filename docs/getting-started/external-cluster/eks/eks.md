@@ -85,4 +85,12 @@ The script will perform following actions:
 
 To complete the steps mentioned above manually (without our script), be aware that when you create an Amazon EKS cluster, the IAM entity user or role (such as a federated user that creates the cluster) is automatically granted a `system:masters` permissions in the cluster's RBAC configuration in the control plane. To grant additional AWS users or roles the ability to interact with your cluster, you need to edit the `aws-auth` ConfigMap within Kubernetes. For more information, see [Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html).
 
-[Connect your cluster here](https://console.cast.ai/external-clusters/new#eks)
+## Usage of AWS services
+
+CAST AI relies on the agent runs inside customer's cluster. Following services are consumed during the operation:
+
+- Portion of EC2 node resources from customer's cluster. CAST AI agent uses [Cluster proportional vertical autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler#calculation-of-resource-requests-and-limits) to consume a minimum required resources depending on the size of the cluster
+- Low amount of network traffic to communicate with CAST AI SAAS
+- Lambda function to handle spot instance interruptions
+- EC2 instances, their storage adn intra-cluster network traffic to manage Kubernetes cluster and perform autoscaling
+- IAM resources as detailed in the [onboarding section](https://docs.cast.ai/getting-started/external-cluster/eks/eks/#actions-performed-by-the-onboarding-script)
