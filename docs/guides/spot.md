@@ -56,10 +56,10 @@ To do that, we will use an example NGINX deployment configured to run only on Sp
 To start using Spot instances autoscaler enable the following policies under the `Policies` menu in the UI:
 
 - **Spot/Preemptible instances policy**
-  - This policy allows the autoscaler to use spot instances
+    - This policy allows the autoscaler to use spot instances
 
 - **Unschedulable pods policy**
-  - This policy requests an additional workload to be scheduled based on your deployment requirements (i.e. run on spot instances)
+    - This policy requests an additional workload to be scheduled based on your deployment requirements (i.e. run on spot instances)
 
 ![](./spot-instances/020_enable_policies.png)
 

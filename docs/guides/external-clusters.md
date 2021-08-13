@@ -1,18 +1,12 @@
 ---
-description: Learn more about the CAST AI external agent and get help if you need to do some troubleshooting.
+description: Learn more about the CAST AI agent, connection of external clusters to CAST and get help if you need to do some troubleshooting.
 ---
 
-# External Cluster Agent
+# External cluster troubleshooting
 
-Public GitHub repository: <https://github.com/castai/k8s-agent>
+This guide is intended for users who are experiencing issues while connecting their EKS, GCP or AKS clusters to CAST AI. Further sections will cover most common issues experienced by the users and how to resolve them.
 
-![Agent Install script](agent/k8s-agent_connect.png)
-
-## Troubleshooting
-
----
-
-### Your cluster does not appear in the Connect Cluster screen
+## Your cluster does not appear in the Connect Cluster screen
 
 If a cluster is not appearing in the Connect your cluster screen after you've run the connection script, perform following steps.
 
@@ -92,7 +86,17 @@ To solve this issue:
 
 3. Apply the deployment file using `kubectl apply -f deployment.yaml`.
 
-### Out-dated CAST AI agent version
+## Refused connection to controlplane
+
+When enabling cluster optimization for the first time user runs the pre-generated script to grant required permissions to CAST as shown below.
+
+![](external-clusters/enable-optimization.png)
+
+Error message **No access to Kubernetes API server, please check your firewall settings** indicates that firewall prevents communication between control plane and CAST AI.
+
+To solve this issue permit access to CAST AI IP `35.221.40.21` then enable optimization again.
+
+## Out-dated CAST AI agent version
 
 To check which agent version is running on your cluster run the following command:
 
@@ -109,6 +113,10 @@ In order to upgrade CAST AI agent version please perform following steps:
 3. Run the provided script
 
 Latest version of CAST AI agent is now deployed in your cluster.
+
+## Deleted agent
+
+In case CAST AI agent deployment got deleted from the cluster, you can re-install the agent by re-running the script from [**Connect cluster**](https://console.cast.ai/external-clusters/new) screen. Please ensure you have chosen the correct cloud service provider.
 
 !!! tip
       If you are still encountering any issues, ping us with logs output at:

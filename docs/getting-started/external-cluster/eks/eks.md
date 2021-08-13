@@ -6,12 +6,11 @@ description: Learn how to connect your EKS cluster to CAST AI and start optimizi
 
 ## Connect cluster
 
-To connect your cluster, [login to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
+To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
 ![img.png](../../screenshots/connect-cluster-2.png)
 
-Script will create `castai-agent` namespace and deployment. After installation, your cluster should appear in the **Cluster list**. From there, you can open the cluster details and explore
-detailed savings estimate based on your cluster configuration.
+The script will create `castai-agent` namespace and deployment. After installation, your cluster should appear in the **Cluster list**. From there, you can open the cluster details and explore a detailed savings estimate based on your cluster configuration.
 
 ![img.png](../../screenshots/connect-cluster-3.png)
 
@@ -20,8 +19,8 @@ detailed savings estimate based on your cluster configuration.
 
 ## Credential onboarding
 
-To unlock all the benefits and enable automatic cost optimization, CAST AI must have access to your cluster. The following
-section describes the steps required to onboard the EKS cluster on the CAST AI console. To make it less troublesome, we have created
+To unlock all the benefits and enable automatic cost optimization, CAST AI needs to have access to your cluster. The following
+section describes the steps required to onboard the EKS cluster on the CAST AI console. To make it less troublesome, we created
 a script that automates most of the steps.
 
 Prerequisites:
@@ -46,19 +45,43 @@ Follow the instruction in the pop-up window to create and use AWS `AccessKeyId` 
 
 ![img.png](../../screenshots/connect-cluster-4.png)
 
-The script will create a new AWS user with the required permissions, modify `aws-auth` ConfigMap, and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster.
+That’s it! Your cluster is onboarded. Now you can enable [optimization policies](https://docs.cast.ai/console-overview/policies/) to keep your cluster configuration optimal.
 
-The generated user will have the following permissions:
+## Actions performed by the onboarding script
 
-- `AmazonEC2ReadOnlyAccess`
-- `IAMReadOnlyAccess`
-- Manage instances in specified cluster restricted to cluster VPC
-- Manage autoscaling groups in the specified cluster
-- Manage EKS Node Groups in the specified cluster
+The script will perform following actions:
 
-All the `Write` permissions are scoped to a single EKS cluster - it won't have access to resources of any other clusters in the AWS account.
+- Create a new IAM user `cast-eks-*cluster-name*` with the required permissions to manage the cluster:
+    - `AmazonEC2ReadOnlyAccess`
+    - `IAMReadOnlyAccess`
+    - Manage instances in specified cluster restricted to cluster VPC
+    - Manage autoscaling groups in the specified cluster
+    - Manage EKS Node Groups in the specified cluster
 
-That’s it! Your cluster is onboarded. You can now enable [policies](https://docs.cast.ai/console-overview/policies/) to keep your cluster configuration optimal.
+- Create a policy `CASTEKSPolicy` used to manage EKS cluster. The policy contains following permissions:
+    - Create & delete instance profiles
+    - Create & manage roles
+    - Create & manage EC2 security groups, key pairs and tags
+    - Run EC2 instances
+    - Create and manage lambda function
+
+- Create following roles:
+    - `cast-*cluster-name*-eks-#######` to manage EKS nodes with following AWS managed permission policies applied :
+        - AmazonEKSWorkerNodePolicy
+        - AmazonEC2ContainterRegistryReadOnly
+        - AmazonEKS_CNI_Policy
+
+    - `eks-*cluster-name*-events-listener` a lambda role used to manage SPOT interruption events with following AWS managed permission policies applied:
+        - CloudWatchLogsFullAccess
+        - AWSLambdaRole
+
+- Modify `aws-auth` ConfigMap to map newly created IAM user to the cluster
+- Create and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
+
+!!! note ""
+    All the `Write` permissions are scoped to a single EKS cluster - it won't have access to resources of any other clusters in the AWS account.
+
+## Manual credential onboarding
 
 To complete the steps mentioned above manually (without our script), be aware that when you create an Amazon EKS cluster, the IAM entity user or role (such as a federated user that creates the cluster) is automatically granted a `system:masters` permissions in the cluster's RBAC configuration in the control plane. To grant additional AWS users or roles the ability to interact with your cluster, you need to edit the `aws-auth` ConfigMap within Kubernetes. For more information, see [Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html).
 
