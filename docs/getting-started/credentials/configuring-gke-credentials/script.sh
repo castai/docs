@@ -36,6 +36,7 @@ gcloud services enable \
   compute.googleapis.com \
   --no-user-output-enabled \
   --async
+  --project $PROJECT_ID
 
 SERVICE_ACCOUNT_ID=cast-gke-${CLUSTER_NAME}
 SERVICE_ACCOUNT_EMAIL="${SERVICE_ACCOUNT_ID}@${PROJECT_ID}.iam.gserviceaccount.com"
@@ -73,11 +74,11 @@ CUSTOM_ROLE_PERMISSIONS=(
   'serviceusage.services.list'
 )
 
-if gcloud iam service-accounts describe $SERVICE_ACCOUNT_EMAIL >>/dev/null 2>&1; then
+if gcloud iam service-accounts describe $SERVICE_ACCOUNT_EMAIL --project $PROJECT_ID >>/dev/null 2>&1; then
   echo "Service account already exists: '$SERVICE_ACCOUNT_EMAIL'"
 else
   echo "Creating service account: '$SERVICE_ACCOUNT_EMAIL'"
-  gcloud iam service-accounts create "$SERVICE_ACCOUNT_ID" --display-name "Service account to manage GKE cluster via CAST" --no-user-output-enabled
+  gcloud iam service-accounts create "$SERVICE_ACCOUNT_ID" --display-name "Service account to manage GKE cluster via CAST" --no-user-output-enabled --project $PROJECT_ID
 fi
 
 if gcloud iam roles describe --project=$PROJECT_ID $CUSTOM_ROLE_ID >>/dev/null 2>&1; then
@@ -110,11 +111,11 @@ for ROLE in \
   roles/container.developer \
   roles/iam.serviceAccountUser; do
   echo "- Assigning $ROLE"
-  gcloud projects add-iam-policy-binding "$PROJECT_ID" --role="$ROLE" --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" --condition=None --no-user-output-enabled
+  gcloud projects add-iam-policy-binding "$PROJECT_ID" --role="$ROLE" --member="serviceAccount:$SERVICE_ACCOUNT_EMAIL" --condition=None --no-user-output-enabled --project $PROJECT_ID
 done
 
 echo "Generating service account key"
-gcloud iam service-accounts keys create "${SERVICE_ACCOUNT_ID}.json" --iam-account "$SERVICE_ACCOUNT_EMAIL" --no-user-output-enabled
+gcloud iam service-accounts keys create "${SERVICE_ACCOUNT_ID}.json" --iam-account "$SERVICE_ACCOUNT_EMAIL" --no-user-output-enabled --project $PROJECT_ID
 
 echo "Service account key json:"
 cat "${SERVICE_ACCOUNT_ID}.json"
