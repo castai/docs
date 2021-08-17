@@ -22,8 +22,8 @@ if ! [ -x "$(command -v gcloud)" ]; then
 fi
 
 echo 'Fetching cluster information'
-if ! gcloud container clusters describe $CLUSTER_NAME --region=$LOCATION --no-user-output-enabled >>/dev/null 2>&1; then
-  echo "Error: cluster $CLUSTER_NAME in $REGION does not exist"
+if ! gcloud container clusters describe $CLUSTER_NAME --region=$LOCATION --project=$PROJECT_ID --no-user-output-enabled >>/dev/null 2>&1; then
+  echo "Error: cluster $CLUSTER_NAME in $LOCATION does not exist"
   exit 1
 fi
 
