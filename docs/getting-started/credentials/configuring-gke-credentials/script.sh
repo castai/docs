@@ -35,7 +35,7 @@ gcloud services enable \
   container.googleapis.com \
   compute.googleapis.com \
   --no-user-output-enabled \
-  --async
+  --async \
   --project $PROJECT_ID
 
 SERVICE_ACCOUNT_ID=cast-gke-${CLUSTER_NAME}
