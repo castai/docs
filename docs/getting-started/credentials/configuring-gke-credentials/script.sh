@@ -37,7 +37,6 @@ gcloud services enable \
   --no-user-output-enabled \
   --async
 
-PROJECT_ID=$(gcloud config get-value project)
 SERVICE_ACCOUNT_ID=cast-gke-${CLUSTER_NAME}
 SERVICE_ACCOUNT_EMAIL="${SERVICE_ACCOUNT_ID}@${PROJECT_ID}.iam.gserviceaccount.com"
 CUSTOM_ROLE_ID=cast.gkeAccess
