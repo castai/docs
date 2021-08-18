@@ -76,4 +76,13 @@ if ! eksctl get iamidentitymapping --cluster $CLUSTER_NAME --region $REGION --ar
 fi
 
 echo "Creating access keys"
-aws iam create-access-key --user-name $USER_NAME --output table --query 'AccessKey.{AccessKeyId:AccessKeyId,SecretAccessKey:SecretAccessKey}'
+CREDENTIALS=$(aws iam create-access-key --user-name $USER_NAME --output json --query 'AccessKey.{accessKeyId:AccessKeyId,secretAccessKey:SecretAccessKey}')
+
+echo $CREDENTIALS
+
+if [ -z $CASTAI_API_TOKEN ] || [ -z $CASTAI_API_URL ]; then
+  echo "Skipped sending credentials to CAST AI console (CASTAI_API_TOKEN and CASTAI_API_URL variables were not provided)"
+else
+  echo "Sending credentials to CAST AI console"
+  curl -fsS -X POST -H "X-API-Key: $CASTAI_API_TOKEN" $CASTAI_API_URL -d "$(jq -n --arg CREDENTIALS "$CREDENTIALS" '{credentials:$CREDENTIALS}')"
+fi
