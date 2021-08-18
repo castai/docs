@@ -4,7 +4,11 @@ description: Learn more about the CAST AI agent, connection of external clusters
 
 # External cluster troubleshooting
 
-This guide is intended for users who are experiencing issues while connecting their EKS, GCP or AKS clusters to CAST AI. Further sections will cover most common issues experienced by the users and how to resolve them.
+This guide is intended for users who are experiencing issues while connecting their EKS, GCP or AKS clusters to CAST AI. Once cluster is connected you can check the `Status` field in the **Clusters overview** screen to understand if cluster is operating as expected.
+
+![](external-clusters/cluster-dashboard.png)
+
+Further sections will cover most common issues and how to resolve them.
 
 ## Your cluster does not appear in the Connect Cluster screen
 
@@ -95,6 +99,18 @@ When enabling cluster optimization for the first time user runs the pre-generate
 Error message **No access to Kubernetes API server, please check your firewall settings** indicates that firewall prevents communication between control plane and CAST AI.
 
 To solve this issue permit access to CAST AI IP `35.221.40.21` then enable optimization again.
+
+## Disconnected or Not responding cluster
+
+If cluster has a `Not responding` status - most likely CAST AI agent deployment is missing, press **Reconnect** and follow the instructions provided.
+
+![](external-clusters/reconnect-cluster.png)
+
+`Not responding` state is temporary and if not fixed cluster will go in to `Disconnected` state. Disconnected cluster can be reconnected or deleted from console as show.
+
+![](external-clusters/disconnected-cluster.png)
+
+Delete action only removes cluster from CAST AI console leaving it running in CSP.
 
 ## Out-dated CAST AI agent version
 
