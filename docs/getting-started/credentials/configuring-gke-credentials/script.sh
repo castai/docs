@@ -55,6 +55,8 @@ CUSTOM_ROLE_PERMISSIONS=(
   'compute.instances.setMetadata'
   'compute.instances.setTags'
   'compute.instanceGroupManagers.get'
+  'compute.instanceGroupManagers.update'
+  'compute.instanceGroups.get'
   'compute.networks.use'
   'compute.networks.useExternalIp'
   'compute.subnetworks.get'
@@ -72,7 +74,6 @@ CUSTOM_ROLE_PERMISSIONS=(
   'compute.zones.list'
   'compute.zones.get'
   'serviceusage.services.list'
-  'compute.instanceGroupManagers.update'
 )
 
 if gcloud iam service-accounts describe $SERVICE_ACCOUNT_EMAIL --project $PROJECT_ID >>/dev/null 2>&1; then
