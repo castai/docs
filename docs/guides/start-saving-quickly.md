@@ -18,15 +18,11 @@ First, you need to [onboard the credentials](../getting-started/external-cluster
 2. **Enable Unscheduled Pod** policy - it will make sure that you always have the capacity in the cluster to run pods. The Unscheduled
 Pod policy will provision a new node when required, taking no more than 2-3 minutes.
 
-3. **Adjust headroom %** for migration purposes - each node adds overhead through DaemonSets, also more smaller nodes means that more pods won't find their destination on the same node (added latency). So ideally, one should have nodes that are as large as possible, but 5-6 nodes minimum (for
+3. **Enable and adjust Node constraints %** sub-policy of Unscheduled pods policy. for migration purposes - each node adds overhead through DaemonSets, also more smaller nodes means that more pods won't find their destination on the same node (added latency). So ideally, one should have nodes that are as large as possible, but 5-6 nodes minimum (for
 below 200 CPUs cluster) for good SLA and adequate capacity distribution for the lifecycle process (upgrades, patching). Take
 the number from Available Savings - this is the total amount of nodes you should have in the optimized state.
 
 ![](start-saving-quickly/amount_of_nodes.png)
-
-```
-headroom percentage = 100 / Amount_of_Nodes_in_suggested_optimized_state+1
-```
 
 In the Policies tab, it should look like this:
 
@@ -107,7 +103,7 @@ cause pain in the future (or at least noted to be addressed at a more convenient
 downtime, cancel the drain command and retry draining with the additional --force flag.
 
 You should see that the drained nodes disappear (empty Node deletion policy) and, in few moments, new nodes in the same
-availability zone appear (Unscheduled Pod policy with Headroom).
+availability zone appear (Unscheduled Pod policy).
 
 Check the remaining nodes. You will see that list is shorter because the command below selects only nodes in the AWS autoscaling
 group (ASG) and new nodes don't use ASG.
@@ -143,7 +139,5 @@ tolerations:
 ### You're all done
 
 - Share the Available savings window screenshot with your CFO/manager - there's nothing left to save.
-
-- Reduce the Headroom policy to a smaller number that fits your smooth organic growth better.
 
 - Install Evictor if you haven't already done that.
