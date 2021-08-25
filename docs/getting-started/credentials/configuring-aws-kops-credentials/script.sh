@@ -30,6 +30,7 @@ for rolename in $(aws iam list-roles --query 'Roles[?ends_with(RoleName,`-lambda
 done
 
 USER_NAME=cast-kops-${CLUSTER_NAME}
+OLD_POLICY_NAME='CastKopsPolicy'
 POLICY_NAME='CastKopsPolicyV2'
 LAMBDA_ROLE_NAME='CastLambdaRoleForSpot'
 ACCOUNT_NUMBER=$(aws sts get-caller-identity --output text --query 'Account')
@@ -58,6 +59,7 @@ fi
 
 echo "Attaching policies"
 POLICY_ARN="arn:aws:iam::${ACCOUNT_NUMBER}:policy/${POLICY_NAME}"
+OLD_POLICY_ARN="arn:aws:iam::${ACCOUNT_NUMBER}:policy/${OLD_POLICY_NAME}"
 if aws iam get-policy --policy-arn $POLICY_ARN >>/dev/null 2>&1; then
 
   VERSIONS=$(aws iam list-policy-versions --policy-arn $POLICY_ARN --query 'length(Versions[*])')
@@ -69,6 +71,11 @@ if aws iam get-policy --policy-arn $POLICY_ARN >>/dev/null 2>&1; then
   aws iam create-policy-version --policy-arn $POLICY_ARN --policy-document $POLICY_JSON --set-as-default >>/dev/null 2>&1
 else
   POLICY_ARN=$(aws iam create-policy --policy-name $POLICY_NAME --policy-document $POLICY_JSON --description "Policy to manage kops cluster used by CAST console" --output text --query 'Policy.Arn')
+fi
+
+# Remove old policy from the user
+if aws iam get-policy --policy-arn $OLD_POLICY_ARN >>/dev/null 2>&1; then
+  aws iam detach-user-policy --user-name $USER_NAME --policy-arn $OLD_POLICY_ARN
 fi
 
 policies=(arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess arn:aws:iam::aws:policy/AmazonEventBridgeReadOnlyAccess arn:aws:iam::aws:policy/IAMReadOnlyAccess arn:aws:iam::aws:policy/AWSLambda_ReadOnlyAccess arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess $POLICY_ARN)
