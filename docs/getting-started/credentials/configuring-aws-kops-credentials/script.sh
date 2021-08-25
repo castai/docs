@@ -30,7 +30,7 @@ for rolename in $(aws iam list-roles --query 'Roles[?ends_with(RoleName,`-lambda
 done
 
 USER_NAME=cast-kops-${CLUSTER_NAME}
-POLICY_NAME='CastKopsPolicy'
+POLICY_NAME='CastKopsPolicyV2'
 LAMBDA_ROLE_NAME='CastLambdaRoleForSpot'
 ACCOUNT_NUMBER=$(aws sts get-caller-identity --output text --query 'Account')
 
