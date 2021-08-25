@@ -75,7 +75,7 @@ fi
 
 # Remove old policy from the user
 if aws iam get-policy --policy-arn $OLD_POLICY_ARN >>/dev/null 2>&1; then
-  $(aws iam detach-user-policy --user-name $USER_NAME --policy-arn $OLD_POLICY_ARN >>/dev/null 2>&1 || true
+  aws iam detach-user-policy --user-name $USER_NAME --policy-arn $OLD_POLICY_ARN >>/dev/null 2>&1 || true
 fi
 
 policies=(arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess arn:aws:iam::aws:policy/AmazonEventBridgeReadOnlyAccess arn:aws:iam::aws:policy/IAMReadOnlyAccess arn:aws:iam::aws:policy/AWSLambda_ReadOnlyAccess arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess $POLICY_ARN)
