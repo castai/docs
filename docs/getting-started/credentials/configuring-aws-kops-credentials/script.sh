@@ -80,7 +80,7 @@ fi
 
 policies=(arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess arn:aws:iam::aws:policy/AmazonEventBridgeReadOnlyAccess arn:aws:iam::aws:policy/IAMReadOnlyAccess arn:aws:iam::aws:policy/AWSLambda_ReadOnlyAccess arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess $POLICY_ARN)
 for i in "${policies[@]}"; do
-  aws iam attach-user-policy --user-name $USER_NAME --policy-arn $i
+  aws iam attach-user-policy --user-name $USER_NAME --policy-arn $i >>/dev/null 2>&1
 done
 
 aws iam put-user-policy --user-name $USER_NAME --policy-name CastKopsRestrictedAccess --policy-document $INLINE_POLICY_JSON
