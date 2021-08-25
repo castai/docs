@@ -75,12 +75,12 @@ fi
 
 # Remove old policy from the user
 if aws iam get-policy --policy-arn $OLD_POLICY_ARN >>/dev/null 2>&1; then
-  aws iam detach-user-policy --user-name $USER_NAME --policy-arn $OLD_POLICY_ARN
+  aws iam detach-user-policy --user-name $USER_NAME --policy-arn $OLD_POLICY_ARN >>/dev/null 2>&1
 fi
 
 policies=(arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess arn:aws:iam::aws:policy/AmazonEventBridgeReadOnlyAccess arn:aws:iam::aws:policy/IAMReadOnlyAccess arn:aws:iam::aws:policy/AWSLambda_ReadOnlyAccess arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess $POLICY_ARN)
 for i in "${policies[@]}"; do
-  aws iam attach-user-policy --user-name $USER_NAME --policy-arn $i >>/dev/null 2>&1
+  aws iam attach-user-policy --user-name $USER_NAME --policy-arn $i
 done
 
 aws iam put-user-policy --user-name $USER_NAME --policy-name CastKopsRestrictedAccess --policy-document $INLINE_POLICY_JSON
