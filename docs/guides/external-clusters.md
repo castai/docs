@@ -1,18 +1,18 @@
 ---
-description: Learn more about the CAST AI agent, connection of external clusters to CAST and get help if you need to do some troubleshooting.
+description: Learn more about the CAST AI agent, connecting external clusters to CAST AI, and getting help if you need to do some troubleshooting.
 ---
 
 # External cluster troubleshooting
 
-This guide is intended for users who are experiencing issues while connecting their EKS, GCP or AKS clusters to CAST AI. Once cluster is connected you can check the `Status` field in the **Clusters overview** screen to understand if cluster is operating as expected.
+This guide is intended for users who are experiencing issues while connecting their EKS, GCP, or AKS clusters to CAST AI. Once the cluster is connected, you can check the `Status` field in the **Clusters overview** screen to understand if cluster is operating as expected.
 
 ![](external-clusters/cluster-dashboard.png)
 
-Further sections will cover most common issues and how to resolve them.
+Further sections will cover the most common issues and how to resolve them.
 
 ## Your cluster does not appear in the Connect Cluster screen
 
-If a cluster is not appearing in the Connect your cluster screen after you've run the connection script, perform following steps.
+If a cluster does not appear in the Connect your cluster screen after you've run the connection script, perform following steps.
 
 1. Check the Pod logs:
 
@@ -90,45 +90,45 @@ To solve this issue:
 
 3. Apply the deployment file using `kubectl apply -f deployment.yaml`.
 
-## Refused connection to controlplane
+## Refused connection to control plane
 
-When enabling cluster optimization for the first time user runs the pre-generated script to grant required permissions to CAST as shown below.
+When enabling cluster optimization for the first time, the user runs the pre-generated script to grant required permissions to CAST AI as shown below.
 
 ![](external-clusters/enable-optimization.png)
 
-Error message **No access to Kubernetes API server, please check your firewall settings** indicates that firewall prevents communication between control plane and CAST AI.
+Error message **No access to Kubernetes API server, please check your firewall settings** indicates that a firewall prevents communication between the control plane and CAST AI.
 
-To solve this issue permit access to CAST AI IP `35.221.40.21` then enable optimization again.
+To solve this issue, allow access to CAST AI IP `35.221.40.21` and then enable optimization again.
 
 ## Disconnected or Not responding cluster
 
-If cluster has a `Not responding` status - most likely CAST AI agent deployment is missing, press **Reconnect** and follow the instructions provided.
+If cluster has a `Not responding` status, most likely the CAST AI agent deployment is missing. Press **Reconnect** and follow the instructions provided.
 
 ![](external-clusters/reconnect-cluster.png)
 
-`Not responding` state is temporary and if not fixed cluster will go in to `Disconnected` state. Disconnected cluster can be reconnected or deleted from console as show.
+The `Not responding` state is temporary and if not fixed, the cluster will enter into the `Disconnected` state. A disconnected cluster can be reconnected or deleted from the console as shown.
 
 ![](external-clusters/disconnected-cluster.png)
 
-Delete action only removes cluster from CAST AI console leaving it running in CSP.
+The delete action only removes the cluster from the CAST AI console, leaving it running in the cloud service provider.
 
-## Out-dated CAST AI agent version
+## Outdated CAST AI agent version
 
-To check which agent version is running on your cluster run the following command:
+To check which agent version is running on your cluster, run the following command:
 
   ```sh
   kubectl describe pod castai-agent -n castai-agent | grep castai/agent:v
   ```
 
-You can cross-check our [Github repository](https://github.com/castai/k8s-agent) for a number of the latest version available.
+You can cross-check our [Github repository](https://github.com/castai/k8s-agent) for the number of the latest version available.
 
-In order to upgrade CAST AI agent version please perform following steps:
+In order to upgrade the CAST AI agent version, please perform the following steps:
 
 1. Go to [Connect cluster](https://console.cast.ai/external-clusters/new)
-2. Select correct cloud service provider
+2. Select the correct cloud service provider
 3. Run the provided script
 
-Latest version of CAST AI agent is now deployed in your cluster.
+The latest version of CAST AI agent is now deployed in your cluster.
 
 ## Deleted agent
 
@@ -140,10 +140,10 @@ In case CAST AI agent deployment got deleted from the cluster, you can re-instal
 
 ## Shielded GKE nodes
 
-If your GKE cluster has `Shielded GKE nodes` enabled you will get **shielded GKE nodes not supported** error message.
+If your GKE cluster has `Shielded GKE nodes` enabled, you will get **shielded GKE nodes not supported** error message.
 
 Shielded GKE nodes requires that every node is part of the `Managed Instance Group (MIG)` provisioned for the cluster.
-Since CAST AI autoscaler provisions capacity directly without using `Instance Groups` - this option should be disabled.
+Since CAST AI autoscaler provisions capacity directly without using `Instance Groups`, this option should be disabled.
 
 ### Disabling Shielded GKE nodes
 
@@ -157,8 +157,8 @@ gcloud container clusters update CLUSTER_NAME --no-enable-shielded-nodes
 
 Using Google Cloud Console:
 
-1. Go to the `Google Kubernetes Engine` page in Cloud Console.
-2. Click the name of the cluster you want to modify.
+1. Go to the `Google Kubernetes Engine` page in the Cloud Console.
+2. Click on the name of the cluster you want to modify.
 3. Under `Security`, in the `Shielded GKE nodes` field, click `Edit Shielded GKE nodes`.
 4. Clear the `Enable Shielded GKE nodes` checkbox.
 5. Click `Save Changes`.
