@@ -106,10 +106,14 @@ else
   gcloud iam roles create $CUSTOM_ROLE_ID \
     --title='Role to manage GKE cluster via CAST AI' \
     --description='Role to manage GKE cluster via CAST AI' \
-    --permissions=$CUSTOM_ROLE_PERMISSIONS \
+    --permissions=$(
+      IFS=,
+      echo "${CUSTOM_ROLE_PERMISSIONS[*]}"
+    ) \
     --project=$PROJECT_ID \
     --stage=ALPHA \
-    --no-user-output-enabled
+    --no-user-output-enabled \
+    --quiet
 fi
 
 echo "Assigning roles to the service account"
