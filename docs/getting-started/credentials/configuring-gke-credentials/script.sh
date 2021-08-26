@@ -38,9 +38,9 @@ gcloud services enable \
   --async \
   --project $PROJECT_ID
 
-SERVICE_ACCOUNT_ID=cast-gke-${CLUSTER_NAME}
+SERVICE_ACCOUNT_ID=castai-gke-$(echo -n $CLUSTER_NAME | shasum | cut -c 1-8)
 SERVICE_ACCOUNT_EMAIL="${SERVICE_ACCOUNT_ID}@${PROJECT_ID}.iam.gserviceaccount.com"
-CUSTOM_ROLE_ID=cast.gkeAccess
+CUSTOM_ROLE_ID=castai.gkeAccess
 CUSTOM_ROLE_PERMISSIONS=(
   'container.clusters.get'
   'container.clusters.update'
@@ -78,14 +78,14 @@ if gcloud iam service-accounts describe $SERVICE_ACCOUNT_EMAIL --project $PROJEC
   echo "Service account already exists: '$SERVICE_ACCOUNT_EMAIL'"
 else
   echo "Creating service account: '$SERVICE_ACCOUNT_EMAIL'"
-  gcloud iam service-accounts create "$SERVICE_ACCOUNT_ID" --display-name "Service account to manage GKE cluster via CAST" --no-user-output-enabled --project $PROJECT_ID
+  gcloud iam service-accounts create "$SERVICE_ACCOUNT_ID" --display-name "Service account to manage $CLUSTER_NAME GKE cluster via CAST" --no-user-output-enabled --project $PROJECT_ID
 fi
 
 if gcloud iam roles describe --project=$PROJECT_ID $CUSTOM_ROLE_ID >>/dev/null 2>&1; then
   echo "Updating existing role: '$CUSTOM_ROLE_ID'"
   gcloud iam roles update $CUSTOM_ROLE_ID \
-    --title='Role to manage GKE cluster via CAST' \
-    --description='Role to manage GKE cluster via CAST' \
+    --title='Role to manage GKE cluster via CAST AI' \
+    --description='Role to manage GKE cluster via CAST AI' \
     --permissions=$(
       IFS=,
       echo "${CUSTOM_ROLE_PERMISSIONS[*]}"
@@ -97,8 +97,8 @@ if gcloud iam roles describe --project=$PROJECT_ID $CUSTOM_ROLE_ID >>/dev/null 2
 else
   echo "Creating a new role: '$CUSTOM_ROLE_ID'"
   gcloud iam roles create $CUSTOM_ROLE_ID \
-    --title='Role to manage GKE cluster via CAST' \
-    --description='Role to manage GKE cluster via CAST' \
+    --title='Role to manage GKE cluster via CAST AI' \
+    --description='Role to manage GKE cluster via CAST AI' \
     --permissions=$CUSTOM_ROLE_PERMISSIONS \
     --project=$PROJECT_ID \
     --stage=ALPHA \
