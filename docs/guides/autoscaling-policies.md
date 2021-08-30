@@ -54,6 +54,8 @@ For now HPA policy is only supported on CAST AI created clusters. See [HPA docum
 
 This policy instructs CAST AI optimization engine to purchase Spot / Preemptive instances and place specifically labelled pods on those instances. CAST AI automatically handles instance interruptions and replaces instances when they are terminated by the CSP.
 
+Additionally, using *interruption tolerance* setting you can restrict which instances types should autoscaler be considering when choosing spot instance type. The default "Cost efficient" option means that autoscaler will choose cheapest option, regardless of selected instance type's reliability; choosing "Least interrupted" will ensure that selection will be done only from most reliable instances.
+
 Detailed guide on how to configure your workloads to run on Spot instances can be found [here](../guides/spot.md).
 
 ## Unscheduled pods policy

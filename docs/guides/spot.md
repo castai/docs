@@ -16,11 +16,9 @@ This guide will help you configure and run it in 5 minutes.
 When a pod is marked only with `tolerations`, the Kubernetes scheduler could place such a pod/pods on regular nodes as well.
 
 ```yaml
-...
 tolerations:
   - key: scheduling.cast.ai/spot
     operator: Exists
-...
 ```
 
 ### Node Selectors
@@ -31,14 +29,39 @@ If you want to make sure that a pod is scheduled on spot instances only, add `no
 The autoscaler will then ensure that only a spot instance is picked whenever your pod requires additional workload in the cluster.
 
 ```yaml
-...
 tolerations:
   - key: scheduling.cast.ai/spot
     operator: Exists
 nodeSelector:
   scheduling.cast.ai/spot: "true"
-...
 ```
+
+### Spot Reliability
+
+**When to use:** there's a need to minimize workload interruptions
+
+Autoscaler is able to identify which instance types are less likely to be interrupted. You can set a default reliability value cluster-wide in [spot instance policy](autoscaling-policies.md#spotpreemptive-instances-policy). If you want to control that per-workload, e.g. leave most const-efficient value globally and only choose more stable instances for specific pods, define this in deployment configuration by setting `scheduling.cast.ai/spot-reliability` label on the pod.
+
+Here's an example how it's done for the typical deployment:
+
+```yaml
+spec:
+  template:
+    metadata:
+      labels:
+        scheduling.cast.ai/spot-reliability: 10
+```
+
+Reliability is measured by "what is the percentage of reclaimed instances during trailing month for this instance type". This tag specifies an upper limit - all instances below specified reliability value will be considered.
+
+The value is a percentage (range is 1-100), and the meaningful values are:
+
+- `5`: most reliable category; by using this value you'll restrict autoscaler to use only the narrowest set of spot instance types
+- `10` - `15`: reasonable value range to compromise between reliability and price;
+- `25` and above: typically most instances fall into this category,.
+
+!!! tip ""
+    For AWS, have a look at [Spot instance advisor](https://aws.amazon.com/ec2/spot/instance-advisor/) to get an idea which instances correspond to which reliability category.
 
 ## Step-by-step deployment on Spot Instance
 
