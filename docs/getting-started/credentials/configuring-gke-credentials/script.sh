@@ -49,6 +49,7 @@ CUSTOM_ROLE_ID=castai.gkeAccess
 CUSTOM_ROLE_PERMISSIONS=(
   'container.clusters.get'
   'container.clusters.update'
+  'container.certificateSigningRequests.approve'
   'compute.instances.get'
   'compute.instances.list'
   'compute.instances.create'
