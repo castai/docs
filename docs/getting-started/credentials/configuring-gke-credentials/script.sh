@@ -27,11 +27,6 @@ if ! gcloud container clusters describe $CLUSTER_NAME --region=$LOCATION --proje
   exit 1
 fi
 
-if out=$(gcloud container clusters describe $CLUSTER_NAME --region=$LOCATION --project=$PROJECT_ID --format="value(shieldedNodes.Enabled)") && [ ! -z $out ]; then
-  echo "Error: shielded GKE nodes not supported (https://docs.cast.ai/guides/external-clusters/#shielded-gke-nodes)"
-  exit 1
-fi
-
 echo 'Enabling required google cloud services'
 gcloud services enable \
   serviceusage.googleapis.com \
