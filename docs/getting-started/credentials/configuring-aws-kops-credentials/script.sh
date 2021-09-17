@@ -18,11 +18,6 @@ if ! [ -x "$(command -v aws)" ]; then
   exit 1
 fi
 
-if ! [ -x "$(command -v jq)" ]; then
-  echo "Error: jq is not installed"
-  exit 1
-fi
-
 echo "Validating cluster"
 if [[ "$(aws ec2 describe-instances --region $REGION --filter Name=tag:KubernetesCluster,Values=$CLUSTER_NAME --output text --query 'length(Reservations[*])')" == "0" ]]; then
   echo "Error: failed to find cluster '${CLUSTER_NAME}' resources, please check cluster name"
