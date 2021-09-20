@@ -16,6 +16,8 @@ site_url: https://docs.cast.ai
 repo_url: https://github.com/castai/docs
 edit_uri: https://github.com/castai/docs/edit/main/docs/
 markdown_extensions:
+  - toc:
+      permalink: true
   - admonition
   - abbr
   - attr_list
@@ -109,6 +111,7 @@ nav:
       - guides/spot.md
       - guides/vpa.md
       - 'Node kernel tuning': guides/node-kernel-tuning.md
+      - guides/evictor.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
@@ -116,7 +119,7 @@ nav:
       - 'Terraform provider': api/terraform-provider.md
       - 'CLI': api/cli.md
   - 'Administration':
-      - 'Configure payment details': administration/configure-payment-method.md   
+      - 'Configure payment details': administration/configure-payment-method.md
   - 'Release notes': "https://cast.ai/release-notes/"
   - 'Service status': "https://status.cast.ai/"
   - 'CAST AI GitHub': "https://github.com/castai"

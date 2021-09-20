@@ -35,6 +35,8 @@ time. If you want to maximize your savings as quickly as possible and you have a
 
 ### Install Evictor (continuously improved)
 
+<!-- This paragraph is duplicated in guides/evictor.md. We should consolidate them somehow? -->
+
 Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy:
 
 ```
@@ -70,6 +72,8 @@ without ReplicaSet, meaning that those nodes can't be removed gracefully.
     ```
     helm ls -n kube-system
     ```
+
+For more information see [Evictor Guide](../guides/evictor.md#avoiding-downtime-during-bin-packing)
 
 ### Stir the pod with manual migration
 
