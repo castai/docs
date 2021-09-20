@@ -35,7 +35,7 @@ time. If you want to maximize your savings as quickly as possible and you have a
 
 ### Install Evictor
 
-Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy. Install and configure Evictor using this [guide](../guides/evictor.md) then complete remaining steps listed below. 
+Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy. Install and configure Evictor using this [guide](../guides/evictor.md) then complete remaining steps listed below.
 
 ### Stir the pod with manual migration
 
