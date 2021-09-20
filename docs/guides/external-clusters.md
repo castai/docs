@@ -137,31 +137,3 @@ In case CAST AI agent deployment got deleted from the cluster, you can re-instal
 !!! tip
       If you are still encountering any issues, ping us with logs output at:
       <https://castai-community.slack.com/>
-
-## Shielded GKE nodes
-
-If your GKE cluster has `Shielded GKE nodes` enabled, you will get **shielded GKE nodes not supported** error message.
-
-Shielded GKE nodes requires that every node is part of the `Managed Instance Group (MIG)` provisioned for the cluster.
-Since CAST AI autoscaler provisions capacity directly without using `Instance Groups`, this option should be disabled.
-
-### Disabling Shielded GKE nodes
-
-You can disable Shielded GKE nodes with the gcloud command-line tool or Google Cloud Console.
-
-Using gcloud:
-
-```bash
-gcloud container clusters update CLUSTER_NAME --no-enable-shielded-nodes
-```
-
-Using Google Cloud Console:
-
-1. Go to the `Google Kubernetes Engine` page in the Cloud Console.
-2. Click on the name of the cluster you want to modify.
-3. Under `Security`, in the `Shielded GKE nodes` field, click `Edit Shielded GKE nodes`.
-4. Clear the `Enable Shielded GKE nodes` checkbox.
-5. Click `Save Changes`.
-
-!!! warning
-        Toggling `Shielded GKE nodes` will drain, delete, and recreate all nodes in all node pools of the cluster.
