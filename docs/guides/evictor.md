@@ -3,17 +3,17 @@ description: Information on how to enable and configure Evictor: our bin-packing
 ---
 # Evictor
 
-## Install Evictor (continuously improved)
+## Install Evictor
 
-Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy:
+Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy. To install Evictor fo the first time run this command:
 
 ```
 helm repo add castai https://castai.github.io/official-addons
 helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
 ```
 
-This process will take some time. Also, Evictor will not cause any downtime to single replica deployments / StatefulSets, pods
-without ReplicaSet, meaning that those nodes can't be removed gracefully.
+This process will take some time. Also, by default, Evictor will not cause any downtime to single replica deployments / StatefulSets, pods
+without ReplicaSet, meaning that those nodes can't be removed gracefully. Familiarize with [rules](#avoiding-downtime-during-bin-packing) and available [overrides](#rules-override-for-specific-pods-or-nodes) in order to setup Evictor to meet your needs. 
 
 ### Upgrading Evictor
 
