@@ -33,47 +33,9 @@ In the Policies tab, it should look like this:
 Evictor is our recommended way - it will constantly look for inefficiencies. But reducing costs in a safe manner takes
 time. If you want to maximize your savings as quickly as possible and you have a maintenance window, you can do it in CAST AI.
 
-### Install Evictor (continuously improved)
+### Install Evictor
 
-<!-- This paragraph is duplicated in guides/evictor.md. We should consolidate them somehow? -->
-
-Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy:
-
-```
-helm repo add castai https://castai.github.io/official-addons
-helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
-```
-
-This process will take some time. Also, Evictor will not cause any downtime to single replica deployments / StatefulSets, pods
-without ReplicaSet, meaning that those nodes can't be removed gracefully.
-
-#### Upgrading Evictor
-
-- Check the Evictor version you are currently using:
-
-    ```
-    helm ls -n kube-system
-    ```
-
-- Update the helm chart repository to make sure that your helm command is aware of the latest charts:
-
-    ```
-    helm repo update
-    ```
-
-- Install the latest Evictor version:
-
-    ```
-    helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
-    ```
-
-- Check whether the Evictor version was changed:
-
-    ```
-    helm ls -n kube-system
-    ```
-
-For more information see [Evictor Guide](../guides/evictor.md#avoiding-downtime-during-bin-packing)
+Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy. Install and configure Evictor using this [guide](../guides/evictor.md) then complete remaining steps listed below. 
 
 ### Stir the pod with manual migration
 
