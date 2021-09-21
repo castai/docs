@@ -66,12 +66,16 @@ To solve this issue:
                 - mountPath: /etc/config
                   name: castai-agent-autoscaler
             - name: agent
-              image: "castai/agent:v0.19.2"
+              image: "castai/agent:v0.20.0"
               env:
                 - name: API_URL
                   value: api.cast.ai
-                - name: PROVIDER
-                  value: "eks"
+                - name: EKS_ACCOUNT_ID
+                  value: {YOUR-AWS-ACCOUNT-ID} # FILL THIS
+                - name: EKS_REGION
+                  value: {YOUR-EKS-CLUSTER-REGION} # FILL THIS
+                - name: EKS_CLUSTER_NAME
+                  value: {YOUR-CLUSTER-NAME} # FILL THIS
               envFrom:
                 - secretRef:
                     name: castai-agent
