@@ -69,13 +69,15 @@ done
 aws iam put-user-policy --user-name $USER_NAME --policy-name CastEKSRestrictedAccess --policy-document $INLINE_POLICY_JSON
 
 echo "Adding user to cluster '$CLUSTER_NAME'"
-CLUSTER_USER="- groups:\n  - system:masters\n  userarn: ${USER_ARN}\n  username: ${USER_NAME}\n"
-AWS_AUTH_CM_FILE=aws-auth-cm.json
-kubectl get -n=kube-system cm/aws-auth -o json >$AWS_AUTH_CM_FILE
-if [ "$(jq ".data.mapUsers | contains(\"${CLUSTER_USER}\")" <$AWS_AUTH_CM_FILE)" = "false" ]; then
-  kubectl patch -n=kube-system cm/aws-auth --patch "$(jq -j ".data.mapUsers |= . + \"${CLUSTER_USER}\"" <$AWS_AUTH_CM_FILE)"
+CAST_CLUSTER_USER="- groups:\n  - system:masters\n  userarn: ${USER_ARN}\n  username: ${USER_NAME}\n"
+AWS_CLUSTER_USERS=$(kubectl get -n=kube-system cm/aws-auth -o json | jq '.data.mapUsers | select(. != null and . != "" and . != "[]" and . != "[]\n")')
+if [ -z "$AWS_CLUSTER_USERS" ]; then
+  kubectl patch -n=kube-system cm/aws-auth --patch "{\"data\":{\"mapUsers\": \"${CAST_CLUSTER_USER}\"}}"
+elif [[ "$AWS_CLUSTER_USERS" == *"$CAST_CLUSTER_USER"* ]]; then
+  echo "cast user already exists in configmap/aws-auth"
+else
+  kubectl patch -n=kube-system cm/aws-auth --patch "{\"data\":{\"mapUsers\": \"${AWS_CLUSTER_USERS}${CAST_CLUSTER_USER}\"}}"
 fi
-rm $AWS_AUTH_CM_FILE
 
 echo "Creating access keys"
 CREDENTIALS=$(aws iam create-access-key --user-name $USER_NAME --output json --query 'AccessKey.{accessKeyId:AccessKeyId,secretAccessKey:SecretAccessKey}')
