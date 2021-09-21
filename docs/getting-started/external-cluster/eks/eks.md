@@ -4,6 +4,8 @@ description: Learn how to connect your EKS cluster to CAST AI and start optimizi
 
 # AWS EKS
 
+CAST AI supports all AWS regions with exception of *AWS GovCloud (US-East)* and *AWS GovCloud (US-West)*, support for these regions will be provided shortly.
+
 ## Connect cluster
 
 To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
