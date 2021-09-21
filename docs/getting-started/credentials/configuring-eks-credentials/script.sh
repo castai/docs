@@ -71,8 +71,14 @@ done
 aws iam put-user-policy --user-name $USER_NAME --policy-name CastEKSRestrictedAccess --policy-document $INLINE_POLICY_JSON
 
 echo "Adding user to cluster '$CLUSTER_NAME'"
-if ! eksctl get iamidentitymapping --cluster $CLUSTER_NAME --region $REGION --arn $USER_ARN -v 0 >>/dev/null 2>&1; then
-  eksctl create iamidentitymapping --cluster $CLUSTER_NAME --region $REGION --arn ${USER_ARN} --group system:masters --username $USER_NAME -C false -v 2
+CAST_CLUSTER_USER="- groups:\n  - system:masters\n  userarn: ${USER_ARN}\n  username: ${USER_NAME}\n"
+AWS_CLUSTER_USERS=$(kubectl get -n=kube-system cm/aws-auth -o json | jq '.data.mapUsers | select(. != null and . != "" and . != "[]" and . != "[]\n")')
+if [ -z "$AWS_CLUSTER_USERS" ]; then
+  kubectl patch -n=kube-system cm/aws-auth --patch "{\"data\":{\"mapUsers\": \"${CAST_CLUSTER_USER}\"}}"
+elif [[ "$AWS_CLUSTER_USERS" == *"$CAST_CLUSTER_USER"* ]]; then
+  echo "cast user already exists in configmap/aws-auth"
+else
+  kubectl patch -n=kube-system cm/aws-auth --patch "{\"data\":{\"mapUsers\": \"${AWS_CLUSTER_USERS}${CAST_CLUSTER_USER}\"}}"
 fi
 
 echo "Creating access keys"
