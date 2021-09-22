@@ -8,7 +8,7 @@ CAST AI supports all AWS regions with exception of *AWS GovCloud (US-East)* and 
 
 ## Connect cluster
 
-To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
+To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
 ![img.png](../../screenshots/connect-cluster-2.png)
 
@@ -30,9 +30,7 @@ Prerequisites:
 - `AWS CLI` - A command line tool for working with AWS services using commands in your command-line shell. For more
   information, see [Installing AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
 
-- `eksctl` – A command line tool for working with EKS clusters that automates many individual tasks. This guide requires
-  that you use version 0.43.0 or later. For more information,
-  see [The eksctl command line utility](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html).
+- `jq` – a lightweight command line JSON processor. For more information about the tool click [here](https://stedolan.github.io/jq/).
 
 - **IAM permissions** – The IAM security principal that you're using must have permissions to work with AWS EKS, AWS IAM,
   and related resources. Additionally, you should have access to the EKS cluster that you wish to onboard on the CAST AI console.

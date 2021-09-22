@@ -2,9 +2,7 @@
 
 ## Connect cluster
 
-To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**GKE**](https://console.cast.ai/external-clusters/new#gke) tab. Follow the instructions in order to provide the required details.
-
-Once all details about your cluster are in place, the generation of the onboarding script will be completed. Copy the script and run it your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
+To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**GKE**](https://console.cast.ai/external-clusters/new#gke) tab. Copy the pre-generated script and run it inside your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
 ![img.png](../../screenshots/connect-gke-1.png)
 
@@ -35,13 +33,9 @@ Prerequisites:
 
 Onboarding steps:
 
-To onboard your cluster, go to the **Available Savings** report and click on the **Start saving** or **Enable CAST AI** button. The button's name will depend on the number of optimizations available in your cluster.
+To onboard your cluster, go to the **Available Savings** report and click on the **Start saving** or **Enable CAST AI** button. The button's name will depend on the level of optimization available for your cluster.
 
-Follow the instruction in the pop-up window to import your GKE service account key (json).
-
-The script will create a new GKE service account with the required roles and print out service account json which then can be added to the CAST AI console and assigned to the corresponding GKE cluster.
-
-The generated user will have the following permissions:
+Copy the pre-generated script and run it inside your terminal or cloud shell. The script will create new GKE service account with the required roles. The generated user will have the following permissions:
 
 - `/roles/cast.gkeAccess` (created by script) - access to get / update your GKE cluster and manage compute instances.
 - `roles/container.developer` - access to resources within the Kubernetes cluster.
