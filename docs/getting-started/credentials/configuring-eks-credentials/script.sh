@@ -18,6 +18,11 @@ if ! [ -x "$(command -v aws)" ]; then
   exit 1
 fi
 
+if ! [ -x "$(command -v jq)" ]; then
+  echo "Error: jq is not installed"
+  exit 1
+fi
+
 echo "Fetching cluster information"
 CLUSTER=$(aws eks describe-cluster --name $CLUSTER_NAME --region $REGION --output json)
 CLUSTER_VPC=$(echo "$CLUSTER" | jq --raw-output '.cluster.resourcesVpcConfig.vpcId')
