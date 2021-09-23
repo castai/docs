@@ -88,11 +88,20 @@ aws iam put-user-policy --user-name $USER_NAME --policy-name CastKopsRestrictedA
 echo "Creating access keys"
 CREDENTIALS=$(aws iam create-access-key --user-name $USER_NAME --output json --query 'AccessKey.{accessKeyId:AccessKeyId,secretAccessKey:SecretAccessKey}')
 
+echo "Your generated credentials:"
 echo $CREDENTIALS
 
 if [ -z $CASTAI_API_TOKEN ] || [ -z $CASTAI_API_URL ]; then
   echo "Skipped sending credentials to CAST AI console (CASTAI_API_TOKEN and CASTAI_API_URL variables were not provided)"
 else
-  echo "Sending credentials to CAST AI console"
-  curl -fsS -X POST -H "X-API-Key: $CASTAI_API_TOKEN" $CASTAI_API_URL -d "$(jq  -c -n --arg CREDENTIALS "$CREDENTIALS" '{credentials:$CREDENTIALS}')"
+  echo "Sending credentials to CAST AI console..."
+  RESPONSE=$(curl -fsS -w "%{http_code}" -X POST -H "X-API-Key: $CASTAI_API_TOKEN" $CASTAI_API_URL -d "$(jq -c -n --arg CREDENTIALS "$CREDENTIALS" '{credentials:$CREDENTIALS}')")
+  RESPONSE_STATUS=$(tail -n1 <<<"$RESPONSE")
+  RESPONSE_BODY=$(sed '$ d' <<<"$RESPONSE")
+  if [[ $RESPONSE_STATUS -eq 200 ]]; then
+    echo "Successfully sent."
+  else
+    echo "Couldn't save credentials to CAST AI console. Try providing the displayed credentials in cast console manually."
+    echo "Error details: status=$RESPONSE_STATUS content=$RESPONSE_BODY"
+  fi
 fi
