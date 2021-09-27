@@ -100,7 +100,7 @@ else
   if [[ $RESPONSE_STATUS -eq 200 ]]; then
     echo "Successfully sent."
   else
-    echo "Couldn't save credentials to CAST AI console. Try providing the displayed credentials in cast console manually."
+    echo "Couldn't save credentials to CAST AI console. Try pasting the credentials to the console manually."
     echo "Error details: status=$RESPONSE_STATUS content=$RESPONSE_BODY"
   fi
 fi
