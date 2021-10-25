@@ -58,3 +58,48 @@ Evictor follows certain rules to avoid downtime. In order for the node to be con
 `beta.evictor.cast.ai/eviction-disabled` | `"true"` | `Annotation`on`Pod`, but can be both`label`and`annotation`on`Node`| Both`Pod`and`Node`| Evictor won't try to Evict a Node with this Annotation or Node running Pod annotated with this Annotation. |
 `autoscaling.cast.ai/removal-disabled`| `"true"`| Both | `Node` | Evictor won't try to Evict a Node marked with this`Annotation`or`Label` |
 `beta.evictor.cast.ai/disposable` | `"true"`| `Annotation`| `Pod` | Evictor will treat this`Pod` as Evictable despite any of the other rules defined in [Rules](#avoiding-downtime-during-bin-packing)|
+
+### Examples of override applications
+
+Label or annotate a pod, so Evictor won't evict a node running an annotated pod (can be applied on a node as well).
+
+```
+kubectl label pods <pod-name> beta.evictor.cast.ai/eviction-disabled=“true”
+```
+
+```
+kubectl annotate pods <pod-name> beta.evictor.cast.ai/eviction-disabled=“true”
+```
+
+Label or annotate a node, to prevent eviction of pods as well as removal of the node (even when it's empty):
+
+```
+kubectl label nodes <node-name> autoscaling.cast.ai/removal-disabled=“true”
+```
+
+```
+kubectl annotate nodes <node-name> autoscaling.cast.ai/removal-disabled=“true”
+```
+
+You can also annotate a pod to make it dispossable, irrespective of other criteria that would normally make the pod un-evictable. Here is an example of a disposable pod manifest:
+
+```
+kind: Pod
+metadata:
+  name: disposable-pod
+  annotations:
+    beta.evictor.cast.ai/disposable: "true"
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          cpu: '1'
+        limits:
+          cpu: '1'
+```
+
+Due to applied annotation, pod will be targeted for eviction even though it is not replicated.
