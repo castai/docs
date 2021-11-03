@@ -64,21 +64,21 @@ Evictor follows certain rules to avoid downtime. In order for the node to be con
 Label or annotate a pod, so Evictor won't evict a node running an annotated pod (can be applied on a node as well).
 
 ```
-kubectl label pods <pod-name> beta.evictor.cast.ai/eviction-disabled=“true”
+kubectl label pods <pod-name> beta.evictor.cast.ai/eviction-disabled="true"
 ```
 
 ```
-kubectl annotate pods <pod-name> beta.evictor.cast.ai/eviction-disabled=“true”
+kubectl annotate pods <pod-name> beta.evictor.cast.ai/eviction-disabled="true"
 ```
 
 Label or annotate a node, to prevent eviction of pods as well as removal of the node (even when it's empty):
 
 ```
-kubectl label nodes <node-name> autoscaling.cast.ai/removal-disabled=“true”
+kubectl label nodes <node-name> autoscaling.cast.ai/removal-disabled="true"
 ```
 
 ```
-kubectl annotate nodes <node-name> autoscaling.cast.ai/removal-disabled=“true”
+kubectl annotate nodes <node-name> autoscaling.cast.ai/removal-disabled="true"
 ```
 
 You can also annotate a pod to make it dispossable, irrespective of other criteria that would normally make the pod un-evictable. Here is an example of a disposable pod manifest:
