@@ -36,6 +36,24 @@ nodeSelector:
   scheduling.cast.ai/spot: "true"
 ```
 
+### Node Affinity
+
+**When to use:** spot instances are preffered, however if they are not available use on-demand node
+
+In case when spot instance is interrupted, however on-demand nodes in the cluster have available capacity, pods that previously ran on spot instance would be scheduled on available on-demand nodes if following affinity rule is applied:
+
+```yaml
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: scheduling.cast.ai/spot
+            operator: Exists
+```
+
 ### Spot Reliability
 
 **When to use:** there's a need to minimize workload interruptions
