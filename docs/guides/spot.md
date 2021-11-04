@@ -38,7 +38,7 @@ nodeSelector:
 
 ### Node Affinity
 
-**When to use:** spot instances are preffered, however if they are not available use on-demand node
+**When to use:** spot instances are preffered, if they are not available fall-back to on-demand nodes
 
 In case when spot instance is interrupted, however on-demand nodes in the cluster have available capacity, pods that previously ran on spot instance would be scheduled on available on-demand nodes if following affinity rule is applied:
 
@@ -53,6 +53,7 @@ spec:
           - key: scheduling.cast.ai/spot
             operator: Exists
 ```
+If you want to move pods back to spot instances use Rebalancer feature. 
 
 ### Spot Reliability
 
