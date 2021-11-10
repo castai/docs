@@ -18,16 +18,16 @@ CAST AI supports following labels:
 
 | Label | Type| Description | Example(s)|
 | ------------ | ------------- | ------------ | ------------ |
-| `beta.kubernetes.io/arch` and `kubernetes.io/arch` | well-known  | Node CPU architecture | amd64 |
-| `beta.kubernetes.io/instance-type` and `node.kubernetes.io/instance-type` | well-known  | Node type (cloud-specific) | t3a.large, e2-standard-4 |
-| `beta.kubernetes.io/os` and `kubernetes.io/os` | well-known  | Node Operating System | linux |
+| `kubernetes.io/arch` and `beta.kubernetes.io/arch` | well-known  | Node CPU architecture | amd64 |
+| `node.kubernetes.io/instance-type` and `beta.kubernetes.io/instance-type` | well-known  | Node type (cloud-specific) | t3a.large, e2-standard-4 |
+| `kubernetes.io/os` and `beta.kubernetes.io/os` | well-known  | Node Operating System | linux |
 | `kubernetes.io/hostname` | well-known  | Node Hostname | ip-192-168-32-94.eu-central-1.compute.internal, testcluster-31qd-gcp-3ead |
 | `topology.kubernetes.io/region` and `failure-domain.beta.kubernetes.io/region` | well-known | Node region in the CSP | eu-central-1 |
 | `topology.kubernetes.io/zone` and `failure-domain.beta.kubernetes.io/zone` | well-known | Node zone of the region in the CSP | eu-central-1a |
-| `provisioner.cast.ai/managed-by` | cast-specific | CAST AI managed node | cast.ai |
-| `provisioner.cast.ai/node-id` | cast-specific | CAST AI node ID| 816d634e-9fd5-4eed-b13d-9319933c9ef0 |
-| `scheduling.cast.ai/spot` | cast-specific | Node lifecycle type - spot | 'true' |
-| `topology.cast.ai/subnet-id` | cast-specific | Node subnet ID | subnet-006a6d1f18fc5d390 |
+| `provisioner.cast.ai/managed-by` | CAST AI specific | CAST AI managed node | cast.ai |
+| `provisioner.cast.ai/node-id` | CAST AI specific | CAST AI node ID| 816d634e-9fd5-4eed-b13d-9319933c9ef0 |
+| `scheduling.cast.ai/spot` | CAST AI specific | Node lifecycle type - spot | 'true' |
+| `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | subnet-006a6d1f18fc5d390 |
 
 ## CAST AI multi cloud Kubernetes clusters
 
@@ -41,7 +41,7 @@ CAST AI multi cloud Kubernetes cluster nodes are already equipped with the follo
 | `kubernetes.io/os` | well-known  | Node Operating System | linux |
 | `topology.kubernetes.io/region` | well-known | Node region in the CSP | eu-central-1 |
 | `topology.kubernetes.io/zone` | well-known | Node zone of the region in the CSP | eu-central-1a |
-| `topology.cast.ai/csp` | cast-specific | Node Cloud Service Provider | aws, gcp, azure |
+| `topology.cast.ai/csp` | CAST AI specific | Node Cloud Service Provider | aws, gcp, azure |
 
 ### How to pin a pod to AWS
 
