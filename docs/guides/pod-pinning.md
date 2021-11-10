@@ -1,12 +1,10 @@
 ---
-description: Take a look at this guide to learn how to place pods only on a particular cloud service or selected clouds services in CAST AI.
+description: Take a look at this guide to learn how to place pods using labels and Kubernetes scheduling features
 ---
 
 # Configure pod placement by topology
 
-This guide will show how to place pods only on a particular cloud or clouds.
-
-Kubernetes supports this by using:
+This guide will show how to place pods in particular node, zone, region, cloud etc. using labels and advanced Kubernetes scheduling features. Kubernetes supports this by using:
 
 - [`nodeSelector`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
 - [`nodeAffinity/Anti-Affinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
@@ -14,19 +12,38 @@ Kubernetes supports this by using:
 
 All of these methods require special labels to be present on each Kubernetes node.
 
+## External clusters connected to CAST AI
+
+CAST AI supports following labels:
+
+| Label | Type| Description | Example(s)|
+| ------------ | ------------- | ------------ | ------------ |
+| `kubernetes.io/arch` and `beta.kubernetes.io/arch` | well-known  | Node CPU architecture | amd64 |
+| `node.kubernetes.io/instance-type` and `beta.kubernetes.io/instance-type` | well-known  | Node type (cloud-specific) | t3a.large, e2-standard-4 |
+| `kubernetes.io/os` and `beta.kubernetes.io/os` | well-known  | Node Operating System | linux |
+| `kubernetes.io/hostname` | well-known  | Node Hostname | ip-192-168-32-94.eu-central-1.compute.internal, testcluster-31qd-gcp-3ead |
+| `topology.kubernetes.io/region` and `failure-domain.beta.kubernetes.io/region` | well-known | Node region in the CSP | eu-central-1 |
+| `topology.kubernetes.io/zone` and `failure-domain.beta.kubernetes.io/zone` | well-known | Node zone of the region in the CSP | eu-central-1a |
+| `provisioner.cast.ai/managed-by` | CAST AI specific | CAST AI managed node | cast.ai |
+| `provisioner.cast.ai/node-id` | CAST AI specific | CAST AI node ID| 816d634e-9fd5-4eed-b13d-9319933c9ef0 |
+| `scheduling.cast.ai/spot` | CAST AI specific | Node lifecycle type - spot | 'true' |
+| `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | subnet-006a6d1f18fc5d390 |
+
+## CAST AI multi cloud Kubernetes clusters
+
 CAST AI multi cloud Kubernetes cluster nodes are already equipped with the following labels:
 
 | Label | Type| Description | Example(s)|
 | ------------ | ------------- | ------------ | ------------ |
-| node.kubernetes.io/instance-type | well-known  | Node type (cloud-specific) | t3a.large, e2-standard-4 |
-| kubernetes.io/arch | well-known  | Node CPU architecture | amd64 |
-| kubernetes.io/hostname | well-known  | Node Hostname | ip-10-10-2-81, testcluster-31qd-gcp-3ead |
-| kubernetes.io/os | well-known  | Node Operating System | linux |
-| topology.kubernetes.io/region | well-known | Node region in the CSP | eu-central-1 |
-| topology.kubernetes.io/zone | well-known | Node zone of the region in the CSP | eu-central-1a |
-| topology.cast.ai/csp | cast-specific | Node Cloud Service Provider | aws, gcp, azure |
+| `node.kubernetes.io/instance-type` | well-known  | Node type (cloud-specific) | t3a.large, e2-standard-4 |
+| `kubernetes.io/arch` | well-known  | Node CPU architecture | amd64 |
+| `kubernetes.io/hostname` | well-known  | Node Hostname | ip-10-10-2-81, testcluster-31qd-gcp-3ead |
+| `kubernetes.io/os` | well-known  | Node Operating System | linux |
+| `topology.kubernetes.io/region` | well-known | Node region in the CSP | eu-central-1 |
+| `topology.kubernetes.io/zone` | well-known | Node zone of the region in the CSP | eu-central-1a |
+| `topology.cast.ai/csp` | CAST AI specific | Node Cloud Service Provider | aws, gcp, azure |
 
-## How to pin a pod to AWS
+### How to pin a pod to AWS
 
 We will use `affinity.nodeAffinity`:
 
