@@ -54,7 +54,7 @@ spec:
             operator: Exists
 ```
 
-If you want to move pods back to spot instances use Rebalancer feature. 
+If you want to move pods back to spot instances use Rebalancer feature.  
 
 ### Spot Reliability
 
