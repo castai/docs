@@ -53,6 +53,7 @@ spec:
           - key: scheduling.cast.ai/spot
             operator: Exists
 ```
+
 If you want to move pods back to spot instances use Rebalancer feature. 
 
 ### Spot Reliability
