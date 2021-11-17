@@ -11,9 +11,9 @@ This guide will help you configure and run it in 5 minutes.
 
 ### Tolerations
 
-**When to use:** spot instances are optional
+**When to use:** Spot instances are optional
 
-When a pod is marked only with `tolerations`, the Kubernetes scheduler could place such a pod/pods on regular nodes as well.
+When a pod is marked only with `tolerations,` the Kubernetes scheduler could place such a pod/pods on regular nodes as well.
 
 ```yaml
 tolerations:
@@ -23,10 +23,10 @@ tolerations:
 
 ### Node Selectors
 
-**When to use:** only use spot instances
+**When to use:** only use Spot instances
 
-If you want to make sure that a pod is scheduled on spot instances only, add `nodeSelector` as well as per the example below.
-The autoscaler will then ensure that only a spot instance is picked whenever your pod requires additional workload in the cluster.
+If you want to make sure that a pod is scheduled on Spot instances only, add `nodeSelector` as well as per the example below.
+The autoscaler will then ensure that only a Spot instance is picked whenever your pod requires additional workload in the cluster.
 
 ```yaml
 tolerations:
@@ -38,9 +38,9 @@ nodeSelector:
 
 ### Node Affinity
 
-**When to use:** spot instances are preffered, if they are not available fall-back to on-demand nodes
+**When to use:** Spot instances are preffered - if not available, fall back to on-demand nodes
 
-In case when spot instance is interrupted, however on-demand nodes in the cluster have available capacity, pods that previously ran on spot instance would be scheduled on available on-demand nodes if following affinity rule is applied:
+When a Spot instance is interrupted, and on-demand nodes in the cluster have available capacity, pods that previously ran on the Spot instance will be scheduled on the available on-demand nodes if the following affinity rule is applied:
 
 ```yaml
 spec:
@@ -54,15 +54,15 @@ spec:
             operator: Exists
 ```
 
-If you want to move pods back to spot instances use Rebalancer feature.  
+If you want to move pods back to Spot instances, use the Rebalancer feature.  
 
 ### Spot Reliability
 
-**When to use:** there's a need to minimize workload interruptions
+**When to use:** you want to minimize workload interruptions
 
-Autoscaler is able to identify which instance types are less likely to be interrupted. You can set a default reliability value cluster-wide in [spot instance policy](autoscaling-policies.md#spotpreemptive-instances-policy). If you want to control that per-workload, e.g. leave most const-efficient value globally and only choose more stable instances for specific pods, define this in deployment configuration by setting `scheduling.cast.ai/spot-reliability` label on the pod.
+The Autoscaler can identify which instance types are less likely to be interrupted. You can set a default reliability value cluster-wide in [spot instance policy](autoscaling-policies.md#spotpreemptive-instances-policy). If you want to control that per-workload, e.g. leave most const-efficient value globally and only choose more stable instances for specific pods, define this in the deployment configuration by setting `scheduling.cast.ai/spot-reliability` label on the pod.
 
-Here's an example how it's done for the typical deployment:
+Here's an example of how it's done for the typical deployment:
 
 ```yaml
 spec:
@@ -76,16 +76,16 @@ Reliability is measured by "what is the percentage of reclaimed instances during
 
 The value is a percentage (range is 1-100), and the meaningful values are:
 
-- `5`: most reliable category; by using this value you'll restrict autoscaler to use only the narrowest set of spot instance types
+- `5`: most reliable category; by using this value you'll restrict the Autoscaler to use only the narrowest set of Spot instance types;
 - `10` - `15`: reasonable value range to compromise between reliability and price;
-- `25` and above: typically most instances fall into this category,.
+- `25` and above: typically most instances fall into this category.
 
 !!! tip ""
     For AWS, have a look at [Spot instance advisor](https://aws.amazon.com/ec2/spot/instance-advisor/) to get an idea which instances correspond to which reliability category.
 
 ### Spot/Preemptible Instances fallback
 
-CAST AI supports fallback of spot/preemptible instances to on-demand nodes in case there is no spot/preemptible instance availability. Our autoscaler will temporarily add an on-demand node for your spot only workloads to run on. Once inventory of spot/preemptible instances is again available, on-demand nodes used for the fallback will be replaced with actual spot/preemptible instances.
+CAST AI supports the fallback of Spot/Preemptible instances to on-demand nodes in case there is no Spot/Preemptible instance availability. Our Autoscaler will temporarily add an on-demand node for your Spot-only workloads to run on. Once inventory of Spot/Preemptible instances is again available, on-demand nodes used for the fallback will be replaced with actual Spot/Preemptible instances.
 
 To enable this feature turn on spot fallback policy using API:
 
@@ -122,13 +122,13 @@ To do that, we will use an example NGINX deployment configured to run only on Sp
 
 ### 1. Enable relevant policies
 
-To start using Spot instances autoscaler enable the following policies under the `Policies` menu in the UI:
+To start using Spot instances Autoscaler enable the following policies under the `Policies` menu in the UI:
 
 - **Spot/Preemptible instances policy**
-    - This policy allows the autoscaler to use spot instances
+    - This policy allows the Autoscaler to use Spot instances.
 
 - **Unschedulable pods policy**
-    - This policy requests an additional workload to be scheduled based on your deployment requirements (i.e. run on spot instances)
+    - This policy requests an additional workload to be scheduled based on your deployment requirements (i.e. run on Spot instances).
 
 ![](./spot-instances/020_enable_policies.png)
 
@@ -180,14 +180,14 @@ With `kubeconfig` set in your current shell session, you can execute the followi
 
 #### 2.2. Wait several minutes
 
-Once the deployment is created, it will take up to several minutes for the autoscaler to pick up the information about your pending deployment and schedule the relevant workloads in order to satisfy the deployment needs, such as:
+Once the deployment is created, it will take up to several minutes for the Autoscaler to pick up the information about your pending deployment and schedule the relevant workloads in order to satisfy the deployment needs, such as:
 
-- This deployment **tolerates spot instances**
-- This deployment **must run only on spot instances**
+- This deployment **tolerates Spot instances**
+- This deployment **must run only on Spot instances**
 
 ### 3. Spot Instance added
 
-- You can see your newly added spot instance in the cluster node list.
+- You can see your newly added Spot instance in the cluster node list.
 
 ![](./spot-instances/040_spot_instance_added.png)
 
