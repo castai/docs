@@ -83,10 +83,10 @@ The value is a percentage (range is 1-100), and the meaningful values are:
 !!! tip ""
     For AWS, have a look at [Spot instance advisor](https://aws.amazon.com/ec2/spot/instance-advisor/) to get an idea which instances correspond to which reliability category.
     
-### Spot/Preemptible Instances fallbacks
-The CAST AI autoscaler supports spot/preemptible instances fallback to on-demand instances in case there no spot/preemptible instances availability. CAST AI autoscaler will temporaraly add on-demand node for you spot only workloads to run. Once spot/preemptible will back to normal state fallback instances will be replaced with actual pot/preemptible instances. 
+### Spot/Preemptible Instances fallback
+CAST AI supports fallback of spot/preemptible instances to on-demand nodes in case there is no spot/preemptible instance availability. Our autoscaler will temporarily add an on-demand node for your spot only workloads to run on. Once inventory of spot/preemptible instances is again available, on-demand nodes used for the fallback will be replaced with actual spot/preemptible instances. 
 
-To enable this feature turn on spot fallbacks policy using API
+To enable this feature turn on spot fallback policy using API:
 
 `PUT /v1/kubernetes/clusters/{clusterId}/policies`
 ```json
@@ -99,8 +99,8 @@ To enable this feature turn on spot fallbacks policy using API
     "enabled": true,
     "maxReclaimRate": 0,
     "spotBackups": {
-      "enabled": true, // this will enable spot backup feature
-      "spotBackupRestoreRateSeconds": 1800 // this will configure how often CAST AI should try to switch back to spot/preemptible instances
+      "enabled": true, // this parameter will enable spot fallback feature
+      "spotBackupRestoreRateSeconds": 1800 // configure how often CAST AI should try to switch back to spot/preemptible instances
     }
   }
 ...
