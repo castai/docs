@@ -27,6 +27,7 @@ CAST AI supports following labels:
 | `provisioner.cast.ai/managed-by` | CAST AI specific | CAST AI managed node | cast.ai |
 | `provisioner.cast.ai/node-id` | CAST AI specific | CAST AI node ID| 816d634e-9fd5-4eed-b13d-9319933c9ef0 |
 | `scheduling.cast.ai/spot` | CAST AI specific | Node lifecycle type - spot | 'true' |
+| `scheduling.cast.ai/spot-backup` | CAST AI specific | Node lifecycle type - spot backup | 'true' |
 | `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | subnet-006a6d1f18fc5d390 |
 
 ## CAST AI multi cloud Kubernetes clusters
