@@ -87,6 +87,8 @@ The value is a percentage (range is 1-100), and the meaningful values are:
 
 CAST AI supports the fallback of Spot/Preemptible instances to on-demand nodes in case there is no Spot/Preemptible instance availability. Our Autoscaler will temporarily add an on-demand node for your Spot-only workloads to run on. Once inventory of Spot/Preemptible instances is again available, on-demand nodes used for the fallback will be replaced with actual Spot/Preemptible instances.
 
+Fallback on-demand instances will be labeled with `scheduling.cast.ai/spot-backup:"true"` label.
+
 To enable this feature turn on spot fallback policy using API:
 
 `PUT /v1/kubernetes/clusters/{clusterId}/policies`
