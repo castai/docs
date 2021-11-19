@@ -84,6 +84,13 @@ nav:
           - 'Remove CAST': getting-started/external-cluster/eks/remove-from-eks.md
         - 'GCP GKE':
           - 'Connect and onboard': getting-started/external-cluster/gke/gke.md
+          - 'Remove CAST': getting-started/external-cluster/gke/remove-from-gke.md
+        - 'Azure AKS':
+          - 'Connect and onboard': getting-started/external-cluster/aks/aks.md
+          - 'Remove CAST': getting-started/external-cluster/aks/remove-from-aks.md
+        - 'kOps':
+          - 'Connect and onboard': getting-started/external-cluster/kops/kops.md
+          - 'Remove CAST': getting-started/external-cluster/kops/remove-from-kops.md
   - 'Console overview':
       - console-overview/dashboard.md
       - console-overview/clusters.md
