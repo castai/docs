@@ -101,4 +101,4 @@ CAST AI relies on the agent runs inside customer's cluster. The following servic
 - Low amount of network traffic to communicate with CAST AI SaaS
 - Lambda function to handle Spot Instance interruptions
 - EC2 instances, their storage, and intra-cluster network traffic to manage Kubernetes cluster and perform autoscaling
-- IAM resources as detailed in the [onboarding section](https://docs.cast.ai/getting-started/external-cluster/eks/eks/#actions-performed-by-the-onboarding-script)
+- IAM resources as detailed in the [onboarding section](#actions-performed-by-the-onboarding-script)
