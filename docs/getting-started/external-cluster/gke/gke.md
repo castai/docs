@@ -6,7 +6,16 @@ To connect your cluster, [log in to the CAST AI console](https://console.cast.ai
 
 ![img.png](../../screenshots/connect-gke-1.png)
 
-The script will create the `castai-agent` namespace and deployment. After the installation, your cluster should appear at the bottom of the screen as well as in the **Clusters** list.
+The script will create following kubernetes objects related to `castai-agent` agent:
+
+- namespace and deployment
+- serviceaccount and secret
+- clusterrole and clusterrolebinding
+- role and rolebinding
+- resourcequota
+- configmap
+
+After the installation, your cluster name will appear below connection instructions as well as in the **Clusters** list.
 
 ![img.png](../../screenshots/connect-gke-2.png)
 

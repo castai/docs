@@ -19,4 +19,5 @@ Connect your cluster:
 
 - [AWS EKS](./eks/eks.md)
 - [GCP GKE](./gke/gke.md)
-- AKS (Coming soon)
+- [Azure AKS](./aks/aks.md)
+- [kOps](./kops/kops.md)

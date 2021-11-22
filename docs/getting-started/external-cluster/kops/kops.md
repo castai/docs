@@ -1,14 +1,16 @@
 ---
-description: Learn how to connect your EKS cluster to CAST AI and start optimizing your cloud costs.
+description: Learn how to connect your kOps luster to CAST AI and start optimizing your cloud costs.
 ---
 
-# AWS EKS
+# kOps
+
+Currently CAST AI supports only kOps clusters running on AWS.
 
 ## Connect cluster
 
-To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
+To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**kOps**](https://console.cast.ai/external-clusters/new#kops) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
-![img.png](../../screenshots/connect-cluster-2.png)
+![img.png](../../screenshots/connect-kops-1.png)
 
 The script will create following kubernetes objects related to `castai-agent` agent:
 
@@ -21,7 +23,7 @@ The script will create following kubernetes objects related to `castai-agent` ag
 
 After installation, your cluster name will appear below connection instructions as well as in the **Cluster list**. From there, you can open the cluster details and explore a detailed savings estimate based on your cluster configuration.
 
-![img.png](../../screenshots/connect-cluster-3.png)
+![img.png](../../screenshots/connect-kops-2.png)
 
 !!! note ""
     The agent will run in a read-only mode, providing savings suggestions without applying any actual modifications.
@@ -29,7 +31,7 @@ After installation, your cluster name will appear below connection instructions 
 ## Credential onboarding
 
 To unlock all the benefits and enable automatic cost optimization, CAST AI needs to have access to your cluster. The following
-section describes the steps required to onboard the EKS cluster on the CAST AI console. To make it less troublesome, we created
+section describes the steps required to onboard the kOps cluster on the CAST AI console. To make it less troublesome, we created
 a script that automates most of the steps.
 
 Prerequisites:
@@ -39,8 +41,8 @@ Prerequisites:
 
 - `jq` – a lightweight command line JSON processor. For more information about the tool click [here](https://stedolan.github.io/jq/).
 
-- **IAM permissions** – The IAM security principal that you're using must have permissions to work with AWS EKS, AWS IAM,
-  and related resources. Additionally, you should have access to the EKS cluster that you wish to onboard on the CAST AI console.
+- **IAM permissions** – The IAM security principal that you're using must have permissions to work with AWS IAM,
+  and related resources. Additionally, you should have access to the kOps cluster that you wish to onboard on the CAST AI console.
 
 - The CAST AI agent has to be running on the cluster.
 
@@ -50,7 +52,7 @@ To onboard your cluster, go to the **Available Savings** report and click on the
 
 Follow the instruction in the pop-up window to create and use AWS `AccessKeyId` and `SecretAccessKey`
 
-![img.png](../../screenshots/connect-cluster-4.png)
+![img.png](../../screenshots/connect-kops-3.png)
 
 That’s it! Your cluster is onboarded. Now you can enable [optimization policies](https://docs.cast.ai/console-overview/policies/) to keep your cluster configuration optimal.
 
@@ -58,40 +60,36 @@ That’s it! Your cluster is onboarded. Now you can enable [optimization policie
 
 The script will perform the following actions:
 
-- Create `cast-eks-*cluster-name*` IAM user with the required permissions to manage the cluster:
+- Create `cast-kops-*cluster-name*` IAM user with the required permissions to manage the cluster:
     - `AmazonEC2ReadOnlyAccess`
     - `IAMReadOnlyAccess`
     - Manage instances in specified cluster restricted to cluster VPC
     - Manage autoscaling groups in the specified cluster
-    - Manage EKS Node Groups in the specified cluster
+    - Manage EC2 Node Groups in the specified cluster
 
-- Create `CastEKSPolicy` policy used to manage EKS cluster. The policy contains the following permissions:
+- Create `CASTKopsPolicyV2` managed policy used to manage kOps cluster. The policy contains the following permissions:
     - Create & delete instance profiles
     - Create & manage roles
     - Create & manage EC2 security groups, key pairs, and tags
     - Run EC2 instances
     - Create and manage the lambda function
 
-- Create following roles:
-    - `cast-*cluster-name*-eks-#######` to manage EKS nodes with following AWS managed permission policies applied :
-        - AmazonEKSWorkerNodePolicy
-        - AmazonEC2ContainterRegistryReadOnly
-        - AmazonEKS_CNI_Policy
+- Create `CASTKopsRestrictedaccess` inline policy to manage cluster specific resources.
 
-    - `CastLambdaRoleForSpot` a lambda role used to manage Spot interruption events with following AWS managed permission policies applied:
-        - CloudWatchLogsFullAccess
-        - AWSLambdaRole
-        - AmazonEC2ReadOnlyAccess
+- Create `CastLambdaRoleForSpot` role used to manage Spot interruption events with following AWS managed permission policies applied:
+    - CloudWatchLogsFullAccess
+    - AWSLambdaRole
+    - AmazonEC2ReadOnlyAccess
 
 - Modify `aws-auth` ConfigMap to map newly created IAM user to the cluster
-- Create and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
+- Create and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding kOps cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
 
 !!! note ""
-    All the `Write` permissions are scoped to a single EKS cluster - it won't have access to resources of any other clusters in the AWS account.
+    All the `Write` permissions are scoped to a single kOps cluster - it won't have access to resources of any other clusters in the AWS account.
 
 ## Manual credential onboarding
 
-To complete the steps mentioned above manually (without our script), be aware that when you create an Amazon EKS cluster, the IAM entity user or role (such as a federated user that creates the cluster) is automatically granted a `system:masters` permissions in the cluster's RBAC configuration in the control plane. To grant additional AWS users or roles the ability to interact with your cluster, you need to edit the `aws-auth` ConfigMap within Kubernetes. For more information, see [Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html).
+To complete the steps mentioned above manually (without our script), be aware that when you create a cluster, the IAM entity user or role (such as a federated user that creates the cluster) is automatically granted a `system:masters` permissions in the cluster's RBAC configuration in the control plane. To grant additional AWS users or roles the ability to interact with your cluster, you need to edit the `aws-auth` ConfigMap within Kubernetes. For more information, see [Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html).
 
 ## Usage of AWS services
 
