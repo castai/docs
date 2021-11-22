@@ -29,6 +29,39 @@ CAST AI supports following labels:
 | `scheduling.cast.ai/spot` | CAST AI specific | Node lifecycle type - spot | 'true' |
 | `scheduling.cast.ai/spot-backup` | CAST AI specific | A fallback for spot instance | 'true' |
 | `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | subnet-006a6d1f18fc5d390 |
+| `scheduling.cast.ai/storage-optimized` | CAST AI specific | Local SSD attached node | 'true' |
+
+### Scheduling on nodes with locally attached SSD
+
+The pod described below will be scheduled on a spot instance with locally attached SSD disk.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demopod
+spec:
+  nodeSelector:
+    scheduling.cast.ai/spot: "true"
+    scheduling.cast.ai/storage-optimized: "true"
+  tolerations:
+    - key: scheduling.cast.ai/spot
+      operator: Exists  
+  containers:
+  - name: app
+    image: nginx
+    resources:
+      requests:
+        ephemeral-storage: "2Gi"
+      limits:
+        ephemeral-storage: "4Gi"
+    volumeMounts:
+    - name: ephemeral
+      mountPath: "/tmp"
+  volumes:
+    - name: ephemeral
+      emptyDir: {}
+```
 
 ## CAST AI multi cloud Kubernetes clusters
 
