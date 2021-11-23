@@ -4,7 +4,7 @@ description: Take a look at this guide to learn how to place pods using labels a
 
 # Configure pod placement by topology
 
-This guide will show how to place pods in particular node, zone, region, cloud etc. using labels and advanced Kubernetes scheduling features. Kubernetes supports this by using:
+This guide will show how to place pods in particular node, zone, region, cloud, etc., using labels and advanced Kubernetes scheduling features. Kubernetes supports this by using:
 
 - [`nodeSelector`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
 - [`nodeAffinity/Anti-Affinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
@@ -14,7 +14,7 @@ All of these methods require special labels to be present on each Kubernetes nod
 
 ## External clusters connected to CAST AI
 
-CAST AI supports following labels:
+CAST AI supports the following labels:
 
 | Label | Type| Description | Example(s)|
 | ------------ | ------------- | ------------ | ------------ |
@@ -29,6 +29,39 @@ CAST AI supports following labels:
 | `scheduling.cast.ai/spot` | CAST AI specific | Node lifecycle type - spot | 'true' |
 | `scheduling.cast.ai/spot-backup` | CAST AI specific | A fallback for spot instance | 'true' |
 | `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | subnet-006a6d1f18fc5d390 |
+| `scheduling.cast.ai/storage-optimized` | CAST AI specific | Local SSD attached node | 'true' |
+
+### Scheduling on nodes with locally attached SSD
+
+The pod described below will be scheduled on a Spot instance with locally attached SSD disk.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demopod
+spec:
+  nodeSelector:
+    scheduling.cast.ai/spot: "true"
+    scheduling.cast.ai/storage-optimized: "true"
+  tolerations:
+    - key: scheduling.cast.ai/spot
+      operator: Exists  
+  containers:
+  - name: app
+    image: nginx
+    resources:
+      requests:
+        ephemeral-storage: "2Gi"
+      limits:
+        ephemeral-storage: "4Gi"
+    volumeMounts:
+    - name: ephemeral
+      mountPath: "/tmp"
+  volumes:
+    - name: ephemeral
+      emptyDir: {}
+```
 
 ## CAST AI multi cloud Kubernetes clusters
 
@@ -87,7 +120,7 @@ spec:
           name: web
 ```
 
-StatefulSet example, it will create 3 pods each in every cloud (note the podAntiAffinity)
+StatefulSet example, it will create 3 pods each in every cloud (note the podAntiAffinity):
 
 ```
 apiVersion: apps/v1

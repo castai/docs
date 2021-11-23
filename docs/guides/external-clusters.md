@@ -116,7 +116,7 @@ The `Not responding` state is temporary and if not fixed, the cluster will enter
 
 The delete action only removes the cluster from the CAST AI console, leaving it running in the cloud service provider.
 
-## Outdated CAST AI agent version
+## Upgrading the agent
 
 To check which agent version is running on your cluster, run the following command:
 
