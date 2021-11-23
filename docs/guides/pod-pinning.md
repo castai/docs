@@ -4,7 +4,7 @@ description: Take a look at this guide to learn how to place pods using labels a
 
 # Configure pod placement by topology
 
-This guide will show how to place pods in particular node, zone, region, cloud etc. using labels and advanced Kubernetes scheduling features. Kubernetes supports this by using:
+This guide will show how to place pods in particular node, zone, region, cloud, etc., using labels and advanced Kubernetes scheduling features. Kubernetes supports this by using:
 
 - [`nodeSelector`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
 - [`nodeAffinity/Anti-Affinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
@@ -14,7 +14,7 @@ All of these methods require special labels to be present on each Kubernetes nod
 
 ## External clusters connected to CAST AI
 
-CAST AI supports following labels:
+CAST AI supports the following labels:
 
 | Label | Type| Description | Example(s)|
 | ------------ | ------------- | ------------ | ------------ |
@@ -33,7 +33,7 @@ CAST AI supports following labels:
 
 ### Scheduling on nodes with locally attached SSD
 
-The pod described below will be scheduled on a spot instance with locally attached SSD disk.
+The pod described below will be scheduled on a Spot instance with locally attached SSD disk.
 
 ```
 apiVersion: v1
@@ -120,7 +120,7 @@ spec:
           name: web
 ```
 
-StatefulSet example, it will create 3 pods each in every cloud (note the podAntiAffinity)
+StatefulSet example, it will create 3 pods each in every cloud (note the podAntiAffinity):
 
 ```
 apiVersion: apps/v1
