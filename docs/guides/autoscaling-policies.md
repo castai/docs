@@ -25,7 +25,7 @@ Once you've connected or created a cluster, select it and navigate to the **Poli
 
 Autoscaler features described below can be made to act only on a subset of your cluster. By marking specific workloads for autoscaling, only that subset will be considered by the unscheduled pods policy, and the empty nodes policy will only clean up nodes that the autoscaler has previously created.
 
-While this mode is turned on, the autoscaler-created nodes will have a specific taint: `scheduling.cast.ai/scoped-enclave=true:NoSchedule`. This ensures that only the subset of workloads specifically meant for the scoped autoscaler will be scheduled on these nodes. 
+While this mode is turned on, the autoscaler-created nodes will have a specific taint: `scheduling.cast.ai/scoped-autoscaler=true:NoSchedule`. This ensures that only the subset of workloads specifically meant for the scoped autoscaler will be scheduled on these nodes. 
 
 For pods that you wish to be included, update your relevant deployments to contain this configuration:
 
