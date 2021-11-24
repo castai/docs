@@ -21,11 +21,11 @@ Once you've connected or created a cluster, select it and navigate to the **Poli
 ## Scoped autoscaler mode
 
 !!! note "Preview feature"
-    This section describes a POC feature that is not yet accessible in the console UI. To enable the scoped autoscaler mode, edit the cluster policy on `/v1/kubernetes/clusters/{clusterId}/policies` endpoint by setting `"isScopedMode": true`.    
+    This section describes a POC feature that is not yet accessible in the console UI. To enable the scoped autoscaler mode, edit the cluster policy on `/v1/kubernetes/clusters/{clusterId}/policies` endpoint by setting `"isScopedMode": true`.
 
 Autoscaler features described below can be made to act only on a subset of your cluster. By marking specific workloads for autoscaling, only that subset will be considered by the unscheduled pods policy, and the empty nodes policy will only clean up nodes that the autoscaler has previously created.
 
-While this mode is turned on, the autoscaler-created nodes will have a specific taint: `scheduling.cast.ai/scoped-autoscaler=true:NoSchedule`. This ensures that only the subset of workloads specifically meant for the scoped autoscaler will be scheduled on these nodes. 
+While this mode is turned on, the autoscaler-created nodes will have a specific taint: `scheduling.cast.ai/scoped-autoscaler=true:NoSchedule`. This ensures that only the subset of workloads specifically meant for the scoped autoscaler will be scheduled on these nodes.
 
 For pods that you wish to be included, update your relevant deployments to contain this configuration:
 
@@ -40,7 +40,7 @@ spec:
       tolerations:
       - key: "scheduling.cast.ai/scoped-autoscaler"
         operator: "Exists"
-        effect: "NoSchedule"        
+        effect: "NoSchedule"
 ```
 
 The node selector will ensure that pods will only schedule on CAST AI-provisioned nodes. Also, this specific selector is what scoped autoscaler is looking for when deciding which unsheduled pods are within the scope.
@@ -216,5 +216,3 @@ handled in the following order:
 2. [Horizontal Pod Autoscaler (HPA) policy](#horizontal-pod-autoscaler-hpa-policy)
 3. [Unscheduled pods policy](#unscheduled-pods-policy)
 4. [Node deletion policy](#node-deletion-policy)
-
-
