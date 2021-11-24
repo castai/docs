@@ -21,11 +21,11 @@ Once you've connected or created a cluster, select it and navigate to the **Poli
 ## Scoped autoscaler mode
 
 !!! note "Preview feature"
-    This section describes a POC feature that is not yet accessible from UI. To enable scoped autoscaler mode, edit cluster policy on `/v1/kubernetes/clusters/{clusterId}/policies` endpoint by setting `"isScopedMode": true`.    
+    This section describes a POC feature that is not yet accessible in the console UI. To enable the scoped autoscaler mode, edit the cluster policy on `/v1/kubernetes/clusters/{clusterId}/policies` endpoint by setting `"isScopedMode": true`.    
 
-Autoscaler features described below can be made to act only on a subset of your cluster. By marking specific workloads for autoscaling, only that subset will be considered by unscheduled pods policy, and empty nodes policy will only cleanup nodes that autoscaler has previously created.
+Autoscaler features described below can be made to act only on a subset of your cluster. By marking specific workloads for autoscaling, only that subset will be considered by the unscheduled pods policy, and the empty nodes policy will only clean up nodes that the autoscaler has previously created.
 
-While this mode is turned on, autoscaler-created nodes will have a specific taint: `scheduling.cast.ai/scoped-enclave=true:NoSchedule`. This ensures that only the subset of workloads specifically meant for scoped autoscaler will be scheduled on these nodes. 
+While this mode is turned on, the autoscaler-created nodes will have a specific taint: `scheduling.cast.ai/scoped-enclave=true:NoSchedule`. This ensures that only the subset of workloads specifically meant for the scoped autoscaler will be scheduled on these nodes. 
 
 For pods that you wish to be included, update your relevant deployments to contain this configuration:
 
@@ -43,9 +43,9 @@ spec:
         effect: "NoSchedule"        
 ```
 
-Node selector will ensure that pods will only schedule on CAST.AI provisioned nodes. Also, this specific selector is what scoped autoscaler is looking for when deciding which unsheduled pods are in scope.
+The node selector will ensure that pods will only schedule on CAST AI-provisioned nodes. Also, this specific selector is what scoped autoscaler is looking for when deciding which unsheduled pods are within the scope.
 
-Toleration is required for above-described reasons: we want the pods to actually be able to be scheduled on provisioned nodes. If toleration is not present, this will be treated as misconfiguration and pod will be ignored.
+Toleration is required for above-described reasons: we want the pods to actually be able to be scheduled on provisioned nodes. If toleration is not present, this will be treated as misconfiguration and the pod will be ignored.
 
 ## Cluster CPU limits policy
 
@@ -85,9 +85,9 @@ For now HPA policy is only supported on CAST AI created clusters. See [HPA docum
 
 This policy instructs CAST AI optimization engine to purchase Spot / Preemptive instances and place specifically labelled pods on those instances. CAST AI automatically handles instance interruptions and replaces instances when they are terminated by the CSP.
 
-Additionally, using *interruption tolerance* setting you can restrict which instances types should autoscaler be considering when choosing spot instance type. The default "Cost efficient" option means that autoscaler will choose cheapest option, regardless of selected instance type's reliability; choosing "Least interrupted" will ensure that selection will be done only from most reliable instances.
+Additionally, using the *interruption tolerance* setting you can restrict which instances types should the autoscaler be considering when choosing the Spot instance type. The default "Cost efficient" option means that the autoscaler will choose the cheapest option, regardless of the selected instance type's reliability; choosing "Least interrupted" will ensure that selection will be done only from most reliable instances.
 
-Detailed guide on how to configure your workloads to run on Spot instances can be found [here](../guides/spot.md).
+You can find a detailed guide on how to configure your workloads to run on Spot instances [here](../guides/spot.md).
 
 ## Unscheduled pods policy
 
@@ -100,8 +100,7 @@ The CAST AI autoscaler is equipped with a mechanism to handle this.
 
 ### Headroom attributes
 
-Headroom is a buffer of spare capacity (in terms of both memory and CPU) to ensure that cluster can meet suddenly increased demand for resources. It is based on the currently
-available total worker nodes resource capacity.
+Headroom is a buffer of spare capacity (in terms of both memory and CPU) to ensure that cluster can meet suddenly increased demand for resources. It is based on the currently available total worker nodes resource capacity.
 
 For example, if headroom for memory and CPU are both set to 10%,
 and the cluster consists of 2 worker nodes equipped with 2 cores and 4GB RAM each, _a total of 0.4 cores and 819MB_
@@ -113,7 +112,7 @@ Node constraints limit the possible node pool for CAST AI to choose from when ad
 
 Since this decision is driven by the customer and not by CAST AI optimization engine, it might not result in the most cost effective node added. However, this feature is particularly  beneficial when migrating into CAST AI selected nodes and securing additional capacity upfront (i.e. adding larger nodes, but knowing that during migration they would be filled up).
 
-System supports the following CPU to Memory ratios: 1:2, 1:4 and 1:8. Based on the example presented in the picture, CAST AI would consider 4CPU16GiB RAM and 4CPU 32GiB RAM instances
+The system supports the following CPU to Memory ratios: 1:2, 1:4 and 1:8. Based on the example presented in the picture, CAST AI would consider 4CPU16GiB RAM and 4CPU 32GiB RAM instances
 
 ![](autoscaling-policies/node_constraints.png)
 
