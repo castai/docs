@@ -21,7 +21,7 @@ Once you've connected or created a cluster, select it and navigate to the **Poli
 ## Scoped autoscaler mode
 
 !!! note "Preview feature"
-    This section describes a POC feature that is not yet accessible from UI. To enable scoped autoscaler mode, edit cluster policy on `/v1/kubernetes/clusters/{clusterId}/policies` endpoint by setting `.isScopedMode: true`.    
+    This section describes a POC feature that is not yet accessible from UI. To enable scoped autoscaler mode, edit cluster policy on `/v1/kubernetes/clusters/{clusterId}/policies` endpoint by setting `"isScopedMode": true`.    
 
 Autoscaler features described below can be made to act only on a subset of your cluster. By marking specific workloads for autoscaling, only that subset will be considered by unscheduled pods policy, and empty nodes policy will only cleanup nodes that autoscaler has previously created.
 
