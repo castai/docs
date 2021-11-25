@@ -103,14 +103,17 @@ CAST AI relies on the agent runs inside customer's cluster. The following servic
 
 ## Known issues
 
-- There's a known [issue](https://github.com/kubernetes/kops/issues/9530) on kOps v1.17. 
+### Custom taints on kOps v1.17 with kube-router
+
+  There's a known [issue](https://github.com/kubernetes/kops/issues/9530) on kOps v1.17.
   Nodes with custom taints are not able to join the cluster when cluster is used with `kube-router` networking component.
-  This happens because `kube-router` doesn't have tolerations to start on node with custom taints.
+  This happens because `kube-router` doesn't have required tolerations to start on nodes with custom taints.
   
-  **Impact:** CAST.AI won't be able to add spot nodes for impacted clusters.
+  **Impact:** CAST.AI won't be able to add any nodes with custom taints (ex. Spot) for impacted clusters.
   
   **Resolution:** add following tolerations to `kube-router` daemonSet in your kOps v1.17 cluster's `kube-system` namespace.
-  ```
+
+  ````
   tolerations:
     - effect: NoSchedule
       operator: Exists
@@ -118,4 +121,4 @@ CAST AI relies on the agent runs inside customer's cluster. The following servic
       operator: Exists
     - key: CriticalAddonsOnly
       operator: Exists
-  ```
+  ````
