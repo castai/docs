@@ -100,3 +100,22 @@ CAST AI relies on the agent runs inside customer's cluster. The following servic
 - Lambda function to handle Spot Instance interruptions
 - EC2 instances, their storage, and intra-cluster network traffic to manage Kubernetes cluster and perform autoscaling
 - IAM resources as detailed in the [onboarding section](#actions-performed-by-the-onboarding-script)
+
+## Known issues
+
+- There's a known [issue](https://github.com/kubernetes/kops/issues/9530) on kOps v1.17. 
+  Nodes with custom taints are not able to join the cluster when cluster is used with `kube-router` networking component.
+  This happens because `kube-router` doesn't have tolerations to start on node with custom taints.
+  
+  **Impact:** CAST.AI won't be able to add spot nodes for impacted clusters.
+  
+  **Resolution:** add following tolerations to `kube-router` daemonSet in your kOps v1.17 cluster's `kube-system` namespace.
+  ```
+  tolerations:
+    - effect: NoSchedule
+      operator: Exists
+    - effect: NoExecute
+      operator: Exists
+    - key: CriticalAddonsOnly
+      operator: Exists
+  ```
