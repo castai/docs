@@ -14,10 +14,10 @@ Further sections will cover the most common issues and how to resolve them.
 
 If a cluster does not appear in the Connect your cluster screen after you've run the connection script, perform following steps.
 
-1. Check the Pod logs:
+1. Check agent container logs:
 
     ```sh
-    kubectl logs -n castai-agent -l app.kubernetes.io/name=castai-agent
+    kubectl logs -n castai-agent -l app.kubernetes.io/name=castai-agent -c agent
     ```
 
 2. You might get output similar to this:
@@ -93,6 +93,16 @@ To solve this issue:
 2. Add the values for the missing parts next to the `#FILL THIS` comment.
 
 3. Apply the deployment file using `kubectl apply -f deployment.yaml`.
+
+## TLS handshake timeout issue
+
+In some edge cases due to specific cluster network setup agent might fail with the following message in the agent container logs:
+
+  ```text
+  time="2021-11-13T05:19:54Z" level=fatal msg="agent failed: registering cluster: getting namespace \"kube-system\": Get \"https://100.10.1.0:443/api/v1/namespaces/kube-system\": net/http: TLS handshake timeout" provider=eks version=v0.22.1
+  ```
+
+To resolve this issue delete `castai-agent` pod. The deployment will recreate the pod and issue will be resolved.
 
 ## Refused connection to control plane
 
