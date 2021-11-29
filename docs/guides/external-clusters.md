@@ -132,7 +132,7 @@ In order to upgrade the CAST AI agent version, please perform the following step
 2. Select the correct cloud service provider
 3. Run the provided script
 
-_In case of an error when upgrading the agent_:
+In case of an error when upgrading the agent:
 
 * i.e. `MatchExpressions:[]v1.LabelSelectorRequirement(nil)}: field is immutable`
   * run the following command: `kubectl delete deployment -n castai-agent castai-agent` and repeat the step 3.
