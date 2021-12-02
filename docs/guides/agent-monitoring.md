@@ -4,6 +4,8 @@ description: Tips on how to setup monitoring and alerting for CAST AI agent
 
 # CAST AI agent health monitoring
 
+CAST AI agent deployed inside customer's cluster is a critical part of the solution, hence monitoring its status is vital. This document outlines recommended techniques for monitoring and understanding the health of the agent.
+
 ## Agent logs
 
 To quickly assess the state of the agent use standard `kubectl` command to access agent container logs:
@@ -12,9 +14,15 @@ To quickly assess the state of the agent use standard `kubectl` command to acces
 kubectl logs -n castai-agent -l app.kubernetes.io/name=castai-agent -c agent
 ```
 
-## Monitoring using Prometheus
+Expected outcome if the agent operations are healthy:
 
-CAST AI exposes number of cluster metrics, some of them can be used to assess the health of the system and alert in case of issues. For example if the agent is performing as expected it should send snapshots (deltas) about changing cluster state back to central SaaS console. In case snapshots are not received for sustained period of time it should be cause of concern. We propose to setup alerting rule using Prometheus monitoring stack as described here.  
+```txt
+time="2021-12-02T09:19:42Z" level=info msg="delta with items[#] sent, response_code=204"
+```
+
+## Prometheus metrics
+
+CAST AI exposes number of Prometheus metrics, some of them can be used to assess the health of the CAST AI agent and alert in case of issues. For example if the agent is performing as expected it should send snapshots (deltas) containing metadata about the cluster every 15s back to the CAST AI console. If snapshots are not received for sustained period of time it should be cause of concern & investigation. To monitor and alert against such scenario, we propose to Prometheus metrics and alerting as described [here](../guides/metrics.md).
 
 ## Advanced monitoring using kube-state-metrics and Prometheus
 
@@ -24,7 +32,7 @@ We suggest building [kube-state-metrics](https://github.com/kubernetes/kube-stat
 
 - Agent pod  constantly restarting
 
-Examples of how to setup Prometheus alerting rules to cover these scenarions are presented below:
+Examples of Prometheus alerting rules that cover mentioned scenarions are presented below:
 
 ```yaml
 alerting_rules.yml:
