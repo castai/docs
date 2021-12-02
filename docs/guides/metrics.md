@@ -32,11 +32,11 @@ scrape_configs:
 
 Cluster metrics can be used for observability and alerting purposes (e.g. Prometheus metrics can be integrated with PagerDuty to alert on call support engineers in case snapshots are not being received (or processed) for a set period of time, as it would mean that cluster is not autoscaling).
 
-| Name | Type | Description |
-| ----------- | ----------- | ----------- |
-`castai_autoscaler_agent_snapshots_received_total` | Counter | CAST AI Autoscaler agent snapshots received total
-`castai_autoscaler_agent_snapshots_processed_total` | Counter | CAST AI Autoscaler agent snapshots processed total
-`castai_cluster_total_cost_hourly` | Gauge | CAST AI cluster total cost hourly
+| Name | Type | Description | Action
+| ----------- | ----------- | ----------- | ----------- |
+`castai_autoscaler_agent_snapshots_received_total` | Counter | CAST AI Autoscaler agent snapshots received total | Check if Agent is running in the cluster |
+`castai_autoscaler_agent_snapshots_processed_total` | Counter | CAST AI Autoscaler agent snapshots processed total | Contact CAST AI support |
+`castai_cluster_total_cost_hourly` | Gauge | CAST AI cluster total cost hourly |  |
 
 ## Example queries
 
