@@ -1,20 +1,20 @@
 ---
-description: Tips on how to setup monitoring and alerting for CAST AI agent
+description: Tips on how to set up monitoring and alerting for the CAST AI agent
 ---
 
 # CAST AI agent health monitoring
 
-CAST AI agent deployed inside customer's cluster is a critical part of the solution, hence monitoring its status is vital. This document outlines recommended techniques for monitoring and understanding the health of the agent.
+The CAST AI agent deployed inside customer's cluster is a critical part of the solution, hence monitoring its status is vital. This document outlines the recommended techniques for monitoring and understanding the health of this agent.
 
 ## Agent logs
 
-To quickly assess the state of the agent use standard `kubectl` command to access agent container logs:
+To quickly assess the state of the agent, use the standard `kubectl` command to access the agent container logs:
 
 ```sh
 kubectl logs -n castai-agent -l app.kubernetes.io/name=castai-agent -c agent
 ```
 
-Expected outcome if the agent operations are healthy:
+The expected outcome if the agent operations are healthy is as follows:
 
 ```txt
 time="2021-12-02T09:19:42Z" level=info msg="delta with items[#] sent, response_code=204"
@@ -22,17 +22,17 @@ time="2021-12-02T09:19:42Z" level=info msg="delta with items[#] sent, response_c
 
 ## Prometheus metrics
 
-CAST AI exposes number of Prometheus metrics, some of them can be used to assess the health of the CAST AI agent and alert in case of issues. For example if the agent is performing as expected it should send snapshots (deltas) containing metadata about the cluster every 15s back to the CAST AI console. If snapshots are not received for sustained period of time it should be cause of concern & investigation. To monitor and alert against such scenario, we propose to Prometheus metrics and alerting as described [here](../guides/metrics.md).
+CAST AI exposes a number of Prometheus metrics, some of them can be used to assess the health of the CAST AI agent and alert in case of any issues. For example, if the agent is performing as expected it should send snapshots (deltas) containing metadata about the cluster every 15s back to the CAST AI console. If snapshots are not received for a sustained period of time, this should be cause of concern and investigation. To monitor and alert against such scenarios, we propose using Prometheus metrics and alerting as described [here](../guides/metrics.md).
 
 ## Advanced monitoring using kube-state-metrics and Prometheus
 
-We suggest building [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics) and [Prometheus](https://prometheus.io/) setup for advanced monitoring capability. It would enable users to capture cases like:
+We suggest building [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics) and [Prometheus](https://prometheus.io/) setup for advanced monitoring capability. This would enable users to capture cases like:
 
-- Agent pod not transitioning in to `Running` status
+- Agent pod not transitioning into `Running` status,
 
-- Agent pod  constantly restarting
+- Agent pod constantly restarting.
 
-Examples of Prometheus alerting rules that cover mentioned scenarions are presented below:
+Examples of Prometheus alerting rules that cover the mentioned scenarions are presented below:
 
 ```yaml
 alerting_rules.yml:
