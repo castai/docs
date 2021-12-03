@@ -119,6 +119,8 @@ nav:
       - guides/vpa.md
       - 'Node kernel tuning': guides/node-kernel-tuning.md
       - guides/evictor.md
+      - 'Cluster metrics': guides/metrics.md
+      - 'Agent status monitoring': guides/agent-monitoring.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
