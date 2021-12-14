@@ -180,8 +180,8 @@ spec:
 
 ### How to a isolate specific workloads
 
-It's best practice to set Workload requests and limits identical and distribute various workloads among all the nodes in the cluster so that Law of Averages
-would provide best performance and availability. Having said that there might be some edge case to isolate volatile workloads to their nodes and not mix with other workloads in the same clusters. We will use `affinity.podAntiAffinity`:
+It's a best practice to set workload requests and limits identical and distribute various workloads among all the nodes in the cluster so that Law of Averages
+would provide best performance and availability. Having said that, there might be some edge case to isolate volatile workloads to their nodes and not mix them with other workloads in the same clusters. In such scenario we will use `affinity.podAntiAffinity`:
 
 ```
 affinity:
