@@ -177,3 +177,57 @@ spec:
           requests:
             storage: 1Gi
 ```
+
+### How to a isolate specific workloads
+
+It's best practice to set Workload requests and limits identical and distribute various workloads among all the nodes in the cluster so that Law of Averages
+would provide best performance and availability. Hafing said that there might be some edge case to isolate volatile workloads to their nodes and not mix with other workloads in same clusters. We will use `affinity.podAntiAffinity`:
+
+```
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - topologyKey: kubernetes.io/hostname
+      labelSelector:
+        matchExpressions:
+        - key: <any POD label>
+          operator: DoesNotExist
+```
+
+Pod example:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worklow-jobs
+  labels:
+    app: workflows
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: workflows
+  template:
+    metadata:
+      labels:
+        app: workflows
+        no-requests-workflows: "true"
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchExpressions:
+              - key: no-requests-workflows
+                operator: DoesNotExist
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 300m  
+```
