@@ -15,6 +15,11 @@ helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
 This process will take some time. Also, by default, Evictor will not cause any downtime to single replica deployments / StatefulSets, pods
 without ReplicaSet, meaning that those nodes can't be removed gracefully. Familiarize with [rules](#avoiding-downtime-during-bin-packing) and available [overrides](#rules-override-for-specific-pods-or-nodes) in order to setup Evictor to meet your needs.
 
+In order for evictor to run in more aggressive mode (start considering applications with single replica), you should pass the following parameters:
+```
+--set dryRun=false,aggressiveMode=true
+```
+
 ### Upgrading Evictor
 
 - Check the Evictor version you are currently using:
