@@ -21,7 +21,7 @@ Let's deploy, configure, and inspect a basic application: an empty Caddy server.
 ## Prerequisites
 
 * **CAST AI cluster** - see [create cluster](../getting-started/create-cluster.md).
-* **GSLB DNS value of the cluster** - you will find this in [/clusters](../console-overview/clusters.md) details page. This will be an internal DNS name for your Ingress.
+* **GSLB DNS value of the cluster** - you will find this in [/clusters](../product-overview/console/clusters.md) details page. This will be an internal DNS name for your Ingress.
 
 * **CNAME alias for TLS setup** - use a hostname of your choice and create a CNAME record with GSLB DNS value.
 
@@ -174,7 +174,7 @@ spec:
 
 ## Metrics
 
-Once the application is up and running you can check the Ingress metrics and dashboard. Go to CAST.AI console [/clusters](../console-overview/clusters.md) details page and click on the *"Grafana logs"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open the "NGINX Ingress controller" dashboard. You will see something similar to this:
+Once the application is up and running you can check the Ingress metrics and dashboard. Go to CAST.AI console [/clusters](../product-overview/console/clusters.md) details page and click on the *"Grafana logs"* link in the side menu. Once in Grafana, click *"Home"* in the top-left corner and open the "NGINX Ingress controller" dashboard. You will see something similar to this:
 
 ![](ingress/ingress-dashboard.png)
 
