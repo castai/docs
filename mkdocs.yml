@@ -10,6 +10,8 @@ theme:
     accent: indigo
   font:
     text: Nimbus Sans
+  features:
+    - navigation.indexes
 extra_css:
   - stylesheets/extra.css
 site_url: https://docs.cast.ai
@@ -101,6 +103,10 @@ nav:
           - product-overview/console/schedule.md
           - product-overview/console/logs.md
           - product-overview/console/api.md
+      - 'Rebalancing':
+          - product-overview/rebalancing/index.md
+          - product-overview/rebalancing/preparation.md
+          - 'Rebalance your cluster': product-overview/rebalancing/run.md
   - 'Concepts':
       - concepts/how-it-works.md
       - concepts/cluster-lifecycle.md
