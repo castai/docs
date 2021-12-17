@@ -4,7 +4,7 @@ description: Explore our autoscaling policies CAST AI uses to maintain steady pe
 
 # Autoscaling policies
 
-Autoscaling policies define a set of rules based on which your cluster is monitored and scaled to maintain steady
+Autoscaling policies define the set of rules based on which your cluster is monitored and scaled to maintain steady
 performance at the lowest possible cost.
 
 This topic describes the available policy configuration options and provides guidance on how to configure them.
@@ -43,9 +43,9 @@ spec:
         effect: "NoSchedule"
 ```
 
-The node selector will ensure that pods will only schedule on CAST AI-provisioned nodes. Also, this specific selector is what scoped autoscaler is looking for when deciding which unsheduled pods are within the scope.
+The node selector will ensure that pods only schedule on CAST AI-provisioned nodes. Also, this specific selector is what the scoped autoscaler is looking for when deciding which unsheduled pods are within the scope.
 
-Toleration is required for above-described reasons: we want the pods to actually be able to be scheduled on provisioned nodes. If toleration is not present, this will be treated as misconfiguration and the pod will be ignored.
+Toleration is required for the above-described reasons: we want the pods to actually be able to be scheduled on provisioned nodes. If toleration is not present, this will be treated as misconfiguration and the pod will be ignored.
 
 ## Cluster CPU limits policy
 
@@ -77,21 +77,27 @@ The new settings will propagate immediately.
 
 ## Horizontal Pod Autoscaler (HPA) policy
 
-For now HPA policy is only supported on CAST AI created clusters. See [HPA documentation](../guides/hpa.md) for a detailed overview.
+For now, the HPA policy is only supported on clusters created in CAST AI. See [HPA documentation](../guides/hpa.md) for a detailed overview.
 
 ## Spot/Preemptive Instances policy
 
 ![](autoscaling-policies/spot-policies.png)
 
-This policy instructs CAST AI optimization engine to purchase Spot / Preemptive instances and place specifically labelled pods on those instances. CAST AI automatically handles instance interruptions and replaces instances when they are terminated by the CSP.
+This policy instructs the CAST AI optimization engine to purchase Spot / Preemptive instances and place specifically labelled pods on those instances. CAST AI automatically handles instance interruptions and replaces instances when they are terminated by the CSP. You can find a detailed guide on how to configure your workloads to run on Spot instances [here](../guides/spot.md).
 
-Additionally, using the *interruption tolerance* setting you can restrict which instances types should the autoscaler be considering when choosing the Spot instance type. The default "Cost efficient" option means that the autoscaler will choose the cheapest option, regardless of the selected instance type's reliability; choosing "Least interrupted" will ensure that selection will be done only from most reliable instances.
+The following configuration settings can be applied to the policy.
 
-You can find a detailed guide on how to configure your workloads to run on Spot instances [here](../guides/spot.md).
+### Interruption tolerance
+
+Using the *interruption tolerance* setting, you can restrict which instances types the autoscaler should consider when choosing the Spot instance type. The default "Cost efficient" option means that the autoscaler will choose the cheapest option, regardless of the selected instance type's reliability; choosing "Least interrupted" will ensure that selection will be done only from most reliable instances.
+
+### Spot fallback
+
+By using this feature, you can guarantee that workloads designated for spot instances have capacity to run even if spot inventory is temporarily not available. To mitigate the impact of spot drought, CAST AI provisions *fallback* node (i.e. a temporary on-demand node) and use it to schedule the impacted workloads. Once the configured time expires, CAST AI will automatically attempt to find the suitable spot node. If it is available, it will get provisioned - then the *fallback* node will be drained and deleted. As a result, the impacted workloads will get scheduled on the spot node in the same way as prior to the spot drought event.
 
 ## Unscheduled pods policy
 
-A pod becomes unschedulable when the Kubernetes scheduler cannot find a node to assign the pod to.
+A pod becomes unschedulable when the Kubernetes scheduler cannot find a node to which it can assign the pod.
 For instance, a pod can request more CPU or memory than the resources available on any of the worker nodes.
 
 In many such cases, this indicates the need to scale up by adding additional nodes to the cluster.
