@@ -83,11 +83,17 @@ For now HPA policy is only supported on CAST AI created clusters. See [HPA docum
 
 ![](autoscaling-policies/spot-policies.png)
 
-This policy instructs CAST AI optimization engine to purchase Spot / Preemptive instances and place specifically labelled pods on those instances. CAST AI automatically handles instance interruptions and replaces instances when they are terminated by the CSP.
+This policy instructs CAST AI optimization engine to purchase Spot / Preemptive instances and place specifically labelled pods on those instances. CAST AI automatically handles instance interruptions and replaces instances when they are terminated by the CSP. You can find a detailed guide on how to configure your workloads to run on Spot instances [here](../guides/spot.md).
 
-Additionally, using the *interruption tolerance* setting you can restrict which instances types should the autoscaler be considering when choosing the Spot instance type. The default "Cost efficient" option means that the autoscaler will choose the cheapest option, regardless of the selected instance type's reliability; choosing "Least interrupted" will ensure that selection will be done only from most reliable instances.
+Following configuration settings can be applied to the policy.
 
-You can find a detailed guide on how to configure your workloads to run on Spot instances [here](../guides/spot.md).
+### Interruption tolerance
+
+Using the *interruption tolerance* setting you can restrict which instances types should the autoscaler be considering when choosing the Spot instance type. The default "Cost efficient" option means that the autoscaler will choose the cheapest option, regardless of the selected instance type's reliability; choosing "Least interrupted" will ensure that selection will be done only from most reliable instances.
+
+### Spot fallback
+
+By using this feature you would guarantee that workloads designated for spot instances have capacity to run even if spot inventory is temporarily not available. To mitigate the impact of spot drought CAST AI would provision *fallback* node (i.e. temporary on-demand node) and use it to schedule impacted workloads. Once configured time expires CAST AI would automatically attempt to find the suitable spot node and if it is available it would get provisioned, then *fallback* node would get drained and deleted. As a result impacted workloads would get scheduled on spot node same way as prior spot drought event.
 
 ## Unscheduled pods policy
 
