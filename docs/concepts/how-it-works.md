@@ -22,7 +22,7 @@ CAST AI selects regions with network latency in mind. For your applications and 
 
 With the network in place:
 
-- VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in the [/nodes](../console-overview/nodes.md) menu.
+- VMs are added to take the role of Kubernetes Masters and Workers. You can add or remove Worker nodes in the [/nodes](../product-overview/console/nodes.md) menu.
 
 - Cluster enters a [reconcilation loop](../concepts/cluster-lifecycle.md#2-reconciliation-healing).
 
@@ -30,6 +30,6 @@ If you delete any resources from the provided CSP accounts manually, CAST AI rec
 
 ## Automated cleanup
 
-When you delete a cluster via the [CAST AI console](../console-overview/dashboard.md), the operation will terminate all VMs and delete the cloud resources (attached storage, public IPs, VPN connections, network subnets, etc.).
+When you delete a cluster via the [CAST AI console](../product-overview/console/dashboard.md), the operation will terminate all VMs and delete the cloud resources (attached storage, public IPs, VPN connections, network subnets, etc.).
 
 To further understand the lifecycle of a cluster, check our [Cluster lifecycle](../concepts/cluster-lifecycle.md) overview.

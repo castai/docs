@@ -27,8 +27,8 @@ description: Policies help to optimize and reduce your cloud bill. They will aut
 
 For more information see:
 
-- [Autoscaling policies](../guides/autoscaling-policies.md)
-- [Horizontal Pod autoscaler](../guides/hpa.md)
-- [Spot/Preemptible Instances](../guides/spot.md)
+- [Autoscaling policies](../../guides/autoscaling-policies.md)
+- [Horizontal Pod autoscaler](../../guides/hpa.md)
+- [Spot/Preemptible Instances](../../guides/spot.md)
 
 ![](images/policies.png)

@@ -91,15 +91,16 @@ nav:
         - 'kOps':
           - 'Connect and onboard': getting-started/external-cluster/kops/kops.md
           - 'Remove CAST': getting-started/external-cluster/kops/remove-from-kops.md
-  - 'Console overview':
-      - console-overview/dashboard.md
-      - console-overview/clusters.md
-      - console-overview/nodes.md
-      - console-overview/audit-log.md
-      - console-overview/policies.md
-      - console-overview/schedule.md
-      - console-overview/logs.md
-      - console-overview/api.md
+  - 'Product overview':
+      - 'Console':
+          - product-overview/console/dashboard.md
+          - product-overview/console/clusters.md
+          - product-overview/console/nodes.md
+          - product-overview/console/audit-log.md
+          - product-overview/console/policies.md
+          - product-overview/console/schedule.md
+          - product-overview/console/logs.md
+          - product-overview/console/api.md
   - 'Concepts':
       - concepts/how-it-works.md
       - concepts/cluster-lifecycle.md
