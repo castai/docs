@@ -39,9 +39,9 @@ If your workloads do not tolerate interruptions, you might need to take special 
     ```shell
     kubectl get pod -ojsonpath='{.spec.nodeName}' critical-deployment-5ddb8f8995-94wdb
     ```
-    
+
     Label the node that is running your critical pod:
-    
+
     ```shell
     kubectl label node ip-10-0-101-156.eu-central-1.compute.internal autoscaling.cast.ai/removal-disabled=true
     ```
