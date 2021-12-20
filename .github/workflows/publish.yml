@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@ec9e4b17a8f40dd9b67fa1f4ffe678bf03b69aa3
+        uses: mhausenblas/mkdocs-deploy-gh-pages@e13927f4feeffdf766b3c13d88c9275d520d5af6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: docs.cast.ai
