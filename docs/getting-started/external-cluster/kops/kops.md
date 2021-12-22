@@ -54,7 +54,7 @@ Follow the instruction in the pop-up window to create and use AWS `AccessKeyId` 
 
 ![img.png](../../screenshots/connect-kops-3.png)
 
-That’s it! Your cluster is onboarded. Now you can enable [optimization policies](https://docs.cast.ai/console-overview/policies/) to keep your cluster configuration optimal.
+That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](/product-overview/console/autoscaler) to keep your cluster configuration optimal.
 
 ## Actions performed by the onboarding script
 

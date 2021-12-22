@@ -14,14 +14,11 @@ This topic describes the available policy configuration options and provides gui
 - CAST AI cluster - see [create cluster](../getting-started/create-cluster.md).
 - Connected external cluster - see [connect cluster](../getting-started/external-cluster/overview.md)
 
-Once you've connected or created a cluster, select it and navigate to the **Policies** menu.
+Once you've connected or created a cluster, select it and navigate to the **Autoscaler** menu.
 
-![](autoscaling-policies/policies.png)
+![](autoscaling-policies/autoscaler.png)
 
 ## Scoped autoscaler mode
-
-!!! note "Preview feature"
-    This section describes a POC feature that is not yet accessible in the console UI. To enable the scoped autoscaler mode, edit the cluster policy on `/v1/kubernetes/clusters/{clusterId}/policies` endpoint by setting `"isScopedMode": true`.
 
 Autoscaler features described below can be made to act only on a subset of your cluster. By marking specific workloads for autoscaling, only that subset will be considered by the unscheduled pods policy, and the empty nodes policy will only clean up nodes that the autoscaler has previously created.
 

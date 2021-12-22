@@ -60,7 +60,7 @@ If you want to move pods back to Spot instances, use the Rebalancer feature.
 
 **When to use:** you want to minimize workload interruptions
 
-The Autoscaler can identify which instance types are less likely to be interrupted. You can set a default reliability value cluster-wide in [spot instance policy](autoscaling-policies.md#spotpreemptive-instances-policy). If you want to control that per-workload, e.g. leave most const-efficient value globally and only choose more stable instances for specific pods, define this in the deployment configuration by setting `scheduling.cast.ai/spot-reliability` label on the pod.
+The Autoscaler can identify which instance types are less likely to be interrupted. You can set a default reliability value cluster-wide in [spot instance policy](autoscaling-policies.md#spotpreemptive-instances-policy). If you want to control that per-workload, e.g. leave most cost-efficient value globally and only choose more stable instances for specific pods, define this in the deployment configuration by setting `scheduling.cast.ai/spot-reliability` label on the pod.
 
 Here's an example of how it's done for the typical deployment:
 
@@ -124,7 +124,7 @@ To do that, we will use an example NGINX deployment configured to run only on Sp
 
 ### 1. Enable relevant policies
 
-To start using Spot instances Autoscaler enable the following policies under the `Policies` menu in the UI:
+To start using spot instances go to `Autoscaler` menu in the UI and enable the following policies:
 
 - **Spot/Preemptible instances policy**
     - This policy allows the Autoscaler to use Spot instances.

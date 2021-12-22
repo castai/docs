@@ -3,7 +3,7 @@
 Rebalancing is a CAST AI feature that allows your clusters to reach the most cost-efficient state. Rebalancing is a process which replaces suboptimal nodes with new ones and moves the workloads automatically.
 
 !!! tip ""
-    To unlock this feature you will need to connect your cluster. See - [External Cluster Overview](../../getting-started/external-cluster/overview.md).
+    To unlock this feature you will need to connect your cluster & use full autoscaler. See - [External Cluster Overview](../../getting-started/external-cluster/overview.md).
 
 ## How it works
 
