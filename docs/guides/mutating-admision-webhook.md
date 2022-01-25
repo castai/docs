@@ -1,31 +1,31 @@
 ---
-description: Information on how to put workloads on Spot instances without modification
+description: Information on how to put workloads on spot instances without modification
 ---
 # Mutating Admission Webhook
 
-It takes time and effort to modify workload manifests to achieve desired savings. CAST AI Mutating Admission Webhook slightly
-modifies workload manifests on-the-fly. It is a quick and effortless way to achieve savings without modifying each workload.
+Modifying workload manifests to achieve the desired savings takes time and effort. The CAST AI Mutating Admission Webhook slightly
+modifies workload manifests on-the-fly. It's a quick and effortless way to achieve savings without modifying every workload.
 
-When ever there is a request to schedule a Pod, CAST AI Mutating Admission Webhook (mutating webhook for short) will mutate
-workload manifest, for example add spot toleration, to influence desired Pod placement by Kubernetes Scheduler.
+Whenever there's a request to schedule a pod, the CAST AI Mutating Admission Webhook (in short, mutating webhook) will mutate
+workload manifest - for example, adding spot toleration to influence the desired pod placement by the Kubernetes Scheduler.
 
 CAST AI Mutating Admission Webhook modes:
 
 - Spot-only
 - Partial Spot
-- [Soon] Intelligent placement on Rebalancing
+- [Coming soon] Intelligent placement on Rebalancing
 
 ## Spot-only
 
-Spot-only mutating webhook will mark all workloads in your cluster as suitable for spot instances, making autoscaler prefer
-spot instances when upscaling the cluster. As this will make cluster most cost-efficient, choosing this mode is recommended
-for Development, Staging environments, batch job processing clusters, etc. The CAST AI autoscaler will create Spot instances
-only if Pod has "Spot toleration", see [Spot/Preemptible Instances](spot.md). Mutating Webhook will add Spot toleration to
-all workloads being scheduled.
+The Spot-only mutating webhook will mark all workloads in your cluster as suitable for spot instances, causing the autoscaler to prefer
+spot instances when scaling the cluster up. As this will make cluster more cost-efficient, choosing this mode is recommended
+for Development and Staging environments, batch job processing clusters, etc. The CAST AI autoscaler will create spot instances
+only if the pod has "Spot toleration," see [Spot/Preemptible Instances](spot.md). The Mutating Webhook will add Spot toleration to
+all the workloads being scheduled.
 
-### Install Spot only mutating webhook
+### Install Spot-only mutating webhook
 
-Running all Pods (including kube-system) on Spot instances:
+To run all pods (including kube-system) on spot instances, use:
 
 ```shell
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
@@ -33,7 +33,7 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
     --set staticConfig.preset=allSpot
 ```
 
-For running all workload Pods (excluding kube-system) on Spot instances use:
+To run all workload pods (excluding kube-system) on spot instances, use:
 
 ```shell
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
@@ -41,7 +41,7 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
     --set staticConfig.preset=allSpotExceptKubeSystem
 ```
 
-For running all workload Pods on Spot instances use, but exclude list of Namespaces:
+To run all workload pods on spot instances, use this (but exclude list of Namespaces):
 
 ```shell
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
@@ -49,9 +49,12 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
     --set staticConfig.defaultToSpot=true --set 'staticConfig.forcePodsToOnDemand={kube-system/.*,another-namespace/.*}'
 ```
 
-Note: existing running pods will not be affected. Webhook only mutates pods during during scheduling. Over time all pods should eventually be re-scheduled and in turn mutated,
-application owners will release new version of workload, which will triggering all replicas to be rescheduled, Evictor or Rebalancing
-will remove older nodes, putting Pods for rescheduling etc. If one wants to initiate mutation for whole namespace quickly run this command:
+Note: The existing running pods will not be affected. The Webhook only mutates pods during scheduling. Over time, all pods
+should eventually be re-scheduled and, in turn, mutated. The application owners will release a new version of workload that
+will trigger all the replicas to be rescheduled, Evictor, or Rebalancing will remove older nodes, putting pods for rescheduling,
+etc.  
+
+If you'd like to initiate mutation for the whole namespace quickly, run this command:
 
 ```shell
 kubectl -n {NAMESPACE} rollout restart deploy
@@ -59,14 +62,14 @@ kubectl -n {NAMESPACE} rollout restart deploy
 
 ## Partial Spot
 
-When 100% of Pods on Spot instances is not desirable, but some ratio like 60% on stable on-demand instances and
-remaining 40% of Pods in same ReplicaSet (Deployment / StatefulSet) on Spot instances. This conservative configuration
-ensures there is enough Pods on stable compute for the base load, but still allows achieving significant savings for Pods
-above base load by putting them on Spot instances. Recommended for all types of environment from Production to Development.
+When 100% of pods on spot instances is not a desirable scenario, you can use a ratio like 60% on stable on-demand instances and
+remaining 40% of pods in same ReplicaSet (Deployment / StatefulSet) running on spot instances. This conservative configuration
+ensures that there are enough pods on stable compute for the base load, but still allows achieving significant savings for pods
+above the base load by putting them on spot instances. This setup is recommended for all types of environment, from Production to Development.
 
 ### Install partial Spot mutating webhook
 
-For running 40% workload Pods on Spot instances and keep remaining Pods of same ReplicaSet on on-demand use:
+For running 40% workload pods on spot instances and keep remaining pods of same ReplicaSet on on-demand instances, use:
 
 ```shell
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
@@ -74,7 +77,7 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
     --set staticConfig.preset=partialSpot
 ```
 
-To set custom ratio for partial Spot, replace 70 with [1-99] as percentage value:
+To set a custom ratio for partial Spot, replace 70 with [1-99] as percentage value:
 
 ```shell
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
@@ -84,10 +87,10 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
 
 ## Troubleshooting
 
-Mutating webhook will ignore these type of Pods:
+The mutating webhook will ignore these type of pods:
 
-- Bare Pods without ReplicaSet Controller
+- Bare pods without ReplicaSet Controller
 - Pods in "castai-pod-node-lifecycle" namespace
 - Pods with TopologySpreadConstraints with TopologyKey=Lifecycle
 
-CAST AI Mutating webhook Pods write logs to stdOut
+The CAST AI Mutating webhook pods write logs to stdOut.
