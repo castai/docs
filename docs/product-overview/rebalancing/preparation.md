@@ -36,18 +36,18 @@ If your workloads do not tolerate interruptions, you might need to take special 
 
 | Name | Value | Type (`Annotation` or `Label`) | Location (`Pod` or `Node`) | Effect |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-`autoscaling.cast.ai/removal-disabled`| `"true"`| `Annotation`on`Pod`, but can be both`label`or`annotation`on`Node` | Both`Pod`and`Node` | Rebalancer or Evictor won't drain a Node with this annotation or a Node running a Pod with this annotation. |
+| `autoscaling.cast.ai/removal-disabled`| `"true"`| `Annotation`on`Pod`, but can be both`label`or`annotation`on`Node` | Both`Pod`and`Node` | Rebalancer or Evictor won't drain a Node with this annotation or a Node running a Pod with this annotation. |
 
-    Example commands for finding and labelling a node running critical workloads: 
+Example commands for finding and labelling a node running critical workloads: 
 
-    Find the node that hosts your critical pod:
+Find the node that hosts your critical pod:
 
-    ```shell
-    kubectl get pod -ojsonpath='{.spec.nodeName}' critical-deployment-5ddb8f8995-94wdb
-    ```
+```shell
+kubectl get pod -ojsonpath='{.spec.nodeName}' critical-deployment-5ddb8f8995-94wdb
+```
 
-    Label the node that is running your critical pod:
+Label the node that is running your critical pod:
 
-    ```shell
-    kubectl label node ip-10-0-101-156.eu-central-1.compute.internal autoscaling.cast.ai/removal-disabled=true
-    ```
+```shell
+kubectl label node ip-10-0-101-156.eu-central-1.compute.internal autoscaling.cast.ai/removal-disabled=true
+```
