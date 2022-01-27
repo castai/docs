@@ -34,20 +34,20 @@ If your workloads do not tolerate interruptions, you might need to take special 
 1. Execute the rebalancing during maintenance hours. This would help you achieve the most cost savings.
 2. Disable rebalancing for certain nodes. This can be achieved by labelling or annotating the nodes which are running the critical pods or by annotating the critical pods. Please note, that annotated nodes will not be rebalanced and evicted by Evictor and this can reduce savings. It is recommended to annotate some nodes dedicated for critical workloads, rather than annotating multiple pods, which could be scheduled on multiple nodes and prevent their optimization.  
 
-| Name | Value | Type (`Annotation` or `Label`) | Location (`Pod` or `Node`) | Effect |
-| ----------- | ----------- | ----------- | ----------- | ----------- |
-| `autoscaling.cast.ai/removal-disabled`| `"true"`| `Annotation`on`Pod`, but can be both`label`or`annotation`on`Node` | Both`Pod`and`Node` | Rebalancer or Evictor won't drain a Node with this annotation or a Node running a Pod with this annotation. |
+   | Name | Value | Type (`Annotation` or `Label`) | Location (`Pod` or `Node`) | Effect |
+   | ----------- | ----------- | ----------- | ----------- | ----------- |
+   | `autoscaling.cast.ai/removal-disabled`| `"true"`| `Annotation`on`Pod`, but can be both`label`or`annotation`on`Node` | Both`Pod`and`Node` | Rebalancer or Evictor won't drain a Node with this annotation or a Node running a Pod with this annotation. |
 
-Example commands for finding and labelling a node running critical workloads: 
+    Example commands for finding and labelling a node running critical workloads: 
 
-Find the node that hosts your critical pod:
+    Find the node that hosts your critical pod:
 
-```shell
-kubectl get pod -ojsonpath='{.spec.nodeName}' critical-deployment-5ddb8f8995-94wdb
-```
+    ```shell
+    kubectl get pod -ojsonpath='{.spec.nodeName}' critical-deployment-5ddb8f8995-94wdb
+    ```
 
-Label the node that is running your critical pod:
+    Label the node that is running your critical pod:
 
-```shell
-kubectl label node ip-10-0-101-156.eu-central-1.compute.internal autoscaling.cast.ai/removal-disabled=true
-```
+    ```shell
+    kubectl label node ip-10-0-101-156.eu-central-1.compute.internal autoscaling.cast.ai/removal-disabled=true
+    ```
