@@ -61,9 +61,9 @@ Evictor follows certain rules to avoid downtime. In order for the node to be con
 
 | Name | Value | Type (`Annotation` or `Label`) | Location (`Pod` or `Node`) | Effect |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-`beta.evictor.cast.ai/eviction-disabled` | `"true"` | `Annotation`on`Pod`, but can be both`label`and`annotation`on`Node`| Both`Pod`and`Node`| Evictor won't try to Evict a Node with this Annotation or Node running Pod annotated with this Annotation. |
-`autoscaling.cast.ai/removal-disabled`| `"true"`| Both | `Node` | Evictor won't try to Evict a Node marked with this`Annotation`or`Label` |
+`autoscaling.cast.ai/removal-disabled`| `"true"`| `Annotation`on`Pod`, but can be both`label`and`annotation`on`Node` | Both`Pod`and`Node` | Evictor won't try to Evict a Node with this Annotation or Node running Pod annotated with this Annotation. |
 `beta.evictor.cast.ai/disposable` | `"true"`| `Annotation`| `Pod` | Evictor will treat this`Pod` as Evictable despite any of the other rules defined in [Rules](#avoiding-downtime-during-bin-packing)|
+`beta.evictor.cast.ai/eviction-disabled` Note: Deprected. Use `autoscaling.cast.ai/removal-disabled` instead.| `"true"` | `Annotation`on`Pod`, but can be both`label`and`annotation`on`Node`| Both`Pod`and`Node`| Evictor won't try to Evict a Node with this Annotation or Node running Pod annotated with this Annotation. |
 
 ### Examples of override applications
 
