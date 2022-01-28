@@ -85,6 +85,27 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
     --set staticConfig.defaultToSpot=false --set staticConfig.spotPercentageOfReplicaSet=70
 ```
 
+## Workload level over-ride
+
+Mutating Webhook is a cluster level configuration, but one can have exceptions that could be enforced per Deployment or StatefulSet.
+
+| Annotation Name                      | Value         | Location                  | Effect                                                                                                    |
+|--------------------------------------|---------------|---------------------------|-----------------------------------------------------------------------------------------------------------|
+ `scheduling.cast.ai/lifecycle`       | `"on-demand"` | Deployment or StatefulSet | All Deployment Pods will be scheduled on on-demand instances                                              |
+ `scheduling.cast.ai/lifecycle`       | `"spot"`      | Deployment or StatefulSet | All Deployment Pods will be scheduled on spot instances                                                   |
+ `scheduling.cast.ai/spot-percentage` | `"65"` [1-99] | Deployment or StatefulSet | Override Partial Spot configuration, schedule up to 65% on spot and remaining (at least 35%) on on-demand |
+
+!!! note ""
+Annotation added to Pod is NOT permanent and will not be there on scheduling (will not impact Mutation Webhook behaviour).
+To set permanent override on workload, one needs to modify Pods Template on workload controller (for example Deployment).
+Operation will re-create all Deployment Pods.
+
+```shell
+kubectl patch deployment resilient-app -p '{"spec": {"template":{"metadata":{"annotations":{"scheduling.cast.ai/lifecycle":"spot"}}}}}'
+kubectl patch deployment sensitive-app -p '{"spec": {"template":{"metadata":{"annotations":{"scheduling.cast.ai/lifecycle":"on-demand"}}}}}'
+kubectl patch deployment conservative-app -p '{"spec": {"template":{"metadata":{"annotations":{"scheduling.cast.ai/spot-percentage":"50"}}}}}'
+```
+
 ## Troubleshooting
 
 The mutating webhook will ignore these type of pods:
@@ -92,5 +113,6 @@ The mutating webhook will ignore these type of pods:
 - Bare pods without ReplicaSet Controller
 - Pods in "castai-pod-node-lifecycle" namespace
 - Pods with TopologySpreadConstraints with TopologyKey=Lifecycle
+- DaemonSets will get Spot Toleration by default, ensuring DaemonSet Pods could run on spot and on-demand nodes
 
 The CAST AI Mutating webhook pods write logs to stdOut.
