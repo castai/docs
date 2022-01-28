@@ -10,7 +10,7 @@ To connect your cluster, [log into the CAST AI console](https://console.cast.ai/
 
 ![img.png](../../screenshots/connect-cluster-2.png)
 
-The script will create rhw following Kubernetes objects related to the `castai-agent` agent:
+The script will create the following Kubernetes objects related to the `castai-agent` agent:
 
 - namespace and deployment
 - serviceaccount and secret
