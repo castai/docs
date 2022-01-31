@@ -85,26 +85,26 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
     --set staticConfig.defaultToSpot=false --set staticConfig.spotPercentageOfReplicaSet=70
 ```
 
-## Workload level over-ride
+## Workload level override
 
 Mutating Webhook is a cluster level configuration, but one can have exceptions that could be enforced per Deployment or StatefulSet.
 
 | Annotation Name                      | Value         | Location                  | Effect                                                                                                    |
 |--------------------------------------|---------------|---------------------------|-----------------------------------------------------------------------------------------------------------|
- `scheduling.cast.ai/lifecycle`       | `"on-demand"` | Deployment or StatefulSet | All Deployment Pods will be scheduled on on-demand instances                                              |
- `scheduling.cast.ai/lifecycle`       | `"spot"`      | Deployment or StatefulSet | All Deployment Pods will be scheduled on spot instances                                                   |
+ `scheduling.cast.ai/lifecycle`       | `"on-demand"` | Deployment or StatefulSet | All Pods will be scheduled on on-demand instances                                    |
+ `scheduling.cast.ai/lifecycle`       | `"spot"`      | Deployment or StatefulSet | All Pods will be scheduled on spot instances                                                   |
  `scheduling.cast.ai/spot-percentage` | `"65"` [1-99] | Deployment or StatefulSet | Override Partial Spot configuration, schedule up to 65% on spot and remaining (at least 35%) on on-demand |
-
-!!! note ""
-Annotation added to Pod is NOT permanent and will not be there on scheduling (will not impact Mutation Webhook behaviour).
-To set permanent override on workload, one needs to modify Pods Template on workload controller (for example Deployment).
-Operation will re-create all Deployment Pods.
 
 ```shell
 kubectl patch deployment resilient-app -p '{"spec": {"template":{"metadata":{"annotations":{"scheduling.cast.ai/lifecycle":"spot"}}}}}'
 kubectl patch deployment sensitive-app -p '{"spec": {"template":{"metadata":{"annotations":{"scheduling.cast.ai/lifecycle":"on-demand"}}}}}'
 kubectl patch deployment conservative-app -p '{"spec": {"template":{"metadata":{"annotations":{"scheduling.cast.ai/spot-percentage":"50"}}}}}'
 ```
+
+!!! note ""
+Annotation added to Pod is NOT permanent and will not impact Mutation Webhook behaviour.
+To set permanent override on workload, one needs to modify Pods Template on the controller (for example Deployment).
+Operation will re-create all Deployment Pods.
 
 ## Troubleshooting
 
