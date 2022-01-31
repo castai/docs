@@ -1,5 +1,5 @@
 ---
-description: Autoscaling policies help to optimize and reduce your cloud bill. They will automate the process of scaling up and down for you - read more on this page.
+description: Autoscaling policies help to optimize and reduce your cloud bill. They will automate the process of scaling up and down Kubernetes cluster nodes for you - read more on this page.
 ---
 
 # Autoscaler
