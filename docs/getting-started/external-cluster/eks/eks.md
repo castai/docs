@@ -6,11 +6,11 @@ description: Learn how to connect your EKS cluster to CAST AI and start optimizi
 
 ## Connect cluster
 
-To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
+To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to the **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
 ![img.png](../../screenshots/connect-cluster-2.png)
 
-The script will create following kubernetes objects related to `castai-agent` agent:
+The script will create the following Kubernetes objects related to the `castai-agent` agent:
 
 - namespace and deployment
 - serviceaccount and secret
@@ -24,11 +24,11 @@ After installation, your cluster name will appear below connection instructions 
 ![img.png](../../screenshots/connect-cluster-3.png)
 
 !!! note ""
-    The agent will run in a read-only mode, providing savings suggestions without applying any actual modifications.
+    The agent will run in a read-only mode, providing savings suggestions without applying any modifications.
 
 ## Credential onboarding
 
-To unlock all the benefits and enable automatic cost optimization, CAST AI needs to have access to your cluster. The following
+To unlock all the benefits and enable automated cost optimization, CAST AI needs to have access to your cluster. The following
 section describes the steps required to onboard the EKS cluster on the CAST AI console. To make it less troublesome, we created
 a script that automates most of the steps.
 
@@ -52,7 +52,7 @@ Follow the instruction in the pop-up window to create and use AWS `AccessKeyId` 
 
 ![img.png](../../screenshots/connect-cluster-4.png)
 
-That’s it! Your cluster is onboarded. Now you can enable [optimization policies](../../../product-overview/console/policies.md) to keep your cluster configuration optimal.
+That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
 ## Actions performed by the onboarding script
 

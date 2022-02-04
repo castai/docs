@@ -39,15 +39,13 @@ enables us to autoscale almost any workload: `Deployment`, `ReplicaSet`, `Replic
 
 ### Enabling KEDA
 
-To be able to autoscale, you will need to enable KEDA addon on the `Policies` page:
+To be able to autoscale, you will need to enable KEDA addon in the `Autoscaler` page:
 
 1. Navigate to an existing cluster (or see [create cluster](../getting-started/create-cluster.md)).
 
-2. Go to the *Policies* menu.
+2. Go to the *Autoscaler* menu.
 
 3. Enable the Horizontal pod autoscaler policy.
-
-![Enable HPA](../guides/hpa/HPA.png)
 
 ## Examples
 

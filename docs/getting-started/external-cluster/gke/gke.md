@@ -49,7 +49,7 @@ Copy the pre-generated script and run it inside your terminal or cloud shell. Th
 - `/roles/cast.gkeAccess` (created by script) - access to get / update your GKE cluster and manage compute instances.
 - `roles/container.developer` - access to resources within the Kubernetes cluster.
 
-That’s it! Your cluster is onboarded. You can now enable [policies](../../../product-overview/console/policies.md) to keep your cluster configuration optimal.
+That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
 [Connect your cluster here](https://console.cast.ai/external-clusters/new#gke)
 

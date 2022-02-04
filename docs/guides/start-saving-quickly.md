@@ -11,9 +11,9 @@ want to wait until these savings reach you in a slow and risk-free ongoing proce
 
 First, you need to [onboard the credentials](../getting-started/external-cluster/eks/eks.md#credential-onboarding) so IAM user for CAST AI gets created and cluster can be optimized using CAST AI policies.
 
-## Enable policies
+## Enable Autoscaler
 
-1. **Enabled Node deletion** policy - this policy will remove nodes without pods (ignores DaemonSets).
+1. **Enable Node deletion** policy - this policy will remove nodes without pods (ignores DaemonSets).
 
 2. **Enable Unscheduled Pod** policy - it will make sure that you always have the capacity in the cluster to run pods. The Unscheduled
 Pod policy will provision a new node when required, taking no more than 2-3 minutes.

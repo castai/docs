@@ -34,7 +34,7 @@ Once cluster is disconnected its `Status` will change to `Disconnected` and you 
 
 In order to remove these resources first of all:
 
-- Go to CAST AI console → **Policies** page → Disable all CAST AI policies
+- Go to CAST AI console → **Autoscaler** page → Disable all CAST AI policies
 - Connect to your cluster from the terminal and run command:
 
 ```bash
