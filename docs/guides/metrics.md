@@ -40,6 +40,7 @@ Cluster metrics can be used for observability and alerting purposes (e.g. Promet
 | ----------- | ----------- | ----------- | ----------- |
 `castai_autoscaler_agent_snapshots_received_total` | Counter | CAST AI Autoscaler agent snapshots received total | Check if Agent is running in the cluster |
 `castai_autoscaler_agent_snapshots_processed_total` | Counter | CAST AI Autoscaler agent snapshots processed total | Contact CAST AI support |
+`castai_cluster_total_cost_hourly` | Gauge | Cluster total cost hourly | |
 `castai_cluster_allocatable_cpu_cores` | Gauge | Cluster allocatable CPU cores  |  |
 `castai_cluster_allocatable_memory_bytes` | Gauge | Cluster allocatable memory |  |
 `castai_cluster_provisioned_cpu_cores` | Gauge | Cluster provisioned CPU cores |  |
