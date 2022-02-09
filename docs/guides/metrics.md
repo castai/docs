@@ -14,18 +14,22 @@ CAST AI exposes Prometheus metrics api endpoint for integration with your existi
 
    - Replace `{apiKey}` with your api key.
 
-```
+```yaml
 scrape_configs:
   - job_name: 'castai_cluster_metrics'
-    scrape_interval: 10s
+    scrape_interval: 15s
     scheme: https
     static_configs:
       - targets: ['api.cast.ai']
-    metrics_path: '/v1/kubernetes/external-clusters/prometheus/metrics'
+    metrics_path: '/v1/metrics/prom'
     authorization:
       type: 'Token'
       credentials: '{apiKey}'
-
+    # Optional filter by clusters. Field clusterName is the same as on GET /v1/kubernetes/external-clusters/{clusterId} response clusterNameId field.
+    # params:
+    #   clusterNames:
+    #     - 'cluster1-bd9e12be'
+    #     - 'cluster2-ca4e11a0'
 ```
 
 ## Metrics by type
@@ -36,7 +40,17 @@ Cluster metrics can be used for observability and alerting purposes (e.g. Promet
 | ----------- | ----------- | ----------- | ----------- |
 `castai_autoscaler_agent_snapshots_received_total` | Counter | CAST AI Autoscaler agent snapshots received total | Check if Agent is running in the cluster |
 `castai_autoscaler_agent_snapshots_processed_total` | Counter | CAST AI Autoscaler agent snapshots processed total | Contact CAST AI support |
-`castai_cluster_total_cost_hourly` | Gauge | CAST AI cluster total cost hourly |  |
+`castai_cluster_allocatable_cpu_cores` | Gauge | Cluster allocatable CPU cores  |  |
+`castai_cluster_allocatable_memory_bytes` | Gauge | Cluster allocatable memory |  |
+`castai_cluster_provisioned_cpu_cores` | Gauge | Cluster provisioned CPU cores |  |
+`castai_cluster_provisioned_memory_bytes` | Gauge | Cluster provisioner memory |  |
+`castai_cluster_requests_cpu_cores` | Gauge | Cluster requested CPU cores |  |
+`castai_cluster_requests_memory_bytes` | Gauge | Cluster requested memory |  |
+`castai_cluster_node_count` | Gauge | Cluster nodes count |  |
+`castai_cluster_pods_count` | Gauge | Cluster pods count |  |
+`castai_cluster_unschedulable_pods_count` | Gauge | Cluster unschedulable pods count |  |
+`castai_evictor_node_target_count` | Gauge | CAST AI Evictor targeted nodes count |  |
+`castai_evictor_pod_target_count` | Gauge | CAST AI Evictor targeted pods count |  |
 
 ## Example queries
 
