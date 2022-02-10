@@ -21,6 +21,12 @@ In order for evictor to run in more aggressive mode (start considering applicati
 --set dryRun=false,aggressiveMode=true
 ```
 
+In order for evictor to run in scoped mode (only removing nodes created by CAST AI when using scoped autoscaler), you should pass the following parameters:
+
+```
+--set dryRun=false,scopedMode=true
+```
+
 ### Upgrading Evictor
 
 - Check the Evictor version you are currently using:
