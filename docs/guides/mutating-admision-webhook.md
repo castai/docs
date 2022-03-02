@@ -14,7 +14,7 @@ CAST AI Mutating Admission Webhook presets:
 - Spot-only
 - Spot-only except `kube-system`
 - Partial Spot
-- Flexible
+- Custom
 - [Coming soon] Intelligent placement on Rebalancing
 
 !!! note "Running pods will not be affected"
@@ -82,7 +82,7 @@ helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-
     --set staticConfig.defaultToSpot=false --set staticConfig.spotPercentageOfReplicaSet=70
 ```
 
-## Flexible
+## Custom
 
 No preset.
 
