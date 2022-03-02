@@ -20,7 +20,7 @@ CAST AI Mutating Admission Webhook presets:
 !!! note "Running pods will not be affected"
     The Webhook only mutates pods during scheduling. Over time, all pods should eventually be re-scheduled and, in turn, mutated. The application owners will release a new version of workload that will trigger all the replicas to be rescheduled, Evictor, or Rebalancing will remove older nodes, putting pods for rescheduling, etc.
 
-    If you'd like to initiate mutation for the whole namespace quickly, run this command which will recreate all pods:
+    If you'd like to initiate mutation for the whole namespace immediately, run this command which will recreate all pods:
 
     ```shell
     kubectl -n {NAMESPACE} rollout restart deploy
@@ -32,7 +32,7 @@ Preset `allSpot`.
 
 The Spot-only mutating webhook will mark all workloads in your cluster as suitable for spot instances, causing the autoscaler to prefer spot instances when scaling the cluster up. As this will make cluster more cost-efficient, choosing this mode is recommended for Development and Staging environments, batch job processing clusters, etc. The CAST AI autoscaler will create spot instances only if the pod has "Spot toleration," see [Spot/Preemptible Instances](spot.md). The Mutating Webhook will add the Spot toleration and the Spot node selector to all the workloads being scheduled.
 
-### Install
+### Install Spot-only
 
 To run all pods (including `kube-system`) on spot instances, use:
 
@@ -48,7 +48,7 @@ Preset `allSpotExceptKubeSystem`.
 
 This mode works the same as the [Spot-only](#spot-only) mode but it forces all pods in the `kube-system` namespace to be placed on on-demand nodes. This mode is recommended for clusters where the high-availability aspect of the control-plane is vitally important while other pods can tolerate spot interruptions.
 
-### Install
+### Install Spot-only except `kube-system`
 
 To run all pods excluding `kube-system` on spot instances, use:
 
@@ -64,7 +64,7 @@ Preset `partialSpot`.
 
 When 100% of pods on spot instances is not a desirable scenario, you can use a ratio like 60% on stable on-demand instances and remaining 40% of pods in same ReplicaSet (Deployment / StatefulSet) running on spot instances. This conservative configuration ensures that there are enough pods on stable compute for the base load, but still allows achieving significant savings for pods above the base load by putting them on spot instances. This setup is recommended for all types of environment, from Production to Development.
 
-### Install
+### Install Partial Spot
 
 For running 40% workload pods on spot instances and keep remaining pods of same ReplicaSet on on-demand instances, use:
 
@@ -98,9 +98,9 @@ This mode can be adjusted to match the needs and requirements of your cluster. I
 
 Schema description of the `PodAffinityTerm` object can be found in the official [kubernetes-api documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.21/#podaffinityterm-v1-core). The property `topologyKey` is ignored and the property `namespaceSelector` is not yet supported.
 
-### Install
+### Install Custom
 
-Here is an example of a `values.yaml` with custom rules defined: 
+Here is an example of a `values.yaml` with custom rules defined:
 
 ```yaml
 staticConfig:
