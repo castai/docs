@@ -4,6 +4,7 @@
   "MD007": {
     "indent": 4
   },
+  "MD046": false,
   "no-alt-text": false,
   "fenced-code-language": false
 }
