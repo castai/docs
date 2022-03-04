@@ -65,7 +65,7 @@ sum(castai_cluster_total_cost_hourly{}) by (castai_cluster)
 Compute cost of spot instances of a specific cluster:
 
 ```
-castai_cluster_total_cost_hourly{castai_cluster="$cluster", lifecycle="spot"}
+castai_cluster_compute_cost_hourly{castai_cluster="$cluster", lifecycle="spot"}
 ```
 
 Received snapshots count:
