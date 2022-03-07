@@ -119,7 +119,7 @@ staticConfig:
               - spot-pod-1
               - spot-pod-2
   forcePodsToOnDemand:
-    - matchNamespaces:
+    - namespaces:
         - kube-system
 ```
 
