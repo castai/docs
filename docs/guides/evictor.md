@@ -27,6 +27,12 @@ In order for evictor to run in scoped mode (only removing nodes created by CAST 
 --set dryRun=false,scopedMode=true
 ```
 
+Evictor by default will only impact nodes older than 5 minutes, if you wish to change the grace period before a node can be considered for eviction set the nodeGracePeriodMinutes parameter to the desired time in minutes. This is useful for slow to start nodes to prevent them from being marked for eviction before they can start taking workloads.
+
+```
+--set dryRun=false,nodeGracePeriodMinutes=8
+```
+
 ### Upgrading Evictor
 
 - Check the Evictor version you are currently using:
