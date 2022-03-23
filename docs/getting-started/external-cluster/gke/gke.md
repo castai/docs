@@ -1,5 +1,5 @@
 ---
-description: Learn how to connect your GKE cluster to CAST AI and start optimizing your cloud costs. Achieve Kubernetes cost savings.
+description: Learn how to connect your GKE cluster to CAST AI and start saving now!
 ---
 
 # GCP GKE
