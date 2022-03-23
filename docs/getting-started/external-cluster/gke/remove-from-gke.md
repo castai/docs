@@ -1,5 +1,5 @@
 ---
-description: Time to say goodbye? You can choose from two different options to remove CAST resources based on how you used CAST AI in your cluster.
+description: Learn how to remove CAST AI resources from your connected GKE cluster.
 ---
 
 # Remove CAST resources from GKE cluster
