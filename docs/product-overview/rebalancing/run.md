@@ -1,3 +1,7 @@
+---
+description: Read on to know what to do next when you are ready to enable rebalancing feature on CAST AI.
+---
+
 # Rebalance your cluster
 
 Rebalancing your cluster will help you achieve cost savings. Before running the rebalancing process, we recommend you read the [Preparation](preparation.md) section.
