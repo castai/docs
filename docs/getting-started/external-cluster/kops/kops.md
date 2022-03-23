@@ -1,5 +1,5 @@
 ---
-description: Learn how to connect your kOps luster to CAST AI and start optimizing your cloud costs.
+description: Check this guide on how to connect your kOps cluster to CAST AI console.
 ---
 
 # kOps
