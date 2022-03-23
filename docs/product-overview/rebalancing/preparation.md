@@ -1,3 +1,7 @@
+---
+description: Check the required settings to start your cluster rebalancing with CAST AI.
+---
+
 # Preparation
 
 ## Problematic workloads
