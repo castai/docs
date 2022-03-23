@@ -7,7 +7,7 @@ description: Our API contract is published as OpenAPI v3 specification. Take a l
 Our API contract is published as OpenAPI v3 specification. You can check it on our
 Swagger UI:
 
-<https://api.cast.ai>
+<https://api.cast.ai/v1/spec/>
 
 This will bring you to our current specification. Here you will be able to familiarize yourself with available APIs
 and try functionality directly in the browser.
