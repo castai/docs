@@ -1,5 +1,5 @@
 ---
-description: Information on how to enable and configure Evictor: our bin-packing component
+description: Check how to configure and enable CAST AI's evictor, a bin packing component
 ---
 
 # Evictor
