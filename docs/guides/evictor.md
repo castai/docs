@@ -1,6 +1,7 @@
 ---
 description: Information on how to enable and configure Evictor: our bin-packing component
 ---
+
 # Evictor
 
 ## Install Evictor
