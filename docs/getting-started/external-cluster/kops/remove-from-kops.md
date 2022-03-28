@@ -1,5 +1,5 @@
 ---
-description: Time to say goodbye? You can choose from two different options to remove CAST resources based on how you used CAST AI in your cluster.
+description: Removing CAST AI resources from your kOps cluster is easy as 1,2,3. Read on to find out more.
 ---
 
 # Remove CAST resources from kOps cluster

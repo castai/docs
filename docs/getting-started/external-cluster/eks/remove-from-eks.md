@@ -1,5 +1,5 @@
 ---
-description: Time to say goodbye? You can choose from two different options to remove CAST resources based on how you used CAST AI in your cluster.
+description: Time to say goodbye? Read how to remove CAST resources based on how you used our tool in your cluster.
 ---
 
 # Remove CAST resources from EKS cluster

@@ -1,5 +1,5 @@
 ---
-description: Learn how to connect your AKS cluster to CAST AI and start optimizing your cloud costs.
+description: Learn how to connect your AKS cluster to CAST AI and start taking control of your cloud costs.
 ---
 
 # Azure AKS

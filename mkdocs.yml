@@ -82,17 +82,17 @@ nav:
       - 'Connect your cluster':
         - getting-started/external-cluster/overview.md
         - 'AWS EKS':
-          - 'Connect and onboard': getting-started/external-cluster/eks/eks.md
-          - 'Remove CAST': getting-started/external-cluster/eks/remove-from-eks.md
+          - 'Connect and onboard EKS': getting-started/external-cluster/eks/eks.md
+          - 'Remove CAST AI from EKS': getting-started/external-cluster/eks/remove-from-eks.md
         - 'GCP GKE':
-          - 'Connect and onboard': getting-started/external-cluster/gke/gke.md
-          - 'Remove CAST': getting-started/external-cluster/gke/remove-from-gke.md
+          - 'Connect and onboard GKE': getting-started/external-cluster/gke/gke.md
+          - 'Remove CAST AI from GKE': getting-started/external-cluster/gke/remove-from-gke.md
         - 'Azure AKS':
-          - 'Connect and onboard': getting-started/external-cluster/aks/aks.md
-          - 'Remove CAST': getting-started/external-cluster/aks/remove-from-aks.md
+          - 'Connect and onboard AKS': getting-started/external-cluster/aks/aks.md
+          - 'Remove CAST AI from AKS': getting-started/external-cluster/aks/remove-from-aks.md
         - 'kOps':
-          - 'Connect and onboard': getting-started/external-cluster/kops/kops.md
-          - 'Remove CAST': getting-started/external-cluster/kops/remove-from-kops.md
+          - 'Connect and onboard kOps': getting-started/external-cluster/kops/kops.md
+          - 'Remove CAST AI from kOps': getting-started/external-cluster/kops/remove-from-kops.md
   - 'Product overview':
       - 'Console':
           - product-overview/console/dashboard.md
@@ -140,5 +140,5 @@ nav:
   - 'Release notes': "https://cast.ai/release-notes/"
   - 'Service status': "https://status.cast.ai/"
   - 'CAST AI GitHub': "https://github.com/castai"
-  - 'CAST AI Community Slack': "https://castai-community.slack.com/"
+  - 'CAST AI Community Slack': "https://join.slack.com/t/castai-community/shared_invite/zt-nwtbsbqq-dWOBiUgLtIGMsUSup7Xksw"
   - 'CAST AI Console': "https://console.cast.ai"

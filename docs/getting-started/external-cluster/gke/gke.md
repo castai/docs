@@ -1,3 +1,7 @@
+---
+description: Learn how to connect your GKE cluster to CAST AI and start saving now!
+---
+
 # GCP GKE
 
 ## Connect cluster

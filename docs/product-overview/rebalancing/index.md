@@ -1,3 +1,7 @@
+---
+description: Check how CAST AI rebalancing allows you to automatically distribute your workloads hustle free.
+---
+
 # Rebalancing
 
 Rebalancing is a CAST AI feature that allows your clusters to reach the most cost-efficient state. Rebalancing is a process which replaces suboptimal nodes with new ones and moves the workloads automatically.
