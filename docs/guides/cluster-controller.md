@@ -48,7 +48,7 @@ helm upgrade --install cluster-controller castai-helm/castai-cluster-controller 
     For AKS clusters you should also pass `--set aks.enabled=true`
 
 !!! note ""
-    You can create api token via CAST AI console UI.
+    You can create api key via CAST AI console UI.
 
 !!! note ""
     You can find your cluster ID in CAST AI console UI.
