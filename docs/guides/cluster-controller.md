@@ -31,8 +31,8 @@ Expected example output
 ```
 NAME                                    CHART VERSION   APP VERSION     DESCRIPTION
 castai-helm/castai-agent                0.18.0          v0.23.0         CAST AI agent deployment chart.
-castai-helm/castai-azure-spot-handler   0.1.1           v0.1.0          CAST AI Azure spot handler daemonset chart  
-castai-helm/castai-cluster-controller   0.14.0          v0.11.0         CAST AI cluster controller deployment chart.
+castai-helm/castai-cluster-controller   0.17.0          v0.14.0         CAST AI cluster controller deployment chart.
+castai-helm/castai-evictor              0.10.0          0.5.1           Cluster utilization defragmentation tool
 castai-helm/castai-spot-handler         0.3.0           v0.3.0          CAST AI spot handler daemonset chart.
 ```
 
@@ -68,7 +68,15 @@ Upgrade to specific version.
 
 ```
 helm repo update
-helm upgrade cluster-controller castai-helm/castai-cluster-controller --reuse-values -n castai-agent --version=0.14.0
+helm upgrade cluster-controller castai-helm/castai-cluster-controller --reuse-values -n castai-agent --version=<your-version>
+```
+
+## Troubleshooting
+
+Check cluster-controller logs
+
+```sh
+kubectl logs -l app.kubernetes.io/name=castai-cluster-controller -n castai-agent
 ```
 
 ## Auto updates
