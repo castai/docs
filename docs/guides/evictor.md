@@ -9,8 +9,8 @@ description: Check how to configure and enable CAST AI's evictor, a bin packing 
 Evictor will compact your pods into fewer nodes, creating empty nodes that will be removed by the Node deletion policy. To install Evictor fo the first time run this command:
 
 ```
-helm repo add castai https://castai.github.io/official-addons
-helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
+helm repo add castai-helm https://castai.github.io/helm-charts
+helm upgrade --install castai-evictor castai-helm/castai-evictor -n castai-agent --set dryRun=false
 ```
 
 This process will take some time. Also, by default, Evictor will not cause any downtime to single replica deployments / StatefulSets, pods
@@ -39,7 +39,7 @@ Evictor by default will only impact nodes older than 5 minutes, if you wish to c
 - Check the Evictor version you are currently using:
 
     ```
-    helm ls -n kube-system
+    helm ls -n castai-agent
     ```
 
 - Update the helm chart repository to make sure that your helm command is aware of the latest charts:
@@ -51,13 +51,13 @@ Evictor by default will only impact nodes older than 5 minutes, if you wish to c
 - Install the latest Evictor version:
 
     ```
-    helm -n kube-system upgrade -i evictor castai/evictor --set dryRun=false
+    helm upgrade --install castai-evictor castai-helm/castai-evictor -n castai-agent --set dryRun=false
     ```
 
 - Check whether the Evictor version was changed:
 
     ```
-    helm ls -n kube-system
+    helm ls -n castai-agent
     ```
 
 ## Avoiding downtime during Bin-Packing
@@ -122,3 +122,11 @@ spec:
 ```
 
 Due to applied annotation, pod will be targeted for eviction even though it is not replicated.
+
+## Troubleshooting
+
+Check evictor logs
+
+```sh
+kubectl logs -l app.kubernetes.io/name=castai-evictor -n castai-agent
+```
