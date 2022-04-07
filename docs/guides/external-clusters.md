@@ -23,76 +23,126 @@ If a cluster does not appear in the Connect your cluster screen after you've run
 2. You might get output similar to this:
 
     ```text
-    time="2021-05-06T14:24:03Z" level=info msg="starting the agent"
-    time="2021-05-06T14:24:03Z" level=info msg="using cluster provider discovery"
     time="2021-05-06T14:24:03Z" level=fatal msg="agent failed: registering cluster: getting cluster name: describing instance_id=i-026b5fadab5b69d67: UnauthorizedOperation: You are not authorized to perform this operation.\n\tstatus code: 403, request id: 2165c357-b4a6-4f30-9266-a51f4aaa7ce7"
     ```
+   
+    or
 
-This particular example indicates that we failed to collect the relevant data required to identify your cluster on our system.
-
-To solve this issue:
-
-1. Create a deployment file such as this:
-
-    ```yaml
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: castai-agent
-      namespace: castai-agent
-      labels:
-        "app.kubernetes.io/name": castai-agent
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          "app.kubernetes.io/name": castai-agent
-      template:
-        metadata:
-          labels:
-            "app.kubernetes.io/name": castai-agent
-        spec:
-          serviceAccountName: castai-agent
-          containers:
-            - name: autoscaler
-              image: k8s.gcr.io/cpvpa-amd64:v0.8.3
-              command:
-                - /cpvpa
-                - --target=deployment/castai-agent
-                - --namespace=castai-agent
-                - --poll-period-seconds=300
-                - --config-file=/etc/config/castai-agent-autoscaler
-              volumeMounts:
-                - mountPath: /etc/config
-                  name: castai-agent-autoscaler
-            - name: agent
-              image: "castai/agent:v0.20.0"
-              env:
-                - name: API_URL
-                  value: api.cast.ai
-                - name: EKS_ACCOUNT_ID
-                  value: {YOUR-AWS-ACCOUNT-ID} # FILL THIS
-                - name: EKS_REGION
-                  value: {YOUR-EKS-CLUSTER-REGION} # FILL THIS
-                - name: EKS_CLUSTER_NAME
-                  value: {YOUR-CLUSTER-NAME} # FILL THIS
-              envFrom:
-                - secretRef:
-                    name: castai-agent
-              resources:
-                requests:
-                  cpu: 100m
-                limits:
-                  cpu: 1000m
-          volumes:
-            - name: castai-agent-autoscaler
-              configMap:
-                name: castai-agent-autoscaler
+    ```text
+    time="2021-05-06T14:24:03Z" level=fatal msg=agent failed: getting provider: configuring aws client: NoCredentialProviders: no valid providers in chain"
     ```
 
-2. Add the values for the missing parts next to the `#FILL THIS` comment.
+These errors indicate that the CAST AI Agent failed to connect to the AWS API either because the nodes and/or workloads running in your cluster have custom constrained IAM permissions or the IAM roles are removed entirely. However, the CAST AI Agent requires read-only access to the AWS EC2 API to correctly identify some properties of your EKS cluster. Access to the AWS EC2 Metadata endpoint is optional, but the variables discovered from the endpoint must then be provided. The CAST AI Agent uses the official AWS SDK, so all variables to customize your authentication mentioned in its [documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html) are supported.
 
-3. Apply the deployment file using `kubectl apply -f deployment.yaml`.
+Provide cluster metadata by adding these environment variables to the CAST AI Agent deployment:
+
+```text
+EKS_ACCOUNT_ID = your-aws-account-id
+EKS_REGION = your-eks-cluster-region
+EKS_CLUSTER_NAME = your-eks-cluster-name
+```
+
+The CAST AI agent requires read-only permissions, so the default `AmazonEC2ReadOnlyAccess` is enough. Provide AWS API access by adding these environment variables to the CAST AI Agent deployment:
+```text
+AWS_ACCESS_KEY_ID = xxxxxxxxxxxxxxxxxxxx
+AWS_SECRET_ACCESS_KEY = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Here is an example of a CAST AI Agent deployment with all the mentioned environment variables added:
+
+```yaml
+# Source: castai-agent/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: castai-agent
+  namespace: castai-agent
+  labels:
+    app.kubernetes.io/name: castai-agent
+    app.kubernetes.io/instance: castai-agent
+    app.kubernetes.io/version: "v0.23.0"
+    app.kubernetes.io/managed-by: castai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: castai-agent
+      app.kubernetes.io/instance: castai-agent
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: castai-agent
+        app.kubernetes.io/instance: castai-agent
+    spec:
+      priorityClassName: system-cluster-critical
+      serviceAccountName: castai-agent
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: "kubernetes.io/os"
+                    operator: In
+                    values: [ "linux" ]
+              - matchExpressions:
+                  - key: "beta.kubernetes.io/os"
+                    operator: In
+                    values: [ "linux" ]
+
+      containers:
+        - name: agent
+          image: "castai/agent:v0.23.0"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: API_URL
+              value: "api.cast.ai"
+            - name: PPROF_PORT
+              value: "6060"
+            - name: PROVIDER
+              value: "eks"
+
+            # Provide values discovered via AWS EC2 Metadata endpoint:
+            - name: EKS_ACCOUNT_ID
+              value: "000000000000"
+            - name: EKS_REGION
+              value: "eu-central-1"
+            - name: EKS_CLUSTER_NAME
+              value: "castai-example"
+
+            # Provide an AWS Access Key to enable read-only AWS EC2 API access:
+            - name: AWS_ACCESS_KEY_ID
+              value: "xxxxxxxxxxxxxxxxxxxx"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              
+          envFrom:
+            - secretRef:
+                name: castai-agent
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 1000m
+        - name: autoscaler
+          image: k8s.gcr.io/cpvpa-amd64:v0.8.3
+          command:
+            - /cpvpa
+            - --target=deployment/castai-agent
+            - --namespace=castai-agent
+            - --poll-period-seconds=300
+            - --config-file=/etc/config/castai-agent-autoscaler
+          volumeMounts:
+            - mountPath: /etc/config
+              name: autoscaler-config
+      volumes:
+        - name: autoscaler-config
+          configMap:
+            name: castai-agent-autoscaler
+```
+
+## Spot nodes are displayed as On-demand in your cluster's Available Savings page
+
+See this [section](#your-cluster-does-not-appear-in-the-connect-cluster-screen).
 
 ## TLS handshake timeout issue
 
