@@ -25,7 +25,7 @@ If a cluster does not appear in the Connect your cluster screen after you've run
     ```text
     time="2021-05-06T14:24:03Z" level=fatal msg="agent failed: registering cluster: getting cluster name: describing instance_id=i-026b5fadab5b69d67: UnauthorizedOperation: You are not authorized to perform this operation.\n\tstatus code: 403, request id: 2165c357-b4a6-4f30-9266-a51f4aaa7ce7"
     ```
-   
+
     or
 
     ```text
@@ -43,6 +43,7 @@ EKS_CLUSTER_NAME = your-eks-cluster-name
 ```
 
 The CAST AI agent requires read-only permissions, so the default `AmazonEC2ReadOnlyAccess` is enough. Provide AWS API access by adding these environment variables to the CAST AI Agent deployment:
+
 ```text
 AWS_ACCESS_KEY_ID = xxxxxxxxxxxxxxxxxxxx
 AWS_SECRET_ACCESS_KEY = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -114,7 +115,7 @@ spec:
               value: "xxxxxxxxxxxxxxxxxxxx"
             - name: AWS_SECRET_ACCESS_KEY
               value: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-              
+
           envFrom:
             - secretRef:
                 name: castai-agent
