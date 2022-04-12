@@ -16,7 +16,7 @@ If a cluster does not appear in the Connect your cluster screen after you've run
 
 1. Check agent container logs:
 
-    ```sh
+    ```shell
     kubectl logs -n castai-agent -l app.kubernetes.io/name=castai-agent -c agent
     ```
 
@@ -92,7 +92,7 @@ spec:
 
       containers:
         - name: agent
-          image: "castai/agent:v0.23.0"
+          image: "us-docker.pkg.dev/castai-hub/library/agent:v0.24.0"
           imagePullPolicy: IfNotPresent
           env:
             - name: API_URL
@@ -181,8 +181,8 @@ The delete action only removes the cluster from the CAST AI console, leaving it 
 
 To check which agent version is running on your cluster, run the following command:
 
-  ```sh
-  kubectl describe pod castai-agent -n castai-agent | grep castai/agent:v
+  ```shell
+  kubectl describe pod castai-agent -n castai-agent | grep castai-hub/library/agent:v
   ```
 
 You can cross-check our [Github repository](https://github.com/castai/k8s-agent) for the number of the latest version available.
