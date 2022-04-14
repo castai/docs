@@ -15,14 +15,14 @@ If for some reasons it was uninstalled you can install it manually.
 
 Add CAST AI helm charts repository.
 
-```sh
+```shell
 helm repo add castai-helm https://castai.github.io/helm-charts
 helm repo update
 ```
 
 You can list all available components and versions.
 
-```sh
+```shell
 helm search repo castai-helm
 ```
 
@@ -38,7 +38,7 @@ castai-helm/castai-spot-handler         0.3.0           v0.3.0          CAST AI 
 
 Now let's install it.
 
-```sh
+```shell
 helm upgrade --install cluster-controller castai-helm/castai-cluster-controller -n castai-agent \
   --set castai.apiKey=<your-api-token> \
   --set castai.clusterID=<your-cluster-id>
@@ -59,23 +59,17 @@ Cluster controller supports auto-update out of the box and is enabled by default
 
 Upgrade to latest version.
 
-```sh
+```shell
 helm repo update
-helm upgrade cluster-controller castai-helm/castai-cluster-controller --reuse-values -n castai-agent
-```
-
-Upgrade to specific version.
-
-```
-helm repo update
-helm upgrade cluster-controller castai-helm/castai-cluster-controller --reuse-values -n castai-agent --version=<your-version>
+helm upgrade cluster-controller castai-helm/castai-cluster-controller --reuse-values -n castai-agent \
+  --set image.repository=us-docker.pkg.dev/castai-hub/library/cluster-controller
 ```
 
 ## Troubleshooting
 
 Check cluster-controller logs
 
-```sh
+```shell
 kubectl logs -l app.kubernetes.io/name=castai-cluster-controller -n castai-agent
 ```
 
@@ -85,7 +79,7 @@ By default cluster-controller can update itself by receiving update action (sche
 
 You can explicitly bind role such as cluster-admin to castai-cluster-controller service account. This will allow cluster-controller to manage all other CAST AI components automatically.
 
-```sh
+```shell
 cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
