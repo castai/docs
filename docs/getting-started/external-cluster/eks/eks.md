@@ -48,9 +48,13 @@ Onboarding steps:
 
 To onboard your cluster, go to the **Available Savings** report and click on the **Start saving** or **Enable CAST AI** button. The button's name will depend on the number of optimizations available from your cluster.
 
-Follow the instruction in the pop-up window to create and use AWS `AccessKeyId` and `SecretAccessKey`
+The following pop-up window contains the instructions to providing CAST AI with AWS access. By default, the script will create a `AccessKeyId` and `SecretAccessKey`. 
 
-![img.png](../../screenshots/connect-cluster-4.png)
+![img.png](../../screenshots/connect-cluster-6.png)
+
+If `Use cross-role IAM` checkbox is selected, the script will create a role in your AWS account, with a trust policy to a CAST AI AWS user, allowing access through the STS AssumeRole API.
+
+![img.png](../../screenshots/connect-cluster-5.png)
 
 That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
@@ -58,7 +62,7 @@ That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](
 
 The script will perform the following actions:
 
-- Create `cast-eks-*cluster-name*` IAM user with the required permissions to manage the cluster:
+- Create `cast-eks-*cluster-name*` IAM user (if cross-account Role IAM is selected, an IAM role is created instead), with the required permissions to manage the cluster:
     - `AmazonEC2ReadOnlyAccess`
     - `IAMReadOnlyAccess`
     - Manage instances in specified cluster restricted to cluster VPC
@@ -83,8 +87,9 @@ The script will perform the following actions:
         - AWSLambdaRole
         - AmazonEC2ReadOnlyAccess
 
-- Modify `aws-auth` ConfigMap to map newly created IAM user to the cluster
-- Create and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
+- Modify `aws-auth` ConfigMap to map newly created IAM user to the cluster (skipped in case of cross-role IAM)
+- If a cross-account role IAM was not selected, AWS `AccessKeyId` and `SecretAccessKey` are created and printed, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
+- With cross-account role IAM selected, a Role ARN is printed and sent to CAST AI console, which is then used by CAST AI to assume the role when making AWS programmatic calls.
 
 !!! note ""
     All the `Write` permissions are scoped to a single EKS cluster - it won't have access to resources of any other clusters in the AWS account.

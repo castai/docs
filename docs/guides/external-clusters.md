@@ -207,3 +207,14 @@ In case CAST AI agent deployment got deleted from the cluster, you can re-instal
 !!! tip
       If you are still encountering any issues, ping us with logs output at:
       <https://castai-community.slack.com/>
+
+## Cluster-controller is receiving forbidden access
+
+In some scenarios, during multiple onboardings, failing updates or other issues, cluster token that is used by cluster-controller, can get invalidated, and become forbidden from accessing CAST AI API, thus failing to operate the cluster. To renew it, the following Helm commands should be ran.
+
+``` shell
+helm repo update
+helm upgrade -i cluster-controller castai-helm/castai-cluster-controller -n castai-agent \
+--set castai.apiKey=$CASTAI_API_TOKEN \
+--set castai.clusterID=46d0d683-da70-4f69-b970-8d6509001c10
+```
