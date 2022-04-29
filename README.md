@@ -33,7 +33,7 @@ Useful links:
 ### Quick fixes directly from web
 
 For quick edits/suggestions, edit links ("edit this page" at the top right corner) and create text suggestions directly
-from web. See [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/github/managing-files-in-a-repository/editing-files-in-your-repository)
+from web. See [GitHub documentation](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
 if you're unfamiliar with the workflow.
 
 ### Linter

@@ -29,7 +29,7 @@ Cluster subnets with subnet IP CIDR and availability zone are synced periodicall
 
 Subnets usage calculation is available only for EKS and when AWS cloud CNI is used for networking
 
-Subnets usage is calculated based on CNI settings and instance type networking capabilities([max ENI count on instance type and ipv4 count per ENI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)). 
+Subnets usage is calculated based on CNI settings and instance type networking capabilities([max ENI count on instance type and ipv4 count per ENI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)).
 
 CNI settings used to calculate used IP addresses:
 
@@ -49,7 +49,7 @@ CNI settings that disable subnets usage calculation:
 | **ENABLE_PREFIX_DELEGATION**| `None` or `false` | Looks like good improvement for CNI(X16 more pods + X16 used IPs). Need investigation and POC to know how it works. |
 | **ENABLE_IPv6**| `None` or `false` | We have ipv4 CIDR in subnets |
 
-## How does the calculation work?
+## How does the calculation work
 
 The Source of documentation is [here](https://github.com/aws/amazon-vpc-cni-k8s#eni-allocation)
 
@@ -57,7 +57,7 @@ Each instance type in AWS has limits on [how many ENIs can be attached and how m
 
 Some key points:
 
-* Each ENI uses 1 IP for self and all other IPs are secondary and can be used for pods, so always (max IPs for pods in ENI = max IPs per ENI - 1). 
+* Each ENI uses 1 IP for self and all other IPs are secondary and can be used for pods, so always (max IPs for pods in ENI = max IPs per ENI - 1).
 * If we just attach ENI 1 IP will always be used regardless of CNI settings
 * If `WARM_IP_TARGET` is `specified WARM_ENI_TARGET` is not used
 * If `MAX_ENI` < instances max ENI count it works as an override for instance setting, otherwise instance setting is used
@@ -65,7 +65,7 @@ Some key points:
 
 Here is a detailed description of how [WARM_ENI_TARGET, WARM_IP_TARGET, and MINIMUM_IP_TARGET work](https://github.com/aws/amazon-vpc-cni-k8s/blob/master/docs/eni-and-ip-target.md)
 
-# Useful commands for investigations
+## Useful commands for investigations
 
 command to get subnet IPs allocation - we considering that subnet is used only for this k8s cluster(some worker groups or security groups might use some IPs if they were created with this subnet this could result into few IPs difference between calculation and actual allocation this could result into failed node creatiom instead of pod event in some edge cases), using same subnets for anything else than this cluster will make this feature work incorrectly.
 
