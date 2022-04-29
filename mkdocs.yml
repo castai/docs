@@ -103,6 +103,8 @@ nav:
           - product-overview/console/schedule.md
           - product-overview/console/logs.md
           - product-overview/console/api.md
+      - 'Autoscaler':
+          - product-overview/autoscaler/index.md
       - 'Rebalancing':
           - product-overview/rebalancing/index.md
           - product-overview/rebalancing/preparation.md
