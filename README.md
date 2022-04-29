@@ -2,9 +2,9 @@
 
 ## Contributing
 
-### Setting up local editing environment
+### Setting up a local editing environment
 
-1. Start local documentation server:
+1. Start a local documentation server:
 
     ```
     make server
@@ -21,10 +21,10 @@
     INFO    -  Start detecting changes
     ```
 
-2. Open browser at <!-- markdown-link-check-disable-line --> <http://127.0.0.1:8000>
+2. Open the browser at <!-- markdown-link-check-disable-line --> <http://127.0.0.1:8000>
 
-Place your text editor side-by-side with a browser window if you want to have preview of your edits - browser will
-keep refreshing each time you update documents.
+Place your text editor side-by-side with the browser window if you want to have preview of your edits - the browser will
+keep refreshing every time you update documents.
 
 Useful links:
 
