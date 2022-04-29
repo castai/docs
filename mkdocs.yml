@@ -105,6 +105,7 @@ nav:
           - product-overview/console/api.md
       - 'Autoscaler':
           - product-overview/autoscaler/index.md
+          - product-overview/autoscaler/features/subnets.md
       - 'Rebalancing':
           - product-overview/rebalancing/index.md
           - product-overview/rebalancing/preparation.md
