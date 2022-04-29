@@ -1,3 +1,4 @@
+<!-- markdown-link-check-disable -->
 # For writers
 
 ## Contributing
@@ -47,3 +48,4 @@ To run the markdown linter which also fixes small issues automatically:
 ```shell
 make lint
 ```
+<!-- markdown-link-check-enable -->
