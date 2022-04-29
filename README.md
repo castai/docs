@@ -1,4 +1,3 @@
-<!-- markdown-link-check-disable -->
 # For writers
 
 ## Contributing
@@ -34,7 +33,7 @@ Useful links:
 ### Quick fixes directly from web
 
 For quick edits/suggestions, edit links ("edit this page" at the top right corner) and create text suggestions directly
-from web. See [GitHub documentation](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
+from web. See <!-- markdown-link-check-disable-line --> [GitHub documentation](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files)
 if you're unfamiliar with the workflow.
 
 ### Linter
@@ -48,4 +47,3 @@ To run the markdown linter which also fixes small issues automatically:
 ```shell
 make lint
 ```
-<!-- markdown-link-check-enable -->
