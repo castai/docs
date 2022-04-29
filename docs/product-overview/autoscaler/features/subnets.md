@@ -67,7 +67,7 @@ Here is a detailed description of how [WARM_ENI_TARGET, WARM_IP_TARGET, and MINI
 
 ## Useful commands for investigations
 
-Command to get subnet IPs allocation - we consider that subnet is used only for this K8s cluster (some worker groups or security groups might use some IPs if they were created with this subnet and this could result in few IPs difference between calculation and actual allocation, briningg failed node creation instead of pod event in some edge cases), using same subnets for anything else than this cluster will make this feature work incorrectly.
+Command to get subnet IPs allocation - we consider that subnet is used only for this K8s cluster (some worker groups or security groups might use some IPs if they were created with this subnet and this could result in few IPs difference between calculation and actual allocation, bringing failed node creation instead of pod event in some edge cases), using same subnets for anything else than this cluster will make this feature work incorrectly.
 
 ```bash
 aws ec2 describe-network-interfaces --filters Name=subnet-id,Values=subnet_id > subnet_id.yaml
