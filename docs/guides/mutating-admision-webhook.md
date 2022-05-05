@@ -162,3 +162,9 @@ The mutating webhook will ignore these type of pods:
 - DaemonSets will get Spot Toleration by default, ensuring DaemonSet Pods could run on spot and on-demand nodes
 
 The CAST AI Mutating webhook pods write logs to stdOut.
+
+If cluster has Deployments with 1000+ replicas set higher Memory Requests and Limits, by appending these parameters to Helm command
+
+```shell
+--set resources.requests.memory=1G --set resources.limits.memory=1G
+```
