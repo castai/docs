@@ -42,14 +42,14 @@ EKS_REGION = your-eks-cluster-region
 EKS_CLUSTER_NAME = your-eks-cluster-name
 ```
 
-The CAST AI agent requires read-only permissions, so the default `AmazonEC2ReadOnlyAccess` is enough. Provide AWS API access by adding these environment variables to the CAST AI Agent deployment:
+The CAST AI agent requires read-only permissions, so the default `AmazonEC2ReadOnlyAccess` is enough. Provide AWS API access by adding these environment variables to the CAST AI Agent secret:
 
 ```text
 AWS_ACCESS_KEY_ID = xxxxxxxxxxxxxxxxxxxx
 AWS_SECRET_ACCESS_KEY = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-Here is an example of a CAST AI Agent deployment with all the mentioned environment variables added:
+Here is an example of a CAST AI Agent deployment and secret with all the mentioned environment variables added:
 
 ```yaml
 # Source: castai-agent/templates/deployment.yaml
@@ -110,12 +110,6 @@ spec:
             - name: EKS_CLUSTER_NAME
               value: "castai-example"
 
-            # Provide an AWS Access Key to enable read-only AWS EC2 API access:
-            - name: AWS_ACCESS_KEY_ID
-              value: "xxxxxxxxxxxxxxxxxxxx"
-            - name: AWS_SECRET_ACCESS_KEY
-              value: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
           envFrom:
             - secretRef:
                 name: castai-agent
@@ -139,6 +133,32 @@ spec:
         - name: autoscaler-config
           configMap:
             name: castai-agent-autoscaler
+```
+
+```yaml
+# Source: castai-agent/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: castai-agent
+  namespace: castai-agent
+  labels:
+    app.kubernetes.io/instance: castai-agent
+    app.kubernetes.io/managed-by: castai
+    app.kubernetes.io/name: castai-agent
+    app.kubernetes.io/version: "v0.23.0"
+data:
+  # Keep API_KEY unchanged.
+  API_KEY: "xxxxxxxxxxxxxxxxxxxx"
+  # Provide an AWS Access Key to enable read-only AWS EC2 API access:
+  AWS_ACCESS_KEY_ID: "xxxxxxxxxxxxxxxxxxxx"
+  AWS_SECRET_ACCESS_KEY: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+Alternatively, if you are using [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of providing AWS credentials you can annotate castai-agent service account with your IAM role.
+
+```shell
+kubectl annotate serviceaccount -n castai-agent castai-agenat eks.amazonaws.com/role-arn="arn:aws:iam::111122223333:role/iam-role-name"
 ```
 
 ## Spot nodes are displayed as On-demand in your cluster's Available Savings page
