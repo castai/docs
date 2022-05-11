@@ -157,21 +157,8 @@ data:
 
 Alternatively, if you are using [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of providing AWS credentials you can annotate castai-agent service account with your IAM role.
 
-```yaml
-# Source: castai-agent/templates/rbac.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: castai-agent
-  namespace: castai-agent
-  annotations:
-    # Provide an AWS role arn with AmazonEC2ReadOnlyAccess access.
-    eks.amazonaws.com/role-arn: arn:aws:iam::111122223333:role/iam-role-name
-  labels:
-    app.kubernetes.io/instance: castai-agent
-    app.kubernetes.io/managed-by: castai
-    app.kubernetes.io/name: castai-agent
-    app.kubernetes.io/version: "v0.23.0"
+```shell
+kubectl annotate serviceaccount -n castai-agent castai-agenat eks.amazonaws.com/role-arn="arn:aws:iam::111122223333:role/iam-role-name"
 ```
 
 ## Spot nodes are displayed as On-demand in your cluster's Available Savings page
