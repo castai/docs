@@ -1,8 +1,8 @@
 ---
-description: What permissions CAST AI components use
+description: What Kubernetes' permissions CAST AI components use
 ---
 
-# Service Accounts used by CAST AI components
+# Kubernetes Service Accounts used by CAST AI components
 
 Dedicated Service Accounts are created for each CAST AI component when installing them:
 ```shell
@@ -16,7 +16,7 @@ default                     1         46h
 ```
 
 
-# Permissions used by CAST AI components
+# Kubernetes' permissions used by CAST AI components
 
 CAST AI components running on customers' clusters require relevant permissions to be able to perform certain functions (like for example sending data about cluster state, etc.).
 This section contains detailed description of all required permissions granted to CAST AI components.
@@ -36,7 +36,7 @@ There is are two applications running inside that Pod:
 - [Cluster Proportional Vertical Autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler/) is responsible for tuning allocated resource for this Pod (self-tuning) based on predefined formula
 
 
-### Cluster wide permissions used by Agent Pod
+### Cluster wide permissions used by the Agent
 
 Below there is a list of all granted cluster wide permissions which are required to read cluster state data (hence permissions are cluster wide):
 
@@ -49,7 +49,7 @@ Below there is a list of all granted cluster wide permissions which are required
 | batch           | jobs                                                                                                    | get<br/>list<br/>watch |
 
 
-### Namespace wide (castai-agent) permissions used by Agent Pod
+### Namespace wide (castai-agent) permissions used by the Agent
 
 CAST AI Agent's resource consumption vastly depends on the cluster size.
 The agent requires possibility to adjust resource limits proportionally to the size of the cluster.
@@ -72,26 +72,26 @@ castai-evictor              0/0     0            0           64m
 ```
 
 
-### Cluster wide permissions used by Cluster Controller Pod
+### Cluster wide permissions used by Cluster Controller
 
 Cluster Controller operates mostly on cluster level as it performs operations required to optimize customer clusters' costs:
 
-| API Group                 | Resources                                      | Verbs                                            | Description                           |
-|---------------------------|:-----------------------------------------------|--------------------------------------------------|---------------------------------------|
-| core                      | namespace                                      | get                                              |                                       |
-| core                      | pods<br/>nodes                                 | get<br/>list                                     |                                       |
-| core                      | nodes                                          | patch<br/>update                                 | Used for node draining and patching   |
-| core                      | pods<br/>nodes                                 | delete                                           |                                       |
-| core                      | pods/eviction                                  | create                                           |                                       |
-| certificates.k8s.io       | certificatesigningrequests                     | get<br/>list<br/>delete<br/>create               |                                       |
-| certificates.k8s.io       | certificatesigningrequests/approval            | patch<br/>update                                 |                                       |
-| certificates.k8s.io       | signers                                        | approve                                          | Applicable only for kubelet           |
-| core                      | events                                         | list<br/>create<br/>patch                        |                                       |
-| rbac.authorization.k8s.io | roles<br/>clusterroles<br/>clusterrolebindings | get<br/>patch<br/>update<br/>delete<br/>escalate | Applicable for all CAST AI Components |
-| core                      | namespace                                      | delete                                           | Applicable only for CAST AI Agent     |
+| API Group                 | Resources                                      | Verbs                                            | Description                                                           |
+|---------------------------|:-----------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------|
+| core                      | namespace                                      | get                                              |                                                                       |
+| core                      | pods<br/>nodes                                 | get<br/>list                                     |                                                                       |
+| core                      | nodes                                          | patch<br/>update                                 | Used for node draining and patching                                   |
+| core                      | pods<br/>nodes                                 | delete                                           |                                                                       |
+| core                      | pods/eviction                                  | create                                           |                                                                       |
+| certificates.k8s.io       | certificatesigningrequests                     | get<br/>list<br/>delete<br/>create               | Used for creating a new certificate when adding a node to the cluster |
+| certificates.k8s.io       | certificatesigningrequests/approval            | patch<br/>update                                 | Used for creating a new certificate when adding a node to the cluster |
+| certificates.k8s.io       | signers                                        | approve                                          | Applicable only for kubelet                                           |
+| core                      | events                                         | list<br/>create<br/>patch                        |                                                                       |
+| rbac.authorization.k8s.io | roles<br/>clusterroles<br/>clusterrolebindings | get<br/>patch<br/>update<br/>delete<br/>escalate | Applicable for all CAST AI Components                                 |
+| core                      | namespace                                      | delete                                           | Applicable only for CAST AI Agent                                     |
 
 
-### Namespace wide (castai-agent) permissions used by Cluster Controller Pod
+### Namespace wide (castai-agent) permissions used by Cluster Controller
 
 Among many things Cluster Controller performs CAST AI components upgrades.
 Cluster Controller is granted with **all permissions in castai-agent namespace** which is required for the current and future updates.

@@ -133,7 +133,8 @@ nav:
       - 'Mutating Admission Webhook': guides/mutating-admision-webhook.md
       - 'Cluster metrics': guides/metrics.md
       - 'Agent status monitoring': guides/agent-monitoring.md
-      - 'Permissions': guides/permissions.md
+      - 'Kubernetes permissions': guides/kubernetes-permissions.md
+      - 'Cloud permissions': guides/cloud-permissions.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
