@@ -33,9 +33,9 @@ Once user is created, following policies are attached to the AWS user:
 
 These policies may be validated by combining results from the following commands (please look up AWS documentation about the details how to used that):
 ```shell
-aws iam list-user-policies
-aws iam list-attached-user-policies
-aws iam list-groups-for-user
+aws iam list-user-policies --user-name <user name>
+aws iam list-attached-user-policies --user-name <user name>
+aws iam list-groups-for-user --user-name <user name>
 ```
 
 The result also contains policies' arn's which is required for inspecting permissions, which can be done using following commands:
@@ -117,6 +117,29 @@ The result also contains policies' arn's which is required for inspecting permis
 ```
 
 
-## AWS permissions used by CAST AI When Assuming Role
+## AWS permissions when access is granted using Cross-account IAM role
 
-TODO: work in progress
+When enabling cost optimisation (Phase 2) for a connected cluster, there is an option to grant permissions using Cross-account IAM role.
+This feature allows creating a dedicated cluster user in CAST AI AWS account with a trust policy to be able to 'assume role' defined in customer's AWS account.
+Keeping role definition and users in separate AWS accounts allows keeping user's credentials on CAST AI side without handing them over when running on-boarding script, which provides higher security level.
+From customer perspective used role contains the same set of permissions as in case of regular flow (when user is created in customer's AWS account), this can be verified using following command:
+```shell
+aws iam list-attached-role-policies --role-name <role name>
+aws iam list-role-policies --role-name <role name>
+```
+
+Additional a trust relationship is created like following:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::123456789012:user/cast-crossrole-f8f82b9c-d375-40d2-9483-123456789012"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
