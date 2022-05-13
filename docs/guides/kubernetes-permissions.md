@@ -21,24 +21,11 @@ default                     1         46h
 CAST AI components running on customers' clusters require relevant permissions to be able to perform certain functions (like for example sending data about cluster state, etc.).
 This section contains detailed description of all required permissions granted to CAST AI components.
 
-## CAST AI Agent (Phase 1)
 
-CAST AI Agent component is installed when a new cluster is connected.
-The agent runs as a Pod in a CAST AI dedicated namespace:
-```shell
-» kubectl get pods -n castai-agent
-NAME                            READY   STATUS    RESTARTS   AGE
-castai-agent-5559cfb4b6-92rkm   2/2     Running   0          21h
-```
+## CAST AI Agent permissions
 
-There is are two applications running inside that Pod:
-- [CAST AI Agent](https://github.com/castai/k8s-agent/) is responsible for sending cluster state data (snapshots) to the main system
-- [Cluster Proportional Vertical Autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler/) is responsible for tuning allocated resource for this Pod (self-tuning) based on predefined formula
-
-
-### Cluster wide permissions used by the Agent
-
-Below there is a list of all granted cluster wide permissions which are required to read cluster state data (hence permissions are cluster wide):
+The Agent must be able to collect cluster operational details (snapshots) and provide them to the central platform to estimate whether there is an optimisation opportunity.
+Thus, it must be granted with cluster wide permissions:
 
 | API Group       | Resources                                                                                               | Verbs                  |
 |-----------------|:--------------------------------------------------------------------------------------------------------|------------------------|
@@ -49,11 +36,9 @@ Below there is a list of all granted cluster wide permissions which are required
 | batch           | jobs                                                                                                    | get<br/>list<br/>watch |
 
 
-### Namespace wide (castai-agent) permissions used by the Agent
-
 CAST AI Agent's resource consumption vastly depends on the cluster size.
 The agent requires possibility to adjust resource limits proportionally to the size of the cluster.
-For that purpose Cluster Proportional Vertical Autoscaler patches castai-pod's deployment with re-estimated limits, which requires following permission:
+For that purpose Cluster Proportional Vertical Autoscaler patches Agent's deployment with re-estimated limits, which requires following permission:
 
 | API Group | Resources   | Verbs | Description                                |
 |-----------|:------------|-------|--------------------------------------------|

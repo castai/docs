@@ -110,6 +110,8 @@ nav:
           - product-overview/rebalancing/index.md
           - product-overview/rebalancing/preparation.md
           - 'Rebalance your cluster': product-overview/rebalancing/run.md
+      - 'Hosted Components':
+          - product-overview/concepts/hostsed-components.md
   - 'Concepts':
       - concepts/how-it-works.md
       - concepts/cluster-lifecycle.md
