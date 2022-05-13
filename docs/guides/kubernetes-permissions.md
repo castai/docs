@@ -4,7 +4,8 @@ description: What Kubernetes' permissions CAST AI components use
 
 # Kubernetes Service Accounts used by CAST AI components
 
-Dedicated Service Accounts are created for each CAST AI component when installing them:
+Each [CAST AI component](../product-overview/hosted-components.md) installed into customer's cluster uses a dedicated Service Account.
+Such setup allows fine-grained permissions tuning for each component:
 ```shell
 » kubectl get serviceAccounts -n castai-agent
 NAME                        SECRETS   AGE
