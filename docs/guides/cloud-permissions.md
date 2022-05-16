@@ -11,7 +11,7 @@ Below there is a description of permission setup done for the support Cloud Prov
 
 ## AWS User used by CAST AI
 
-[Phase 2 on-boarding script](https://api.cast.ai/v1/scripts/eks/onboarding.sh) creates a dedicated AWS user used by CAST AI to request and manager AWS resources on customer's behalf.
+[Phase 2 on-boarding script](https://api.cast.ai/v1/scripts/eks/onboarding.sh) creates a dedicated AWS user used by CAST AI to request and manage AWS resources on customer's behalf.
 This user follows `cast-eks-<cluster name>` convention:
 ```shell
 » aws iam list-users --output text|grep cast-eks-
@@ -26,7 +26,6 @@ Once user is created, following policies are attached to the AWS user:
 | API Group                       | Type               | Description                                                                           |
 |---------------------------------|:-------------------|---------------------------------------------------------------------------------------|
 | AmazonEC2ReadOnlyAccess         | AWS managed policy | Used to fetch details about Virtual Machines                                          |
-| AmazonEventBridgeReadOnlyAccess | AWS managed policy | Used for Lambda (to be deprecated)                                                    |
 | IAMReadOnlyAccess               | AWS managed policy | Used to fetch required data from IAM                                                  |
 | CastEKSPolicy                   | Managed policy     | CAST AI policy for creating and removing Virtual Machines when managing Cluster nodes |
 | CastEKSRestrictedAccess         | Inline policy      | CAST AI policy for Cluster Pause / Resume functionality                               |
