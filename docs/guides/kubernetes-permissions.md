@@ -23,9 +23,9 @@ CAST AI components running on customers' clusters require relevant permissions t
 This section contains detailed description of all required permissions granted to CAST AI components.
 
 
-## CAST AI Agent permissions
+## CAST AI Kubernetes Agent permissions
 
-The Agent must be able to collect cluster operational details (snapshots) and provide them to the central platform to estimate whether there is an optimisation opportunity.
+CAST AI Kubernetes Agent must be able to collect cluster operational details (snapshots) and provide them to the central platform to estimate whether there is an optimisation opportunity.
 Thus, it must be granted with cluster wide permissions:
 
 | API Group       | Resources                                                                                               | Verbs                  |
@@ -37,9 +37,9 @@ Thus, it must be granted with cluster wide permissions:
 | batch           | jobs                                                                                                    | get<br/>list<br/>watch |
 
 
-CAST AI Agent's resource consumption vastly depends on the cluster size.
+CAST AI Kubernetes Agent's resource consumption vastly depends on the cluster size.
 The agent requires possibility to adjust resource limits proportionally to the size of the cluster.
-For that purpose Cluster Proportional Vertical Autoscaler patches Agent's deployment with re-estimated limits, which requires following permission:
+For that purpose Cluster Proportional Vertical Autoscaler patches CAST AI Kubernetes Agent's deployment with re-estimated limits, which requires following permission:
 
 | API Group | Resources   | Verbs | Description                                |
 |-----------|:------------|-------|--------------------------------------------|
@@ -74,7 +74,7 @@ Cluster Controller operates mostly on cluster level as it performs operations re
 | certificates.k8s.io       | signers                                        | approve                                          | Applicable only for kubelet                                           |
 | core                      | events                                         | list<br/>create<br/>patch                        |                                                                       |
 | rbac.authorization.k8s.io | roles<br/>clusterroles<br/>clusterrolebindings | get<br/>patch<br/>update<br/>delete<br/>escalate | Applicable for all CAST AI Components                                 |
-| core                      | namespace                                      | delete                                           | Applicable only for CAST AI Agent                                     |
+| core                      | namespace                                      | delete                                           | Applicable only for CAST AI Kubernetes Agent                          |
 
 
 ### Namespace wide (castai-agent) permissions used by Cluster Controller

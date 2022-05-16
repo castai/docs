@@ -38,7 +38,7 @@ nodeSelector:
 
 ### Node Affinity
 
-**When to use:** Spot instances are preffered - if not available, fall back to on-demand nodes
+**When to use:** Spot instances are preferred - if not available, fall back to on-demand nodes
 
 When a Spot instance is interrupted, and on-demand nodes in the cluster have available capacity, pods that previously ran on the Spot instance will be scheduled on the available on-demand nodes if the following affinity rule is applied:
 
