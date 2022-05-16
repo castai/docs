@@ -79,7 +79,7 @@ Cluster Controller operates mostly on cluster level as it performs operations re
 
 ### Namespace wide (castai-agent) permissions used by Cluster Controller
 
-Among many things Cluster Controller performs CAST AI components upgrades.
+One of the main task of Cluster Controller is to performs CAST AI components upgrades.
 Cluster Controller is granted with **all permissions in castai-agent namespace** which is required for the current and future updates.
 Additionally, Cluster Controller is granted with two cluster wide permissions to be able to manage RBAC of CAST AI components and possibility to delete CAST AI namespace (see above).
 
