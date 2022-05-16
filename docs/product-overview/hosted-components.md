@@ -38,6 +38,6 @@ castai-cluster-controller   2/2     2            2           64m
 castai-evictor              0/0     0            0           64m
 ```
 
-- Cluster Controller is responsible for executing actions it receives from the central platform (like for example accept a newly created node to the cluster, etc.)
-- Evictor is responsible for removing pods from underutilised nodes to be able to decrease overall amount of cluster nodes
-- Spot Handler is responsible for scheduled events monitoring and delivering them to the central platform
+- [Cluster Controller](../guides/cluster-controller.md) is responsible for executing actions it receives from the central platform (like for example accept a newly created node to the cluster, etc.)
+- [Evictor](../guides/evictor.md) is responsible for removing pods from underutilised nodes to be able to decrease overall amount of cluster nodes
+- [Spot Handler](https://github.com/castai/spot-handler) is responsible for scheduled events monitoring and delivering them to the central platform
