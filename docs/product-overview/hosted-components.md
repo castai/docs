@@ -21,7 +21,7 @@ NAME                            READY   STATUS    RESTARTS   AGE
 castai-agent-5559cfb4b6-92rkm   2/2     Running   0          21h
 ```
 
-There is are two applications running inside that Pod:
+There is are two containers running inside that Pod:
 
 - [CAST AI Kubernetes Agent](https://github.com/castai/k8s-agent/) is responsible for sending cluster state data (snapshots) to the main system
 - [Cluster Proportional Vertical Autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler/) is responsible for tuning allocated resource for this Pod (self-tuning) based on predefined formula
