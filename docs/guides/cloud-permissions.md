@@ -127,7 +127,7 @@ aws iam list-attached-role-policies --role-name <role name>
 aws iam list-role-policies --role-name <role name>
 ```
 
-Additional a trust relationship is created like following:
+Additionally, a trust relationship is created as follows:
 ```json
 {
     "Version": "2012-10-17",
