@@ -40,4 +40,4 @@ castai-evictor              0/0     0            0           64m
 
 - [Cluster Controller](../guides/cluster-controller.md) is responsible for executing actions it receives from the central platform (like for example accept a newly created node to the cluster, etc.)
 - [Evictor](../guides/evictor.md) is responsible for removing pods from underutilised nodes to be able to decrease overall amount of cluster nodes
-- [Spot Handler](https://github.com/castai/spot-handler) is responsible for scheduled events monitoring and delivering them to the central platform
+- [Spot Handler](https://github.com/castai/spot-handler) is responsible for scheduled events monitoring (provided by Instance Metadata Service) and delivering them to the central platform
