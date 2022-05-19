@@ -125,7 +125,13 @@ Due to applied annotation, pod will be targeted for eviction even though it is n
 
 ## Troubleshooting
 
-Check evictor logs
+### Evictor policy is not allowed to be turned on
+
+The reasons why Evictor is unavailable in the policies page is that CAST AI has detected an already existing Evictor installation. If you want CAST AI to manage the Evictor instead, then you need to remove the current installation first.
+
+### How to check the logs
+
+To check Evictor logs, run the following command:
 
 ```shell
 kubectl logs -l app.kubernetes.io/name=castai-evictor -n castai-agent
