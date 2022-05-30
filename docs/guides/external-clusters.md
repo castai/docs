@@ -37,12 +37,15 @@ These errors indicate that the CAST AI Agent failed to connect to the AWS API ei
 Provide cluster metadata by adding these environment variables to the CAST AI Agent deployment:
 
 ```text
-EKS_ACCOUNT_ID = your-aws-account-id
-EKS_REGION = your-eks-cluster-region
-EKS_CLUSTER_NAME = your-eks-cluster-name
+            - name: EKS_ACCOUNT_ID
+              value: "000000000000"    # your aws account id
+            - name: EKS_REGION
+              value: "eu-central-1"    # your eks cluster region
+            - name: EKS_CLUSTER_NAME
+              value: "staging-example" # your eks cluster name
 ```
 
-The CAST AI agent requires read-only permissions, so the default `AmazonEC2ReadOnlyAccess` is enough. Provide AWS API access by adding these environment variables to the CAST AI Agent secret:
+The CAST AI agent requires read-only permissions, so the default `AmazonEC2ReadOnlyAccess` is enough. Provide AWS API access by adding these variables to the CAST AI Agent secret:
 
 ```text
 AWS_ACCESS_KEY_ID = xxxxxxxxxxxxxxxxxxxx
