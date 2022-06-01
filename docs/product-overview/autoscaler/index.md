@@ -1,4 +1,4 @@
-# Autoscaler
+# CAST AI autoscaling engine
 
 ## Introduction
 
