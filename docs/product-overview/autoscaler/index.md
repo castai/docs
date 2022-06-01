@@ -54,7 +54,7 @@ Autoscaler converts the bin-packed pod groups into instance types. The goal when
 
 Instance type pricing and availability is updated regularly and often by scraping cloud service provider APIs. So, the Autoscaler completely removes the need for humans to track the pricing and to analyze viable instance type offerings.
 
-If pods have no constraints defined, the Autoscaler is free to choose out of a vast instance type offering list. However, there are often cases where a pod needs to define constraints due to high-availability or hardware requirements. To find out more about how to take control visit the [Pod placement](../../guides/pod-pinning.md) section. Also, CAST AI has full support for spot instance scaling. Visit the [Spot/Preemtible instances](../../guides/autoscaling-policies.md#spotpreemptive-instances-policy) section to find how you can start using spot instances.
+If pods have no constraints defined, the Autoscaler is free to choose out of a vast instance type offering list. However, there are often cases where a pod needs to define constraints due to high-availability or hardware requirements. To find out more about how to take control visit the [Pod placement](../../guides/pod-placement.md) section. Also, CAST AI has full support for spot instance scaling. Visit the [Spot/Preemtible instances](../../guides/autoscaling-policies.md#spotpreemptive-instances-policy) section to find how you can start using spot instances.
 
 ## Cluster downscaling
 

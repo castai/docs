@@ -38,7 +38,7 @@ Pods can be scheduled in a highly-available fashion by using the topology spread
 - `topology.kubernetes.io/zone` - enables your pods to be spread between availability zones, taking advantage of cloud redundancy.
 
 !!! note ""
-    CAST AI will only create nodes in different fault-domains when the `whenUnstatisfiable` property equals `DoNotSchedule`. The value `ScheduleAnyway` means that the spread is just a preference, so the autoscaler will keep bin-packing those pods, which might result in all of them being scheduled on the same fault-domain. 
+    CAST AI will only create nodes in different fault-domains when the `whenUnstatisfiable` property equals `DoNotSchedule`. The value `ScheduleAnyway` means that the spread is just a preference, so the autoscaler will keep bin-packing those pods, which might result in all of them being scheduled on the same fault-domain.
 
 The deployment described below will be spread and scheduled on all availability zones supported by your cluster:
 
