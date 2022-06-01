@@ -120,7 +120,7 @@ nav:
   - 'Guides':
       - guides/external-clusters.md
       - 'Ingress': guides/ingress.md
-      - 'Pod placement': guides/pod-pinning.md
+      - 'Pod placement': guides/pod-placement.md
       - guides/volumes.md
       - guides/connect-to-node.md
       - guides/autoscaling-policies.md

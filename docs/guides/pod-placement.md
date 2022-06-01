@@ -6,9 +6,9 @@ description: Take a look at this guide to learn how to place pods using labels a
 
 This guide will show how to place pods in particular node, zone, region, cloud, etc., using labels and advanced Kubernetes scheduling features. Kubernetes supports this by using:
 
-- [`nodeSelector`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
-- [`nodeAffinity/Anti-Affinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
-- [`topologySpreadConstraints`](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
+- [`Node selector`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
+- [`Node affinity and anti-affinity`](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity)
+- [`Topology spread constraints`](https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/)
 
 All of these methods require special labels to be present on each Kubernetes node.
 
@@ -16,26 +16,70 @@ All of these methods require special labels to be present on each Kubernetes nod
 
 CAST AI supports the following labels:
 
-| Label | Type| Description | Example(s)|
-| ------------ | ------------- | ------------ | ------------ |
-| `kubernetes.io/arch` and `beta.kubernetes.io/arch` | well-known  | Node CPU architecture | amd64 |
-| `node.kubernetes.io/instance-type` and `beta.kubernetes.io/instance-type` | well-known  | Node type (cloud-specific) | t3a.large, e2-standard-4 |
-| `kubernetes.io/os` and `beta.kubernetes.io/os` | well-known  | Node Operating System | linux |
-| `kubernetes.io/hostname` | well-known  | Node Hostname | ip-192-168-32-94.eu-central-1.compute.internal, testcluster-31qd-gcp-3ead |
-| `topology.kubernetes.io/region` and `failure-domain.beta.kubernetes.io/region` | well-known | Node region in the CSP | eu-central-1 |
-| `topology.kubernetes.io/zone` and `failure-domain.beta.kubernetes.io/zone` | well-known | Node zone of the region in the CSP | eu-central-1a |
-| `provisioner.cast.ai/managed-by` | CAST AI specific | CAST AI managed node | cast.ai |
-| `provisioner.cast.ai/node-id` | CAST AI specific | CAST AI node ID| 816d634e-9fd5-4eed-b13d-9319933c9ef0 |
-| `scheduling.cast.ai/spot` | CAST AI specific | Node lifecycle type - spot | 'true' |
-| `scheduling.cast.ai/spot-backup` | CAST AI specific | A fallback for spot instance | 'true' |
-| `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | subnet-006a6d1f18fc5d390 |
-| `scheduling.cast.ai/storage-optimized` | CAST AI specific | Local SSD attached node | 'true' |
+| Label | Type| Description | Example(s)                                                                |
+| ------------ | ------------- | ------------ |---------------------------------------------------------------------------|
+| `kubernetes.io/arch` and `beta.kubernetes.io/arch` | well-known  | Node CPU architecture | `amd64`                                                                   |
+| `node.kubernetes.io/instance-type` and `beta.kubernetes.io/instance-type` | well-known  | Node type (cloud-specific) | `t3a.large`, `e2-standard-4`                                              |
+| `kubernetes.io/os` and `beta.kubernetes.io/os` | well-known  | Node Operating System | `linux`                                                                   |
+| `kubernetes.io/hostname` | well-known  | Node Hostname | `ip-192-168-32-94.eu-central-1.compute.internal`, `testcluster-31qd-gcp-3ead` |
+| `topology.kubernetes.io/region` and `failure-domain.beta.kubernetes.io/region` | well-known | Node region in the CSP | `eu-central-1`, `europe-central1`                                         |
+| `topology.kubernetes.io/zone` and `failure-domain.beta.kubernetes.io/zone` | well-known | Node zone of the region in the CSP | `eu-central-1a`,`europe-central1-a`                                       |
+| `provisioner.cast.ai/managed-by` | CAST AI specific | CAST AI managed node | `cast.ai`                                                                 |
+| `provisioner.cast.ai/node-id` | CAST AI specific | CAST AI node ID| `816d634e-9fd5-4eed-b13d-9319933c9ef0`                                      |
+| `scheduling.cast.ai/spot` | CAST AI specific | Node lifecycle type - spot | `true`                                                                      |
+| `scheduling.cast.ai/spot-backup` | CAST AI specific | A fallback for spot instance | `true`                                                                    |
+| `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | `subnet-006a6d1f18fc5d390`                                                  |
+| `scheduling.cast.ai/storage-optimized` | CAST AI specific | Local SSD attached node | `true`                                                                      |
+
+### Highly-available pod scheduling
+
+Pods can be scheduled in a highly-available fashion by using the topology spread constraints feature. CAST AI supports these fault-domains, i.e. topology keys:
+
+- `topology.kubernetes.io/zone` - enables your pods to be spread between availability zones, taking advantage of cloud redundancy.
+
+!!! note ""
+    CAST AI will only create nodes in different fault-domains when the `whenUnstatisfiable` property equals `DoNotSchedule`. The value `ScheduleAnyway` means that the spread is just a preference, so the autoscaler will keep bin-packing those pods, which might result in all of them being scheduled on the same fault-domain. 
+
+The deployment described below will be spread and scheduled on all availability zones supported by your cluster:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: az-topology-spread
+  name: az-topology-spread
+spec:
+  replicas: 30
+  selector:
+    matchLabels:
+      app: az-topology-spread
+  template:
+    metadata:
+      labels:
+        app: az-topology-spread
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - az-topology-spread
+      containers:
+        - image: nginx
+          name: nginx
+
+```
 
 ### Scheduling on nodes with locally attached SSD
 
 The pod described below will be scheduled on a Spot instance with locally attached SSD disk.
 
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -81,7 +125,7 @@ CAST AI multi cloud Kubernetes cluster nodes are already equipped with the follo
 
 We will use `affinity.nodeAffinity`:
 
-```
+```yaml
 affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -95,7 +139,7 @@ affinity:
 
 Pod example:
 
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -122,7 +166,7 @@ spec:
 
 StatefulSet example, it will create 3 pods each in every cloud (note the podAntiAffinity):
 
-```
+```yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -183,7 +227,7 @@ spec:
 It's a best practice to set workload requests and limits identical and distribute various workloads among all the nodes in the cluster so that Law of Averages
 would provide best performance and availability. Having said that, there might be some edge case to isolate volatile workloads to their nodes and not mix them with other workloads in the same clusters. In such scenario we will use `affinity.podAntiAffinity`:
 
-```
+```yaml
 affinity:
   podAntiAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
@@ -196,7 +240,7 @@ affinity:
 
 Pod example:
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
