@@ -8,7 +8,7 @@ description: Learn how to connect your EKS cluster to CAST AI and start optimizi
 
 To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to the **Connect cluster** window, [**EKS**](https://console.cast.ai/external-clusters/new#eks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
-![img.png](../../screenshots/connect-cluster-2.png)
+![img.png](../screenshots/connect-cluster-2.png)
 
 The script will create the following Kubernetes objects related to the `castai-agent` agent:
 
@@ -21,7 +21,7 @@ The script will create the following Kubernetes objects related to the `castai-a
 
 After installation, your cluster name will appear below connection instructions as well as in the **Cluster list**. From there, you can open the cluster details and explore a detailed savings estimate based on your cluster configuration.
 
-![img.png](../../screenshots/connect-cluster-3.png)
+![img.png](../screenshots/connect-cluster-3.png)
 
 !!! note ""
     The agent will run in a read-only mode, providing savings suggestions without applying any modifications.
@@ -50,13 +50,13 @@ To onboard your cluster, go to the **Available Savings** report and click on the
 
 The following pop-up window contains the instructions for providing CAST AI with AWS access. By default, the script will create a `AccessKeyId` and `SecretAccessKey`.
 
-![img.png](../../screenshots/connect-cluster-6.png)
+![img.png](../screenshots/connect-cluster-6.png)
 
 If `Use cross-role IAM` checkbox is selected, the script will create a role in your AWS account, with a trust policy to a CAST AI AWS user, allowing access through the STS AssumeRole API.
 
-![img.png](../../screenshots/connect-cluster-5.png)
+![img.png](../screenshots/connect-cluster-5.png)
 
-That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
+That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
 ## Actions performed by the onboarding script
 

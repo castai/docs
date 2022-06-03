@@ -11,10 +11,9 @@ This topic describes the available policy configuration options and provides gui
 
 ## Prerequisites
 
-- CAST AI cluster - see [create cluster](../getting-started/create-cluster.md).
-- Connected external cluster - see [connect cluster](../getting-started/external-cluster/overview.md)
+Onboard a cluster - see [connect cluster](../getting-started/overview.md)
 
-Once you've connected or created a cluster, select it and navigate to the **Autoscaler** menu.
+Once you've connected a cluster, select it and navigate to the **Autoscaler** menu.
 
 ![](autoscaling-policies/autoscaler.png)
 
