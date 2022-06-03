@@ -85,6 +85,7 @@ nav:
         - 'Remove CAST AI from kOps': getting-started/kops/remove-from-kops.md
   - 'Product overview':
       - 'Console':
+          - product-overview/console/dashboard.md
           - product-overview/console/clusters.md
           - product-overview/console/nodes.md
           - product-overview/console/audit-log.md
@@ -102,7 +103,8 @@ nav:
       - 'Hosted Components': product-overview/hosted-components.md
   - 'Guides':
       - guides/external-clusters.md
-      - 'Pod placement': guides/pod-pinning.md
+      - 'Ingress': guides/ingress.md
+      - 'Pod placement': guides/pod-placement.md
       - guides/volumes.md
       - guides/connect-to-node.md
       - guides/autoscaling-policies.md

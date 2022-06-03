@@ -23,7 +23,7 @@ spec:
                   - production
 ```
 
-For a full list of supported node selector criteria visit the [Configure pod placement by topology](../../guides/pod-pinning.md) section.
+For a full list of supported node selector criteria visit the [Configure pod placement by topology](../../guides/pod-placement.md) section.
 
 Go to the Rebalance page of your cluster to find the workloads which are preventing some nodes from being rebalanced. Check the Readiness column:
 
