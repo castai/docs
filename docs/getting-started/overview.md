@@ -1,20 +1,23 @@
 ---
-description: This guide will help you get started and deploy your first cluster with CAST AI. Check it out to start optimizing and reducing your cloud costs.
+description: Explore how external cluster management brings CAST AI features to externally managed clusters in EKS, GKE or AKS.
 ---
 
-# Overview
+# External Cluster Overview
 
-This guide will help you get started and deploy your first cluster with CAST AI.
+External cluster management brings CAST AI features like autoscaler to externally-managed clusters on EKS, GKE
+or AKS. By installing the [CAST AI agent](https://github.com/castai/k8s-agent), you can start observing the running costs and potential savings of your cluster - and then enable the features that optimize your cluster - like adding and removing nodes or rightsizing deployments.
 
-To start using CAST AI you will need:
+To get started, log into the console and navigate to the **Connect cluster** window.
 
-- An account - [sign up here](https://console.cast.ai/signup)
-- Cloud credentials - [join slack and claim free trial](https://join.slack.com/t/castai-community/shared_invite/zt-kxomy09z-p_tbccVJ61azObIt~GUjXQ)
-- An application developed on Kubernetes
+![img.png](screenshots/connect-cluster.png)
 
-!!! note ""
-    **Estimated time to get started - 10 minutes.**
+The script will install the agent that will run inside the cluster in read-only mode. After the installation, the agent will collect and analyze your cluster configuration to provide the most optimal setup along with a savings estimation for your current cloud environment.
 
-1. [Add cloud credentials](../getting-started/credentials/credentials-overview.md)
-2. [Create cluster](../getting-started/create-cluster.md)
-3. [Deploy application](../getting-started/deploy-application.md)
+To start saving costs, turn the automatic optimization on when you're ready.
+
+Connect your cluster:
+
+- [AWS EKS](eks/eks.md)
+- [GCP GKE](gke/gke.md)
+- [Azure AKS](aks/aks.md)
+- [kOps](kops/kops.md)

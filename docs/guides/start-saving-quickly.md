@@ -9,7 +9,7 @@ want to wait until these savings reach you in a slow and risk-free ongoing proce
 
 ## Onboard credentials (EKS)
 
-First, you need to [onboard the credentials](../getting-started/external-cluster/eks/eks.md#credential-onboarding) so IAM user for CAST AI gets created and cluster can be optimized using CAST AI policies.
+First, you need to [onboard the credentials](../getting-started/eks/eks.md#credential-onboarding) so IAM user for CAST AI gets created and cluster can be optimized using CAST AI policies.
 
 ## Enable Autoscaler
 

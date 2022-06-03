@@ -10,7 +10,7 @@ Currently CAST AI supports only kOps clusters running on AWS.
 
 To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**kOps**](https://console.cast.ai/external-clusters/new#kops) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
-![img.png](../../screenshots/connect-kops-1.png)
+![img.png](../screenshots/connect-kops-1.png)
 
 The script will create following kubernetes objects related to `castai-agent` agent:
 
@@ -23,7 +23,7 @@ The script will create following kubernetes objects related to `castai-agent` ag
 
 After installation, your cluster name will appear below connection instructions as well as in the **Cluster list**. From there, you can open the cluster details and explore a detailed savings estimate based on your cluster configuration.
 
-![img.png](../../screenshots/connect-kops-2.png)
+![img.png](../screenshots/connect-kops-2.png)
 
 !!! note ""
     The agent will run in a read-only mode, providing savings suggestions without applying any actual modifications.
@@ -52,9 +52,9 @@ To onboard your cluster, go to the **Available Savings** report and click on the
 
 Follow the instruction in the pop-up window to create and use AWS `AccessKeyId` and `SecretAccessKey`
 
-![img.png](../../screenshots/connect-kops-3.png)
+![img.png](../screenshots/connect-kops-3.png)
 
-That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
+That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
 ## Actions performed by the onboarding script
 

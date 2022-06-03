@@ -70,32 +70,21 @@ extra:
 nav:
   - 'Introduction': index.md
   - 'Getting started':
-      - 'Create CAST cluster':
-        - getting-started/overview.md
-        - '1. Add cloud credentials':
-            - getting-started/credentials/credentials-overview.md
-            - getting-started/credentials/configuring-aws-credentials.md
-            - getting-started/credentials/configuring-azure-credentials.md
-            - getting-started/credentials/configuring-gcp-credentials.md
-        - getting-started/create-cluster.md
-        - getting-started/deploy-application.md
-      - 'Connect your cluster':
-        - getting-started/external-cluster/overview.md
-        - 'AWS EKS':
-          - 'Connect and onboard EKS': getting-started/external-cluster/eks/eks.md
-          - 'Remove CAST AI from EKS': getting-started/external-cluster/eks/remove-from-eks.md
-        - 'GCP GKE':
-          - 'Connect and onboard GKE': getting-started/external-cluster/gke/gke.md
-          - 'Remove CAST AI from GKE': getting-started/external-cluster/gke/remove-from-gke.md
-        - 'Azure AKS':
-          - 'Connect and onboard AKS': getting-started/external-cluster/aks/aks.md
-          - 'Remove CAST AI from AKS': getting-started/external-cluster/aks/remove-from-aks.md
-        - 'kOps':
-          - 'Connect and onboard kOps': getting-started/external-cluster/kops/kops.md
-          - 'Remove CAST AI from kOps': getting-started/external-cluster/kops/remove-from-kops.md
+      - getting-started/overview.md
+      - 'AWS EKS':
+        - 'Connect and onboard EKS': getting-started/eks/eks.md
+        - 'Remove CAST AI from EKS': getting-started/eks/remove-from-eks.md
+      - 'GCP GKE':
+        - 'Connect and onboard GKE': getting-started/gke/gke.md
+        - 'Remove CAST AI from GKE': getting-started/gke/remove-from-gke.md
+      - 'Azure AKS':
+        - 'Connect and onboard AKS': getting-started/aks/aks.md
+        - 'Remove CAST AI from AKS': getting-started/aks/remove-from-aks.md
+      - 'kOps':
+        - 'Connect and onboard kOps': getting-started/kops/kops.md
+        - 'Remove CAST AI from kOps': getting-started/kops/remove-from-kops.md
   - 'Product overview':
       - 'Console':
-          - product-overview/console/dashboard.md
           - product-overview/console/clusters.md
           - product-overview/console/nodes.md
           - product-overview/console/audit-log.md
@@ -111,15 +100,8 @@ nav:
           - product-overview/rebalancing/preparation.md
           - 'Rebalance your cluster': product-overview/rebalancing/run.md
       - 'Hosted Components': product-overview/hosted-components.md
-  - 'Concepts':
-      - concepts/how-it-works.md
-      - concepts/cluster-lifecycle.md
-      - concepts/cluster-architecture.md
-      - concepts/cluster-infrastructure.md
-      - concepts/vpn-overview.md
   - 'Guides':
       - guides/external-clusters.md
-      - 'Ingress': guides/ingress.md
       - 'Pod placement': guides/pod-placement.md
       - guides/volumes.md
       - guides/connect-to-node.md

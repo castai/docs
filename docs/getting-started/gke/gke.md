@@ -8,7 +8,7 @@ description: Learn how to connect your GKE cluster to CAST AI and start saving n
 
 To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**GKE**](https://console.cast.ai/external-clusters/new#gke) tab. Copy the pre-generated script and run it inside your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
-![img.png](../../screenshots/connect-gke-1.png)
+![img.png](../screenshots/connect-gke-1.png)
 
 The script will create following kubernetes objects related to `castai-agent` agent:
 
@@ -21,7 +21,7 @@ The script will create following kubernetes objects related to `castai-agent` ag
 
 After the installation, your cluster name will appear below connection instructions as well as in the **Clusters** list.
 
-![img.png](../../screenshots/connect-gke-2.png)
+![img.png](../screenshots/connect-gke-2.png)
 
 From there, you can open the **Available savings** report and explore a detailed savings estimate based on your cluster configuration.
 
@@ -53,7 +53,7 @@ Copy the pre-generated script and run it inside your terminal or cloud shell. Th
 - `/roles/cast.gkeAccess` (created by script) - access to get / update your GKE cluster and manage compute instances.
 - `roles/container.developer` - access to resources within the Kubernetes cluster.
 
-That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
+That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
 [Connect your cluster here](https://console.cast.ai/external-clusters/new#gke)
 

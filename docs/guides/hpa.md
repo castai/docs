@@ -37,16 +37,6 @@ KEDA consists of two components:
 These components configure Kubernetes HPA and set up the custom metric sources. This
 enables us to autoscale almost any workload: `Deployment`, `ReplicaSet`, `ReplicationController`, or `StatefulSet`. KEDA supports autoscaling Jobs as well.
 
-### Enabling KEDA
-
-To be able to autoscale, you will need to enable KEDA addon in the `Autoscaler` page:
-
-1. Navigate to an existing cluster (or see [create cluster](../getting-started/create-cluster.md)).
-
-2. Go to the *Autoscaler* menu.
-
-3. Enable the Horizontal pod autoscaler policy.
-
 ## Examples
 
 ### Autoscale Based on CPU and/or Memory usage

@@ -117,11 +117,6 @@ In this step-by-step guide, we demonstrate how to use Spot Instances with your C
 
 To do that, we will use an example NGINX deployment configured to run only on Spot/Preemptible instances.
 
-### 0. Pre-requisites
-
-- **CAST AI cluster** - see [create cluster](../getting-started/create-cluster.md).
-- **`Kubeconfig` file** - see [deploy application](../getting-started/deploy-application.md)
-
 ### 1. Enable relevant policies
 
 To start using spot instances go to `Autoscaler` menu in the UI and enable the following policies:
