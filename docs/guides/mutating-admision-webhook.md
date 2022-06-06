@@ -37,8 +37,9 @@ The Spot-only mutating webhook will mark all workloads in your cluster as suitab
 To run all pods (including `kube-system`) on spot instances, use:
 
 ```shell
+helm repo add castai-helm https://castai.github.io/helm-charts
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
-    https://storage.googleapis.com/alpha-prereleases/castai-pod-node-lifecycle/castai-pod-node-lifecycle-latest.tgz \
+    castai-helm/castai-pod-node-lifecycle \
     --set staticConfig.preset=allSpot
 ```
 
@@ -53,8 +54,9 @@ This mode works the same as the [Spot-only](#spot-only) mode but it forces all p
 To run all pods excluding `kube-system` on spot instances, use:
 
 ```shell
+helm repo add castai-helm https://castai.github.io/helm-charts
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
-    https://storage.googleapis.com/alpha-prereleases/castai-pod-node-lifecycle/castai-pod-node-lifecycle-latest.tgz \
+    castai-helm/castai-pod-node-lifecycle \
     --set staticConfig.preset=allSpotExceptKubeSystem
 ```
 
@@ -69,16 +71,18 @@ When 100% of pods on spot instances is not a desirable scenario, you can use a r
 For running 40% workload pods on spot instances and keep remaining pods of same ReplicaSet on on-demand instances, use:
 
 ```shell
+helm repo add castai-helm https://castai.github.io/helm-charts
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
-    https://storage.googleapis.com/alpha-prereleases/castai-pod-node-lifecycle/castai-pod-node-lifecycle-latest.tgz \
+    castai-helm/castai-pod-node-lifecycle \
     --set staticConfig.preset=partialSpot
 ```
 
 To set a custom ratio for partial Spot, replace 70 with [1-99] as percentage value:
 
 ```shell
+helm repo add castai-helm https://castai.github.io/helm-charts
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
-    https://storage.googleapis.com/alpha-prereleases/castai-pod-node-lifecycle/castai-pod-node-lifecycle-latest.tgz \
+    castai-helm/castai-pod-node-lifecycle \
     --set staticConfig.defaultToSpot=false --set staticConfig.spotPercentageOfReplicaSet=70
 ```
 
@@ -126,8 +130,9 @@ staticConfig:
 To install the webhook with these custom rules, execute this command:
 
 ```shell
+helm repo add castai-helm https://castai.github.io/helm-charts
 helm upgrade -i --create-namespace -n castai-pod-node-lifecycle castai-pod-node-lifecycle \
-    https://storage.googleapis.com/alpha-prereleases/castai-pod-node-lifecycle/castai-pod-node-lifecycle-latest.tgz \
+    castai-helm/castai-pod-node-lifecycle \
     --values values.yaml
 ```
 
