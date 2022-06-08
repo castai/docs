@@ -58,6 +58,10 @@ Cluster metrics can be used for observability and alerting purposes (e.g. Promet
 | `castai_evictor_node_target_count`                  | Gauge   | CAST AI Evictor targeted nodes count.                                                                                        |                                           |
 | `castai_evictor_pod_target_count`                   | Gauge   | CAST AI Evictor targeted pods count.                                                                                         |                                           |
 
+## Example Grafana dashboard
+
+Example Grafana dashboard can be found [here](../assets/example-metrics-dashboard.json)
+
 ## Example queries
 
 Cost per cluster:
