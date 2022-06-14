@@ -110,6 +110,9 @@ spec:
 
 ### Scheduling on compute optimized nodes
 
+Compute optimized instances are ideal for compute-bound applications that benefit from high-performance processors.
+They offer the highest consistent performance per core to support real-time application performance.
+
 The pod described below will be scheduled on a compute optimized instance.
 
 ```yaml
