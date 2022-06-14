@@ -30,6 +30,7 @@ CAST AI supports the following labels:
 | `scheduling.cast.ai/spot-backup` | CAST AI specific | A fallback for spot instance | `true`                                                                    |
 | `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | `subnet-006a6d1f18fc5d390`                                                  |
 | `scheduling.cast.ai/storage-optimized` | CAST AI specific | Local SSD attached node | `true`                                                                      |
+| `scheduling.cast.ai/compute-optimized` | CAST AI specific | A compute optimized instance | `true` |
 
 ### Highly-available pod scheduling
 
@@ -105,6 +106,23 @@ spec:
   volumes:
     - name: ephemeral
       emptyDir: {}
+```
+
+### Scheduling on compute optimized nodes
+
+The pod described below will be scheduled on a compute optimized instance.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demopod
+spec:
+  nodeSelector:
+    scheduling.cast.ai/compute-optimized: "true"
+  containers:
+  - name: app
+    image: nginx
 ```
 
 ## CAST AI multi cloud Kubernetes clusters
