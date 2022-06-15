@@ -30,6 +30,7 @@ CAST AI supports the following labels:
 | `scheduling.cast.ai/spot-backup` | CAST AI specific | A fallback for spot instance | `true`                                                                    |
 | `topology.cast.ai/subnet-id` | CAST AI specific | Node subnet ID | `subnet-006a6d1f18fc5d390`                                                  |
 | `scheduling.cast.ai/storage-optimized` | CAST AI specific | Local SSD attached node | `true`                                                                      |
+| `scheduling.cast.ai/compute-optimized` | CAST AI specific | A compute optimized instance | `true` |
 
 ### Highly-available pod scheduling
 
@@ -107,6 +108,26 @@ spec:
       emptyDir: {}
 ```
 
+### Scheduling on compute optimized nodes
+
+Compute optimized instances are ideal for compute-bound applications that benefit from high-performance processors.
+They offer the highest consistent performance per core to support real-time application performance.
+
+The pod described below will be scheduled on a compute optimized instance.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demopod
+spec:
+  nodeSelector:
+    scheduling.cast.ai/compute-optimized: "true"
+  containers:
+  - name: app
+    image: nginx
+```
+
 ## CAST AI multi cloud Kubernetes clusters
 
 CAST AI multi cloud Kubernetes cluster nodes are already equipped with the following labels:
@@ -120,107 +141,6 @@ CAST AI multi cloud Kubernetes cluster nodes are already equipped with the follo
 | `topology.kubernetes.io/region` | well-known | Node region in the CSP | eu-central-1 |
 | `topology.kubernetes.io/zone` | well-known | Node zone of the region in the CSP | eu-central-1a |
 | `topology.cast.ai/csp` | CAST AI specific | Node Cloud Service Provider | aws, gcp, azure |
-
-### How to pin a pod to AWS
-
-We will use `affinity.nodeAffinity`:
-
-```yaml
-affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: topology.cast.ai/csp
-                operator: In
-                values:
-                  - aws
-```
-
-Pod example:
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod
-  labels:
-    app: nginx
-spec:
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: topology.storage.csi.cast.ai/csp
-                operator: In
-                values:
-                  - aws
-  containers:
-    - name: nginx
-      image: k8s.gcr.io/nginx-slim:0.8
-      ports:
-        - containerPort: 80
-          name: web
-```
-
-StatefulSet example, it will create 3 pods each in every cloud (note the podAntiAffinity):
-
-```yaml
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: a-web
-spec:
-  podManagementPolicy: Parallel
-  serviceName: "nginx"
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: topology.storage.csi.cast.ai/csp
-                    operator: In
-                    values:
-                      - aws
-                      - gcp
-                      - azure
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app
-                    operator: In
-                    values:
-                      - nginx
-              topologyKey: topology.storage.csi.cast.ai/csp
-      containers:
-        - name: nginx
-          image: k8s.gcr.io/nginx-slim:0.8
-          ports:
-            - containerPort: 80
-              name: web
-          volumeMounts:
-            - name: www
-              mountPath: /usr/share/nginx/html
-  volumeClaimTemplates:
-    - metadata:
-        name: www
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 1Gi
-```
 
 ### How to a isolate specific workloads
 
