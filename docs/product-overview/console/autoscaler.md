@@ -12,7 +12,7 @@ Users who have connected an external cluster to CAST AI have two options how to 
 
 ![](images/autoscaler-selection.png)
 
-  **Scoped autoscaler** - is a mode of operations where CAST AI autoscaler co-exists with other autoscaler(s) on the same cluster and is managing only specific workloads. In order to restrict the scope of the autoscaler, workloads have to be modified as prescribed in this [guide](/guides/autoscaling-policies/#scoped-autoscaler-mode).
+  **Scoped autoscaler** - is a mode of operations where CAST AI autoscaler co-exists with other autoscaler(s) on the same cluster and is managing only specific workloads. In order to restrict the scope of the autoscaler, workloads have to be modified as prescribed in this [guide](../../guides/autoscaling-policies.md#scoped-autoscaler-mode).
 
   Scoped autoscaler will not ensure that all workloads on the cluster have capacity to run and advanced features like Rebalancer are not available in this mode. Due to these limitations we recommend using CAST AI autoscaler as the only autoscaler on the cluster (i.e. in the full autscaling mode).
 
