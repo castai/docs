@@ -46,3 +46,4 @@ For more information see:
 - [Autoscaling policies](../../guides/autoscaling-policies.md)
 - [Horizontal Pod autoscaler](../../guides/hpa.md)
 - [Spot/Preemptible Instances](../../guides/spot.md)
+- [Storage Optimized Instances](../../guides/storage-optimized.md)
