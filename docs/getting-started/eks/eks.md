@@ -43,6 +43,7 @@ Prerequisites:
   and related resources. Additionally, you should have access to the EKS cluster that you wish to onboard on the CAST AI console.
   
 Example least priveleged policy JSON for administrator  account (permissions needed to run onboarding script, used once per cluster during onboarding)
+
 ```json
 {
     "Version": "2012-10-17",
