@@ -74,6 +74,8 @@ Here’s an example dashboard displaying CAST AI data.
 
 You can get the [code here](https://docs.cast.ai/assets/example-metrics-dashboard.json).
 
+
+
 ## CAST AI metrics 
 
 **Note:** Label `cast_node_type` is deprecated, so instead of it please use `castai_node_lifecycle`.
