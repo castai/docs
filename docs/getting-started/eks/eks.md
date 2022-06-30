@@ -46,36 +46,17 @@ Example least priveleged policy JSON for administrator  account (permissions nee
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "Stmt9999999999990",
-            "Action": [
-                "iam:AttachRolePolicy",
-                "iam:CreateRole",
-                "iam:UpdateAssumeRolePolicy"
-            ],
-            "Effect": "Allow",
-            "Resource": "arn:aws:iam::99999999999:role/cast-eks-*"
-        },
-        {
-            "Sid": "Stmt9999999999991",
-            "Action": [
-                "iam:CreateInstanceProfile",
-                "iam:AddRoleToInstanceProfile"
-            ],
-            "Effect": "Allow",
-            "Resource": "arn:aws:iam::99999999999:instance-profile/cast-eks-*"
-        },
-        {
-            "Sid": "Stmt9999999999992",
-            "Action": [
-                "iam:CreatePolicy",
-                "iam:PutRolePolicy"
-            ],
-            "Effect": "Allow",
-            "Resource": "*"
-        }
+    "Action": [
+        "iam:AttachRolePolicy",
+        "iam:CreateRole",
+        "iam:UpdateAssumeRolePolicy"
+        "iam:CreateInstanceProfile",
+        "iam:AddRoleToInstanceProfile"
+        "iam:CreatePolicy",
+        "iam:PutRolePolicy",
+        "iam:GetInstanceProfile",
+        "iam:GetPolicy",
+        "iam:ListPolicyVersions"
     ]
 }
 ```
