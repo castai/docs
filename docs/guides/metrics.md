@@ -46,6 +46,10 @@ Open Prometheus and start typing the name of the metrics you want to view. All o
 
 Click the Execute button, and the app will return a value for the selected metric.
 
+
+Test example it should be autosaved
+
+
 #### 4. Specify your data source in Grafana
 Open Grafana, head to the Configuration tab, and click on Data Sources.
 
