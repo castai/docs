@@ -47,16 +47,16 @@ Example of least priveleged policy for administrator account (permissions needed
 ```json
 {
     "Action": [
-        "iam:AttachRolePolicy",
         "iam:CreateRole",
-        "iam:UpdateAssumeRolePolicy"
-        "iam:CreateInstanceProfile",
-        "iam:AddRoleToInstanceProfile"
         "iam:CreatePolicy",
-        "iam:PutRolePolicy",
-        "iam:GetInstanceProfile",
         "iam:GetPolicy",
-        "iam:ListPolicyVersions"
+        "iam:ListPolicyVersions",
+        "iam:PutRolePolicy",
+        "iam:AttachRolePolicy",
+        "iam:CreateInstanceProfile",
+        "iam:GetInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:UpdateAssumeRolePolicy"
     ]
 }
 ```
