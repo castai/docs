@@ -74,7 +74,7 @@ Here’s an example dashboard displaying CAST AI data.
 
 You can get the [code here](https://docs.cast.ai/assets/example-metrics-dashboard.json).
 
-
+![](./metrics-image/1. CAST AI Grafana Data Source.png)
 
 ## CAST AI metrics 
 
