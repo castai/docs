@@ -20,7 +20,7 @@ The following guide will help you configure and run it.
 
 ### GCS
 
-Because local SSDs can only be purchased in 375 GB increments, the cost-per-month for a single device is the monthly rate multiplied by 375 GB. For example, at a monthly rate of $0.080, the cost would be $30.00 per device per month. Actual data storage and usage are included in that price and there is no additional charge for local traffic between the virtual machine and the local SSD device. [Local SSD prices](https://cloud.google.com/compute/disks-image-pricing#localssdpricing) differ by region.
+Because local SSDs can only be purchased in 375 GB increments, the cost-per-month for a single device is the monthly rate multiplied by 375 GB. For example, at a monthly rate of $0.080/GB, the cost would be $30.00 per device per month. Actual data storage and usage are included in that price and there is no additional charge for local traffic between the virtual machine and the local SSD device. [Local SSD prices](https://cloud.google.com/compute/disks-image-pricing#localssdpricing) differ by region.
 
 You can reserve local SSDs in a specific zone, with or without a commitment. Without a commitment, you pay normal on-demand prices. For committed-use discounted pricing for local SSDs, a reservation must be created when purchasing the commitment. For more information, see [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources).
 
@@ -36,19 +36,7 @@ Please refer to [official pricing source](https://aws.amazon.com/ec2/pricing/) t
 
 To make use of the storage-optimized feature, node selectors, taints and tolerations work together to ensure that pods are scheduled into inappropriate nodes and viceversa.
 
-### Tolerations
-
-**When to use:** Storage Optimized instances are optional
-
-When a pod is marked only with `tolerations,` the Kubernetes scheduler could place such a pod/pods on regular nodes as well.
-
-```yaml
-tolerations:
-  - key: scheduling.cast.ai/storage-optimized
-    operator: Exists
-```
-
-### Node Selectors
+### Node Selectors and tolerations
 
 **When to use:** only use Storage Optimized instances
 
