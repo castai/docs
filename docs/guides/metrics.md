@@ -12,6 +12,7 @@ This guide outlines the metrics available in CAST AI and describes the process o
 ## How to visualize CAST AI metrics in Prometheus and Grafana
 
 ### Why use CAST AI with Prometheus and Grafana
+
 The combination of Prometheus and Grafana has become a common choice for DevOps and CloudOps teams, and this is for a reason.
 
 The first provides a powerful querying language and gathers rich metrics, while the latter transforms these into meaningful visualizations. Both Prometheus and Grafana are compatible with most data source types.
@@ -19,6 +20,7 @@ The first provides a powerful querying language and gathers rich metrics, while 
 ### How to connect CAST AI with Prometheus and Grafana
 
 #### 1. Create your CAST AI API key
+
 Enter your cluster in the CAST AI platform, click the API tab in the top menu, and generate a one-time token.
 
 You’ll need to specify your key name and choose between a read-only or full access. Then, copy and paste it into the respective place in the above code and execute.
@@ -26,6 +28,7 @@ You’ll need to specify your key name and choose between a read-only or full ac
 You can also use this key to access CAST AI API in tools like Swagger UI.
 
 #### 2. Call the CAST AI API
+
 Open your Prometheus scraper config in your favorite tool and add scraping for CAST AI metrics:
 ```yaml
 scrape_configs:
@@ -42,6 +45,7 @@ scrape_configs:
 To access this data endpoint, you’ll need to swap **{apiKey}** for the token created in step 1.
  
 #### 3. Specify your data source in Grafana
+
 Open Grafana, head to the Configuration tab, and click on Data Sources.
 
 When you select the Add data source option, you’ll see a list of all supported data sources. From here, choose Prometheus and insert all required details, including HTTP, Auth, and more.
@@ -55,12 +59,14 @@ After you specify your data source, you can go to Explore, select your data sour
 ![](metrics-images/3_grafana_metric_name_view.png)
 
 
-#### 4. Create a dashboard in Grafana    
+#### 4. Create a dashboard in Grafana
+
 Click on the Dashboards tab in Grafana’s main menu and select the Browse option. That’s where you’ll see the button to start a new dashboard. Give it a meaningful name and set the main options.
 
 For more information you can refer to [Grafana’s documentation](https://grafana.com/docs/grafana/latest/dashboards/), you can also check this [list of best practices for creating dashboards](https://grafana.com/docs/grafana/latest/best-practices/best-practices-for-creating-dashboards/).
 
-#### 5. Add and format your metrics   
+#### 5. Add and format your metrics  
+
 Now it’s time to start populating your dashboard with data.
 
 Add a new panel and scroll down to its bottom to ensure that the data source is set to Prometheus. Then, start typing the name of the required metric in the metric browser box, and it will appear on the screen.
