@@ -30,6 +30,7 @@ You can also use this key to access CAST AI API in tools like Swagger UI.
 #### 2. Call the CAST AI API
 
 Open your Prometheus scraper config in your favorite tool and add scraping for CAST AI metrics:
+
 ```yaml
 scrape_configs:
  2. job_name: 'castai_cluster_metrics'
@@ -42,8 +43,9 @@ scrape_configs:
       type: 'Token'
       credentials: '{apiKey}'
 ```
+
 To access this data endpoint, you’ll need to swap **{apiKey}** for the token created in step 1.
- 
+
 #### 3. Specify your data source in Grafana
 
 Open Grafana, head to the Configuration tab, and click on Data Sources.
@@ -57,7 +59,6 @@ After you specify your data source, you can go to Explore, select your data sour
 ![](metrics-images/2_grafana_metric_name.png)
 
 ![](metrics-images/3_grafana_metric_name_view.png)
-
 
 #### 4. Create a dashboard in Grafana
 
@@ -85,10 +86,9 @@ Here’s an example dashboard displaying CAST AI data.
 
 ![](metrics-images/5_grafana_ready_dashboard.png)
 
-
 You can get the [code here](https://docs.cast.ai/assets/example-metrics-dashboard.json).
 
-## CAST AI metrics 
+## CAST AI metrics
 
 **Note:** Label `cast_node_type` is deprecated, so instead of it please use `castai_node_lifecycle`.
 
