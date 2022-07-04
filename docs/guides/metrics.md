@@ -46,7 +46,14 @@ Open Grafana, head to the Configuration tab, and click on Data Sources.
 
 When you select the Add data source option, you’ll see a list of all supported data sources. From here, choose Prometheus and insert all required details, including HTTP, Auth, and more.
 
+![](metrics-images/1_grafana_data_source.png)
+
 After you specify your data source, you can go to Explore, select your data source by name, and start typing the metric name for autocompleting.
+
+![](metrics-images/2_grafana_metric_name.png)
+
+![](metrics-images/3_grafana_metric_name_view.png)
+
 
 #### 4. Create a dashboard in Grafana    
 Click on the Dashboards tab in Grafana’s main menu and select the Browse option. That’s where you’ll see the button to start a new dashboard. Give it a meaningful name and set the main options.
@@ -60,6 +67,8 @@ Add a new panel and scroll down to its bottom to ensure that the data source is 
 
 Common choices of metrics include the requested vs. provisioned CPUs and memory, and the monthly cost of your cluster. You can also expand the metrics presented in your dashboard by importing data in JSON files.
 
+![](metrics-images/4_grafana_panel.png)
+
 Use the panel on the right to specify your stat title, legend, visualization styles, and other values to help you ensure the report makes the most sense to your team.
 
 You can then expand your dashboard with additional features, including [annotations](https://grafana.com/docs/grafana/latest/dashboards/annotations/) and [alerts](https://grafana.com/docs/grafana/latest/alerting/).
@@ -68,9 +77,10 @@ You can then expand your dashboard with additional features, including [annotati
 
 Here’s an example dashboard displaying CAST AI data.
 
-You can get the [code here](https://docs.cast.ai/assets/example-metrics-dashboard.json).
+![](metrics-images/5_grafana_ready_dashboard.png)
 
-![](./metrics-image/1. CAST AI Grafana Data Source.png)
+
+You can get the [code here](https://docs.cast.ai/assets/example-metrics-dashboard.json).
 
 ## CAST AI metrics 
 
