@@ -1,6 +1,7 @@
 ---
 description: Guide on how to scrape CAST AI metrics and visualize them in Grafana
 ---
+
 # Cluster metrics integration
 
 CAST AI delivers detailed metrics on your cluster utilization so that you can better understand your cloud infrastructure and ultimately reduce its cost. All metrics are scrapable, so you can scrape the data using Prometheus API and visualize it in Grafana or another tool of your choice.
@@ -19,7 +20,7 @@ The first provides a powerful querying language and gathers rich metrics, while 
 
 ### How to connect CAST AI with Prometheus and Grafana
 
-#### 1. Create your CAST AI API key
+**1. Create your CAST AI API key**
 
 Enter your cluster in the CAST AI platform, click the API tab in the top menu, and generate a one-time token.
 
@@ -27,7 +28,7 @@ You’ll need to specify your key name and choose between a read-only or full ac
 
 You can also use this key to access CAST AI API in tools like Swagger UI.
 
-#### 2. Call the CAST AI API
+**2. Call the CAST AI API**
 
 Open your Prometheus scraper config in your favorite tool and add scraping for CAST AI metrics:
 
@@ -46,7 +47,7 @@ scrape_configs:
 
 To access this data endpoint, you’ll need to swap **{apiKey}** for the token created in step 1.
 
-#### 3. Specify your data source in Grafana
+**3. Specify your data source in Grafana**
 
 Open Grafana, head to the Configuration tab, and click on Data Sources.
 
@@ -60,13 +61,13 @@ After you specify your data source, you can go to Explore, select your data sour
 
 ![](metrics-images/3_grafana_metric_name_view.png)
 
-#### 4. Create a dashboard in Grafana
+**4. Create a dashboard in Grafana**
 
 Click on the Dashboards tab in Grafana’s main menu and select the Browse option. That’s where you’ll see the button to start a new dashboard. Give it a meaningful name and set the main options.
 
 For more information you can refer to [Grafana’s documentation](https://grafana.com/docs/grafana/latest/dashboards/), you can also check this [list of best practices for creating dashboards](https://grafana.com/docs/grafana/latest/best-practices/best-practices-for-creating-dashboards/).
 
-#### 5. Add and format your metrics  
+**5. Add and format your metrics**
 
 Now it’s time to start populating your dashboard with data.
 
@@ -92,56 +93,62 @@ You can get the [code here](https://docs.cast.ai/assets/example-metrics-dashboar
 
 **Note:** Label `cast_node_type` is deprecated, so instead of it please use `castai_node_lifecycle`.
 
-| Name                                                | Type    | Description                                                                                                                  | Action                                    |
-|:----------------------------------------------------|---------|------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| `castai_autoscaler_agent_snapshots_received_total`  | Counter | The CAST AI Autoscaler agent snapshots received total.                                                                           | Check if the Agent is running in the cluster. |
-| `castai_autoscaler_agent_snapshots_processed_total` | Counter | The CAST AI Autoscaler agent snapshots processed total.                                                                          | Contact CAST AI support.                  |
-| `castai_cluster_total_cost_hourly`                  | Gauge   | Cluster total hourly cost.                                                                                                   |                                           |
-| `castai_cluster_compute_cost_hourly`                | Gauge   | Cluster compute cost. Has a `lifecycle` dimensions which can be summed up to a total cost: `[on_demand, spot_fallback, spot]`. |                                           |
-| `castai_cluster_total_cost_per_cpu_hourly`          | Gauge   | Normalized cost per CPU.                                                                                                     |                                           |
-| `castai_cluster_compute_cost_per_cpu_hourly`        | Gauge   | Normalized cost per CPU. Has a `lifecycle` dimension, similar to `castai_cluster_compute_cost_hourly`.                       |                                           |
-| `castai_cluster_allocatable_cpu_cores`              | Gauge   | Cluster allocatable CPU cores.                                                                                               |                                           |
-| `castai_cluster_allocatable_memory_bytes`           | Gauge   | Cluster allocatable memory.                                                                                                  |                                           |
-| `castai_cluster_provisioned_cpu_cores`              | Gauge   | Cluster provisioned CPU cores.                                                                                               |                                           |
-| `castai_cluster_provisioned_memory_bytes`           | Gauge   | Cluster provisioner memory.                                                                                                  |                                           |
-| `castai_cluster_requests_cpu_cores`                 | Gauge   | Cluster requested CPU cores.                                                                                                 |                                           |
-| `castai_cluster_requests_memory_bytes`              | Gauge   | Cluster requested memory.                                                                                                    |                                           |
-| `castai_cluster_node_count`                         | Gauge   | Cluster nodes count.                                                                                                         |                                           |
-| `castai_cluster_pods_count`                         | Gauge   | Cluster pods count.                                                                                                          |                                           |
-| `castai_cluster_unschedulable_pods_count`           | Gauge   | Cluster unschedulable pods count.                                                                                            |                                           |
-| `castai_evictor_node_target_count`                  | Gauge   | CAST AI Evictor targeted nodes count.                                                                                        |                                           |
-| `castai_evictor_pod_target_count`                   | Gauge   | CAST AI Evictor targeted pods count.                                                                                         |                                           |
+| Name                                                | Type    | Description                                                                                                                    | Action                                        |
+| :-------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
+| `castai_autoscaler_agent_snapshots_received_total`  | Counter | The CAST AI Autoscaler agent snapshots received total.                                                                         | Check if the Agent is running in the cluster. |
+| `castai_autoscaler_agent_snapshots_processed_total` | Counter | The CAST AI Autoscaler agent snapshots processed total.                                                                        | Contact CAST AI support.                      |
+| `castai_cluster_total_cost_hourly`                  | Gauge   | Cluster total hourly cost.                                                                                                     |                                               |
+| `castai_cluster_compute_cost_hourly`                | Gauge   | Cluster compute cost. Has a `lifecycle` dimensions which can be summed up to a total cost: `[on_demand, spot_fallback, spot]`. |                                               |
+| `castai_cluster_total_cost_per_cpu_hourly`          | Gauge   | Normalized cost per CPU.                                                                                                       |                                               |
+| `castai_cluster_compute_cost_per_cpu_hourly`        | Gauge   | Normalized cost per CPU. Has a `lifecycle` dimension, similar to `castai_cluster_compute_cost_hourly`.                         |                                               |
+| `castai_cluster_allocatable_cpu_cores`              | Gauge   | Cluster allocatable CPU cores.                                                                                                 |                                               |
+| `castai_cluster_allocatable_memory_bytes`           | Gauge   | Cluster allocatable memory.                                                                                                    |                                               |
+| `castai_cluster_provisioned_cpu_cores`              | Gauge   | Cluster provisioned CPU cores.                                                                                                 |                                               |
+| `castai_cluster_provisioned_memory_bytes`           | Gauge   | Cluster provisioner memory.                                                                                                    |                                               |
+| `castai_cluster_requests_cpu_cores`                 | Gauge   | Cluster requested CPU cores.                                                                                                   |                                               |
+| `castai_cluster_requests_memory_bytes`              | Gauge   | Cluster requested memory.                                                                                                      |                                               |
+| `castai_cluster_node_count`                         | Gauge   | Cluster nodes count.                                                                                                           |                                               |
+| `castai_cluster_pods_count`                         | Gauge   | Cluster pods count.                                                                                                            |                                               |
+| `castai_cluster_unschedulable_pods_count`           | Gauge   | Cluster unschedulable pods count.                                                                                              |                                               |
+| `castai_evictor_node_target_count`                  | Gauge   | CAST AI Evictor targeted nodes count.                                                                                          |                                               |
+| `castai_evictor_pod_target_count`                   | Gauge   | CAST AI Evictor targeted pods count.                                                                                           |                                               |
 
 ## Query examples
-##### Cost per cluster:
+
+**Cost per cluster:**
+
 ```
 sum(castai_cluster_total_cost_hourly{}) by (castai_cluster)
 ```
 
-##### Compute cost of spot instances of a specific cluster:
+**Compute cost of spot instances of a specific cluster:**
+
 ```
 castai_cluster_compute_cost_hourly{castai_cluster="$cluster", lifecycle="spot"}
 ```
 
-##### Received snapshots count:
+**Received snapshots count:**
+
 ```
 sum(increase(castai_autoscaler_agent_snapshots_received_total{castai_cluster="$cluster"}[5m]))
 ```
 
-##### Alert on missing snapshots:
+**Alert on missing snapshots:**
+
 ```
 absent_over_time(castai_autoscaler_agent_snapshots_received_total{castai_cluster="$cluster"}[5m])
 ```
 
-##### Get castai_node_lifecycle(`on_demand`, `spot`, `spot_fallback`) of running nodes in cluster:
+**Get castai_node_lifecycle(`on_demand`, `spot`, `spot_fallback`) of running nodes in cluster:**
+
 ```
 sum(castai_cluster_node_count{castai_cluster="$cluster"}) by (castai_node_lifecycle)
 ```
 
-##### Get CPU cores provisioned for `spot_fallback` nodes:
+**Get CPU cores provisioned for `spot_fallback` nodes:**
+
 ```
 castai_cluster_provisioned_cpu_cores(castai_node_lifecycle="spot_fallback")
 ```
 
 **Note**: Replace `$cluster` with existing `castai_cluster` label value.
-
