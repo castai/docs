@@ -41,6 +41,25 @@ Prerequisites:
 
 - **IAM permissions** – The IAM security principal that you're using must have permissions to work with AWS EKS, AWS IAM,
   and related resources. Additionally, you should have access to the EKS cluster that you wish to onboard on the CAST AI console.
+  
+Example of least priveleged policy for administrator account (permissions needed to run onboarding script, used once per cluster during onboarding)
+
+```json
+{
+    "Action": [
+        "iam:CreateRole",
+        "iam:CreatePolicy",
+        "iam:GetPolicy",
+        "iam:ListPolicyVersions",
+        "iam:PutRolePolicy",
+        "iam:AttachRolePolicy",
+        "iam:CreateInstanceProfile",
+        "iam:GetInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:UpdateAssumeRolePolicy"
+    ]
+}
+```
 
 - The CAST AI agent has to be running on the cluster.
 
