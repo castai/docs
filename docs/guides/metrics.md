@@ -18,6 +18,7 @@ The combination of Prometheus and Grafana has become a common choice for DevOps 
 
 The first provides a powerful querying language and gathers rich metrics, while the latter transforms these into meaningful visualizations. Both Prometheus and Grafana are compatible with most data source types.
 
+<!-- markdownlint-disable -->
 ### How to connect CAST AI with Prometheus and Grafana
 
 **1. Create your CAST AI API key**
@@ -80,6 +81,8 @@ Common choices of metrics include the requested vs. provisioned CPUs and memory,
 Use the panel on the right to specify your stat title, legend, visualization styles, and other values to help you ensure the report makes the most sense to your team.
 
 You can then expand your dashboard with additional features, including [annotations](https://grafana.com/docs/grafana/latest/dashboards/annotations/) and [alerts](https://grafana.com/docs/grafana/latest/alerting/).
+
+<!-- markdownlint-enable-->
 
 ### Example Grafana dashboard
 
