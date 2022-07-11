@@ -1,7 +1,7 @@
 ---
 description: Guide on how to scrape CAST AI metrics and visualize them in Grafana
 ---
-
+<!-- markdownlint-disable -->
 # Cluster metrics integration
 
 CAST AI delivers detailed metrics on your cluster utilization so that you can better understand your cloud infrastructure and ultimately reduce its cost. All metrics are scrapable, so you can scrape the data using Prometheus API and visualize it in Grafana or another tool of your choice.
@@ -152,3 +152,4 @@ castai_cluster_provisioned_cpu_cores(castai_node_lifecycle="spot_fallback")
 ```
 
 **Note**: Replace `$cluster` with existing `castai_cluster` label value.
+<!-- markdownlint-enable-->
