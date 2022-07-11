@@ -19,7 +19,7 @@ the Agent helm chart provides the parameter `apiKeySecretRef`.
 apiKeySecretRef: ""
 ```
 
-### Example
+## Example
 
 An example of using CAST AI Agent helm chart with custom secret:
 
