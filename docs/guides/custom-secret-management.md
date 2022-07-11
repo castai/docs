@@ -21,6 +21,8 @@ apiKeySecretRef: ""
 
 ## Example
 
+### CAST AI Agent
+
 An example of using CAST AI Agent helm chart with custom secret:
 
 ```shell
@@ -29,4 +31,16 @@ helm repo update
 helm upgrade --install castai-agent castai-helm/castai-agent -n castai-agent \
   --set apiKeySecretRef=<your-custom-secret> \
   --set clusterID=<your-cluster-id>
+```
+
+### CAST AI Cluster Controller
+
+An example of using CAST AI Cluster Controller helm chart with custom secret:
+
+```shell
+helm repo add castai-helm https://castai.github.io/helm-charts
+helm repo update
+helm upgrade --install castai-agent castai-helm/castai-cluster-controller -n castai-agent \
+  --set castai.apiKeySecretRef=<your-custom-secret> \
+  --set castai.clusterID=<your-cluster-id>
 ```
