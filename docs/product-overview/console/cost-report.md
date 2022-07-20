@@ -20,7 +20,7 @@ Total cluster compute cost - the total monthly cost of compute resources provisi
 
 Normalized cost per 1 CPU - the **total cluster compute cost** divided by the **total number of CPUs** provisioned on a cluster. Subtotals of this number will also be calculated for spot, on-demand, and fallback instances.
 
-Workloads - a workload is an application running on Kubernetes. Whether your workload is a single component or several that work together, on Kubernetes, you run it inside a set of pods.
+Workloads - a workload is an application running on Kubernetes.
 
 Namespaces - a namespace provides a mechanism for isolating groups of resources within a single cluster. The names of resources need to be unique within a namespace but not across namespaces. Namespace-based scoping is applicable only for namespaced objects (e.g., Deployments, Services, etc.) and not for cluster-wide objects (e.g., StorageClass, Nodes, PersistentVolumes, etc.).
 
