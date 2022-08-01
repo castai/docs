@@ -90,7 +90,6 @@ nav:
           - product-overview/console/audit-log.md
           - product-overview/console/autoscaler.md
           - 'Cost report': product-overview/console/cost-report.md
-          - product-overview/console/schedule.md
           - product-overview/console/logs.md
           - product-overview/console/api.md
       - 'Autoscaler':
