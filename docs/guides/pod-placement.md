@@ -82,6 +82,10 @@ Storage optimized nodes have local SSDs backed by nvme drivers which provide hig
 
 Pods can request a storage optimized node by defining a node selector (or a required node affinity) and toleration for label `scheduling.cast.ai/storage-optimized`. Furthermore, pods can control the amount of available storage by specifying ephemeral storage resource requests. If resource requests aren't specified, CAST AI will still provision a storage optimized node but the available storage amount will be the lowest possible based on the cloud offerings.
 
+Currently supported clouds for storage optimized nodes:
+* AWS
+* GCP
+
 The pod described below will be scheduled on a node with locally attached SSD disks.
 
 ```yaml
