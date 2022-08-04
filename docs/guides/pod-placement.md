@@ -78,7 +78,11 @@ spec:
 
 ### Scheduling on nodes with locally attached SSD
 
-The pod described below will be scheduled on a Spot instance with locally attached SSD disk.
+Storage optimized nodes have local SSDs backed by nvme drivers which provide higher throughput and lower latency than standard disks. It's an ideal choice for workloads that require efficient local storage. 
+
+Pods can request a storage optimized node by defining a node selector (or a required node affinity) and toleration for label `scheduling.cast.ai/storage-optimized`. Furthermore, pods can control the amount of available storage by specifying ephemeral storage resource requests. If resource requests aren't specified, CAST AI will still provision a storage optimized node but the available storage amount will be the lowest possible based on the cloud offerings.
+
+The pod described below will be scheduled on a node with locally attached SSD disks.
 
 ```yaml
 apiVersion: v1
@@ -87,19 +91,16 @@ metadata:
   name: demopod
 spec:
   nodeSelector:
-    scheduling.cast.ai/spot: "true"
     scheduling.cast.ai/storage-optimized: "true"
   tolerations:
-    - key: scheduling.cast.ai/spot
-      operator: Exists  
+    - key: scheduling.cast.ai/storage-optimized
+      operator: Exists
   containers:
   - name: app
     image: nginx
     resources:
       requests:
         ephemeral-storage: "2Gi"
-      limits:
-        ephemeral-storage: "4Gi"
     volumeMounts:
     - name: ephemeral
       mountPath: "/tmp"
