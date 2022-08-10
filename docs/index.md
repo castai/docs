@@ -19,8 +19,6 @@ CAST AI abstracts layers of technical complexity from the user, so there is litt
 
 We invite you to join our community and find out what is trending in the atmosphere; connect with our engineers and support, monitor release-notes, explore technical discussions, and more:
 
-[Join our Discord channel](https://discord.gg/4sFCFVJ)
-
 [Join our Slack channel](https://join.slack.com/t/castai-community/shared_invite/zt-i8fcn2xi-sM_iONKn35NmYR2E3dtfng)
 
 ## Events
@@ -29,4 +27,4 @@ The CAST AI team loves sharing knowledge and experience in webinars! If you woul
 
 ## Support
 
-Feel free to ask any questions on slack or discord. You can also reach our support on the [website chat](https://cast.ai/#) or email: support@cast.ai
+Feel free to ask any questions on slack. You can also reach our support on the [website chat](https://cast.ai/#) or email: support@cast.ai
