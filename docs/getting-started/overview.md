@@ -1,11 +1,10 @@
 ---
-description: Explore how external cluster management brings CAST AI features to externally managed clusters in EKS, GKE or AKS.
+description: Get started with cost monitoring and cluster autoscaling features for EKS, GKE, AKS or kOps clusters
 ---
 
-# External Cluster Overview
+# Overview
 
-External cluster management brings CAST AI features like autoscaler to externally-managed clusters on EKS, GKE
-or AKS. By installing the [CAST AI agent](https://github.com/castai/k8s-agent), you can start observing the running costs and potential savings of your cluster - and then enable the features that optimize your cluster - like adding and removing nodes or rightsizing deployments.
+CAST AI offers a variaty of advanced cost monitoring and autoscaling features to EKS, GKE, AKS and kOps clusters. By installing the [CAST AI agent](https://github.com/castai/k8s-agent), you can start monitoring the running costs and potential savings of your cluster - and then enable the features that optimize your cluster.
 
 To get started, log into the console and navigate to the **Connect cluster** window.
 
