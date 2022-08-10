@@ -4,7 +4,15 @@ description: Check this guide on how to connect your kOps cluster to CAST AI con
 
 # kOps
 
-Currently CAST AI supports only kOps clusters running on AWS.
+CAST AI supports clusters running following versions of kOps deployed on AWS:
+
+- v1.11
+- v1.15
+- v1.17
+- v1.18
+- v1.20
+- v1.21
+- v1.22
 
 ## Connect cluster
 
