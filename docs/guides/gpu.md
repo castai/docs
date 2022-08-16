@@ -7,7 +7,7 @@ This guide will help you configure and run it in 5 minutes.
 
 | Provider | GPUs supported |
 |----------|--------------------------|
-| AWS EKS   | NVIDIA, AMD(coming soon) |
+| AWS EKS   | NVIDIA (AMD coming soon) |
 | GCP GKE   | coming soon |
 | EKS KOPS  | coming soon |
 | Azure AKS | coming soon |
@@ -20,7 +20,7 @@ A GPU-specific driver should be installed on the cluster to run GPU workloads. C
 
 ### How to install the NVIDIA driver
 
-1. Onboard cluster to CAST AI by providing additional variable `INSTALL_NVIDIA_DEVICE_PLUGIN=true`
+1. Onboard a cluster to CAST AI by providing additional variable `INSTALL_NVIDIA_DEVICE_PLUGIN=true`
 2. Install it from NVIDIA repository:
 
     ``` bash
@@ -39,15 +39,15 @@ A GPU-specific driver should be installed on the cluster to run GPU workloads. C
     tolerations[4].key="scheduling\.cast\.ai/node-template",tolerations[4].operator=Exists
     ```
 
-3. Use your own plugin. CAST AI does plugin compatibility check with new node before provisioning it so CAST AI should detect plugin to do that. Plugin will be detected by CAST AI if one of these conditions are honored:
+3. Use your own plugin. CAST AI does a plugin compatibility check with a new node before provisioning it, so CAST AI should detect a plugin in order to perform the check. Plugin will be detected by CAST AI if one of these conditions are honored:
     - plugin daemon set name pattern is `*nvidia-device-plugin*`
     - plugin daemon set has label `nvidia-device-plugin: "true"`
 
 ### Workload configuration
 
-To request node that has attached GPU workload should:
+To request a node that has an attached GPU, workload should:
 
-- define at least GPU limits on workload resources:
+- define (at least) GPU limits in the workload resources:
 
     ``` yaml
     resources:
@@ -60,7 +60,7 @@ To request node that has attached GPU workload should:
         nvidia.com/gpu: 1
     ```
 
-- add toleration for GPU node(*toleration is required because CASTA AI adds taint on GPU nodes so that expensive nodes could be used only by workloads that truly require GPUs*):
+- add a toleration for GPU node(*toleration is required because CAST AI adds a taint on GPU nodes so that these nodes could be used only by workloads that truly require GPUs*):
 
     ``` yaml
     spec:
