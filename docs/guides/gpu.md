@@ -7,10 +7,10 @@ This guide will help you configure and run it in 5 minutes.
 
 | Provider | GPUs supported |
 |----------|--------------------------|
-| AWS EKS   | NVIDIA, AMD(comming soon) |
-| GCP GKE   | comming soon |
-| EKS KOPS  | comming soon |
-| Azure AKS | comming soon |
+| AWS EKS   | NVIDIA, AMD(coming soon) |
+| GCP GKE   | coming soon |
+| EKS KOPS  | coming soon |
+| Azure AKS | coming soon |
 
 
 ## Configuration
