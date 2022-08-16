@@ -28,7 +28,7 @@ A GPU-specific driver should be installed on the cluster to run GPU workloads. C
     helm repo update
     ```
 
-    ``` bash 
+    ``` bash
     noglob helm upgrade -i nvdp nvdp/nvidia-device-plugin -n castai-agent \
         --set-string nodeSelector."nvidia\.com/gpu"=true \
         --set \
@@ -60,7 +60,7 @@ To request node that has attached GPU workload should:
         nvidia.com/gpu: 1
     ```
 
-- add toleration for GPU node:
+- add toleration for GPU node(*toleration is required because CASTA AI adds taint on GPU nodes so that expensive nodes could be used only by workloads that truly require GPUs*):
 
     ``` yaml
     spec:
@@ -68,5 +68,3 @@ To request node that has attached GPU workload should:
         - key: "nvidia.com/gpu"
           operator: Exists
     ```
-
-*toleration is required because CASTA AI adds taint on GPU nodes so that expensive nodes could be used only by workloads that truly require GPUs*
