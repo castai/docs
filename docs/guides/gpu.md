@@ -60,7 +60,7 @@ To request a node that has an attached GPU, workload should:
         nvidia.com/gpu: 1
     ```
 
-- add a toleration for GPU node(*toleration is required because CAST AI adds a taint on GPU nodes so that these nodes could be used only by workloads that truly require GPUs*):
+- add a toleration for GPU node (*toleration is required because CAST AI adds a taint on GPU nodes so that these nodes could be used only by workloads that truly require GPUs*):
 
     ``` yaml
     spec:
