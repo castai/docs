@@ -77,6 +77,7 @@ nav:
       - 'GCP GKE':
         - 'Connect and onboard GKE': getting-started/gke/gke.md
         - 'Remove CAST AI from GKE': getting-started/gke/remove-from-gke.md
+        - 'Onboard Organization using GCP Marketplace': getting-started/gke/gcp-marketplace-onboarding.md
       - 'Azure AKS':
         - 'Connect and onboard AKS': getting-started/aks/aks.md
         - 'Remove CAST AI from AKS': getting-started/aks/remove-from-aks.md
