@@ -43,7 +43,7 @@ The node selector will ensure that pods only schedule on CAST AI-provisioned nod
 
 Toleration is required for the above-described reasons: we want the pods to actually be able to be scheduled on provisioned nodes. If toleration is not present, this will be treated as misconfiguration and the pod will be ignored.
 
-Evictor also needs to be configurated to run in scoped mode. Call Polices API to set scopesMode: True
+Evictor also needs to be configured to run in scoped mode. Call PUT /v1/kubernetes/clusters/{clusterId}/policies API by supplying full policy config with evictor settings updated, partial snippet bellow (with scopesMode: True)
 
 ```json
   ...
