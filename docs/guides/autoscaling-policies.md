@@ -43,6 +43,22 @@ The node selector will ensure that pods only schedule on CAST AI-provisioned nod
 
 Toleration is required for the above-described reasons: we want the pods to actually be able to be scheduled on provisioned nodes. If toleration is not present, this will be treated as misconfiguration and the pod will be ignored.
 
+Evictor also needs to be configurated to run in scoped mode. Call Polices API to set scopesMode: True
+
+```json
+  ...
+    "evictor": {
+      "enabled": true,
+      "dryRun": false,
+      "aggressiveMode": false,
+      "scopedMode": true,
+      "cycleInterval": "5s",
+      "allowed": true,
+      "nodeGracePeriodMinutes": 2
+    }
+  ...
+```
+
 ## Cluster CPU limits policy
 
 Each CAST AI cluster size can be limited by **the total amount** of vCPUs available on all the worker nodes
