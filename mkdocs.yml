@@ -115,6 +115,7 @@ nav:
       - 'Node kernel tuning': guides/node-kernel-tuning.md
       - guides/evictor.md
       - 'Cluster controller': guides/cluster-controller.md
+      - 'Node Configuration': guides/node-configuration.md
       - 'Mutating Admission Webhook': guides/mutating-admision-webhook.md
       - 'Cluster metrics': guides/metrics.md
       - 'Agent status monitoring': guides/agent-monitoring.md
