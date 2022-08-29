@@ -13,16 +13,18 @@ Node configuration on its own does not influence workload placement.
 
 The list of supported configuration parameters:
 
-| Configuration | Options |
-|----------|-----------|
-| Root volume ration | CPU to storage (GiB) ratio |
-| Subnets  | Subnet IDs for CAST AI provisioned nodes |
-| Security groups  | Security group IDs for CAST AI provisioned nodes |
-| Instance profile ARN  |  Instance profile ARN for CAST AI provisioned nodes  |
-| Instance tags   | Tags for CAST AI provisioned nodes |
-| Image version   | Image to be used when building CAST AI provisioned node |
-| Dns-cluster-ip   | Override the IP address to be used for DNS queries within the cluster |
-| SSH key   | Base64 encoded public key or AWS key ID |
+| Configuration | Options | Default |
+|---------------|---------|---------|
+| Root volume ration | CPU to storage (GiB) ratio | 1 CPU : 5 GiB |
+| Subnets  | Subnet IDs for CAST AI provisioned nodes | Inferred |
+| Security groups  | Security group IDs for CAST AI provisioned nodes | Inferred |
+| Instance profile ARN  |  Instance profile ARN for CAST AI provisioned nodes  | Inferred |
+| Instance tags   | Tags for CAST AI provisioned nodes | [] |
+| Image version   | Image to be used when building CAST AI provisioned node | Inferred |
+| Dns-cluster-ip   | Override the IP address to be used for DNS queries within the cluster | Inferred |
+| SSH key   | Base64 encoded public key or AWS key ID | "" |
+
+By default values are either inferred from the cluster (subnets, security groups...) or a generic value is applied.
 
 ## Create node configuration
 
@@ -37,30 +39,51 @@ nodes trend to the latest available node configuration.
 
 ### Web UI
 
-TODO: screenshot
-
 In the cluster view a new tab "Node configuration" has been created.
 Here you can view and manage node configurations.
 
-1) Use the button "Add configuration"
-2) Name your configuration and fill in your values
-3) Click "Save"
-4) Click "..." and "Set as default"
+![](node-config/node-config.png)
 
+ 1. Use the button "Add configuration"
+
+    ![](node-config/node-config-create-1.png)
+
+ 2. Name your configuration and fill in your values
+
+    ![](node-config/node-config-create-2.png)
+
+ 3. Click "Save"
+
+ 4. Click "..." and "Set as default"
+
+    ![](node-config/node-config-create-3.png)
 
 ### Terraform
 
-TODO:
+```hcl
+resource "castai_node_configuration" "config-1" {
+  name   		  = 
+  cluster_id      = 
+  disk_cpu_ratio  = 
+  subnets   	  = 
+  tags = {
+    env =
+  }
+  eks {
+	instance_profile_arn = 
+    dns_cluster_ip       = 
+	security_groups      = 
+  }
+}
+```
 
 ### API
 
-TODO:
-
-
+For API operations consult the generated [documentation](https://api.cast.ai/v1/spec/#/NodeConfigurationAPI).
 
 ## Delete node configuration
 
-To delete a node configuration, the following has to true:
+To delete a node configuration, the following has to be true:
 
 * the configuration is not linked to a node template
 * if the configuration is marked as "default", it must not be the latest version
@@ -68,77 +91,12 @@ To delete a node configuration, the following has to true:
 ### Web UI
 
 In the node configuration view, click "..." of the configuration you wish to delete
-and then "Delete configuration.
+and then "Delete configuration".
+
+![](node-config/node-config-delete.png)
 
 ## Node view
 
-View node list with applied node configuration + filter nodes.
+In the "Nodes" tab, you can view and filter nodes based on applied node configuration:
 
-----
-
-# --- Not related ---
-
-The CAST AI autoscaler supports organizing nodes into groups of different characteristics
-and scheduling workload based on these characteristics.
-
-!!! Note ""
-    Adding nodes to groups might lead to higher workload fragmentation and lower savings
-
-
-
-
-
-## Feature availability
-
-| Provider | Supported |
-|----------|-----------|
-| AWS EKS   | Yes |
-
-## Node Templates
-
-TODO: screenshot
-
-Node templates define logical grouping of nodes based on the following characteristics:
-
-| Characteristic | Options |
-|----------|-----------|
-| Node configuration | Associated Node configuration
-| Instance lifecycle   | Spot / On demand |
-| Instance optimization   | None / Compute / Storage |
-| Instance constraint | See table below |
-
-
-### Node Constraints
-
-| Constraint | Options |
-|----------|-----------|
-| Include families   | Family type |
-| Exclude families   | Family type |
-| Min CPU   | 1-448 |
-| Max CPU   | 1-448 |
-| Min memory   | 2GiB-12TiB |
-| Max memory   | 2GiB-12TiB |
-| GPU manufacturer   | Nvidia |
-| Include GPU name   | GPU name |
-| Exclude GPU name   | GPU name |
-| Min GPUs   | 1-16 |
-| Max GPUs   | 1-16 |
-
-
-
-
-0) before you begin, onboard your cluster to phase 2
-1) available config options
-) templates
-) suboptimal results due to fragmentation
-) workload -> node template mappping
-) un removable pods group
-) troubleshooting
-
-## Configuration
-
-
-What happens to existing workload when new template/config version is generated - next autoscaling cycle
-
-Deleting template/config
-Conflicting node configuration
+![](node-config/node-config-list.png)
