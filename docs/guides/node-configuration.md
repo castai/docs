@@ -75,6 +75,25 @@ Here you can view and manage node configurations.
 
 Use the resource `castai_node_configuration` from [CAST AI terraform provider](https://github.com/castai/terraform-provider-castai).
 
+Reference example:
+
+```hcl
+resource "castai_node_configuration" "test" {
+  name           = local.name
+  cluster_id     = castai_eks_cluster.test.id
+  disk_cpu_ratio = 35
+  subnets        = aws_subnet.test[*].id
+  tags           = {
+    env = "development"
+  }
+  eks {
+    instance_profile_arn = aws_iam_instance_profile.test.arn
+    dns_cluster_ip       = "10.100.0.10"
+    security_groups      = [aws_security_group.test.id]
+  }
+}
+```
+
 ### Create node configuration with CAST AI API
 
 For API operations consult the generated [documentation](https://api.cast.ai/v1/spec/#/NodeConfigurationAPI).
