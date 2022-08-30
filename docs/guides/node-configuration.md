@@ -60,7 +60,7 @@ Here you can view and manage node configurations.
 
 ### Create node configuration with CAST AI Terraform provider
 
-Use the module `castai_node_configuration` from [CAST AI terraform provider](https://github.com/castai/terraform-provider-castai).
+Use the resource `castai_node_configuration` from [CAST AI terraform provider](https://github.com/castai/terraform-provider-castai).
 
 ### Create node configuration with CAST AI API
 
