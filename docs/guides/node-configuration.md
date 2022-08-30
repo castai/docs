@@ -16,12 +16,12 @@ The list of supported configuration parameters:
 | Configuration | Options | Default |
 |---------------|---------|---------|
 | Root volume ration | CPU to storage (GiB) ratio | 1 CPU : 5 GiB |
-| Subnets  | Subnet IDs for CAST AI provisioned nodes | Inferred |
-| Security groups  | Security group IDs for CAST AI provisioned nodes | Inferred |
-| Instance profile ARN  |  Instance profile ARN for CAST AI provisioned nodes  | Inferred |
+| Subnets  | Subnet IDs for CAST AI provisioned nodes | All subnets pointing to NAT/Internet gateways |
+| Security groups  | Security group IDs for CAST AI provisioned nodes | [Tagged](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) and CAST AI SG |
+| Instance profile ARN  |  Instance profile ARN for CAST AI provisioned nodes  | cast-<cluster-name\>-eks-<cluster-id[:8]\> |
 | Instance tags   | Tags for CAST AI provisioned nodes | [] |
-| Image version   | Image to be used when building CAST AI provisioned node | Inferred |
-| Dns-cluster-ip   | Override the IP address to be used for DNS queries within the cluster | Inferred |
+| Image version   | Image to be used when building CAST AI provisioned node | Latest available [AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) for kubernetes release |
+| Dns-cluster-ip   | Override the IP address to be used for DNS queries within the cluster | "" |
 | SSH key   | Base64 encoded public key or AWS key ID | "" |
 
 By default values are either inferred from the cluster (subnets, security groups...) or a generic value is applied.
@@ -60,22 +60,7 @@ Here you can view and manage node configurations.
 
 ### Terraform
 
-```hcl
-resource "castai_node_configuration" "config-1" {
-  name   		  = 
-  cluster_id      = 
-  disk_cpu_ratio  = 
-  subnets   	  = 
-  tags = {
-    env =
-  }
-  eks {
-	instance_profile_arn = 
-    dns_cluster_ip       = 
-	security_groups      = 
-  }
-}
-```
+Use the module `castai_node_configuration` from [CAST AI terraform provider](https://github.com/castai/terraform-provider-castai).
 
 ### API
 
