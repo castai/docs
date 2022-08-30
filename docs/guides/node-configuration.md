@@ -7,7 +7,7 @@
 | **+** |  -   |  -  |  -  |
 | **+** |  -   |  -  |  -  |
 
-The CAST AI autoscaler allows you to provide node configuration parameters
+The CAST AI provisioner allows you to provide node configuration parameters
 that will be applied to CAST AI provisioned nodes.
 Node configuration on its own does not influence workload placement.
 
@@ -30,10 +30,10 @@ By default values are either inferred from the cluster (subnets, security groups
 
 A default node configuration is created during phase 2 cluster onboarding.
 You can choose to modify this configuration or create a new one.
-If you choose to add new node configuration, you will have to mark it as
-the default node configuration.
+If you choose to add new node configuration that will be applied to all newly
+provisioned nodes, you will have to mark it as the default node configuration.
 
-Node configurations are versioned and when the CAST AI autoscaler adds new node,
+Node configurations are versioned and when the CAST AI provisioner adds new node,
 the latest version of node configuration is applied. Over time CAST AI provisioned
 nodes trend to the latest available node configuration.
 
