@@ -37,7 +37,7 @@ Node configurations are versioned and when the CAST AI autoscaler adds new node,
 the latest version of node configuration is applied. Over time CAST AI provisioned
 nodes trend to the latest available node configuration.
 
-### Web UI
+### Create node configuration in CAST AI Console
 
 In the cluster view a new tab "Node configuration" has been created.
 Here you can view and manage node configurations.
@@ -58,11 +58,11 @@ Here you can view and manage node configurations.
 
     ![](node-config/node-config-create-3.png)
 
-### Terraform
+### Create node configuration with CAST AI Terraform provider
 
 Use the module `castai_node_configuration` from [CAST AI terraform provider](https://github.com/castai/terraform-provider-castai).
 
-### API
+### Create node configuration with CAST AI API
 
 For API operations consult the generated [documentation](https://api.cast.ai/v1/spec/#/NodeConfigurationAPI).
 
@@ -73,7 +73,7 @@ To delete a node configuration, the following has to be true:
 * the configuration is not linked to a node template
 * if the configuration is marked as "default", it must not be the latest version
 
-### Web UI
+### Delete node configuration in CAST AI Console
 
 In the node configuration view, click "..." of the configuration you wish to delete
 and then "Delete configuration".
