@@ -13,16 +13,17 @@ Node configuration on its own does not influence workload placement.
 
 The list of supported configuration parameters:
 
-| Configuration         | Options |
-|-----------------------|---------|
-| Root volume ratio    | CPU to storage (GiB) ratio |
-| Subnets               | Subnet IDs for CAST AI provisioned nodes |
-| Security groups       | Security group IDs for CAST AI provisioned nodes |
-| Instance profile ARN  |  Instance profile ARN for CAST AI provisioned nodes |
-| Instance tags         | Tags for CAST AI provisioned nodes |
-| Image version         | Image to be used when building CAST AI provisioned node |
-| Dns-cluster-ip        | Override the IP address to be used for DNS queries within the cluster |
-| SSH key               | Base64 encoded public key or AWS key ID |
+| Configuration              | Options |
+|----------------------------|---------|
+| Root volume ratio          | CPU to storage (GiB) ratio |
+| Subnets                    | Subnet IDs for CAST AI provisioned nodes |
+| Instance tags              | Tags for CAST AI provisioned nodes |
+| Image version              | Image to be used when building CAST AI provisioned node |
+| SSH key                    | Base64 encoded public key or AWS key ID |
+| Security groups (EKS)      | Security group IDs for CAST AI provisioned nodes |
+| Instance profile ARN (EKS) |  Instance profile ARN for CAST AI provisioned nodes |
+| Dns-cluster-ip (EKS)       | Override the IP address to be used for DNS queries within the cluster |
+
 
 By default values are either inferred from the cluster (subnets, security groups...) or a generic value is applied.
 
@@ -32,7 +33,7 @@ Some configuration options are cloud provider specific, see table below:
 
 | Configuration        | Default value  |
 |----------------------|----------------|
-| Root volume ratio   |  1 CPU : 5 GiB |
+| Root volume ratio    |  1 CPU : 5 GiB |
 | Image version        | Latest available for kubernetes release* |
 | SSH key              | ""             |
 | Subnets              | All subnets pointing to NAT/Internet Gateways inside cluster VPC |
