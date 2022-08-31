@@ -26,18 +26,26 @@ The list of supported configuration parameters:
 
 By default values are either inferred from the cluster (subnets, security groups...) or a generic value is applied.
 
-Default values per cloud provider:
+Some configuration options are cloud provider specific, see table below:
 
-| Configuration        | EKS |
-|----------------------|---------|
+### Shared configuration options
+
+| Configuration        | Default value  |
+|----------------------|----------------|
 | Root volume ration   |  1 CPU : 5 GiB |
+| Image version        | Latest available [AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) for kubernetes release |
+| SSH key              | ""             |
+
+
+### EKS configuration options
+
+| Configuration        | Default value |
+|----------------------|---------------|
 | Subnets              | All subnets pointing to NAT/Internet Gateways inside cluster VPC |
 | Security groups      | [Tagged](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) and CAST AI SG |
 | Instance profile ARN | cast-<cluster-name\>-eks-<cluster-id\> (only last 8 digits of cluster ID) |
-| Instance tags        | [] |
-| Image version        | Latest available [AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) for kubernetes release |
-| Dns-cluster-ip       | "" |
-| SSH key              | "" |
+| Instance tags        | []            |
+| Dns-cluster-ip       | ""            |
 
 ## Create node configuration
 
