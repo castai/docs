@@ -35,6 +35,8 @@ Some configuration options are cloud provider specific, see table below:
 | Root volume ration   |  1 CPU : 5 GiB |
 | Image version        | Latest available for kubernetes release* |
 | SSH key              | ""             |
+| Subnets              | All subnets pointing to NAT/Internet Gateways inside cluster VPC |
+| Instance tags        | []             |
 
 !!! note ""
     \* List of available images for EKS in [aws docs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html)
@@ -43,10 +45,8 @@ Some configuration options are cloud provider specific, see table below:
 
 | Configuration        | Default value |
 |----------------------|---------------|
-| Subnets              | All subnets pointing to NAT/Internet Gateways inside cluster VPC |
 | Security groups      | [Tagged](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html) and CAST AI SG |
 | Instance profile ARN | cast-<cluster-name\>-eks-<cluster-id\> (only last 8 digits of cluster ID) |
-| Instance tags        | []            |
 | Dns-cluster-ip       | ""            |
 
 ## Create node configuration
