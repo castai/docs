@@ -24,7 +24,6 @@ The list of supported configuration parameters:
 | Instance profile ARN (EKS) |  Instance profile ARN for CAST AI provisioned nodes |
 | Dns-cluster-ip (EKS)       | Override the IP address to be used for DNS queries within the cluster |
 
-
 By default values are either inferred from the cluster (subnets, security groups...) or a generic value is applied.
 
 Some configuration options are cloud provider specific, see table below:
