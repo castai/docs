@@ -15,7 +15,7 @@ The list of supported configuration parameters:
 
 | Configuration         | Options |
 |-----------------------|---------|
-| Root volume ration    | CPU to storage (GiB) ratio |
+| Root volume ratio    | CPU to storage (GiB) ratio |
 | Subnets               | Subnet IDs for CAST AI provisioned nodes |
 | Security groups       | Security group IDs for CAST AI provisioned nodes |
 | Instance profile ARN  |  Instance profile ARN for CAST AI provisioned nodes |
