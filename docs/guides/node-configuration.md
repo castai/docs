@@ -33,9 +33,11 @@ Some configuration options are cloud provider specific, see table below:
 | Configuration        | Default value  |
 |----------------------|----------------|
 | Root volume ration   |  1 CPU : 5 GiB |
-| Image version        | Latest available [AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) for kubernetes release |
+| Image version        | Latest available for kubernetes release* |
 | SSH key              | ""             |
 
+!!! note ""
+    \* List of available images for EKS in [aws docs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html)
 
 ### EKS configuration options
 
