@@ -32,7 +32,7 @@ Some configuration options are cloud provider specific, see table below:
 
 | Configuration        | Default value  |
 |----------------------|----------------|
-| Root volume ration   |  1 CPU : 5 GiB |
+| Root volume ratio   |  1 CPU : 5 GiB |
 | Image version        | Latest available for kubernetes release* |
 | SSH key              | ""             |
 | Subnets              | All subnets pointing to NAT/Internet Gateways inside cluster VPC |
