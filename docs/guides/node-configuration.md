@@ -5,7 +5,6 @@
 | EKS | KOPS | GKE | AKS |
 | --- | ---- | --- | --- |
 | **+** |  -   |  -  |  -  |
-| **+** |  -   |  -  |  -  |
 
 The CAST AI provisioner allows you to provide node configuration parameters
 that will be applied to CAST AI provisioned nodes.
