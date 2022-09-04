@@ -4,7 +4,7 @@ description: Learn how to connect your organization to CAST AI using GCP Marketp
 
 # How to start CAST AI cloud cost management platform on Google Cloud Marketplace
 
-The CAST AI platform is now available on the Google Cloud Marketplace. Using the new integration, customers can now access CAST AI directly from their cloud provider, eliminating the need to sign a new contract and taking advantage of their existing Google Cloud credits. 
+The CAST AI platform is now available on the Google Cloud Marketplace. Using the new integration, customers can now access CAST AI directly from their cloud provider, eliminating the need to sign a new contract and taking advantage of their existing Google Cloud credits.
 
 Like other products available on the Google Cloud Marketplace, CAST AI meets Google’s security and solution design requirements.
 
