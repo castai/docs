@@ -25,7 +25,7 @@ Navigate to the Google Marketplace website and search for CAST AI. You can also 
 
 This is the CAST AI offering:
 
-![img.png](../screenshots/gcp-marketplace-9.png)
+![img.png](../screenshots/gcp-marketplace-2.png)
 
 ## Subscribing to CAST AI in Google Cloud Marketplace
 
