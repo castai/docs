@@ -182,7 +182,7 @@ CAST AI created Service Account has the following roles attached:
 
 | Role name                | Description                                                                                                         |
 |--------------------------|:--------------------------------------------------------------------------------------------------------------------|
-| `castai.gkeAccess`       | CAST AI managed role used to manage Cast AI add/delete node operations, full list of permissions can be found below |
+| `castai.gkeAccess`       | CAST AI managed role used to manage CAST AI add/delete node operations, full list of permissions can be found below |
 | `container.developer`    | GCP managed role for full access to Kubernetes API objects inside Kubernetes cluster                                |
 | `iam.serviceAccountUser` | GCP managed role to allow run operations as the service account                                                     |
 
