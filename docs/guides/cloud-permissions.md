@@ -155,7 +155,7 @@ Additionally, a trust relationship is created as follows:
 
 * Enables required GCP services and APIs for the project
 * Creates IAM service account and assigns required roles to it
-* Generates IAM service account key which is used by Cast AI components to manage GKE and GCP resources on customer's behalf
+* Generates IAM service account key which is used by CAST AI components to manage GKE and GCP resources on customer's behalf
 
 ### GCP Services and APIs used by CAST AI
 
