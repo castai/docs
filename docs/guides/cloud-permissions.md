@@ -6,7 +6,7 @@ description: What Cloud Providers' (AWS / GCP / Azure) permissions CAST AI compo
 
 When cluster is promoted to Phase 2 (cost optimisation is enabled) then CAST AI central system is able to perform operations on Cloud Provider (AWS / GCP / Azure) level (like for example request a node and add it to a cluster).
 Such operations require relevant Cloud Provider specific credentials and permissions.
-Below there is a description of the permission setup done for AWS and GCP Cloud Provider (similar description for Azure will be released shortly as well).
+Below there is a description of the permission setup done for AWS and GCP Cloud Providers (similar description for Azure will be released shortly as well).
 
 ## AWS
 
