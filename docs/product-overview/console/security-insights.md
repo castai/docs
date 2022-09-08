@@ -25,7 +25,7 @@ Tab "Best practices" shows an overview of Kubernetes resources that CAST AI has 
 
 ![](images/best-practices-overview.png)
 
-Tab "Vulnerabilities" shows how many Kubernetes resources CAST AI scanned for vulnerabilities.
+Tab "Vulnerabilities" shows how many Kubernetes resources CAST AI has scanned for vulnerabilities.
 
 ![](images/vulnerabilities-overview.png)
 
