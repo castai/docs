@@ -6,7 +6,7 @@ description: Discover security insights about your clusters.
 
 CAST AI performs various checks on information gathered by CAST AI agents.
 CAST AI security insights provide security recommendations for your Kubernetes clusters.
-You must visit the "Security Report" page from the side menu to see security insights.
+You can visit the "Security Report" page from the side menu to see security insights.
 
 ![](images/security-insights-overview.png)
 
