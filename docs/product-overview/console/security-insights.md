@@ -65,6 +65,6 @@ By clicking on an item in the list, you will open a sidebar with more informatio
 ![](images/vulnerability-details.png)
 
 Details sidebar has two tabs - "Vulnerabilities" and "Affected resources."
-The vulnerabilities tab contains a list of CVE (Common Vulnerabilities and Exposures) associated with an item.
+The vulnerabilities tab contains a list of CVE's (Common Vulnerabilities and Exposures) associated with an item.
 You can click the CVE to open its description in the new browser window.
 In the "Affected resources" tab, you will see Kubernetes objects related to this item.
