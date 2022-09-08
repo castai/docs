@@ -2,30 +2,30 @@
 description: Discover security insights about your clusters.
 ---
 
-# Security Insights
+# Security Report
 
 CAST AI performs various checks on information gathered by CAST AI agents.
 CAST AI security insights provide security recommendations for your Kubernetes clusters.
-To see security insights, you must visit Security Insights page from the side menu.
+You must visit the "Security Report" page from the side menu to see security insights.
 
 ![](images/security-insights-overview.png)
 
 ## Overview
 
-When visiting Security Insights, you will first see an overview of your cluster.
-The overview page lets you understand how the Security Insights report changed over time.
-The top section of the overview page represents the state of failed checks in your cluster. 
+When visiting Security Report, you will first see an overview of your cluster.
+The overview page lets you understand how the security issues detected by CAST AI changed over time.
+The top section of the overview page represents the state of failed checks in your cluster.
 In the diagram, you can see how that state has changed over time.
-Above the diagram, you can see the current state of insight checks.
+Above the diagram, you can see the current state of security checks.
 
 ![](images/failed-checks-overview.png)
 
-The bottom section of the overview page is tabbed. Tab "Best practices checks" shows an overview 
-of Kubernetes resources that CAST AI checked for possible misconfigurations.
+The bottom section of the overview page is tabbed.
+Tab "Best practices" shows an overview of Kubernetes resources that CAST AI checked for possible misconfigurations.
 
 ![](images/best-practices-overview.png)
 
-Tab "Vulnerability checks" shows how many Kubernetes resources CAST AI scanned for vulnerabilities.
+Tab "Vulnerabilities" shows how many Kubernetes resources CAST AI scanned for vulnerabilities.
 
 ![](images/vulnerabilities-overview.png)
 
@@ -33,16 +33,17 @@ Tab "Vulnerability checks" shows how many Kubernetes resources CAST AI scanned f
 
 When you install the CAST AI agent, it observes changes in your Kubernetes cluster.
 CAST AI uses this information to check for possible misconfigurations and provides recommendations.
-To view a report on Kubernetes resource misconfigurations, you should go to the "Best Practices" tab from the Security Insights page.
+To view a report on Kubernetes resource misconfigurations, you should go to the "Best Practices" tab from the Security Report page.
 
 ![](images/security-insights-tabs.png)
 
 The "Best Practices" report page also has two sections.
-The top section of the "Best Practices" page summarizes the current state report. You can browse all the performed checks and their status in the area below.
+In the top section of the "Best Practices" page, there is a summary of the current state report.
+You can browse all the performed checks and their status in the area below.
 
 ![](images/best-practices.png)
 
-While browsing the list of checks, you can click on the check name to see more detailed information about it. 
+While browsing the list of checks, you can click on the check name to see more detailed information about it.
 
 ![](images/best-practice-details.png)
 
@@ -58,7 +59,7 @@ CAST AI can also check container images and operating systems for potential vuln
 
 ![](images/vulnerabilities-tab.png)
 
-The vulnerabilities report also contains two sections. The top section summarizes the current information state, and in the area below, you can browse the report items.
+The vulnerabilities report also contains two sections. The top section summarizes the current information state, and in the area below, you can browse the report items. 
 By clicking on an item in the list, you will open a sidebar with more information about it.
 
 ![](images/vulnerability-details.png)
