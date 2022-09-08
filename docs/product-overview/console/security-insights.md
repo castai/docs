@@ -59,7 +59,7 @@ CAST AI can also check container images and operating systems for potential vuln
 
 ![](images/vulnerabilities-tab.png)
 
-The vulnerabilities report also contains two sections. The top section summarizes the current information state, and in the area below, you can browse the report items. 
+The vulnerabilities report also contains two sections. The top section summarizes the current information state, and in the area below, you can browse the report items.
 By clicking on an item in the list, you will open a sidebar with more information about it.
 
 ![](images/vulnerability-details.png)
