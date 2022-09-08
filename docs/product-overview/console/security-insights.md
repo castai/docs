@@ -48,7 +48,7 @@ While browsing the list of checks, you can click on the check name to see more d
 ![](images/best-practice-details.png)
 
 In the details sidebar, you will see a description of the check, issue severity level, issue severity score, category, and [CVSS v3.1](https://www.first.org/cvss/v3.1/specification-document) vector.
-CAST AI uses the CVSS3 standard to determine the issue's severity score and severity level.
+CAST AI uses the CVSS v3.1 standard to determine the issue's severity score and severity level.
 Click on "Resources with the issue" to look at the resources that have this issue.
 
 ![](images/best-practice-resources.png)
