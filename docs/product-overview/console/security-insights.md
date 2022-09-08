@@ -13,7 +13,7 @@ You can visit the "Security Report" page from the side menu to see security insi
 ## Overview
 
 When visiting Security Report, you will first see an overview of your cluster.
-The overview page lets you understand how the security issues detected by CAST AI changed over time.
+The overview page allows you to understand how the security issues detected by CAST AI have changed over time.
 The top section of the overview page represents the state of failed checks in your cluster.
 In the diagram, you can see how that state has changed over time.
 Above the diagram, you can see the current state of security checks.
