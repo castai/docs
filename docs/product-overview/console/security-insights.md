@@ -20,7 +20,7 @@ Above the diagram, you can see the current state of security checks.
 
 ![](images/failed-checks-overview.png)
 
-The bottom section of the overview page is tabbed.
+The bottom section of the overview page contains two tabs.
 Tab "Best practices" shows an overview of Kubernetes resources that CAST AI checked for possible misconfigurations.
 
 ![](images/best-practices-overview.png)
