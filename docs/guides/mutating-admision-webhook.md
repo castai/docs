@@ -94,8 +94,8 @@ This mode can be adjusted to match the needs and requirements of your cluster. I
 
 | Key | Type | Default | Description |
 | --- | --- | --- | --- |
-| `staticConfig.defaultToSpot` | boolean | `true` | Should the webhook add spot tolerations and node selectors to pods all pods which don't match other rules? |
-| `staticConfig.spotPercentageOfReplicaSet` | int | `0` | The percentage of pods (per ReplicaSet) which should be put on Spot instances. Acceptable values `[1-99]`. `0` means the feature is turned off. |
+| `staticConfig.defaultToSpot` | boolean | `true` | Should the webhook add spot tolerations and node selectors to all pods which don't match other rules? |
+| `staticConfig.spotPercentageOfReplicaSet` | int | `0` | The percentage of pods (per ReplicaSet) which should be put on Spot instances. Acceptable values `[1-100]`. `0` means the feature is turned off. |
 | `staticConfig.ignorePods` | list of `PodAffinityTerm` | `[]` | Terms describing the label selectors for pods which should be ignored by the webhook. |
 | `staticConfig.forcePodsToSpot` | list of `PodAffinityTerm` | `[]` | Terms describing the label selectors for pods which should be put on Spot instances. |
 | `staticConfig.forcePodsToOnDemand` | list of `PodAffinityTerm` | `[]` | Terms describing the label selectors for pods which should be put on Spot instances. |
