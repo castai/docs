@@ -92,19 +92,13 @@ The script will perform the following actions:
     - Create & delete instance profiles
     - Create & manage roles
     - Create & manage EC2 security groups, key pairs, and tags
-    - Run EC2 instances
-    - Create and manage the lambda function
+    - Run EC2 instances  
 
 - Create following roles:
     - `cast-*cluster-name*-eks-#######` to manage EKS nodes with following AWS managed permission policies applied :
         - AmazonEKSWorkerNodePolicy
         - AmazonEC2ContainterRegistryReadOnly
         - AmazonEKS_CNI_Policy
-
-    - `CastLambdaRoleForSpot` a lambda role used to manage Spot interruption events with following AWS managed permission policies applied:
-        - CloudWatchLogsFullAccess
-        - AWSLambdaRole
-        - AmazonEC2ReadOnlyAccess
 
 - Modify `aws-auth` ConfigMap to map newly created IAM user to the cluster (skipped in case of cross-role IAM)
 - If a cross-account role IAM was not selected, AWS `AccessKeyId` and `SecretAccessKey` are created and printed, which then can be added to the CAST AI console and assigned to the corresponding EKS cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
@@ -123,6 +117,5 @@ CAST AI relies on the agent runs inside customer's cluster. The following servic
 
 - A portion of EC2 node resources from the customer's cluster. The CAST AI agent uses [Cluster proportional vertical autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler#calculation-of-resource-requests-and-limits) to consume a minimum required resources depending on the size of the cluster
 - Low amount of network traffic to communicate with CAST AI SaaS
-- Lambda function to handle Spot Instance interruptions
 - EC2 instances, their storage, and intra-cluster network traffic to manage Kubernetes cluster and perform autoscaling
 - IAM resources as detailed in the [onboarding section](#actions-performed-by-the-onboarding-script)

@@ -80,14 +80,8 @@ The script will perform the following actions:
     - Create & manage roles
     - Create & manage EC2 security groups, key pairs, and tags
     - Run EC2 instances
-    - Create and manage the lambda function
 
 - Create `CASTKopsRestrictedaccess` inline policy to manage cluster specific resources.
-
-- Create `CastLambdaRoleForSpot` role used to manage Spot interruption events with following AWS managed permission policies applied:
-    - CloudWatchLogsFullAccess
-    - AWSLambdaRole
-    - AmazonEC2ReadOnlyAccess
 
 - Modify `aws-auth` ConfigMap to map newly created IAM user to the cluster
 - Create and print AWS `AccessKeyId` and `SecretAccessKey`, which then can be added to the CAST AI console and assigned to the corresponding kOps cluster. The `AccessKeyId` and `SecretAccessKey`are used to by CAST to make programmatic calls to AWS and are stored in CAST AI's secret store that runs on [Google's Secret manager solution](https://cloud.google.com/secret-manager).
@@ -105,7 +99,6 @@ CAST AI relies on the agent runs inside customer's cluster. The following servic
 
 - A portion of EC2 node resources from the customer's cluster. The CAST AI agent uses [Cluster proportional vertical autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler#calculation-of-resource-requests-and-limits) to consume a minimum required resources depending on the size of the cluster
 - Low amount of network traffic to communicate with CAST AI SaaS
-- Lambda function to handle Spot Instance interruptions
 - EC2 instances, their storage, and intra-cluster network traffic to manage Kubernetes cluster and perform autoscaling
 - IAM resources as detailed in the [onboarding section](#actions-performed-by-the-onboarding-script)
 
