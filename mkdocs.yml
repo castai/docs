@@ -93,6 +93,7 @@ nav:
           - 'Cost report': product-overview/console/cost-report.md
           - product-overview/console/logs.md
           - product-overview/console/api.md
+          - product-overview/console/security-insights.md
       - 'Autoscaler':
           - product-overview/autoscaler/index.md
           - product-overview/autoscaler/features/subnets.md
