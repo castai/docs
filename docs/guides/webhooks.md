@@ -53,14 +53,14 @@ Page duty accepts Alerts in the endpoint `https://events.pagerduty.com/v2/enqueu
 ```json
 {
     "payload": {
-    "summary": "{{ .Message }}",
-    "timestamp": "{{ toISO8601 .Timestamp }}",
-    "severity": "critical",
-    "source": "CAST AI",
-    "component": "{{ .Cluster.Name}}-{{ .Cluster.ProviderType}}-{{ .Cluster.ProjectNamespaceID }}",
-    "group": "{{ .Name }}",
-    "class": "kubernetes",
-    "custom_details": {{ toJSON .Details }}
+        "summary": "{{ .Message }}",
+        "timestamp": "{{ toISO8601 .Timestamp }}",
+        "severity": "critical",
+        "source": "CAST AI",
+        "component": "{{ .Cluster.Name}}-{{ .Cluster.ProviderType}}-{{ .Cluster.ProjectNamespaceID }}",
+        "group": "{{ .Name }}",
+        "class": "kubernetes",
+        "custom_details": {{ toJSON .Details }}
     },
     "routing_key": "--routing_key--",
     "dedup_key": "{{ .NotificationID }}",
