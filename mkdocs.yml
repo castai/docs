@@ -123,6 +123,7 @@ nav:
       - 'Kubernetes permissions': guides/kubernetes-permissions.md
       - 'Cloud permissions': guides/cloud-permissions.md
       - 'Custom secret management': guides/custom-secret-management.md
+      - guides/webhooks.md
   - 'API':
       - 'Introduction': api/overview.md
       - 'Authentication': api/authentication.md
