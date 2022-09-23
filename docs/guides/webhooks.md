@@ -70,7 +70,7 @@ Page duty accepts Alerts in the endpoint `https://events.pagerduty.com/v2/enqueu
     "dedup_key": "{{ .NotificationID }}",
     "event_action": "trigger",
     "client": "CAST AI",
-    "client_url": "https://console-filipe.localenv.cast.ai/external-clusters/{{ .Cluster.ID}}?org={{ .OrganizationID }}",
+    "client_url": "https://console.cast.ai/external-clusters/{{ .Cluster.ID}}?org={{ .OrganizationID }}",
 }
 ```
 
