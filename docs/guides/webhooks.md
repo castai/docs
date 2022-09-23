@@ -10,7 +10,7 @@ To send notifications from CAST AI Console to a external system, go to the organ
 
 ## Request Template Configuration
 
-We allow users to fully customize the request sent to external systems, in that way we can support almost any application out there. The Request Template is the payload send within the webhook call, the following variables from notifications are avaialable:
+We allow users to fully customize the request sent to external systems, in that way we can support almost any application out there. The Request Template is the payload sent within the webhook call, the following variables from notifications are avaialable:
 
 | Variable                   | Description                                                                                     | Usage                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------- |
@@ -21,7 +21,7 @@ We allow users to fully customize the request sent to external systems, in that 
 | Message                    | A high-level, text summary message of the event.                                                | {{ .Message}}                     |
 | Details                    | Free-form details from the event, can be parsed to JSON                                         | {{ toJSON .Details }}             |
 | Timestamp                  | When the Notification was created by CAST AI                                                    | {{ .toISO8601 .Timestamp }}       |
-| Cluster                    | Cluster information, could be empty                                                             | {{ toJSON .Cluster }}             |
+| Cluster                    | Cluster information, might be empty if the notification ins't cluster specific                  | {{ toJSON .Cluster }}             |
 | Cluster.ID                 | The unique identifier of the cluster on CAST AI                                                 | {{ .Cluster.ID }}                 |
 | Cluster.Name               | Name of the cluster on CAST AI                                                                  | {{ .Cluster.Name }}               |
 | Cluster.ProviderType       | Cloud provider of the cluster (eks, gke, aks, kops)                                             | {{ .Cluster.ProviderType }}       |
