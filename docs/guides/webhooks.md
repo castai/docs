@@ -52,7 +52,7 @@ How to create the webhook url isn't in the scope of this how to, you can find in
 
 ## Example of Request Template PageDuty
 
-Page duty accepts Alerts in the endpoint <https://events.pagerduty.com/v2/enqueue>. The content is a simple JSON request with the payload in the body. You can find bellow an example of request template with the available variables:
+Page duty accepts Alerts in the endpoint `https://events.pagerduty.com/v2/enqueue`. The content is a simple JSON request with the payload in the body. You can find bellow an example of request template with the available variables:
 
 ```json
 {
