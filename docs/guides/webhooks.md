@@ -16,7 +16,7 @@ To send notifications from CAST AI Console to a external system, select the orga
 ![](./notification/webhook-configuration-03.png)
 
 4. Create the Webhook
-![](./notification/webhook-configuration-04.png)   
+![](./notification/webhook-configuration-04.png)
 
 | Field             | Description                                                       |
 | ----------------- | ----------------------------------------------------------------- |
@@ -25,7 +25,7 @@ To send notifications from CAST AI Console to a external system, select the orga
 | Severity Triggers | The severity levels that will trigger that notification           |
 | Template          | The template of the request that will be sent to the callback URL |
 
-The Request Template should be a valid `JSON`. We provide a better overview on how to customize the payloads in the next section  [Request Template Configuration](#Request Template Configuration) .
+The Request Template should be a valid `JSON`. We provide a better overview on how to customize the payloads in the next section  [Request Template Configuration](#Request Template Configuration).
 
 ## Request Template Configuration
 
