@@ -3,10 +3,28 @@ description: Check how to configure Webhooks to send important notifications to 
 ---
 
 # How to setup Notification Webhooks
+To send notifications from CAST AI Console to a external system, select the organization you want to configure the webhook.
 
-To send notifications from CAST AI Console to a external system, go to the organization you want to configure the webhook and then notifications.
+1. Click on the Notifications Icon -> View All
+![](./notification/webhook-configuration-01.png)
 
-![](./notification/webhook-configuration.png)
+2. Click on Webhooks
+![](./notification/webhook-configuration-02.png)
+
+3. Click on Add webhooks
+![](./notification/webhook-configuration-03.png)
+
+4. Create the Webhook
+![](./notification/webhook-configuration-04.png)   
+
+| Field             | Description                                                       |
+| ----------------- | ----------------------------------------------------------------- |
+| Name              | The name of the Webhook configuration                             |
+| Callback Url      | The callback URL to send the requests to                          |
+| Severity Triggers | The severity levels that will trigger that notification           |
+| Template          | The template of the request that will be sent to the callback URL |
+
+The Request Template should be a valid `JSON`. We provide a better overview on how to customize the payloads in the next section  [Request Template Configuration](#Request Template Configuration) .
 
 ## Request Template Configuration
 
@@ -20,7 +38,7 @@ We allow users to fully customize the request sent to external systems, in that 
 | Name                       | Name of the notification                                                                        | {{ .Name }}                       |
 | Message                    | A high-level, text summary message of the event.                                                | {{ .Message}}                     |
 | Details                    | Free-form details from the event, can be parsed to JSON                                         | {{ toJSON .Details }}             |
-| Timestamp                  | When the Notification was created by CAST AI                                                    | {{ .toISO8601 .Timestamp }}       |
+| Timestamp                  | When the Notification was created by CAST AI                                                    | {{ toISO8601 .Timestamp }}        |
 | Cluster                    | Cluster information, might be empty if the notification ins't cluster specific                  | {{ toJSON .Cluster }}             |
 | Cluster.ID                 | The unique identifier of the cluster on CAST AI                                                 | {{ .Cluster.ID }}                 |
 | Cluster.Name               | Name of the cluster on CAST AI                                                                  | {{ .Cluster.Name }}               |
@@ -64,7 +82,9 @@ Page duty accepts Alerts in the endpoint `https://events.pagerduty.com/v2/enqueu
         "component": "{{ .Cluster.Name}}-{{ .Cluster.ProviderType}}-{{ .Cluster.ProjectNamespaceID }}",
         "group": "{{ .Name }}",
         "class": "kubernetes",
-        "custom_details": {{ toJSON .Details }}
+        "custom_details": {
+            "details": "{{ toJSON .Details }}"
+        }
     },
     "routing_key": "--routing_key--",
     "dedup_key": "{{ .NotificationID }}",
