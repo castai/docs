@@ -3,6 +3,7 @@ description: Check how to configure Webhooks to send important notifications to 
 ---
 
 # How to setup Notification Webhooks
+
 To send notifications from CAST AI Console to a external system, select the organization you want to configure the webhook.
 
 1. Click on the Notifications Icon -> View All
