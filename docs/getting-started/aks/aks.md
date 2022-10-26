@@ -51,6 +51,9 @@ To onboard your cluster, go to the **Available Savings** report and click on the
 
 That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
+!!! note ""
+   Due to various reasons it sometime takes longer to validate the Azure credentials. Multiple re-runs of the onboarding script are required.  
+
 ## Actions performed by the onboarding script
 
 The script will perform the following actions:
@@ -121,3 +124,5 @@ NAME                   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE
 castai-aks-init-data   0         0         0       0            0           provisioner.cast.ai/aks-init-data=true   3h26m
 castai-spot-handler    0         0         0       0            0           scheduling.cast.ai/spot=true             3h26m
 ```
+
+Full overview of hosted components can be found [here](../../product-overview/hosted-components.md)
