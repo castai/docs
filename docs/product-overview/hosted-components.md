@@ -26,7 +26,7 @@ There is are two containers running inside that Pod:
 - [CAST AI Kubernetes Agent](https://github.com/castai/k8s-agent/) is responsible for sending cluster state data (snapshots) to the main system
 - [Cluster Proportional Vertical Autoscaler](https://github.com/kubernetes-sigs/cluster-proportional-vertical-autoscaler/) is responsible for tuning allocated resource for this Pod (self-tuning) based on predefined formula
 
-## Phase 2 Components - Cluster Controller, Evictor, Spot Handler
+## Phase 2 Components - Cluster Controller, Evictor, Spot Handler, AKS Init Data
 
 CAST AI Cluster Controller, Evictor and Spot Handler (installed as DaemonSet, not as a regular Deployment) components are installed when a connected cluster is promoted to Phase 2, which enables cost savings by managing customer's cluster:
 
@@ -38,6 +38,23 @@ castai-cluster-controller   2/2     2            2           64m
 castai-evictor              0/0     0            0           64m
 ```
 
+DaemonSet installed by CAST AI
+
+```shell
+» kubectl get daemonsets.apps -n castai-agent
+NAME                   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                            AGE
+castai-spot-handler    0         0         0       0            0           scheduling.cast.ai/spot=true             64m
+```
+
+DaemonSet installed only for AKS
+
+```shell
+» kubectl get daemonsets.apps -n castai-agent
+castai-aks-init-data   0         0         0       0            0           provisioner.cast.ai/aks-init-data=true   64m
+castai-spot-handler    0         0         0       0            0           scheduling.cast.ai/spot=true             64m
+```
+
 - [Cluster Controller](../guides/cluster-controller.md) is responsible for executing actions it receives from the central platform (like for example accept a newly created node to the cluster, etc.)
 - [Evictor](../guides/evictor.md) is responsible for removing pods from underutilised nodes to be able to decrease overall amount of cluster nodes
 - [Spot Handler](https://github.com/castai/spot-handler) is responsible for scheduled events monitoring (provided by Instance Metadata Service) and delivering them to the central platform
+- [aks-init-data](https://github.com/castai/cluster-controller/tree/main/aks) is responsible for gathering and sending necessary data for AKS node creation. The data contains files from `/var/lib/waagent` and `/var/lib/waagent/ovf-env.xml` from the host. Whole process of reading data can be found [here](https://github.com/castai/cluster-controller/blob/main/aks/send_aks_init_data_handler.go).  The DaemonSet is a part of cluster-controller helm chart.
