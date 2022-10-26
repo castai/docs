@@ -1,25 +1,25 @@
 ---
-description: Learn how to connect your AKS cluster to CAST AI and start taking control of your cloud costs.
+description: Learn how to connect your AKS cluster to CAST AI and take control of your cloud costs.
 ---
 
 # Azure AKS
 
 ## Connect cluster
 
-To connect your cluster, [log in to the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to **Connect cluster** window, [**AKS**](https://console.cast.ai/external-clusters/new#aks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
+To connect your cluster, [log into the CAST AI console](https://console.cast.ai/external-clusters/new) and navigate to the **Connect cluster** window, [**AKS**](https://console.cast.ai/external-clusters/new#aks) tab. Copy the provided script and run it in your terminal or cloud shell. Make sure that kubectl is installed and can access your cluster.
 
 ![img.png](../screenshots/connect-aks-1.png)
 
-The script will create following kubernetes objects related to `castai-agent` agent:
+The script will create the following Kubernetes objects related to `castai-agent` agent:
 
-- namespace and deployment
-- serviceaccount and secret
-- clusterrole and clusterrolebinding
-- role and rolebinding
-- resourcequota
-- configmap
+- namespace and deployment,
+- serviceaccount and secret,
+- clusterrole and clusterrolebinding,
+- role and rolebinding,
+- resourcequota,
+- configmap.
 
-After installation, your cluster name will appear below connection instructions as well as in the **Cluster list**. From there, you can open the cluster details and explore a detailed savings estimate based on your cluster configuration.
+After installation, your cluster's name will appear below the connection instructions as well as in the **Cluster list**. From there, you can open the cluster details and explore a detailed savings estimate based on your cluster configuration.
 
 ![img.png](../screenshots/connect-aks-2.png)
 
@@ -37,9 +37,9 @@ Prerequisites:
 - `az CLI` - A command line tool for working with Azure services using commands in your command-line shell. For more
   information, see [Installing az CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-- `jq` – a lightweight command line JSON processor. For more information about the tool click [here](https://stedolan.github.io/jq/).
+- `jq` – a lightweight command line JSON processor. For more information about the tool, click [here](https://stedolan.github.io/jq/).
 
-- *Azure AD* permissions – permissions to create App registration
+- *Azure AD* permissions – permissions to create App registration.
 
 - The CAST AI agent has to be running on the cluster.
 
@@ -49,10 +49,10 @@ To onboard your cluster, go to the **Available Savings** report and click on the
 
 ![img.png](../screenshots/connect-aks-3.png)
 
-That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
+That’s it! Your cluster is onboarded. Now you can enable the CAST AI [Autoscaler](../../product-overview/console/autoscaler.md) to keep your cluster configuration optimal.
 
 !!! note ""
-   Due to various reasons it sometime takes longer to validate the Azure credentials. Multiple re-runs of the onboarding script are required.  
+   Due to various reasons, it may sometimes take longer to validate the Azure credentials. Multiple re-runs of the onboarding script may be required.  
 
 ## Actions performed by the onboarding script
 
@@ -105,7 +105,7 @@ ROLE_DEF='{
 }'
 ```
 
-- Create app registration `CAST.AI ${CLUSTER_NAME}-${CASTAI_CLUSTER_ID:0:8}"` which uses role `CastAKSRole-${CASTAI_CLUSTER_ID:0:8}`
+- Create app registration `CAST.AI ${CLUSTER_NAME}-${CASTAI_CLUSTER_ID:0:8}"` which uses the role `CastAKSRole-${CASTAI_CLUSTER_ID:0:8}`
 
 !!! note ""
     All the `Write` permissions are scoped to a resource groups in which the cluster is running - it won't have access to resources of any other clusters in the Azure subscription.
@@ -125,4 +125,4 @@ castai-aks-init-data   0         0         0       0            0           prov
 castai-spot-handler    0         0         0       0            0           scheduling.cast.ai/spot=true             3h26m
 ```
 
-Full overview of hosted components can be found [here](../../product-overview/hosted-components.md)
+Full overview of hosted components can be found [here](../../product-overview/hosted-components.md).
