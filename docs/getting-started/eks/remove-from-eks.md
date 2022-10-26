@@ -36,7 +36,6 @@ When CAST was used to to optimize EKS cluster following resources were created:
 - User
 - Policy
 - Roles
-- Lambda function
 - Instances
 - Security group
 
@@ -62,16 +61,6 @@ Go to AWS console → Identity and Access Management (IAM) → Users → find �
 ### Delete policy
 
 Go to AWS console → Identity and Access Management (IAM) → Customer managed policies → find CastEKSPolicy. Mark it, go to Policy actions → Delete policy.
-
-### Delete Lambda role
-
-Go to AWS console → Identity and Access Management (IAM) → Roles → find lambda role `CastLambdaRoleForSpot`, delete it.
-
-### Delete Lambda function
-
-Go to AWS console → Services → Lambda → find Lambda function `cast-ai-ec2-events-handler` and delete it.
-
-In case you are planning to delete the cluster, complete these additional steps before proceeding with deletion:
 
 ### Delete CAST role
 
