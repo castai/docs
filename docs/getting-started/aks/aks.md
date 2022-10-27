@@ -126,3 +126,10 @@ castai-spot-handler    0         0         0       0            0           sche
 ```
 
 Full overview of hosted components can be found [here](../../product-overview/hosted-components.md).
+
+### Azure Agent Pools created by CAST AI
+
+After cluster credentials are onboarded CAST AI for the cluster creates two AKS agent pools :
+
+- castpool - is used to run [aks-init-data](https://github.com/castai/cluster-controller/tree/main/aks) DaemonSet to gather necessary data required for CAST AI managed AKS nodes creation. More on aks-init-data DaemonSet can be found [here](../../product-overview/hosted-components.md#phase-2-components-cluster-controller-evictor-spot-handler-aks-init-data).
+- castworkers - is used as a container for CAST AI managed AKS nodes. **Removal of this agent pool would result in removal of all CAST AI created nodes.**
