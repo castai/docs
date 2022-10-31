@@ -4,30 +4,30 @@
 
 |   | EKS | KOPS | GKE | AKS |
 | - | --- | ---- | --- | --- |
-| **Random subnets selection (from available set)** |  **+**  |  +   |  -  |  -  |
-| **Subnets selection by usage***                   | **+**** |  -   |  -  |  -  |
+| **Random subnets selection (from available set)** |  **+**  |  +   |  -  |  **+**  |
+| **Subnets selection by usage***                   | **+****|  -   |  -  |  **+**** |
 
 !!! Note ""
     \* Select the subnet with the greatest number of free IP addresses
   
-    ** Available if AWS cloud CNI is used with specific settings
+    ** Available if AWS cloud CNI is used with specific settings or if Azure CNI is used for AKS clusters
 
 ## Available subnets detection
 
 Cluster subnets with subnet IP CIDR and availability zone are synced periodically with CAST AI. The autoscaler based on various rules decides from which subnets to choose when constructing in-memory nodes for autoscaling. The selection is influenced by:
 
-* Pod node selector for `topology.cast.ai/subnet-id` label.
-* Pod node affinity for `topology.cast.ai/subnet-id` label.
-* Availability zone on in-memory node(would choose only subnets in the same zone).
-* Chose zone based on constraints from other parts - e.g., Persistent Volume zone is affecting in-memory node zone.
-* Choose the least allocated zone.
+* Pod node selector for `topology.cast.ai/subnet-id` label;
+* Pod node affinity for `topology.cast.ai/subnet-id` label;
+* Availability zone on in-memory node (will only consider the subnets in the same zone);
+* Choose a zone based on constraints from other parts - e.g., Persistent Volume zone is affecting in-memory node zone;
+* Choose the least allocated zone;
 * Choose a random zone.
 
 **If subnet calculation is supported** and we detect that all the available subnets are full, the pod will get a pod event with a message `there is no subnet with enough available IP addresses.`
 
-## Subnets usage calculation
+## EKS
 
-Subnets usage calculation is available only for EKS and when AWS cloud CNI is used for networking.
+Subnets usage calculation is only available for EKS clusters that use AWS cloud CNI for networking.
 
 Subnets usage is calculated based on CNI settings and instance type networking capabilities([max ENI count on instance type and ipv4 count per ENI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)).
 
@@ -49,7 +49,7 @@ CNI settings that disable subnets usage calculation:
 | **ENABLE_PREFIX_DELEGATION**| `None` or `false` |
 | **ENABLE_IPv6**| `None` or `false` |
 
-## How does the calculation work
+### How does the calculation work
 
 The source of documentation is [here](https://github.com/aws/amazon-vpc-cni-k8s#eni-allocation).
 
@@ -65,7 +65,7 @@ Some key points:
 
 Here is a detailed description of how [WARM_ENI_TARGET, WARM_IP_TARGET, and MINIMUM_IP_TARGET work](https://github.com/aws/amazon-vpc-cni-k8s/blob/master/docs/eni-and-ip-target.md).
 
-## Useful commands for investigations
+### Useful commands for investigations
 
 Command to get subnet IPs allocation - we consider that subnet is used only for this K8s cluster (some worker groups or security groups might use some IPs if they were created with this subnet and this could result in few IPs difference between calculation and actual allocation, bringing failed node creation instead of pod event in some edge cases), using same subnets for anything else than this cluster will make this feature work incorrectly.
 
@@ -78,3 +78,11 @@ Command to print all pods with IPs information, sorted by node.
 ```bash
 kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName,POD-IP:.status.podIP,HOST-IP:.status.hostIP --sort-by=.spec.nodeName  --all-namespaces
 ```
+
+## AKS
+
+Subnets usage calculation is only available for AKS clusters with Azure CNI enabled for networking. The network that contains the subnets to dynamically choose from should only be used in one cluster.
+
+Azure subnets are regional. Therefore, the allocation based on the least allocated zone cannot be performed while the allocation based on the least used subnet can.
+
+The calculation of subnet usage is done based on the fact that Azure reserves the first four and last IP address for a total of 5 IP addresses within each subnet. Additionally, whenever a node is created there is also a reservation of the number of IPs equal to the maximum number of pods supported by the node plus 1 for the node itself.
