@@ -86,3 +86,32 @@ Subnets usage calculation is only available for AKS clusters with Azure CNI enab
 Azure subnets are regional. Therefore, the allocation based on the least allocated zone cannot be performed while the allocation based on the least used subnet can.
 
 The calculation of subnet usage is done based on the fact that Azure reserves the first four and last IP address for a total of 5 IP addresses within each subnet. Additionally, whenever a node is created there is also a reservation of the number of IPs equal to the maximum number of pods supported by the node plus 1 for the node itself.
+
+The `topology.cast.ai/subnet-id` node selector as well as the node affinity should contain just the subnet names as values. For example, if there are two subnet IDs:
+
+* `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Network/virtualNetworks/<virtual-network>/subnets/subnet-1` and
+* `/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Network/virtualNetworks/<virtual-network>/subnets/subnet-2`
+
+the **nodeSelector** should be as follows:
+
+```yaml
+spec:
+ nodeSelector:
+  topology.cast.ai/subnet-id: "subnet-1"
+```
+
+while the **nodeAffinity** as below:
+
+```yaml
+spec:
+ affinity:
+  nodeAffinity:
+   requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: topology.cast.ai/subnet-id
+        operator: In
+        values:
+          - subnet-1
+          - subnet-2
+```
