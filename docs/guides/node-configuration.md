@@ -12,15 +12,15 @@ Node configuration on its own does not influence workload placement.
 
 The list of supported configuration parameters:
 
-| Configuration              | Options |
-|----------------------------|---------|
-| Root volume ratio          | CPU to storage (GiB) ratio |
-| Subnets                    | Subnet IDs for CAST AI provisioned nodes |
-| Instance tags              | Tags for CAST AI provisioned nodes |
-| Image version              | Image to be used when building CAST AI provisioned node |
-| SSH key                    | Base64 encoded public key or AWS key ID |
-| Security groups (EKS)      | Security group IDs for CAST AI provisioned nodes |
-| Instance profile ARN (EKS) |  Instance profile ARN for CAST AI provisioned nodes |
+| Configuration parameters   | Description                                                   |
+|----------------------------|----------------------------------------------------------------------|
+| Root volume ratio          | CPU to storage (GiB) ratio                                           |
+| Subnets                    | Subnet IDs for CAST AI provisioned nodes                             |
+| Instance tags              | Tags for CAST AI provisioned nodes                                   |
+| Image version              | Image ID or name to be used when building CAST AI provisioned node   |
+| SSH key                    | Base64 encoded public key or AWS key ID                              |
+| Security groups (EKS)      | Security group IDs for CAST AI provisioned nodes                     |
+| Instance profile ARN (EKS) | Instance profile ARN for CAST AI provisioned nodes                   |
 | Dns-cluster-ip (EKS)       | Override the IP address to be used for DNS queries within the cluster |
 
 By default values are either inferred from the cluster (subnets, security groups...) or a generic value is applied.
