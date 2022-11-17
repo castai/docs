@@ -51,7 +51,7 @@ Evictor by default will only impact nodes older than 5 minutes, if you wish to c
 - Install the latest Evictor version:
 
     ```shell
-    helm upgrade --install castai-evictor castai-helm/castai-evictor -n castai-agent --set dryRun=false --set image.repository=us-docker.pkg.dev/castai-hub/library/castai-evictor
+    helm upgrade --install castai-evictor castai-helm/castai-evictor -n castai-agent --set dryRun=false
     ```
 
 - Check whether the Evictor version was changed:
@@ -127,7 +127,8 @@ Due to applied annotation, pod will be targeted for eviction even though it is n
 
 ### Evictor policy is not allowed to be turned on
 
-The reasons why Evictor is unavailable in the policies page is that CAST AI has detected an already existing Evictor installation. If you want CAST AI to manage the Evictor instead, then you need to remove the current installation first.
+- The reasons why Evictor is unavailable in the policies page is that CAST AI has detected an already existing Evictor installation. If you want CAST AI to manage the Evictor instead, then you need to remove the current installation first.
+- After you remove the evictor, follow installation steps above.
 
 ### How to check the logs
 
