@@ -59,7 +59,7 @@ That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](
 
 ## GKE node pools created by CAST AI
 
-After cluster is onboarded CAST AI will create two GKE node pools :
+After cluster is onboarded CAST AI will create two GKE node pools:
 
 - castpool - is used to gather necessary data required for CAST AI managed GKE x86 nodes creation
 - castpool-arm - is used to gather necessary data required for CAST AI managed GKE  ARM64 nodes creation. `castpool-arm` is created only if cluster region support ARM64 vms
