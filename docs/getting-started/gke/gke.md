@@ -57,6 +57,13 @@ That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](
 
 [Connect your cluster here](https://console.cast.ai/external-clusters/new#gke)
 
+## GKE node pools created by CAST AI
+
+After cluster is onboarded CAST AI will create two GKE node pools :
+
+- castpool - is used to gather necessary data required for CAST AI managed GKE x86 nodes creation
+- castpool-arm - is used to gather necessary data required for CAST AI managed GKE  ARM64 nodes creation. `castpool-arm` is created only if cluster region support ARM64 vms
+
 ## Disconnect GKE cluster
 
 In order to disconnect your cluster from CAST AI click **Disconnect cluster** button in **Clusters** list and follow the guidance. Alternatively, run the following command from your terminal used to access the cluster:
