@@ -6,7 +6,7 @@ description: Time to say goodbye? Read how to remove CAST resources based on how
 
 Based on the way how CAST was used on a cluster there are two options to remove CAST resources.
 
-## Disconnect EKS cluster
+## Disconnect read only agent
 
 In order to disconnect your cluster from CAST AI click **Disconnect cluster** button in **Clusters** list and follow the guidance.  Alternatively run following command from your terminal used to access the cluster:
 
