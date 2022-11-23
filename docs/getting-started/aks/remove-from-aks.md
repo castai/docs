@@ -49,10 +49,10 @@ In order to remove these resources first of all:
 
 With above mentioned pre-requisites completed please follow next steps in Azure portal to remove CAST resources from your cluster:
 
-### Delete virtual machine scaling sets
+### Delete node pools
 
-Go to Resource groups → find “MC_*cluster-name*_group”. Select "aks-castpool" and "aks-castworkers" vmss resources and delete them.
+Go to Kubernetes services → your cluster → Node pools → find 2 node pools named "castpool" and "castworkers" and delete them.
 
-### Delete app registrations
+### Delete app registration
 
 Go to App registrations → Search for "CAST.AI *cluster-name*" application and delete it.
