@@ -6,7 +6,7 @@ description: Learn how to remove CAST AI resources from your connected GKE clust
 
 Based on the way how CAST was used on a cluster there are two options to remove CAST resources.
 
-## Disconnect GKE cluster
+## Disconnect read only agent
 
 In order to disconnect your cluster from CAST AI click **Disconnect cluster** button in **Clusters** list and follow the guidance.  Alternatively run following command from your terminal used to access the cluster:
 
