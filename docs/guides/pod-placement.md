@@ -39,7 +39,7 @@ Pods can be scheduled in a highly-available fashion by using the topology spread
 - `topology.kubernetes.io/zone` - enables your pods to be spread between availability zones, taking advantage of cloud redundancy.
 
 !!! note ""
-    CAST AI will treat `whenUnstatisfiable` property equally both in `DoNotSchedule` and `ScheduleAnyway` modes. `ScheduleAnyway` thus gets the best treatment, getting the chance to spread pods across multiple availability zones. Meanwhile, Kubernetes scheduler is still free to use any free space for pods with `ScheduleAnyway`. You can use this less-restrictive topology spread option as a hint for CAST AI autoscaler that spreading across zones is preferred.
+    CAST AI will treat `whenUnstatisfiable` property equally both in `DoNotSchedule` and `ScheduleAnyway` modes. Thus, `ScheduleAnyway` gets the best treatment, getting the chance to spread pods across multiple availability zones. Meanwhile, Kubernetes scheduler is still free to use any free space for pods with `ScheduleAnyway`. You can use this less-restrictive topology spread option as a hint for CAST AI autoscaler that spreading across zones is preferred.
 
 The deployment described below will be spread and scheduled on all availability zones supported by your cluster:
 
