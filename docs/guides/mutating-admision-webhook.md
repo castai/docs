@@ -95,7 +95,7 @@ This mode can be adjusted to match the needs and requirements of your cluster. I
 | Key | Type | Default | Description |
 | --- | --- | --- | --- |
 | `staticConfig.defaultToSpot` | boolean | `true` | Should the webhook add spot tolerations and node selectors to all pods which don't match other rules? |
-| `staticConfig.spotPercentageOfReplicaSet` | int | `0` | The percentage of pods (per ReplicaSet) which should be put on Spot instances. Acceptable values `[1-100]`. `0` means the feature is turned off. |
+| `staticConfig.spotPercentageOfReplicaSet` | int | `0` | The percentage of pods (per ReplicaSet) which should be put on Spot instances. Acceptable values `[1-100]`. `0` means the feature is turned off. defaultToSpot and spotPercentageOfReplicaSet are mutually exclusive settings as they are cluster wide |
 | `staticConfig.ignorePods` | list of `PodAffinityTerm` | `[]` | Terms describing the label selectors for pods which should be ignored by the webhook. |
 | `staticConfig.forcePodsToSpot` | list of `PodAffinityTerm` | `[]` | Terms describing the label selectors for pods which should be put on Spot instances. |
 | `staticConfig.forcePodsToOnDemand` | list of `PodAffinityTerm` | `[]` | Terms describing the label selectors for pods which should be put on Spot instances. |
@@ -108,8 +108,8 @@ Here is an example of a `values.yaml` with custom rules defined:
 
 ```yaml
 staticConfig:
-  defaultToSpot: true
-  spotPercentageOfReplicaSet: 0
+  defaultToSpot: false
+  spotPercentageOfReplicaSet: 30
   ignorePods:
     - labelSelector:
         matchLabels:
@@ -125,6 +125,7 @@ staticConfig:
   forcePodsToOnDemand:
     - namespaces:
         - kube-system
+        - default
 ```
 
 To install the webhook with these custom rules, execute this command:
