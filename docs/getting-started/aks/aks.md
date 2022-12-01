@@ -94,6 +94,7 @@ ROLE_DEF='{
        "Microsoft.ContainerService/managedClusters/agentPools/*",
        "Microsoft.Resources/*/read",
        "Microsoft.Resources/tags/write",
+       "Microsoft.Authorization/locks/read",
        "Microsoft.Authorization/roleAssignments/read",
        "Microsoft.Authorization/roleDefinitions/read",
        "Microsoft.ManagedIdentity/userAssignedIdentities/assign/action"
