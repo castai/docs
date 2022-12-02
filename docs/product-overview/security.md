@@ -1,16 +1,16 @@
 # Overview
 
-Monitor your Kubernetes cluster security and hygiene using CAST AI Security Report’s features.
+Monitor your Kubernetes cluster security and hygiene using CAST AI Security Report features.
 
 ## Features
 
-### Best Practices Checks
+### Best Practices checks
 
-CAST AI Security Report’s Best Practices checks assess customer clusters against good security and DevOps practices based on CIS Kubernetes Benchmark, NSA, OWASP, and PCI recommendations for Kubernetes. We introduced a transparent issues scoring and prioritization system for these checks, so customers could easily prioritize the problems and spend their effort where needed.
+CAST AI Security Report’s Best Practices checks assess clusters against good security and DevOps practices based on CIS Kubernetes Benchmark, NSA, OWASP, and PCI recommendations for Kubernetes. We introduced a transparent issue scoring and prioritization system for these checks, so customers can easily prioritize the problems and spend their effort where needed.
 
 ### Image scanning
 
-Be informed about vulnerabilities detected in operating system packages and libraries when running images in Kubernetes clusters monitored by the CAST AI. CAST AI assesses your private image for known vulnerabilities once CAST AI detects it in the cluster. Vulnerability information comes from various vulnerability databases and security advisories. Runtime vulnerability scan detects vulnerabilities that have bypassed the security scan in the deployment environment.
+Stay informed about vulnerabilities detected in operating system packages and libraries when running images in Kubernetes clusters monitored by the CAST AI. CAST AI assesses your private image for known vulnerabilities once the platform detects it in the cluster. Vulnerability information comes from various vulnerability databases and security advisories. Runtime vulnerability scan detects vulnerabilities that have bypassed the security scan in the deployment environment.
 
 ## How it works
 
