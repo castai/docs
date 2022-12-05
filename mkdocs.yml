@@ -102,6 +102,7 @@ nav:
           - product-overview/rebalancing/preparation.md
           - 'Rebalance your cluster': product-overview/rebalancing/run.md
       - 'Hosted Components': product-overview/hosted-components.md
+      - 'Security Report': product-overview/security.md
   - 'Guides':
       - guides/external-clusters.md
       - 'Pod placement': guides/pod-placement.md
@@ -137,3 +138,5 @@ nav:
   - 'CAST AI GitHub': "https://github.com/castai"
   - 'CAST AI Community Slack': "https://join.slack.com/t/castai-community/shared_invite/zt-nwtbsbqq-dWOBiUgLtIGMsUSup7Xksw"
   - 'CAST AI Console': "https://console.cast.ai"
+  - 'CAST AI on Medium': "https://castai.medium.com/"
+  - 'CAST AI Twitter': "https://twitter.com/cast_ai"
