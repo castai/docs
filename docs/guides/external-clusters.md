@@ -45,6 +45,8 @@ Provide cluster metadata by adding these environment variables to the CAST AI Ag
               value: "staging-example" # your eks cluster name
 ```
 
+## Spot nodes are displayed as On-demand in your cluster's Available Savings page
+
 The CAST AI agent requires read-only permissions, so the default `AmazonEC2ReadOnlyAccess` is enough. Provide AWS API access by adding these variables to the CAST AI Agent secret:
 
 ```text
@@ -163,10 +165,6 @@ Alternatively, if you are using [IAM roles for service accounts](https://docs.aw
 ```shell
 kubectl annotate serviceaccount -n castai-agent castai-agent eks.amazonaws.com/role-arn="arn:aws:iam::111122223333:role/iam-role-name"
 ```
-
-## Spot nodes are displayed as On-demand in your cluster's Available Savings page
-
-See this [section](#your-cluster-does-not-appear-in-the-connect-cluster-screen).
 
 ## TLS handshake timeout issue
 
