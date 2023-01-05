@@ -239,3 +239,12 @@ helm upgrade -i cluster-controller castai-helm/castai-cluster-controller -n cast
 --set castai.apiKey=$CASTAI_API_TOKEN \
 --set castai.clusterID=46d0d683-da70-4f69-b970-8d6509001c10
 ```
+
+## AKS Fail to pull images from Azure Container Registry to Azure Kubernetes Service cluster
+
+In case the cluster is already attached to an ACR, after onboarding on CAST AI, the Service Principal created to manage the cluster might not have the correct permissions to pull images from the private ACRs, resulting in `failed to pull and unpack image, failed to fetch oauth token: unexpected status: 401 Unauthorized` when new nodes are created.
+
+Microsoft has a detailed documentation on how to troubleshoot and fix the issue [Fail to pull images from Azure Container Registry to Azure Kubernetes Service cluster
+](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/cannot-pull-image-from-acr-to-aks-cluster).
+
+In most cases, [Solution 1: Ensure AcrPull role assignment is created for identity](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/cannot-pull-image-from-acr-to-aks-cluster#solution-1-ensure-acrpull-role-assignment-is-created-for-identity) is enough to resolve it.
