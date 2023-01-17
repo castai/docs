@@ -57,6 +57,89 @@ That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](
 
 [Connect your cluster here](https://console.cast.ai/external-clusters/new#gke)
 
+## Actions performed by the onboarding script
+The script will perform the following actions:
+
+-  Enable following GCP services and APIs for the project on which GKE cluster is running:
+
+| GCP Service / API Group                                                                                            | Description                                                          |
+|--------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------|
+| [`serviceusage.googleapis.com`](https://cloud.google.com/service-usage/docs/reference/rest){target="_blank"}       | API to list, enable and disable GCP services                         |
+| [`iam.googleapis.com`](https://cloud.google.com/iam/docs/reference/rest){target="_blank"}                          | API to manage identity and access control for GCP resources          |
+| [`cloudresourcemanager.googleapis.com`](https://cloud.google.com/resource-manager/reference/rest){target="_blank"} | API to create, read, and update metadata for GCP resource containers |
+| [`container.googleapis.com`](https://cloud.google.com/kubernetes-engine/docs/reference/rest){target="_blank"}      | API to manage GKE                                                    |
+| [`compute.googleapis.com`](https://cloud.google.com/compute/docs/reference/rest/v1){target="_blank"}               | API to manage GCP virtual machines                                   |
+
+- Create a dedicated GCP service account `castai-gke-<cluster-name-hash>` used by CAST AI to request and manage GCP resources on customer's behalf.
+
+- Create custom role `castai.gkeAccess` with following permissions:
+
+```shell
+- compute.addresses.use
+- compute.disks.create
+- compute.disks.setLabels
+- compute.disks.use
+- compute.images.useReadOnly
+- compute.instanceGroupManagers.get
+- compute.instanceGroupManagers.update
+- compute.instanceGroups.get
+- compute.instanceTemplates.create
+- compute.instanceTemplates.delete
+- compute.instanceTemplates.get
+- compute.instanceTemplates.list
+- compute.instances.create
+- compute.instances.delete
+- compute.instances.get
+- compute.instances.list
+- compute.instances.setLabels
+- compute.instances.setMetadata
+- compute.instances.setServiceAccount
+- compute.instances.setTags
+- compute.instances.start
+- compute.instances.stop
+- compute.networks.use
+- compute.networks.useExternalIp
+- compute.subnetworks.get
+- compute.subnetworks.use
+- compute.subnetworks.useExternalIp
+- compute.zones.get
+- compute.zones.list
+- container.certificateSigningRequests.approve
+- container.clusters.get
+- container.clusters.update
+- container.operations.get
+- serviceusage.services.list
+```
+
+- Attach following roles to `castai-gke-<cluster-name-hash>` service account:
+  
+  | Role name                | Description                                                                                               |
+  |-----------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|
+  | `castai.gkeAccess`       | CAST AI managed role used to manage CAST AI add/delete node operations, full list of permissions listed above |
+  | `container.developer`    | GCP managed role for full access to Kubernetes API objects inside Kubernetes cluster                      |
+  | `iam.serviceAccountUser` | GCP managed role to allow run operations as the service account                                           |
+
+- Install Kubernetes components required for a successful experience with CAST AI:
+
+```shell
+$ kubectl get deployments.apps   -n castai-agent
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+castai-agent                1/1     1            1           15m
+castai-agent-cpvpa          1/1     1            1           15m
+castai-cluster-controller   2/2     2            2           15m
+castai-evictor              0/0     0            0           15m
+castai-kvisor               1/1     1            1           15m
+
+$ kubectl get daemonsets.apps -n castai-agent
+NAME                   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                            AGE
+castai-spot-handler    0         0         0       0            0           scheduling.cast.ai/spot=true             15m
+```
+
+Full overview of hosted components can be found [here](../../product-overview/hosted-components.md).
+
+
+
+
 ## GKE node pools created by CAST AI
 
 After cluster is onboarded CAST AI will create two GKE node pools:
