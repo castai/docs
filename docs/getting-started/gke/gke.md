@@ -60,7 +60,7 @@ That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](
 ## Actions performed by the onboarding script
 The script will perform the following actions:
 
--  Enable following GCP services and APIs for the project on which GKE cluster is running:
+-  Enables following GCP services and APIs for the project on which GKE cluster is running:
 
 | GCP Service / API Group                                                                                            | Description                                                          |
 |--------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------|
@@ -70,9 +70,9 @@ The script will perform the following actions:
 | [`container.googleapis.com`](https://cloud.google.com/kubernetes-engine/docs/reference/rest){target="_blank"}      | API to manage GKE                                                    |
 | [`compute.googleapis.com`](https://cloud.google.com/compute/docs/reference/rest/v1){target="_blank"}               | API to manage GCP virtual machines                                   |
 
-- Create a dedicated GCP service account `castai-gke-<cluster-name-hash>` used by CAST AI to request and manage GCP resources on customer's behalf.
+- Creates a dedicated GCP service account `castai-gke-<cluster-name-hash>` used by CAST AI to request and manage GCP resources on customer's behalf.
 
-- Create custom role `castai.gkeAccess` with following permissions:
+- Creates a custom role `castai.gkeAccess` with following permissions:
 
 ```shell
 - compute.addresses.use
@@ -111,7 +111,7 @@ The script will perform the following actions:
 - serviceusage.services.list
 ```
 
-- Attach following roles to `castai-gke-<cluster-name-hash>` service account:
+- Attaches following roles to `castai-gke-<cluster-name-hash>` service account:
   
   | Role name                | Description                                                                                               |
   |-----------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------|
@@ -119,7 +119,7 @@ The script will perform the following actions:
   | `container.developer`    | GCP managed role for full access to Kubernetes API objects inside Kubernetes cluster                      |
   | `iam.serviceAccountUser` | GCP managed role to allow run operations as the service account                                           |
 
-- Install Kubernetes components required for a successful experience with CAST AI:
+- Installs Kubernetes components required for a successful experience with CAST AI:
 
 ```shell
 $ kubectl get deployments.apps   -n castai-agent
@@ -136,9 +136,6 @@ castai-spot-handler    0         0         0       0            0           sche
 ```
 
 Full overview of hosted components can be found [here](../../product-overview/hosted-components.md).
-
-
-
 
 ## GKE node pools created by CAST AI
 
