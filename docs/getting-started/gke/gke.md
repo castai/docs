@@ -58,9 +58,9 @@ That’s it! Your cluster is onboarded. Now you can enable CAST AI [Autoscaler](
 [Connect your cluster here](https://console.cast.ai/external-clusters/new#gke)
 
 ## Actions performed by the onboarding script
-The script will perform the following actions:
 
--  Enables following GCP services and APIs for the project on which GKE cluster is running:
+The script will perform the following actions:
+- Enables following GCP services and APIs for the project on which GKE cluster is running:
 
 | GCP Service / API Group                                                                                            | Description                                                          |
 |--------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------|
