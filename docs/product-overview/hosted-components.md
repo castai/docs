@@ -58,3 +58,7 @@ castai-spot-handler    0         0         0       0            0           sche
 - [Evictor](../guides/evictor.md) is responsible for removing pods from underutilised nodes to be able to decrease overall amount of cluster nodes
 - [Spot Handler](https://github.com/castai/spot-handler) is responsible for scheduled events monitoring (provided by Instance Metadata Service) and delivering them to the central platform
 - [aks-init-data](https://github.com/castai/cluster-controller/tree/main/aks) is responsible for gathering and sending necessary data for AKS node creation. The data contains files from `/var/lib/waagent` and `/var/lib/waagent/ovf-env.xml` from the host. Whole process of reading data can be found [here](https://github.com/castai/cluster-controller/blob/main/aks/send_aks_init_data_handler.go).  The DaemonSet is a part of cluster-controller helm chart.
+
+## Phase 2 Security Components - Kvisor
+
+- [Kvisor](../guides/kvisor-security.md) is resposible for images vulnerability scanning, Kubernetes YAML manifests linting and CIS security recommendations.
