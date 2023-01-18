@@ -12,6 +12,18 @@ It's open source and can be found on [github](https://github.com/castai/kvisor).
 !!! note ""
     Before installing kvisor you must connect your cluster. Please see [guide](../getting-started/overview.md) for cluster connection.
 
+### Install using Console UI
+
+Follow [guide](../getting-started/overview.md) and connect your cluster with enabled security.
+
+### Install with Terraform
+
+CAST AI terraform modules for gke, eks and aks supports `install_security_agent=true` variable.
+
+See [eks](https://registry.terraform.io/modules/castai/eks-cluster/castai/latest#input_install_security_agent) module example.
+
+### Install with Helm
+
 Add CAST AI helm charts repository.
 
 ```shell
