@@ -96,6 +96,7 @@ helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent \
 ```
 
 To check all applied configurations:
+
 ```shell
 helm get values castai-kvisor -n castai-agent
 ```
