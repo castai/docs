@@ -58,7 +58,7 @@ That’s it! Your cluster is onboarded. Now you can enable the CAST AI [Autoscal
 
 The script will perform the following actions:
 
-- Create `CASTAKSRole-*cluster-id*` role used to manged onboarded AKS Cluster which following permissions
+- Create `CASTAKSRole-*cluster-id*` role used to manged onboarded AKS Cluster with following permissions
 
 ```shell
 ROLE_NAME="CastAKSRole-${CASTAI_CLUSTER_ID:0:8}"
