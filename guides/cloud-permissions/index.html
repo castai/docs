@@ -1,0 +1,2151 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="What Cloud Providers' (AWS / GCP / Azure) permissions CAST AI components use">
+      
+      
+      
+        <link rel="canonical" href="https://docs.cast.ai/guides/cloud-permissions/">
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.2">
+    
+    
+      
+        <title>Cloud permissions - CAST AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f7951f6f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nimbus+Sans:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Nimbus Sans";--md-code-font:""}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-162225268-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#permissions-setup-used-in-cloud-providers-aws-gcp-azure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://cast.ai/" title="CAST AI Documentation" class="md-header__button md-logo" aria-label="CAST AI Documentation" data-md-component="logo">
+      <img src="../../img/cast-logo-dark-blue.svg" alt="Cast logo" style="width: 5em;" />
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CAST AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud permissions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://cast.ai/" title="CAST AI Documentation" class="md-nav__button md-logo" aria-label="CAST AI Documentation" data-md-component="logo">
+      <img src="../../img/cast-logo-dark-blue.svg" alt="Cast logo" style="width: 5em;" />
+    </a>
+    CAST AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          AWS EKS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="AWS EKS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          AWS EKS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/eks/eks/" class="md-nav__link">
+        Connect and onboard EKS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/eks/remove-from-eks/" class="md-nav__link">
+        Remove CAST AI from EKS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          GCP GKE
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="GCP GKE" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          GCP GKE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/gke/gke/" class="md-nav__link">
+        Connect and onboard GKE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/gke/remove-from-gke/" class="md-nav__link">
+        Remove CAST AI from GKE
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/gke/gcp-marketplace-onboarding/" class="md-nav__link">
+        Onboard Organization using GCP Marketplace
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Azure AKS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Azure AKS" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Azure AKS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/aks/aks/" class="md-nav__link">
+        Connect and onboard AKS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/aks/remove-from-aks/" class="md-nav__link">
+        Remove CAST AI from AKS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          kOps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="kOps" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          kOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/kops/kops/" class="md-nav__link">
+        Connect and onboard kOps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/kops/remove-from-kops/" class="md-nav__link">
+        Remove CAST AI from kOps
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Product overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Product overview" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Product overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Console
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Console" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Console
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/clusters/" class="md-nav__link">
+        Clusters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/nodes/" class="md-nav__link">
+        Nodes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/audit-log/" class="md-nav__link">
+        Audit Log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/autoscaler/" class="md-nav__link">
+        Autoscaler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/cost-report/" class="md-nav__link">
+        Cost report
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/logs/" class="md-nav__link">
+        Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/api/" class="md-nav__link">
+        API Access Keys
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/console/security-insights/" class="md-nav__link">
+        Security Report
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../product-overview/autoscaler/">Autoscaler</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Autoscaler" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Autoscaler
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/autoscaler/features/subnets/" class="md-nav__link">
+        Subnets selection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../product-overview/rebalancing/">Rebalancing</a>
+          
+            <label for="__nav_3_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Rebalancing" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Rebalancing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/rebalancing/preparation/" class="md-nav__link">
+        Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/rebalancing/run/" class="md-nav__link">
+        Rebalance your cluster
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/hosted-components/" class="md-nav__link">
+        Hosted Components
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product-overview/security/" class="md-nav__link">
+        Security Report
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../external-clusters/" class="md-nav__link">
+        External cluster troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pod-placement/" class="md-nav__link">
+        Pod placement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volumes/" class="md-nav__link">
+        Dynamic volume provisioning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connect-to-node/" class="md-nav__link">
+        Connect to node
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autoscaling-policies/" class="md-nav__link">
+        Autoscaling policies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start-saving-quickly/" class="md-nav__link">
+        Start saving quickly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hpa/" class="md-nav__link">
+        Horizontal Pod Autoscaler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spot/" class="md-nav__link">
+        Spot/Preemptible Instances
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vpa/" class="md-nav__link">
+        Right Sizing recommendations with VPA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpu/" class="md-nav__link">
+        GPU instances autoscaling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node-kernel-tuning/" class="md-nav__link">
+        Node kernel tuning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evictor/" class="md-nav__link">
+        Evictor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster-controller/" class="md-nav__link">
+        Cluster controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kvisor-security/" class="md-nav__link">
+        Kvisor security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node-configuration/" class="md-nav__link">
+        Node Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mutating-admision-webhook/" class="md-nav__link">
+        Mutating Admission Webhook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics/" class="md-nav__link">
+        Cluster metrics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent-monitoring/" class="md-nav__link">
+        Agent status monitoring
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes-permissions/" class="md-nav__link">
+        Kubernetes permissions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Cloud permissions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Cloud permissions
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    AWS
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-user-used-by-cast-ai" class="md-nav__link">
+    AWS User used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-permissions-used-by-cast-ai" class="md-nav__link">
+    AWS permissions used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-permissions-when-access-is-granted-using-cross-account-iam-role" class="md-nav__link">
+    AWS permissions when access is granted using Cross-account IAM role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gcp" class="md-nav__link">
+    GCP
+  </a>
+  
+    <nav class="md-nav" aria-label="GCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview-of-gcp-permissions-used-by-cast-ai" class="md-nav__link">
+    Overview of GCP permissions used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcp-services-and-apis-used-by-cast-ai" class="md-nav__link">
+    GCP Services and APIs used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcp-service-account-used-by-cast-ai" class="md-nav__link">
+    GCP Service Account used by CAST AI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-secret-management/" class="md-nav__link">
+        Custom secret management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webhooks/" class="md-nav__link">
+        How to setup Notification Webhooks
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/overview/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/authentication/" class="md-nav__link">
+        Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/specification/" class="md-nav__link">
+        Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/terraform-provider/" class="md-nav__link">
+        Terraform provider
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Administration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Administration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Administration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/configure-payment-method/" class="md-nav__link">
+        Configure payment details
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://cast.ai/release-notes/" class="md-nav__link">
+        Release notes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://status.cast.ai/" class="md-nav__link">
+        Service status
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/castai" class="md-nav__link">
+        CAST AI GitHub
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://join.slack.com/t/castai-community/shared_invite/zt-nwtbsbqq-dWOBiUgLtIGMsUSup7Xksw" class="md-nav__link">
+        CAST AI Community Slack
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://console.cast.ai" class="md-nav__link">
+        CAST AI Console
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://castai.medium.com/" class="md-nav__link">
+        CAST AI on Medium
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://twitter.com/cast_ai" class="md-nav__link">
+        CAST AI Twitter
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    AWS
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-user-used-by-cast-ai" class="md-nav__link">
+    AWS User used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-permissions-used-by-cast-ai" class="md-nav__link">
+    AWS permissions used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-permissions-when-access-is-granted-using-cross-account-iam-role" class="md-nav__link">
+    AWS permissions when access is granted using Cross-account IAM role
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gcp" class="md-nav__link">
+    GCP
+  </a>
+  
+    <nav class="md-nav" aria-label="GCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview-of-gcp-permissions-used-by-cast-ai" class="md-nav__link">
+    Overview of GCP permissions used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcp-services-and-apis-used-by-cast-ai" class="md-nav__link">
+    GCP Services and APIs used by CAST AI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gcp-service-account-used-by-cast-ai" class="md-nav__link">
+    GCP Service Account used by CAST AI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/castai/docs/edit/main/docs/guides/cloud-permissions.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="permissions-setup-used-in-cloud-providers-aws-gcp-azure">Permissions Setup Used In Cloud Providers (AWS / GCP / Azure)<a class="headerlink" href="#permissions-setup-used-in-cloud-providers-aws-gcp-azure" title="Permanent link">&para;</a></h1>
+<p>When cluster is promoted to Phase 2 (cost optimisation is enabled) then CAST AI central system is able to perform operations on Cloud Provider (AWS / GCP / Azure) level (like for example request a node and add it to a cluster).
+Such operations require relevant Cloud Provider specific credentials and permissions.
+Below there is a description of the permission setup done for AWS and GCP Cloud Providers (similar description for Azure will be released shortly as well).</p>
+<h2 id="aws">AWS<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h2>
+<h3 id="aws-user-used-by-cast-ai">AWS User used by CAST AI<a class="headerlink" href="#aws-user-used-by-cast-ai" title="Permanent link">&para;</a></h3>
+<p><a href="https://api.cast.ai/v1/scripts/eks/onboarding.sh" target="_blank">Phase 2 on-boarding script</a> creates a dedicated AWS user used by CAST AI to request and manage AWS resources on customer's behalf.
+This user follows <code>cast-eks-&lt;cluster name&gt;</code> convention:</p>
+<div class="highlight"><pre><span></span><code>» aws iam list-users --output text<span class="p">|</span>grep cast-eks-
+USERS   arn:aws:iam::123456789012:user/cast-eks-some-cluster   <span class="m">2022</span>-05-12T12:48:47+00:00   /   <span class="m">123456789012345678901</span>   cast-eks-some-cluster
+</code></pre></div>
+<h3 id="aws-permissions-used-by-cast-ai">AWS permissions used by CAST AI<a class="headerlink" href="#aws-permissions-used-by-cast-ai" title="Permanent link">&para;</a></h3>
+<p>Once user is created, following policies are attached to the AWS user:</p>
+<table>
+<thead>
+<tr>
+<th>API Group</th>
+<th align="left">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AmazonEC2ReadOnlyAccess</td>
+<td align="left">AWS managed policy</td>
+<td>Used to fetch details about Virtual Machines</td>
+</tr>
+<tr>
+<td>IAMReadOnlyAccess</td>
+<td align="left">AWS managed policy</td>
+<td>Used to fetch required data from IAM</td>
+</tr>
+<tr>
+<td>CastEKSPolicy</td>
+<td align="left">Managed policy</td>
+<td>CAST AI policy for creating and removing Virtual Machines when managing Cluster nodes</td>
+</tr>
+<tr>
+<td>CastEKSRestrictedAccess</td>
+<td align="left">Inline policy</td>
+<td>CAST AI policy for Cluster Pause / Resume functionality</td>
+</tr>
+</tbody>
+</table>
+<p>These policies may be validated by combining results from the following commands (please look up AWS documentation about the details how to used that):</p>
+<div class="highlight"><pre><span></span><code>aws iam list-user-policies --user-name &lt;user name&gt;
+aws iam list-attached-user-policies --user-name &lt;user name&gt;
+aws iam list-groups-for-user --user-name &lt;user name&gt;
+</code></pre></div>
+<p>The result also contains policies' arn's which is required for inspecting permissions, which can be done using following commands:</p>
+<div class="highlight"><pre><span></span><code>» aws iam list-policy-versions --policy-arn arn:aws:iam::123456789012:policy/CastEKSPolicy
+<span class="o">{</span>
+    <span class="s2">&quot;Versions&quot;</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">&quot;VersionId&quot;</span>: <span class="s2">&quot;v83&quot;</span>,
+            <span class="s2">&quot;IsDefaultVersion&quot;</span>: true,
+            <span class="s2">&quot;CreateDate&quot;</span>: <span class="s2">&quot;2022-05-12T12:49:01+00:00&quot;</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">&quot;VersionId&quot;</span>: <span class="s2">&quot;v82&quot;</span>,
+            <span class="s2">&quot;IsDefaultVersion&quot;</span>: false,
+            <span class="s2">&quot;CreateDate&quot;</span>: <span class="s2">&quot;2022-05-12T09:53:58+00:00&quot;</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>... and then:</p>
+<div class="highlight"><pre><span></span><code>» aws iam get-policy-version --policy-arn arn:aws:iam::123456789012:policy/CastEKSPolicy --version-id v83
+<span class="o">{</span>
+    <span class="s2">&quot;PolicyVersion&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;Document&quot;</span>: <span class="o">{</span>
+            <span class="s2">&quot;Version&quot;</span>: <span class="s2">&quot;2012-10-17&quot;</span>,
+            <span class="s2">&quot;Statement&quot;</span>: <span class="o">[</span>
+                <span class="o">{</span>
+                    <span class="s2">&quot;Sid&quot;</span>: <span class="s2">&quot;PassRoleEC2&quot;</span>,
+                    <span class="s2">&quot;Action&quot;</span>: <span class="s2">&quot;iam:PassRole&quot;</span>,
+                    <span class="s2">&quot;Effect&quot;</span>: <span class="s2">&quot;Allow&quot;</span>,
+                    <span class="s2">&quot;Resource&quot;</span>: <span class="s2">&quot;arn:aws:iam::*:role/*&quot;</span>,
+                    <span class="s2">&quot;Condition&quot;</span>: <span class="o">{</span>
+                        <span class="s2">&quot;StringEquals&quot;</span>: <span class="o">{</span>
+                            <span class="s2">&quot;iam:PassedToService&quot;</span>: <span class="s2">&quot;ec2.amazonaws.com&quot;</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>,
+                <span class="o">{</span>
+                    <span class="s2">&quot;Sid&quot;</span>: <span class="s2">&quot;NonResourcePermissions&quot;</span>,
+                    <span class="s2">&quot;Effect&quot;</span>: <span class="s2">&quot;Allow&quot;</span>,
+                    <span class="s2">&quot;Action&quot;</span>: <span class="o">[</span>
+                        <span class="s2">&quot;iam:DeleteInstanceProfile&quot;</span>,
+                        <span class="s2">&quot;iam:RemoveRoleFromInstanceProfile&quot;</span>,
+                        <span class="s2">&quot;iam:DeleteRole&quot;</span>,
+                        <span class="s2">&quot;iam:DetachRolePolicy&quot;</span>,
+                        <span class="s2">&quot;iam:CreateServiceLinkedRole&quot;</span>,
+                        <span class="s2">&quot;iam:DeleteServiceLinkedRole&quot;</span>,
+                        <span class="s2">&quot;ec2:CreateSecurityGroup&quot;</span>,
+                        <span class="s2">&quot;ec2:CreateKeyPair&quot;</span>,
+                        <span class="s2">&quot;ec2:DeleteKeyPair&quot;</span>,
+                        <span class="s2">&quot;ec2:CreateTags&quot;</span>,
+                        <span class="s2">&quot;ec2:ImportKeyPair&quot;</span>
+                    <span class="o">]</span>,
+                    <span class="s2">&quot;Resource&quot;</span>: <span class="s2">&quot;*&quot;</span>
+                <span class="o">}</span>,
+                <span class="o">{</span>
+                    <span class="s2">&quot;Sid&quot;</span>: <span class="s2">&quot;RunInstancesPermissions&quot;</span>,
+                    <span class="s2">&quot;Effect&quot;</span>: <span class="s2">&quot;Allow&quot;</span>,
+                    <span class="s2">&quot;Action&quot;</span>: <span class="s2">&quot;ec2:RunInstances&quot;</span>,
+                    <span class="s2">&quot;Resource&quot;</span>: <span class="o">[</span>
+                        <span class="s2">&quot;arn:aws:ec2:*:028075177508:network-interface/*&quot;</span>,
+                        <span class="s2">&quot;arn:aws:ec2:*:028075177508:security-group/*&quot;</span>,
+                        <span class="s2">&quot;arn:aws:ec2:*:028075177508:volume/*&quot;</span>,
+                        <span class="s2">&quot;arn:aws:ec2:*:028075177508:key-pair/*&quot;</span>,
+                        <span class="s2">&quot;arn:aws:ec2:*::image/*&quot;</span>
+                    <span class="o">]</span>
+                <span class="o">}</span>
+            <span class="o">]</span>
+        <span class="o">}</span>,
+        <span class="s2">&quot;VersionId&quot;</span>: <span class="s2">&quot;v83&quot;</span>,
+        <span class="s2">&quot;IsDefaultVersion&quot;</span>: true,
+        <span class="s2">&quot;CreateDate&quot;</span>: <span class="s2">&quot;2022-05-12T12:49:01+00:00&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3 id="aws-permissions-when-access-is-granted-using-cross-account-iam-role">AWS permissions when access is granted using Cross-account IAM role<a class="headerlink" href="#aws-permissions-when-access-is-granted-using-cross-account-iam-role" title="Permanent link">&para;</a></h3>
+<p>When enabling cost optimisation (Phase 2) for a connected cluster, there is an option to grant permissions using Cross-account IAM role.
+This feature allows creating a dedicated cluster user in CAST AI AWS account with a trust policy to be able to 'assume role' defined in customer's AWS account.
+Keeping role definition and users in separate AWS accounts allows keeping user's credentials on CAST AI side without handing them over when running on-boarding script, which provides higher security level.
+From customer perspective used role contains the same set of permissions as in case of regular flow (when user is created in customer's AWS account), this can be verified using following command:</p>
+<div class="highlight"><pre><span></span><code>aws iam list-attached-role-policies --role-name &lt;role name&gt;
+aws iam list-role-policies --role-name &lt;role name&gt;
+</code></pre></div>
+<p>Additionally, a trust relationship is created as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;Principal&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;AWS&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::123456789012:user/cast-crossrole-f8f82b9c-d375-40d2-9483-123456789012&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;sts:AssumeRole&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="gcp">GCP<a class="headerlink" href="#gcp" title="Permanent link">&para;</a></h2>
+<h3 id="overview-of-gcp-permissions-used-by-cast-ai">Overview of GCP permissions used by CAST AI<a class="headerlink" href="#overview-of-gcp-permissions-used-by-cast-ai" title="Permanent link">&para;</a></h3>
+<p><a href="https://api.cast.ai/v1/scripts/gke/onboarding.sh" target="_blank">Phase 2 on-boarding script</a> performs several actions to get required permissions to manage GKE and GCP resources on customer's behalf:</p>
+<ul>
+<li>Enables required GCP services and APIs for the project</li>
+<li>Creates IAM service account and assigns required roles to it</li>
+<li>Generates IAM service account key which is used by CAST AI components to manage GKE and GCP resources on customer's behalf</li>
+</ul>
+<h3 id="gcp-services-and-apis-used-by-cast-ai">GCP Services and APIs used by CAST AI<a class="headerlink" href="#gcp-services-and-apis-used-by-cast-ai" title="Permanent link">&para;</a></h3>
+<p>CAST AI enables following GCP services and APIs for the project on which customer's GKE cluster is running:</p>
+<table>
+<thead>
+<tr>
+<th>GCP Service / API Group</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://cloud.google.com/service-usage/docs/reference/rest" target="_blank"><code>serviceusage.googleapis.com</code></a></td>
+<td align="left">API to list, enable and disable GCP services</td>
+</tr>
+<tr>
+<td><a href="https://cloud.google.com/iam/docs/reference/rest" target="_blank"><code>iam.googleapis.com</code></a></td>
+<td align="left">API to manage identity and access control for GCP resources</td>
+</tr>
+<tr>
+<td><a href="https://cloud.google.com/resource-manager/reference/rest" target="_blank"><code>cloudresourcemanager.googleapis.com</code></a></td>
+<td align="left">API to create, read, and update metadata for GCP resource containers</td>
+</tr>
+<tr>
+<td><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest" target="_blank"><code>container.googleapis.com</code></a></td>
+<td align="left">API to manage GKE</td>
+</tr>
+<tr>
+<td><a href="https://cloud.google.com/compute/docs/reference/rest/v1" target="_blank"><code>compute.googleapis.com</code></a></td>
+<td align="left">API to manage GCP virtual machines</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gcp-service-account-used-by-cast-ai">GCP Service Account used by CAST AI<a class="headerlink" href="#gcp-service-account-used-by-cast-ai" title="Permanent link">&para;</a></h3>
+<p><a href="https://api.cast.ai/v1/scripts/gke/onboarding.sh" target="_blank">Phase 2 on-boarding script</a> creates a dedicated GCP service account used by CAST AI to request and manage GCP resources on customer's behalf.
+The Service Account follows <code>castai-gke-&lt;cluster-name-hash&gt;</code> convention. Service account can be verified by:</p>
+<div class="highlight"><pre><span></span><code>gcloud iam service-accounts describe castai-gke-&lt;cluster-name-hash&gt;@&lt;your-gcp-project&gt;.iam.gserviceaccount.com
+</code></pre></div>
+<p>CAST AI created Service Account has the following roles attached:</p>
+<table>
+<thead>
+<tr>
+<th>Role name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>castai.gkeAccess</code></td>
+<td align="left">CAST AI managed role used to manage CAST AI add/delete node operations, full list of permissions can be found below</td>
+</tr>
+<tr>
+<td><code>container.developer</code></td>
+<td align="left">GCP managed role for full access to Kubernetes API objects inside Kubernetes cluster</td>
+</tr>
+<tr>
+<td><code>iam.serviceAccountUser</code></td>
+<td align="left">GCP managed role to allow run operations as the service account</td>
+</tr>
+</tbody>
+</table>
+<p>Full list of <code>castai.gkeAccess</code> role permissions:</p>
+<div class="highlight"><pre><span></span><code>» gcloud iam roles describe --project<span class="o">=</span>&lt;your-project-name&gt; castai.gkeAccess
+
+description: Role to manage GKE cluster via CAST AI
+etag: example-tag
+includedPermissions:
+- compute.addresses.use
+- compute.disks.create
+- compute.disks.setLabels
+- compute.disks.use
+- compute.images.useReadOnly
+- compute.instanceGroupManagers.get
+- compute.instanceGroupManagers.update
+- compute.instanceGroups.get
+- compute.instanceTemplates.create
+- compute.instanceTemplates.delete
+- compute.instanceTemplates.get
+- compute.instanceTemplates.list
+- compute.instances.create
+- compute.instances.delete
+- compute.instances.get
+- compute.instances.list
+- compute.instances.setLabels
+- compute.instances.setMetadata
+- compute.instances.setServiceAccount
+- compute.instances.setTags
+- compute.instances.start
+- compute.instances.stop
+- compute.networks.use
+- compute.networks.useExternalIp
+- compute.subnetworks.get
+- compute.subnetworks.use
+- compute.subnetworks.useExternalIp
+- compute.zones.get
+- compute.zones.list
+- container.certificateSigningRequests.approve
+- container.clusters.get
+- container.clusters.update
+- container.operations.get
+- serviceusage.services.list
+name: projects/&lt;your-project-name&gt;/roles/castai.gkeAccess
+stage: ALPHA
+title: Role to manage GKE cluster via CAST AI
+</code></pre></div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  <!-- Link to previous and/or next page -->
+  
+  <nav
+          class="md-footer__inner md-grid"
+          aria-label="Footer"
+  >
+
+    <!-- Link to previous page -->
+    
+    
+    <a
+            href="../kubernetes-permissions/"
+            class="md-footer__link md-footer__link--prev"
+            aria-label="Previous: Kubernetes permissions"
+            rel="prev"
+    >
+      <div class="md-footer__button md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </div>
+      <div class="md-footer__title">
+        <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+          Kubernetes permissions
+        </div>
+      </div>
+    </a>
+    
+
+    <!-- Link to next page -->
+    
+    
+    <a
+            href="../custom-secret-management/"
+            class="md-footer__link md-footer__link--next"
+            aria-label="Next: Custom secret management"
+            rel="next"
+    >
+      <div class="md-footer__title">
+        <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+          Custom secret management
+        </div>
+      </div>
+      <div class="md-footer__button md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+      </div>
+    </a>
+    
+  </nav>
+  
+
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-social">
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.649a939e.min.js"></script>
+      
+    
+  </body>
+</html>
