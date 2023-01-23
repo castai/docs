@@ -10,7 +10,7 @@ To get started, log into the console and navigate to the **Connect cluster** win
 
 ![img.png](screenshots/connect-cluster.png)
 
-The script will install the agent that will run inside the cluster in read-only mode. After the installation, the agent will collect and analyze your cluster configuration to provide the most optimal setup along with a savings estimation for your current cloud environment.
+The script will install the agent that will run inside the cluster in read-only mode. After the installation, the agent will collect and analyze your cluster configuration to provide the most optimal setup along with a savings estimation for your current cloud environment. You will also get insights of your cluster's security state.
 
 To start saving costs, turn the automatic optimization on when you're ready.
 
