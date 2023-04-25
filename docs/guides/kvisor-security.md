@@ -79,28 +79,28 @@ helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent --reuse-val
 
 You can change any of the supported config values described in [kvisor helm chart](https://github.com/castai/kvisor/blob/main/charts/castai-kvisor/values.yaml#L42)
 
-### Increase concurrent images scan count:
+### Increase concurrent images scan count
 
 ```shell
 helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent \
   --reuse-values --set structuredConfig.imageScan.maxConcurrentScans=6
 ```
 
-### Disable images can:
+### Disable images scan
 
 ```shell
 helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent \
   --reuse-values --set structuredConfig.imageScan.enabled=false
 ```
 
-### Disable kube bench jobs:
+### Disable kube bench jobs
 
 ```shell
 helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent \
   --reuse-values --set structuredConfig.kubeBench.enabled=false
 ```
 
-### Disable kubernetes YAML manifests linters:
+### Disable kubernetes YAML manifests linters
 
 ```shell
 helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent \
@@ -110,6 +110,7 @@ helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent \
 ### Update resources (cpu, memory)
 
 For large clusters you may need to increase cpu and memory.
+
 ```shell
 helm upgrade castai-kvisor castai-helm/castai-kvisor -n castai-agent --reuse-values \
     --set resources.requests.cpu=100m \
